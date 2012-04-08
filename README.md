@@ -43,7 +43,7 @@ Installation
 ------------
 
 1.   Go to your project's directory.
-2.   Clone this project into your `./vendor/` directory as a `DluTwBootstrap` module:
+2.   Clone this project into your `./vendor/` directory as a `DluTwBootstrap` module:  
 `git clone https://bitbucket.org/dlu/dlutwbootstrap.git ./vendor/DluTwBootstrap`
 3.   Enable this module in your `./config/application.config.php`.
 
