@@ -32,6 +32,7 @@ Implemented features
 - Highlighting required fields
 - Prepend / append text to text input
 - Multi-checkbox and radio can be optionally rendered inline
+- Form legend
 
 Supported versions
 ------------------
@@ -55,11 +56,48 @@ Installation
 Check and Demo
 --------------
 
-Check that everything is working properly by going to the demo page included with the module where you can also see all form elements in action:
+Check that everything is working properly by going to the demo page included with the module where you can also see all form elements in action:  
 `http://<your-machine>/tw-bootstrap-demo/form`
+
+The demo page also describes the capabilities of the individual form elements.
+
+How to use
+----------
+
+1.   Your form class must extend one of the four supplied form classes (and you are basically done!):
+       - `\DluTwBootstrap\Form\Horizontal`
+       - `\DluTwBootstrap\Form\Vertical`
+       - `\DluTwBootstrap\Form\Inline`
+       - `\DluTwBootstrap\Form\Search`
+2.   Create and add your form elements as usual
+3.   Display your form as usual
+4.   ...that's all there is to it!
+
+### Form Legend
+
+If you want to display a form heading (legend), use the standard ZF form method `setLegend()`.
+
+### Element help texts
+
+Some form elements support an inline help (short line of text displayed inline after the element) and / or a placeholder text (text displayed as an element's value until the actual value is entered). Please check the demo page to see which elements support these texts.
+
+To set these texts, use either the element's setter methods:
+- `setInlineHelp()`
+- `setPlaceholderText()`
+or use the element's configuration options:  
+`$this->addElement('text', 'name', array(
+    'label'             => 'Name',
+    'placeholderText'   => 'Your name',
+    'inlineHelp'        => 'Use your real name',
+));`
+
+The most descriptive
+
+
+
 
 Links
 -----
 
 - The DluTwBootstrap ZF2 module is available at Bitbucket: [https://bitbucket.org/dlu/dlutwbootstrap](https://bitbucket.org/dlu/dlutwbootstrap)
-- You may find other useful information in my blog post at ZF Daily: [http://www.zfdaily.com/2012/04/twitter-bootstrap-forms-with-zf2-easily/](http://www.zfdaily.com/2012/04/twitter-bootstrap-forms-with-zf2-easily/) 
+- You may find other useful information in my blog post at ZF Daily: [Twitter Bootstrap Forms with ZF2. Easily.](http://www.zfdaily.com/2012/04/twitter-bootstrap-forms-with-zf2-easily/) 
