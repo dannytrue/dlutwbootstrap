@@ -1,0 +1,51 @@
+/*
+ * Override the default styles for Twitter Bootstrap
+ */
+
+/* Narrower space between the form legend and the first form element */
+legend {
+    margin-bottom: 16px;
+}
+
+/* Denote required fields */
+form label.required {
+    font-weight: bold;
+}
+form label.required:after {
+    color: #B94A48;
+    content: '*';
+    display:inline;
+    font-weight: bold;
+}
+
+/* Format inline and block help */
+form span.help-inline,
+form p.help-block {
+    color: #888888;
+    font-size: 90%;
+}
+
+/* Format fields with validation errors */
+.control-group.error .help-block,
+.control-group.error .help-inline {
+    color: #888888;
+}
+
+form ul.errors {
+    color: #B94A48;
+    font-size: 90%;
+}
+
+/*
+.control-group.error input,
+.control-group.error select,
+.control-group.error textarea {
+    color: #B94A48;
+}
+*/
+
+/* Move inline help for multi select from the center to the top */
+select[multiple]+span.help-inline {
+    vertical-align: top;
+    margin-top: 5px;
+}
