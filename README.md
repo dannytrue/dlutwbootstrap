@@ -42,14 +42,15 @@ Supported versions
 Installation
 ------------
 
-1. Go to your project's directory.
-2. Clone this project into your `./vendor/` directory as a `DluTwBootstrap` module:
+1.   Go to your project's directory.
+2.   Clone this project into your `./vendor/` directory as a `DluTwBootstrap` module:
 `git clone https://bitbucket.org/dlu/dlutwbootstrap.git ./vendor/DluTwBootstrap`
-3. Enable this module in your `./config/application.config.php`.
+3.   Enable this module in your `./config/application.config.php`.
 
-    *If you already have the Twitter Bootstrap and jQuery environment set-up properly in your project, you may skip the rest of the installation and go directly to the Demo. Otherwise please continue.*
-4. Copy (or link) everything from the module's `public` directory to your project's `public` directory (i.e. Twitter Bootstrap and jQuery css and js files).
-5. Copy `dlutwbootstrap.global.config.php` from the module's root directory to your project's `./config/autoload` directory (this sets the layout script to the one supplied with the module to load all necessary css and js dependencies).
+     *If you already have the Twitter Bootstrap and jQuery environment set-up properly in your project, you may skip the rest of the installation and go directly to the Demo. Otherwise please continue.*
+
+4.   Copy (or link) everything from the module's `public` directory to your project's `public` directory (i.e. Twitter Bootstrap and jQuery css and js files).
+5.   Copy `dlutwbootstrap.global.config.php` from the module's root directory to your project's `./config/autoload` directory (this sets the layout script to the one supplied with the module to load all necessary css and js dependencies).
 
 Check and Demo
 --------------
