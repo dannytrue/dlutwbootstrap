@@ -75,23 +75,28 @@ How to use
 
 ### Form Legend
 
-If you want to display a form heading (legend), use the standard ZF form method `setLegend()`.
+If you want to display a form heading (legend), use the standard form method `setLegend()`.
 
 ### Element help texts
 
 Some form elements support an inline help (short line of text displayed inline after the element) and / or a placeholder text (text displayed as an element's value until the actual value is entered). Please check the demo page to see which elements support these texts.
 
 To set these texts, use either the element's setter methods:
+
 - `setInlineHelp()`
 - `setPlaceholderText()`
-or use the element's configuration options:  
-`$this->addElement('text', 'name', array(
-    'label'             => 'Name',
-    'placeholderText'   => 'Your name',
-    'inlineHelp'        => 'Use your real name',
-));`
 
-The most descriptive
+or use the element's configuration options (see below).
+
+The standard element description is rendered below the element and is supported with all form elements either via the standard element's setter (`setDescription()`) or via a configuration option:
+
+    $this->addElement('text', 'name', array(
+        'label'             => 'Name',
+        'placeholderText'   => 'Your name',
+        'inlineHelp'        => 'Use your real name',
+        'description'       => 'We will not use your name for anything bad.',
+    ));
+
 
 
 
