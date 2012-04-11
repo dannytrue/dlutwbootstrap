@@ -61,7 +61,7 @@ Installation
 Check and Demo
 --------------
 
-Check that everything is working properly by going to the demo page included with the module where you can also see all form elements in action:  
+Check that everything is working properly by going to the demo page included with the module:  
 `http://<your-machine>/tw-bootstrap-demo/form`
 
 The demo page also describes the capabilities of the individual form elements.
