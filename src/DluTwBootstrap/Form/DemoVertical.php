@@ -16,8 +16,8 @@ class DemoVertical extends Vertical
         $this->addElement('text', 'name', array(
             'label'             => 'Name',
             'placeholderText'   => 'Your name',
-            'inlineHelp'        => 'You should know this',
-            'description'       => 'Enter your full name',
+            'inlineHelp'        => 'Use your real name',
+            'description'       => 'Text element (required) in error state with error messages. Supports inline help as well as placeholder text.',
             'required'          => true,
             'filters'           => array(
                 'stripTags', 'stringTrim'
@@ -28,7 +28,7 @@ class DemoVertical extends Vertical
             'label'             => 'Password',
             'placeholderText'   => 'Top secret!',
             'inlineHelp'        => 'Do not tell anyone!',
-            'description'       => 'Try to use the strongest password you can remember.',
+            'description'       => 'Password element (required).  Supports inline help as well as placeholder text.',
             'required'  => true,
             'filters'   => array(
                 'stripTags', 'stringTrim'
@@ -39,7 +39,7 @@ class DemoVertical extends Vertical
             'label'             => 'Notes',
             'placeholderText'   => 'Type any notes here',
             'inlineHelp'        => 'A place for your notes',
-            'description'       => 'You can use html tags here.',
+            'description'       => 'Textarea element.  Supports inline help as well as placeholder text.',
             'rows'              => 4,
             'required'  => false,
             'filters'   => array(
@@ -49,13 +49,13 @@ class DemoVertical extends Vertical
 
         $this->addElement('checkbox', 'pastaEater', array(
             'label'             => 'Do you like pasta?',
-            'description'       => 'Pure pizza eaters do not qualify.',
+            'description'       => 'Checkbox element.',
             'required'  => false,
         ));
 
         $this->addElement('radio', 'yourLevel', array(
             'label'             => 'Your level',
-            'description'       => 'Enter your skill level',
+            'description'       => 'Radio element (required).',
             'required'          => true,
             'multiOptions'      => array(
                 'beg'   => 'Beginner',
@@ -63,12 +63,11 @@ class DemoVertical extends Vertical
                 'adv'   => 'Advanced',
                 'gur'   => 'Guru',
             ),
-
         ));
 
-        $this->addElement('radio', 'rateUs1', array(
+        $this->addElement('radio', 'rateUs', array(
             'label'             => 'Rate us',
-            'description'       => 'Rate our performance: A - best, F - worst.',
+            'description'       => 'Radio element inline (required).',
             'inline'            => true,
             'required'          => true,
             'multiOptions'      => array(
@@ -79,12 +78,11 @@ class DemoVertical extends Vertical
                 'e'   => 'E',
                 'f'   => 'F',
             ),
-
         ));
 
         $this->addElement('multicheckbox', 'settings', array(
             'label'             => 'Settings',
-            'description'       => 'Please specify the application settings',
+            'description'       => 'Multicheckbox element.',
             'multiOptions'      => array(
                 'runBkg'   => 'Run on background',
                 'col'      => 'Use web colour palette',
@@ -96,7 +94,7 @@ class DemoVertical extends Vertical
 
         $this->addElement('multicheckbox', 'seenMovies', array(
             'label'             => 'What have you seen?',
-            'description'       => 'Check only those movies you have seen from the beginning to the end.',
+            'description'       => 'Multicheckbox element inline.',
             'inline'            => true,
             'multiOptions'      => array(
                 'terminator'    => 'Terminator 1',
@@ -110,7 +108,7 @@ class DemoVertical extends Vertical
         $this->addElement('select', 'car', array(
             'label'     => 'Make of your car',
             'inlineHelp'    => 'What car do you drive?',
-            'description'   => "If your car make is not listed, select 'other'",
+            'description'   => 'Select element. Supports inline help.',
             'multiOptions'      => array(
                 'ford'    => 'Ford',
                 'bmw'     => 'BMW',
@@ -124,7 +122,7 @@ class DemoVertical extends Vertical
         $this->addElement('multiselect', 'pets', array(
             'label'     => 'Your home creatures',
             'inlineHelp'    => 'Select all that apply',
-            'description'   => "Select only those you intentionally feed. I.e. do not select 'rat' if rodents occupy your cellar.",
+            'description'   => 'Multiselect element. Supports inline help.',
             'multiOptions'      => array(
                 'dog'    => 'Dog',
                 'cat'     => 'Cat',
@@ -139,7 +137,7 @@ class DemoVertical extends Vertical
         $this->addElement('file', 'attachment', array(
             'label'             => 'Attach file',
             'inlineHelp'        => 'Max. file size 1 MB',
-            'description'       => 'All submitted files will be checked against viruses.',
+            'description'       => 'File element. Supports inline help.',
             'required'          => false,
             'filters'           => array(
                 'stringTrim',

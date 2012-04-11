@@ -14,7 +14,7 @@ class DemoController extends ActionController
         $nameVertical   = $formVertical->getElement('name');
         $nameVertical->setErrors(array('Validation error 1', 'Another validation problem', 'You should correct also this'));
         $formHorizontal = new DemoHorizontal();
-        $nameHorizontal = $formHorizontal->getElement('name');
+        $nameHorizontal = $formHorizontal->getElement('name2');
         $nameHorizontal->setErrors(array('This is not right', 'Error!'));
         $formInline     = new DemoInline();
         $formSearch     = new DemoSearch();

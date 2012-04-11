@@ -7,39 +7,39 @@ class DemoHorizontal extends Horizontal
         $this->setName('horizontalForm');
         $this->setLegend('Horizontal Form Demo');
 
-        $this->addElement('hidden', 'id', array(
+        $this->addElement('hidden', 'id2', array(
             'filters'   => array(
                 'int',
             )
         ));
 
-        $this->addElement('text', 'name', array(
+        $this->addElement('text', 'name2', array(
             'label'             => 'Name',
             'placeholderText'   => 'Your name',
-            'inlineHelp'        => 'You should know this',
-            'description'       => 'Enter your full name',
+            'inlineHelp'        => 'Use your real name',
+            'description'       => 'Text element (required) in error state with error messages. Supports inline help as well as placeholder text.',
             'required'          => true,
             'filters'           => array(
                 'stripTags', 'stringTrim'
             ),
         ));
 
-        $this->addElement('password', 'pwd', array(
+        $this->addElement('password', 'pwd2', array(
             'label'             => 'Password',
             'placeholderText'   => 'Top secret!',
             'inlineHelp'        => 'Do not tell anyone!',
-            'description'       => 'Try to use the strongest password you can remember.',
+            'description'       => 'Password element (required).  Supports inline help as well as placeholder text.',
             'required'  => true,
             'filters'   => array(
                 'stripTags', 'stringTrim'
             ),
         ));
 
-        $this->addElement('textarea', 'notes', array(
+        $this->addElement('textarea', 'notes2', array(
             'label'             => 'Notes',
             'placeholderText'   => 'Type any notes here',
             'inlineHelp'        => 'A place for your notes',
-            'description'       => 'You can use html tags here.',
+            'description'       => 'Textarea element.  Supports inline help as well as placeholder text.',
             'rows'              => 4,
             'required'  => false,
             'filters'   => array(
@@ -49,13 +49,13 @@ class DemoHorizontal extends Horizontal
 
         $this->addElement('checkbox', 'pastaEater2', array(
             'label'             => 'Do you like pasta?',
-            'description'       => 'Pure pizza eaters do not qualify.',
+            'description'       => 'Checkbox element.',
             'required'  => false,
         ));
 
         $this->addElement('radio', 'yourLevel2', array(
             'label'             => 'Your level',
-            'description'       => 'Enter your skill level',
+            'description'       => 'Radio element (required).',
             'required'          => true,
             'multiOptions'      => array(
                 'beg'   => 'Beginner',
@@ -63,12 +63,11 @@ class DemoHorizontal extends Horizontal
                 'adv'   => 'Advanced',
                 'gur'   => 'Guru',
             ),
-
         ));
 
         $this->addElement('radio', 'rateUs2', array(
             'label'             => 'Rate us',
-            'description'       => 'Rate our performance: A - best, F - worst.',
+            'description'       => 'Radio element inline (required).',
             'inline'            => true,
             'required'          => true,
             'multiOptions'      => array(
@@ -79,24 +78,22 @@ class DemoHorizontal extends Horizontal
                 'e'   => 'E',
                 'f'   => 'F',
             ),
-
         ));
 
         $this->addElement('multicheckbox', 'settings2', array(
             'label'             => 'Settings',
-            'description'       => 'Please specify the application settings',
+            'description'       => 'Multicheckbox element.',
             'multiOptions'      => array(
                 'runBkg'   => 'Run on background',
                 'col'      => 'Use web colour palette',
                 'slow'     => 'Compensate for slow connection',
                 'stat'     => 'Collect statistics',
             ),
-
         ));
 
         $this->addElement('multicheckbox', 'seenMovies2', array(
             'label'             => 'What have you seen?',
-            'description'       => 'Check only those movies you have seen from the beginning to the end.',
+            'description'       => 'Multicheckbox element inline.',
             'inline'            => true,
             'multiOptions'      => array(
                 'terminator'    => 'Terminator 1',
@@ -104,13 +101,12 @@ class DemoHorizontal extends Horizontal
                 'amBeauty'      => 'American Beauty',
                 'platoon'       => 'Platoon',
             ),
-
         ));
 
-        $this->addElement('select', 'car', array(
+        $this->addElement('select', 'car2', array(
             'label'     => 'Make of your car',
             'inlineHelp'    => 'What car do you drive?',
-            'description'   => "If your car make is not listed, select 'other'",
+            'description'   => 'Select element. Supports inline help.',
             'multiOptions'      => array(
                 'ford'    => 'Ford',
                 'bmw'     => 'BMW',
@@ -121,10 +117,10 @@ class DemoHorizontal extends Horizontal
             'class'     => 'span2',
         ));
 
-        $this->addElement('multiselect', 'pets', array(
+        $this->addElement('multiselect', 'pets2', array(
             'label'     => 'Your home creatures',
             'inlineHelp'    => 'Select all that apply',
-            'description'   => "Select only those you intentionally feed. I.e. do not select 'rat' if rodents occupy your cellar.",
+            'description'   => 'Multiselect element. Supports inline help.',
             'multiOptions'      => array(
                 'dog'    => 'Dog',
                 'cat'     => 'Cat',
@@ -136,41 +132,45 @@ class DemoHorizontal extends Horizontal
             'class'     => 'span2',
         ));
 
-        $this->addElement('file', 'attachment', array(
+        $this->addElement('file', 'attachment2', array(
             'label'             => 'Attach file',
             'inlineHelp'        => 'Max. file size 1 MB',
-            'description'       => 'All submitted files will be checked against viruses.',
+            'description'       => 'File element. Supports inline help.',
             'required'          => false,
             'filters'           => array(
                 'stringTrim',
             ),
         ));
 
-        $this->addElement('text', 'salary', array(
+        $this->addElement('text', 'salary2', array(
             'label'             => 'Salary',
-            'placeholderText'   => 'Salary',
+            'placeholderText'   => 'Good old cash...',
             'inlineHelp'        => 'Yearly net salary',
-            'description'       => 'Text input with prepend and append text.',
+            'description'       => 'Text element with prepend and append text. Renders correctly on horizontal and inline forms.',
             'prependText'       => '$',
             'appendText'        => '.00',
         ));
 
-        $this->addElement('submit', 'submitBtn', array(
+        $this->addElement('hash', 'myHash2', array(
+            'salt'              => 'myUniqueSalt2',
+        ));
+
+        $this->addElement('submit', 'submitBtn2', array(
             'label'             => 'Save changes',
             'title'             => 'Submit button',
         ));
 
-        $this->addElement('reset', 'resetBtn', array(
+        $this->addElement('reset', 'resetBtn2', array(
             'label'             => 'Clear form',
             'title'             => 'Reset button',
         ));
 
-        $this->addElement('button', 'plainBtn', array(
+        $this->addElement('button', 'plainBtn2', array(
             'label'             => 'Other action',
             'title'             => 'Button',
         ));
 
-        $this->addDisplayGroup(array('submitBtn', 'resetBtn', 'plainBtn'),
+        $this->addDisplayGroup(array('submitBtn2', 'resetBtn2', 'plainBtn2'),
                                'formActions',
                                array('displayGroupClass' => '\DluTwBootstrap\Form\DgFormActions'));
     }

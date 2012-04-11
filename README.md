@@ -1,6 +1,8 @@
 DluTwBootstrap
 ==============
 
+-------------------------------------------------
+
 Introduction
 ------------
 
@@ -11,21 +13,23 @@ Implemented features
 
 ### [Forms](http://twitter.github.com/bootstrap/base-css.html#forms)
 
-- All four form types supported (vertical, horizontal, inline, search)
-- Supported ZF2 form elements (all except Captcha and Image):
-    - Button
-    - Checkbox
-    - File
-    - Hash
-    - Hidden
+- All four form types supported (Horizontal, Vertical, Inline, Search)
+- All ZF2 form elements except Captcha and Image are supported (see the list below).
+All elements can be displayed on horizontal and vertical forms. Display on Inline and Search
+forms is indicated in parenthesis:
+    - Button (I, S)
+    - Checkbox (I, S)
+    - File (I, S)
+    - Hash (I, S)
+    - Hidden (I, S)
     - MultiCheckbox
     - Multiselect
-    - Password
+    - Password (I, S)
     - Radio
-    - Reset
-    - Select
-    - Submit
-    - Text
+    - Reset (I, S)
+    - Select (I, S)
+    - Submit (I, S)
+    - Text (I, S)
     - Textarea
 - Inline help, block help, placeholder text supported with relevant controls
 - Error state and messages
@@ -39,6 +43,8 @@ Supported versions
 
 - Zend Framework 2.0.0beta3
 - Twitter Bootstrap v2.0.2
+
+--------------------------------------------------------------
 
 Installation
 ------------
@@ -60,6 +66,8 @@ Check that everything is working properly by going to the demo page included wit
 `http://<your-machine>/tw-bootstrap-demo/form`
 
 The demo page also describes the capabilities of the individual form elements.
+
+-----------------------------------------------------------------------------------
 
 How to use
 ----------
@@ -88,7 +96,7 @@ To set these texts, use either the element's setter methods:
 
 or use the element's configuration options (see below).
 
-The standard element description is rendered below the element and is supported with all form elements either via the standard element's setter (`setDescription()`) or via a configuration option:
+The standard element description is rendered below the element and is supported with all form elements on horizontal and vertical forms either via the standard element's setter (`setDescription()`) or via a configuration option:
 
     $this->addElement('text', 'name', array(
         'label'             => 'Name',
@@ -97,9 +105,41 @@ The standard element description is rendered below the element and is supported 
         'description'       => 'We will not use your name for anything bad.',
     ));
 
+### Inline Radio and Multicheckbox elements
 
+To display the radio buttons or multi checkboxes inline, eiter use the element's method `setInline(true)` or use the element's configuration options:
 
+    $this->addElement('radio', 'rateUs2', array(
+        'label'             => 'Select a letter',
+        'inline'            => true,
+        'multiOptions'      => array(
+            'a'   => 'A',
+            'b'   => 'B',
+            'c'   => 'C',
+        ),
+    ));
 
+### Prepend or append text to Text elements
+
+To display a fixed text before and/or after a text element, either use the element's methods `setPrependText()` and `setAppendText()` or use the element's configuration options:
+
+    $this->addElement('text', 'salary', array(
+        'label'             => 'Salary',
+        'prependText'       => '$',
+        'appendText'        => '.00',
+    ));
+
+Prepended and appended text is supported on horizontal and inline forms.
+
+### Display form buttons in gray strip (horizontal form)
+
+To display the buttons on a horizontal form indented on gray background, add them to a display group of `\DluTwBootstrap\Form\DgFormActions` class:
+
+	$this->addDisplayGroup(array('submitBtn', 'resetBtn'),
+		'formActions',
+		array('displayGroupClass' => '\DluTwBootstrap\Form\DgFormActions'));
+	
+-----------------------------------------------------------------
 
 Links
 -----
