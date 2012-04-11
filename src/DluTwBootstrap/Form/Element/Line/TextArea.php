@@ -1,12 +1,24 @@
 <?php
 namespace DluTwBootstrap\Form\Element\Line;
 
+/**
+ * Textarea line element
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class TextArea extends \Zend\Form\Element\TextArea
            implements \DluTwBootstrap\Form\Element\PlaceholderText
 {
 
     /* ******************** METHODS ************************ */
 
+    /**
+     * Load default decorators
+     * @return TextArea
+     */
     public function loadDefaultDecorators() {
         if ($this->loadDefaultDecoratorsIsDisabled()) {
             return $this;

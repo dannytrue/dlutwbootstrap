@@ -1,11 +1,23 @@
 <?php
 namespace DluTwBootstrap\Form;
 
+/**
+ * DemoHorizontal Form
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class DemoHorizontal extends Horizontal
 {
+    /**
+     * Init form
+     */
     public function init() {
         $this->setName('horizontalForm');
         $this->setLegend('Horizontal Form Demo');
+        $this->setAttrib('id', 'horizontal-form-demo');
 
         $this->addElement('hidden', 'id2', array(
             'filters'   => array(

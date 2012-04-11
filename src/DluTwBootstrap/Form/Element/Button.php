@@ -2,11 +2,23 @@
 namespace DluTwBootstrap\Form\Element;
 use DluTwBootstrap\Util\Util;
 
+/**
+ * Button Element
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class Button extends \Zend\Form\Element\Button
 {
 
     /* ******************** METHODS ************************ */
 
+    /**
+     * Load default decorators
+     * @return Button
+     */
     public function loadDefaultDecorators() {
         if ($this->loadDefaultDecoratorsIsDisabled()) {
             return $this;
@@ -35,5 +47,4 @@ class Button extends \Zend\Form\Element\Button
         $this->setAttrib('class', $class);
         return parent::render($view);
     }
-
 }

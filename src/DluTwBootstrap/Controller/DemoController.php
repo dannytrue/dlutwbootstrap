@@ -7,8 +7,20 @@ use Zend\Mvc\Controller\ActionController,
     DluTwBootstrap\Form\DemoInline,
     DluTwBootstrap\Form\DemoSearch;
 
+/**
+ * DemoController
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class DemoController extends ActionController
 {
+    /**
+     * Form action
+     * @return \Zend\View\Model\ViewModel
+     */
     public function formAction() {
         $formVertical   = new DemoVertical();
         $nameVertical   = $formVertical->getElement('name');

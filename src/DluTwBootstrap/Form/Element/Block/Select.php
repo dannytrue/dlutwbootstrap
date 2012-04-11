@@ -1,6 +1,14 @@
 <?php
 namespace DluTwBootstrap\Form\Element\Block;
 
+/**
+ * Select block element
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class Select extends \DluTwBootstrap\Form\Element\Line\Select
            implements \DluTwBootstrap\Form\Element\InlineHelp
 {

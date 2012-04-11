@@ -14,22 +14,20 @@ Implemented features
 ### [Forms](http://twitter.github.com/bootstrap/base-css.html#forms)
 
 - All four form types supported (Horizontal, Vertical, Inline, Search)
-- All ZF2 form elements except Captcha and Image are supported (see the list below).
-All elements can be displayed on horizontal and vertical forms. Display on Inline and Search
-forms is indicated in parenthesis:
-    - Button (I, S)
-    - Checkbox (I, S)
-    - File (I, S)
-    - Hash (I, S)
-    - Hidden (I, S)
+- All ZF2 form elements except Captcha and Image are supported (MultiCheckbox, Multiselect and Radio elements cannot be used on inline and search forms):
+    - Button
+    - Checkbox
+    - File
+    - Hash
+    - Hidden
     - MultiCheckbox
     - Multiselect
-    - Password (I, S)
+    - Password
     - Radio
-    - Reset (I, S)
-    - Select (I, S)
-    - Submit (I, S)
-    - Text (I, S)
+    - Reset
+    - Select
+    - Submit
+    - Text
     - Textarea
 - Inline help, block help, placeholder text supported with relevant controls
 - Error state and messages
@@ -54,7 +52,8 @@ Installation
      `git clone https://bitbucket.org/dlu/dlutwbootstrap.git ./vendor/DluTwBootstrap`
 3.   Enable this module in your `./config/application.config.php`.
 
-     *If you already have the Twitter Bootstrap and jQuery environment set-up properly in your project, you may skip the rest of the installation and go directly to the Demo. Otherwise please continue.*
+     *If you already have the Twitter Bootstrap and jQuery environment set-up properly in your project, you just need to reference the style override file `/public/css/dlu-tw-bootstrap.css` in your layout and you may skip the rest of the installation.
+     (Please see `/view/layout/layouttwb.phtml` if you are not sure where this file fits.)*
 
 4.   Copy (or link) everything from the module's `public` directory to your project's `public` directory (i.e. Twitter Bootstrap and jQuery css and js files).
 5.   Move `dlutwbootstrap.global.config.php` from the module's root directory to your project's `./config/autoload` directory (this sets the layout script to the one supplied with the module to load all necessary css and js dependencies).
@@ -129,9 +128,11 @@ To display a fixed text before and/or after a text element, either use the eleme
         'appendText'        => '.00',
     ));
 
+Do not escape these texts, they are escaped automatically.
+
 Prepended and appended text is supported on horizontal and inline forms.
 
-### Display form buttons in gray strip (horizontal form)
+### Display form buttons in a gray strip (horizontal form)
 
 To display the buttons on a horizontal form indented on gray background, add them to a display group of `\DluTwBootstrap\Form\DgFormActions` class:
 

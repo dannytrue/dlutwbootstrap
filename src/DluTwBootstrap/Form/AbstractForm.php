@@ -5,7 +5,7 @@ use DluTwBootstrap\Form\Exception\OptionsTypeInvalidException;
 use DluTwBootstrap\Form\Exception\PrefixPathTypeInvalidException;
 
 /**
- * DluTwBootstrap Abstract Form
+ * Abstract Form
  * Responsibility: Base abstract class for all Twitter Bootstrap forms
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com

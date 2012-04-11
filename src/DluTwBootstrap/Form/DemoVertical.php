@@ -1,11 +1,23 @@
 <?php
 namespace DluTwBootstrap\Form;
 
+/**
+ * DemoVertical Form
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class DemoVertical extends Vertical
 {
+    /**
+     * Init form
+     */
     public function init() {
         $this->setName('verticalForm');
         $this->setLegend('Vertical Form Demo');
+        $this->setAttrib('id', 'vertical-form-demo');
 
         $this->addElement('hidden', 'id', array(
             'filters'   => array(

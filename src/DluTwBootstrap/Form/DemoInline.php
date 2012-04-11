@@ -1,11 +1,23 @@
 <?php
 namespace DluTwBootstrap\Form;
 
+/**
+ * DemoInline Form
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class DemoInline extends Inline
 {
+    /**
+     * Init form
+     */
     public function init() {
         $this->setName('inlineForm');
         $this->setLegend('Inline Form Demo');
+        $this->setAttrib('id', 'inline-form-demo');
 
         $this->addElement('hidden', 'hiddenCode', array(
             'filters'   => array(
@@ -49,6 +61,5 @@ class DemoInline extends Inline
             'label'             => 'Login',
             'title'             => 'Submit button',
         ));
-
    }
 }

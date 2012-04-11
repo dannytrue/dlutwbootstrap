@@ -1,5 +1,4 @@
 <?php
-
 namespace DluTwBootstrap;
 
 use Zend\Module\Manager,

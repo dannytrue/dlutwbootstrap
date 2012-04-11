@@ -2,6 +2,15 @@
 namespace DluTwBootstrap\Form;
 use \Zend\Form\Form;
 
+/**
+ * Horizontal Form
+ * Responsibility: Represent the Twitter Bootstrap horizontal form
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class Horizontal extends AbstractBlockForm
 {
     /* **************** METHODS ******************** */
@@ -23,5 +32,4 @@ class Horizontal extends AbstractBlockForm
         }
         return $this;
     }
-
 }

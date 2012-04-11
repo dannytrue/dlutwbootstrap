@@ -2,6 +2,15 @@
 namespace DluTwBootstrap\Form;
 use \Zend\Form\Form;
 
+/**
+ * Abstract Block Form
+ * Responsibility: Base abstract class for all Twitter Bootstrap block forms (ie horizontal and vertical)
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 abstract class AbstractBlockForm extends AbstractForm
 {
     /* *********************** METHODS ************************ */
