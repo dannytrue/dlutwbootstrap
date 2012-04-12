@@ -66,6 +66,15 @@ Check that everything is working properly by going to the demo page included wit
 
 The demo page also describes the capabilities of the individual form elements.
 
+Please check the demo form classes
+
+- `\DluTwBootstrap\Form\DemoHorizontal`
+- `\DluTwBootstrap\Form\DemoVertical`
+- `\DluTwBootstrap\Form\DemoInline`
+- `\DluTwBootstrap\Form\DemoSearch`
+
+to see how the forms are constructed.
+
 -----------------------------------------------------------------------------------
 
 How to use
@@ -139,11 +148,11 @@ To display the buttons on a horizontal form indented on gray background, add the
 	$this->addDisplayGroup(array('submitBtn', 'resetBtn'),
 		'formActions',
 		array('displayGroupClass' => '\DluTwBootstrap\Form\DgFormActions'));
-	
+
 -----------------------------------------------------------------
 
 Links
 -----
 
 - The DluTwBootstrap ZF2 module is available at Bitbucket: [https://bitbucket.org/dlu/dlutwbootstrap](https://bitbucket.org/dlu/dlutwbootstrap)
-- You may find other useful information in my blog post at ZF Daily: [Twitter Bootstrap Forms with ZF2. Easily.](http://www.zfdaily.com/2012/04/twitter-bootstrap-forms-with-zf2-easily/) 
+- You may find other useful information in my blog post at ZF Daily: [Twitter Bootstrap Forms with ZF2. Easily.](http://www.zfdaily.com/2012/04/twitter-bootstrap-forms-with-zf2-easily/) You are welcome to post here any questions related to the DluTwBootstrap form functionality.
