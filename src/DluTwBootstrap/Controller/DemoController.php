@@ -18,6 +18,14 @@ use Zend\Mvc\Controller\ActionController,
 class DemoController extends ActionController
 {
     /**
+     * NavBar
+     * @var \Zend\Navigation\Navigation
+     */
+    protected $navbar;
+
+    /* ***************************** METHODS ****************************** */
+
+    /**
      * Form action
      * @return \Zend\View\Model\ViewModel
      */
@@ -37,5 +45,21 @@ class DemoController extends ActionController
             'formSearch'        => $formSearch,
         ));
         return $viewModel;
+    }
+
+    /**
+     * Navbar action
+     * @return \Zend\View\Model\ViewModel
+     */
+    public function navbarAction() {
+        \Zend\Debug::dump($this->navbar);
+        die('Check');
+        $viewModel      = new ViewModel(array(
+        ));
+        return $viewModel;
+    }
+
+    public function setNavbar(\Zend\Navigation\Navigation $navbar) {
+        $this->navbar   = $navbar;
     }
 }
