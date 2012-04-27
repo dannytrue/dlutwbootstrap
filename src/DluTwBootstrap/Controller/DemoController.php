@@ -18,10 +18,10 @@ use Zend\Mvc\Controller\ActionController,
 class DemoController extends ActionController
 {
     /**
-     * NavBar
+     * Navigation - main menu navbar
      * @var \Zend\Navigation\Navigation
      */
-    protected $navbar;
+    protected $navMenuMain;
 
     /* ***************************** METHODS ****************************** */
 
@@ -48,18 +48,24 @@ class DemoController extends ActionController
     }
 
     /**
-     * Navbar action
+     * Navigation action
      * @return \Zend\View\Model\ViewModel
      */
-    public function navbarAction() {
-        \Zend\Debug::dump($this->navbar);
-        die('Check');
+    public function navigationAction() {
+        //\Zend\Debug::dump($this->navMenuMain);
+        //die('Check');
         $viewModel      = new ViewModel(array(
+            'navMenuMain'  => $this->navMenuMain,
         ));
         return $viewModel;
     }
 
-    public function setNavbar(\Zend\Navigation\Navigation $navbar) {
-        $this->navbar   = $navbar;
+    /**
+     * Sets the main menu
+     * (Setter injection)
+     * @param \Zend\Navigation\Navigation $navMenuMain
+     */
+    public function setNavMenuMain(\Zend\Navigation\Navigation $navMenuMain) {
+        $this->navMenuMain   = $navMenuMain;
     }
 }
