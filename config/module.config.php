@@ -25,7 +25,7 @@ return array(
                         array(
                             'label'     => 'Demo',
                             'title'     => 'DluTwBootstrap Demo',
-                            'uri'       => '#',
+                            'type'       => 'uri',
                             'pages'     => array(
                                 array(
                                     'label'         => 'Forms',

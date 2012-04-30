@@ -13,6 +13,12 @@ class Module implements AutoloaderProvider
      */
     protected $renderer;
 
+    /**
+     * Navbar container
+     * @var \Zend\Navigation\Navigation
+     */
+    protected $navbarContainer;
+
     /* ********************** METHODS ************************** */
 
     public function init(Manager $moduleManager) {
@@ -52,7 +58,8 @@ class Module implements AutoloaderProvider
         $locator  = $app->getLocator();
 
         //Store renderer as a property, it will be used by the onRoute() method
-        $this->renderer = $locator->get('Zend\View\Renderer\PhpRenderer');
+        $this->renderer         = $locator->get('Zend\View\Renderer\PhpRenderer');
+        $this->navbarContainer  = $locator->get('dlutwb-nav-menu-main');
 
         //Register DluTwBootstrap view navigation helpers
         $this->renderer->plugin('navigation')
@@ -74,5 +81,11 @@ class Module implements AutoloaderProvider
     public function onRoute(\Zend\Mvc\MvcEvent $e) {
         $routeMatch      = $e->getRouteMatch();
         $this->renderer->plugin('url')->setRouteMatch($routeMatch);
+        $ri = new \RecursiveIteratorIterator($this->navbarContainer, \RecursiveIteratorIterator::SELF_FIRST);
+        foreach ($ri as $page) {
+            if($page instanceof \Zend\Navigation\Page\Mvc) {
+                $page->setRouteMatch($routeMatch);
+            }
+        }
     }
 }
