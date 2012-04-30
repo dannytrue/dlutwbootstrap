@@ -57,7 +57,7 @@ class Module implements AutoloaderProvider
         $app      = $e->getParam('application');
         $locator  = $app->getLocator();
 
-        //Store renderer as a property, it will be used by the onRoute() method
+        //Store objects from locator which will be needed later
         $this->renderer         = $locator->get('Zend\View\Renderer\PhpRenderer');
         $this->navbarContainer  = $locator->get('dlutwb-nav-menu-main');
 
@@ -81,6 +81,7 @@ class Module implements AutoloaderProvider
     public function onRoute(\Zend\Mvc\MvcEvent $e) {
         $routeMatch      = $e->getRouteMatch();
         $this->renderer->plugin('url')->setRouteMatch($routeMatch);
+        //Inject the routeMatch into every MVC page, otherwise marking pages as active does not work
         $ri = new \RecursiveIteratorIterator($this->navbarContainer, \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($ri as $page) {
             if($page instanceof \Zend\Navigation\Page\Mvc) {
