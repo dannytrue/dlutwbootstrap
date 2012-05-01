@@ -1,12 +1,22 @@
 <?php
-//echo $this->navigation()->menu($navMenuMain);
-echo $this->navigation()->twbNavbar($navMenuMain);
-echo $this->navigation()->menu($navMenuMain);
+//Set up the brand link
+$brandLink  = new \Zend\Navigation\Page\Mvc();
+$brandLink->setController('tw-bootstrap-demo');
+$brandLink->setAction('index');
+$brandLink->setLabel('DluTwBootstrap');
+/*
+$this->navigation()->twbNavbar()->setBrandLink($brandLink);
+$this->navigation()->twbNavbar()->setBrandName('My Brand');
+*/
+$leftElements   = array('This is on the left', 'Second on the left');
+$rightElements  = array('Something on right', 'And yet another');
+echo $this->navigation()->twbNavbar()->renderTwbNavbar($navMenuMain, $leftElements, $rightElements,
+                                                       $brandLink, null, true, false, true);
 ?>
 
 <h2>Navigation</h2>
 <p><i>You may find other useful information in my <a href="http://www.zfdaily.com">ZF Daily</a> blog post
-    <a href="http://www.zfdaily.com/2012/04/twitter-bootstrap-forms-with-zf2-easily">Twitter Bootstrap Forms with ZF2. Easily.</a>
+    <a href="http://www.zfdaily.com">Write the blog post, ok?</a>
 </i></p>
 <ul>
     <li><a href="#navbar-demo">Navbar</a></li>

@@ -48,11 +48,45 @@ return array(
                             'uri'       => 'http://www.zend.com',
                         ),
                         array(
-                            'label'         => 'Navigation',
-                            'title'         => 'Navigation Demo',
-                            'module'        => 'DluTwBootstrap',
-                            'controller'    => 'tw-bootstrap-demo',
-                            'action'        => 'navigation',
+                            'label'         => 'My Dropdown',
+                            'title'         => 'My Dropdown test',
+                            'type'          => 'uri',
+                            'pages'         => array(
+                                array(
+                                    'label'     => 'File',
+                                    'type'      => 'uri',
+                                    'navHeader' => true,
+                                ),
+                                array(
+                                    'label'     => 'New',
+                                    'type'      => 'uri',
+                                ),
+                                array(
+                                    'label'     => 'Open',
+                                    'type'      => 'uri',
+                                ),
+                                array(
+                                    'type'      => 'uri',
+                                    'divider'   => true,
+                                ),
+                                array(
+                                    'label'     => 'Edit',
+                                    'type'      => 'uri',
+                                    'navHeader' => true,
+                                ),
+                                array(
+                                    'label'     => 'Copy',
+                                    'type'      => 'uri',
+                                ),
+                                array(
+                                    'label'     => 'Cut',
+                                    'type'      => 'uri',
+                                ),
+                                array(
+                                    'label'     => 'Paste',
+                                    'type'      => 'uri',
+                                ),
+                            ),
                         ),
                     ),
                 ),
