@@ -1,0 +1,15 @@
+<?php
+//Set up the brand link
+$brandLink  = new \Zend\Navigation\Page\Mvc();
+$brandLink->setController('tw-bootstrap-demo');
+$brandLink->setAction('index');
+$brandLink->setLabel('DluTwBootstrap');
+echo $this->navigation()->twbNavbar()->renderNavbar($navMenuMain, null, null,
+                                                       $brandLink, null, true, false, true, true);
+?>
+<div class="row">
+    <div class="span3">
+        <?php echo $this->navigation()->twbNavList()->renderNavList($navList, true, true); ?>
+    </div>
+    <div class="span9">Main content...</div>
+</div>

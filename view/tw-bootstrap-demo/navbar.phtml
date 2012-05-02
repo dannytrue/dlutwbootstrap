@@ -1,0 +1,22 @@
+<?php
+//Set up the brand link
+$brandLink  = new \Zend\Navigation\Page\Mvc();
+$brandLink->setController('tw-bootstrap-demo');
+$brandLink->setAction('index');
+$brandLink->setLabel('DluTwBootstrap');
+echo $this->navigation()->twbNavbar()->renderNavbar($navMenuMain, null, null,
+                                                       $brandLink, null, true, false, true, true);
+?>
+
+<h2>Navigation</h2>
+<p><i>You may find other useful information in my <a href="http://www.zfdaily.com">ZF Daily</a> blog post
+    <a href="http://www.zfdaily.com">Write the blog post, ok?</a>
+</i></p>
+<ul>
+    <li><a href="#navbar-static-demo">Navbar (static)</a></li>
+    <li><a href="#navlist-demo">Nav list</a></li>
+    <li><a href="#navlist-icon-demo">Nav list with icons</a></li>
+</ul>
+<?php
+
+?>

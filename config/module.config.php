@@ -23,68 +23,78 @@ return array(
                 'parameters'    => array(
                     'pages' => array(
                         array(
-                            'label'     => 'Demo',
-                            'title'     => 'DluTwBootstrap Demo',
+                            'label'         => 'Forms',
+                            'module'        => 'DluTwBootstrap',
+                            'controller'    => 'tw-bootstrap-demo',
+                            'action'        => 'form'
+                        ),
+                        array(
+                            'label'     => 'Navigation',
                             'type'       => 'uri',
                             'pages'     => array(
                                 array(
-                                    'label'         => 'Forms',
-                                    'title'         => 'Forms Demo',
+                                    'label'         => 'Navbar (static)',
                                     'module'        => 'DluTwBootstrap',
                                     'controller'    => 'tw-bootstrap-demo',
-                                    'action'        => 'form'
+                                    'action'        => 'navbar',
                                 ),
                                 array(
-                                    'label'         => 'Navigation',
-                                    'title'         => 'Navigation Demo',
+                                    'label'         => 'Nav List',
                                     'module'        => 'DluTwBootstrap',
                                     'controller'    => 'tw-bootstrap-demo',
-                                    'action'        => 'navigation',
+                                    'action'        => 'nav-list',
+                                ),
+                                array(
+                                    'label'         => 'Tabs and Pills',
+                                    'module'        => 'DluTwBootstrap',
+                                    'controller'    => 'tw-bootstrap-demo',
+                                    'action'        => 'nav-tabs',
                                 ),
                             ),
                         ),
                         array(
-                            'label'     => 'A link',
-                            'uri'       => 'http://www.zend.com',
-                        ),
-                        array(
-                            'label'         => 'My Dropdown',
-                            'title'         => 'My Dropdown test',
+                            'label'         => 'Links',
+                            'title'         => 'Resources utilized by DluTwBootstrap',
                             'type'          => 'uri',
                             'pages'         => array(
                                 array(
-                                    'label'     => 'File',
+                                    'label'     => 'ZFDaily Tutorials',
                                     'type'      => 'uri',
                                     'navHeader' => true,
                                 ),
                                 array(
-                                    'label'     => 'New',
-                                    'type'      => 'uri',
-                                ),
-                                array(
-                                    'label'     => 'Open',
-                                    'type'      => 'uri',
+                                    'label'     => 'Twitter Bootstrap Forms with ZF2. Easily.',
+                                    'uri'       => 'http://www.zfdaily.com/2012/04/twitter-bootstrap-forms-with-zf2-easily',
                                 ),
                                 array(
                                     'type'      => 'uri',
                                     'divider'   => true,
                                 ),
                                 array(
-                                    'label'     => 'Edit',
+                                    'label'     => 'Git Repository',
                                     'type'      => 'uri',
                                     'navHeader' => true,
                                 ),
                                 array(
-                                    'label'     => 'Copy',
-                                    'type'      => 'uri',
+                                    'label'     => 'DluTwBootstrap on Bitbucket',
+                                    'uri'       => 'https://bitbucket.org/dlu/dlutwbootstrap',
                                 ),
                                 array(
-                                    'label'     => 'Cut',
                                     'type'      => 'uri',
+                                    'divider'   => true,
                                 ),
                                 array(
-                                    'label'     => 'Paste',
+                                    'label'     => 'Twitter Bootstrap',
                                     'type'      => 'uri',
+                                    'navHeader' => true,
+                                ),
+                                array(
+                                    'label'     => 'Forms',
+                                    'uri'       => 'http://twitter.github.com/bootstrap/base-css.html#forms',
+                                ),
+                                array(
+                                    'label'     => 'Navigation',
+                                    'uri'       => 'http://twitter.github.com/bootstrap/components.html#navs',
                                 ),
                             ),
                         ),

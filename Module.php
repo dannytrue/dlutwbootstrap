@@ -64,7 +64,9 @@ class Module implements AutoloaderProvider
         //Register DluTwBootstrap view navigation helpers
         $this->renderer->plugin('navigation')
                        ->getPluginLoader()
-                       ->registerPlugin('twbNavbar', 'DluTwBootstrap\View\Helper\Navigation\TwbNavbar');
+                       ->registerPlugin('twbNavbar', 'DluTwBootstrap\View\Helper\Navigation\TwbNavbar')
+                       ->registerPlugin('twbNavList', 'DluTwBootstrap\View\Helper\Navigation\TwbNavList')
+                       ->registerPlugin('twbTabs', 'DluTwBootstrap\View\Helper\Navigation\TwbTabs');
 
         //Prepare the \Zend\Navigation\Page\Mvc for use in the navigation view helper
         \Zend\Navigation\Page\Mvc::setDefaultUrlHelper($this->renderer->plugin('url'));

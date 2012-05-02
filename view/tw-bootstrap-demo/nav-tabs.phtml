@@ -1,0 +1,20 @@
+<?php
+//Set up the brand link
+$brandLink  = new \Zend\Navigation\Page\Mvc();
+$brandLink->setController('tw-bootstrap-demo');
+$brandLink->setAction('index');
+$brandLink->setLabel('DluTwBootstrap');
+echo $this->navigation()->twbNavbar()->renderNavbar($navMenuMain, null, null,
+                                                       $brandLink, null, true, false, true, true);
+?>
+<div class="row">
+    <div class="span2">
+        <h4>Standard tabs and pills</h4>
+    </div>
+    <div class="span5">
+        <?php echo $this->navigation()->twbTabs($navTabs); ?>
+    </div>
+    <div class="span5">
+        <?php echo $this->navigation()->twbTabs()->renderTabs($navTabs, true, false, true); ?>
+    </div>
+</div>

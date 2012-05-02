@@ -51,11 +51,110 @@ class DemoController extends ActionController
      * Navigation action
      * @return \Zend\View\Model\ViewModel
      */
-    public function navigationAction() {
-        //\Zend\Debug::dump($this->navMenuMain);
-        //die('Check');
+    public function navbarAction() {
         $viewModel      = new ViewModel(array(
-            'navMenuMain'  => $this->navMenuMain,
+            'navMenuMain'   => $this->navMenuMain,
+        ));
+        return $viewModel;
+    }
+
+    public function navListAction() {
+        $navList        = new \Zend\Navigation\Navigation(array(
+            array(
+                'label'     => 'Main',
+                'type'      => 'uri',
+                'navHeader' => true,
+            ),
+            array(
+                'label'     => 'Home',
+                'type'      => 'uri',
+                'icon'      => 'icon-home',
+            ),
+            array(
+                'label'     => 'Library',
+                'type'      => 'uri',
+                'icon'      => 'icon-book',
+                'active'    => true,
+            ),
+            array(
+                'label'     => 'Applications',
+                'type'      => 'uri',
+                'icon'      => 'icon-pencil',
+                'pages'     => array(
+                    array(
+                        'label'     => 'Sub 1',
+                        'type'      => 'uri',
+                    ),
+                    array(
+                        'label'     => 'Sub 2',
+                        'type'      => 'uri',
+                    ),
+                ),
+            ),
+            array(
+                'label'     => 'User Account',
+                'type'      => 'uri',
+                'navHeader' => true,
+            ),
+            array(
+              'label'     => 'Profile',
+              'type'      => 'uri',
+              'icon'      => 'icon-user',
+            ),
+            array(
+              'label'     => 'Settings',
+              'type'      => 'uri',
+              'icon'      => 'icon-cog',
+            ),
+            array(
+                'type'      => 'uri',
+                'divider'   => true,
+            ),
+            array(
+                'label'     => 'Help',
+                'type'      => 'uri',
+                'icon'      => 'icon-flag',
+            ),
+        ));
+        $viewModel      = new ViewModel(array(
+            'navMenuMain'   => $this->navMenuMain,
+            'navList'       => $navList,
+        ));
+        return $viewModel;
+    }
+
+    public function navTabsAction() {
+        $navTabs        = new \Zend\Navigation\Navigation(array(
+            array(
+                'label'     => 'Home',
+                'type'      => 'uri',
+                'icon'      => 'icon-home',
+            ),
+            array(
+                'label'     => 'Library',
+                'type'      => 'uri',
+                'icon'      => 'icon-book',
+                'active'    => true,
+            ),
+            array(
+                'label'     => 'Applications',
+                'type'      => 'uri',
+                'icon'      => 'icon-pencil',
+                'pages'     => array(
+                    array(
+                        'label'     => 'Text Editor',
+                        'type'      => 'uri',
+                    ),
+                    array(
+                        'label'     => 'Spreadsheet',
+                        'type'      => 'uri',
+                    ),
+                ),
+            ),
+        ));
+        $viewModel      = new ViewModel(array(
+            'navMenuMain'   => $this->navMenuMain,
+            'navTabs'       => $navTabs,
         ));
         return $viewModel;
     }
