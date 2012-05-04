@@ -28,19 +28,22 @@ class TwbTabs extends AbstractHelper
         if (null === $container) {
             $container = $this->getContainer();
         }
-        $html   = '';
+        $html       = '';
+        $ulClass    = 'nav';
         //Tabs or Pills
         if($pills) {
-            $ulClass    = 'nav-pills';
+            $ulClass            .= ' nav-pills';
+            $activeIconWhite    = true;
         } else {
-            $ulClass    = 'nav-tabs';
+            $ulClass            .= ' nav-tabs';
+            $activeIconWhite    = false;
         }
         //Stacked
         if($stacked) {
-            $ulClass    .= ' nav-stacked';
+            $ulClass            .= ' nav-stacked';
         }
         //UL
-        $html   .= "\n" . $this->getUlFromContainer($container, $ulClass, null, $renderIcons);
+        $html   .= "\n" . $this->getUlFromContainer($container, $ulClass, null, $renderIcons, $activeIconWhite);
         return $html;
     }
 

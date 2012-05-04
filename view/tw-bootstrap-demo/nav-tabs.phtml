@@ -7,14 +7,36 @@ $brandLink->setLabel('DluTwBootstrap');
 echo $this->navigation()->twbNavbar()->renderNavbar($navMenuMain, null, null,
                                                        $brandLink, null, true, false, true, true);
 ?>
+<div class="page-header">
+    <h1>Tabs and Pills</h1>
+</div>
 <div class="row">
     <div class="span2">
         <h4>Standard tabs and pills</h4>
+        <p>With optional dropdowns and icons</p>
     </div>
     <div class="span5">
         <?php echo $this->navigation()->twbTabs($navTabs); ?>
+        <p>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam sit amet magna in magna gravida vehicula. Duis viverra diam non justo. Sed elit dui, pellentesque a, faucibus vel, interdum nec, diam. Etiam sapien elit, consequat eget, tristique non, venenatis quis, ante.
+        </p>
     </div>
     <div class="span5">
         <?php echo $this->navigation()->twbTabs()->renderTabs($navTabs, true, false, true); ?>
+        <p>
+            Quisque tincidunt scelerisque libero. Nullam sapien sem, ornare ac, nonummy non, lobortis a enim. Nunc tincidunt ante vitae massa. Aliquam in lorem sit amet leo accumsan lacinia. Nulla est. Integer imperdiet lectus quis justo. Donec quis nibh at felis congue commodo.
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="span2">
+        <h4>Stacked tabs and pills</h4>
+        <p>With optional dropdowns and icons</p>
+    </div>
+    <div class="span5">
+        <?php echo $this->navigation()->twbTabs()->renderTabs($navTabs, false, true, true); ?>
+    </div>
+    <div class="span5">
+        <?php echo $this->navigation()->twbTabs()->renderTabs($navTabs, true, true, true); ?>
     </div>
 </div>

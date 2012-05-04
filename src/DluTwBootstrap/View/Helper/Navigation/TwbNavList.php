@@ -31,7 +31,7 @@ class TwbNavList extends AbstractHelper
             $html   .= "\n" . '<div class="well" style="padding: 8px 0;">';
         }
         //UL
-        $html   .= "\n" . $this->getUlFromContainer($container, 'nav-list', null, $renderIcons);
+        $html   .= "\n" . $this->getUlFromContainer($container, 'nav nav-list', null, $renderIcons, true);
         //Well (close div)
         if($well) {
             $html   .= "\n" . '</div>';

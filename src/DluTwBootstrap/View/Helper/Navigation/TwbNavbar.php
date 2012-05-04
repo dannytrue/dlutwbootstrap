@@ -81,7 +81,7 @@ class TwbNavbar extends AbstractHelper
         }
 
         //Primary container
-        $html   .= "\n" . $this->getUlFromContainer($container, '', null, $renderIcons);
+        $html   .= "\n" . $this->getUlFromContainer($container, 'nav', null, $renderIcons, true);
 
         //Left elements
         if($leftElements) {
@@ -111,7 +111,7 @@ class TwbNavbar extends AbstractHelper
         $view   = $this->getView();
         foreach($elements as $element) {
             if($element instanceof \Zend\Navigation\Container) {
-                $html   .= "\n" . $this->getUlFromContainer($element, '', $align, $renderIcons);
+                $html   .= "\n" . $this->getUlFromContainer($element, 'nav', $align, $renderIcons, true);
             } elseif ($element instanceof \DluTwBootstrap\Form\Search) {
                 $class  = $element->getAttrib('class');
                 \DluTwBootstrap\Util\Util::addWord('navbar-search', $class);

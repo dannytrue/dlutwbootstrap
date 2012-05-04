@@ -8,14 +8,10 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
     /* *********************** METHODS *************************** */
 
     protected function getUlFromContainer(\Zend\Navigation\Container $container,
-                                          $ulClass = '',
+                                          $ulClass,
                                           $align = null,
-                                          $renderIcons = true) {
-        if($ulClass == '') {
-            $ulClass    = 'nav';
-        } else {
-            $ulClass    = 'nav ' . $ulClass;
-        }
+                                          $renderIcons = true,
+                                          $activeIconWhite = true) {
         if($align == 'left') {
             $ulClass    .= ' pull-left';
         } elseif($align == 'right') {
@@ -27,50 +23,57 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
             /* @var $page \Zend\Navigation\Page\AbstractPage */
             if($page->hasPages()) {
                 //A dropdown
-                $html   .= "\n" . $this->renderDropdown($page, $renderIcons);
+                $html   .= "\n" . $this->renderDropdown($page, $renderIcons, $activeIconWhite);
             } else {
                 //A page without children
-                $html   .= "\n" . $this->renderItem($page, $renderIcons);
+                $html   .= "\n" . $this->renderItem($page, $renderIcons, $activeIconWhite);
             }
         }
         $html   .= "\n</ul>";
         return $html;
     }
 
-    protected function renderDropdown(\Zend\Navigation\Page\AbstractPage $page, $renderIcons = true) {
+    protected function renderDropdown(\Zend\Navigation\Page\AbstractPage $page,
+                                      $renderIcons = true,
+                                      $activeIconWhite = true) {
+        $view   = $this->getView();
         $html   = '';
         if($page->getTitle()) {
-            $title      = 'title="' . $page->getTitle() . '"';
+            $title      = 'title="' . $view->escape($page->getTitle()) . '"';
         } else {
             $title      = '';
         }
-        $icon           = $this->renderIcon($page, $renderIcons, $page->isActive());
+        $icon           = $this->renderIcon($page, $renderIcons, $activeIconWhite);
         $html   .= "\n" . '<li class="dropdown">';
         $html   .= "\n" . '<a href="#" class="dropdown-toggle" data-toggle="dropdown"' . $title . '>'
-                   . $icon . $page->getLabel() . '<b class="caret"></b></a>';
+                   . $icon . $view->escape($page->getLabel()) . '<b class="caret"></b></a>';
         $html   .= "\n" . '<ul class="dropdown-menu">';
         foreach ($page->getPages() as $child) {
-            $html   .= "\n" . $this->renderItem($child, $renderIcons);
+            $html   .= "\n" . $this->renderItem($child, $renderIcons, $activeIconWhite);
         }
         $html   .= "\n</ul>";
         $html   .= "\n</li>";
         return $html;
     }
 
-    protected function renderItem(\Zend\Navigation\Page\AbstractPage $item, $renderIcons = true) {
+    protected function renderItem(\Zend\Navigation\Page\AbstractPage $item,
+                                  $renderIcons = true,
+                                  $activeIconWhite = true) {
         if($item->navHeader) {
-            $html   = $this->renderNavHeader($item, $renderIcons);
+            $html   = $this->renderNavHeader($item, $renderIcons, $activeIconWhite);
         } elseif($item->divider) {
             $html   = $this->renderDivider($item);
         } else {
-            $html   = $this->renderLink($item, $renderIcons);
+            $html   = $this->renderLink($item, $renderIcons, $activeIconWhite);
         }
         return $html;
     }
 
-    protected function renderNavHeader(\Zend\Navigation\Page\AbstractPage $item, $renderIcons = true) {
-        $icon   = $this->renderIcon($item, $renderIcons, false);
-        $html   = '<li class="nav-header">' . $icon . $item->getLabel() . '</li>';
+    protected function renderNavHeader(\Zend\Navigation\Page\AbstractPage $item,
+                                       $renderIcons = true,
+                                       $activeIconWhite = true) {
+        $icon   = $this->renderIcon($item, $renderIcons, $activeIconWhite);
+        $html   = '<li class="nav-header">' . $icon . $this->getView()->escape($item->getLabel()) . '</li>';
         return $html;
     }
 
@@ -79,7 +82,15 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
         return $html;
     }
 
-    protected function renderLink(\Zend\Navigation\Page\AbstractPage $page, $renderIcons = true) {
+    protected function renderLink(\Zend\Navigation\Page\AbstractPage $page,
+                                  $renderIcons = true,
+                                  $activeIconWhite = true) {
+        //Return empty string if the page is not visible or not allowed in ACL
+        //TODO - Implement ACL support
+        if(!$page->isVisible()) {
+            return '';
+        }
+        $view   = $this->getView();
         //Active
         if($page->isActive()) {
             $liClass    = ' class="active"';
@@ -88,23 +99,23 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
         }
         //Title
         if($page->getTitle()) {
-            $title      = 'title="' . $page->getTitle() . '"';
+            $title      = 'title="' . $view->escape($page->getTitle()) . '"';
         } else {
             $title      = '';
         }
         //Icon
-        $icon   = $this->renderIcon($page, $renderIcons, $page->isActive());
+        $icon   = $this->renderIcon($page, $renderIcons, $activeIconWhite);
         //Assemble html
         $html   = '<li' . $liClass . '><a href="' . $page->getHref() . '"' . $title . '>'
                   . $icon
-                  . $page->getLabel() . '</a></li>';
+                  . $view->escape($page->getLabel()) . '</a></li>';
         return $html;
     }
 
-    protected function renderIcon(\Zend\Navigation\Page\AbstractPage $item, $renderIcons = true, $white = false) {
+    protected function renderIcon(\Zend\Navigation\Page\AbstractPage $item, $renderIcons = true, $activeIconWhite = true) {
         if($item->icon && $renderIcons) {
             $iClass = $item->icon;
-            if($white) {
+            if($activeIconWhite && $item->isActive()) {
                 $iClass .= ' icon-white';
             }
             $icon   = "\n" . '<i class="' . $iClass . '"></i>' . "\n";
