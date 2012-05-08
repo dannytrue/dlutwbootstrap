@@ -17,11 +17,6 @@ use Zend\Mvc\Controller\ActionController,
  */
 class DemoController extends ActionController
 {
-    /**
-     * Navigation - main menu navbar
-     * @var \Zend\Navigation\Navigation
-     */
-    protected $navMenuMain;
 
     /* ***************************** METHODS ****************************** */
 
@@ -53,7 +48,6 @@ class DemoController extends ActionController
      */
     public function navbarAction() {
         $viewModel      = new ViewModel(array(
-            'navMenuMain'   => $this->navMenuMain,
         ));
         return $viewModel;
     }
@@ -117,7 +111,6 @@ class DemoController extends ActionController
             ),
         ));
         $viewModel      = new ViewModel(array(
-            'navMenuMain'   => $this->navMenuMain,
             'navList'       => $navList,
         ));
         return $viewModel;
@@ -153,18 +146,12 @@ class DemoController extends ActionController
             ),
         ));
         $viewModel      = new ViewModel(array(
-            'navMenuMain'   => $this->navMenuMain,
             'navTabs'       => $navTabs,
         ));
         return $viewModel;
     }
 
-    /**
-     * Sets the main menu
-     * (Setter injection)
-     * @param \Zend\Navigation\Navigation $navMenuMain
-     */
-    public function setNavMenuMain(\Zend\Navigation\Navigation $navMenuMain) {
-        $this->navMenuMain   = $navMenuMain;
+    public function indexAction() {
+        return new ViewModel();
     }
 }

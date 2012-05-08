@@ -8,6 +8,12 @@ use Zend\Module\Manager,
 class Module implements AutoloaderProvider
 {
     /**
+     * DIc
+     * @var \Zend\Di\Di
+     */
+    protected $locator;
+
+    /**
      * View Renderer
      * @var \Zend\View\Renderer\PhpRenderer
      */
@@ -57,7 +63,8 @@ class Module implements AutoloaderProvider
         $app      = $e->getParam('application');
         $locator  = $app->getLocator();
 
-        //Store objects from locator which will be needed later
+        //Store objects which will be needed later
+        $this->locator          = $locator;
         $this->renderer         = $locator->get('Zend\View\Renderer\PhpRenderer');
         $this->navbarContainer  = $locator->get('dlutwb-nav-menu-main');
 
@@ -71,24 +78,35 @@ class Module implements AutoloaderProvider
         //Prepare the \Zend\Navigation\Page\Mvc for use in the navigation view helper
         \Zend\Navigation\Page\Mvc::setDefaultUrlHelper($this->renderer->plugin('url'));
 
-        //Attach a listener to the app route event (to configure the url view helper)
+        //Attach a listener to the app route event
         $app->events()->attach('route', array($this, 'onRoute'));
     }
 
     /**
      * OnRoute listener
-     * Configures the url view helper to be usable in navigation view helpers
+     * - Configures the url view helper to be usable in navigation view helpers
+     * - Sets the layout for actions from this module
      * @param \Zend\Mvc\MvcEvent $e
      */
     public function onRoute(\Zend\Mvc\MvcEvent $e) {
         $routeMatch      = $e->getRouteMatch();
+        //Configure routeMatchInjector with the current routeMatch and get it
+        $routeMatchInjector = $this->locator->get('DluTwBootstrap\Navigation\RouteMatchInjector',
+                                                  array('routeMatch' => $routeMatch));
+        /* @var $routeMatchInjector \DluTwBootstrap\Navigation\RouteMatchInjector */
+        //Inject routeMatch into url helper
         $this->renderer->plugin('url')->setRouteMatch($routeMatch);
-        //Inject the routeMatch into every MVC page, otherwise marking pages as active does not work
-        $ri = new \RecursiveIteratorIterator($this->navbarContainer, \RecursiveIteratorIterator::SELF_FIRST);
-        foreach ($ri as $page) {
-            if($page instanceof \Zend\Navigation\Page\Mvc) {
-                $page->setRouteMatch($routeMatch);
-            }
+
+        //Change layout for actions in this module
+        $controller = $routeMatch->getParam('controller');
+        if (strpos($controller, __NAMESPACE__) === 0) {
+            //Do module specific bootstrapping here
+            //Set the layout template for every action in this module
+            $viewModel = $e->getViewModel();
+            $viewModel->setTemplate('layout/layouttwb');
+            $viewModel->setVariable('navbar', $this->navbarContainer);
+            //Inject routeMatch into every MVC page, otherwise marking pages as active does not work
+            $routeMatchInjector->injectRouteMatch($this->navbarContainer);
         }
     }
 }
