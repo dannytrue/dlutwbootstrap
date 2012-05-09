@@ -18,12 +18,10 @@
 return array(
     'di' => array(
         'instance' => array(
-            // Defining where the layout/layout view should be located
-            'Zend\View\Resolver\TemplateMapResolver' => array(
+            // View for the layout
+            'Zend\Mvc\View\DefaultRenderingStrategy' => array(
                 'parameters' => array(
-                    'map'  => array(
-                        'layout/layout' => __DIR__ . '/../../vendor/DluTwBootstrap/view/layout/layouttwb.phtml',
-                    ),
+                    'layoutTemplate' => 'layout/layouttwb',
                 ),
             ),
         ),

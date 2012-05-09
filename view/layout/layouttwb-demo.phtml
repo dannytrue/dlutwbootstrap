@@ -1,7 +1,6 @@
 <?php
 /**
- * View Layout referencing all necessary Twitter Bootstrap and jQuery dependencies
- * Use this layout as a template to base your layouts on
+ * View Layout for DluTwBootstrap Demo
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License
@@ -17,10 +16,6 @@ $basePath = $this->basePath();
 $this->headLink()->appendStylesheet($basePath . '/css/bootstrap.min.css');
 //Twitter Bootstrap style override by DluTwBootstrap
 $this->headLink()->appendStylesheet($basePath . '/css/dlu-tw-bootstrap.css');
-
-//Add your own style here
-//$this->headLink()->appendStylesheet($basePath . '/css/style.css');
-
 //Twitter Bootstrap responsive styles
 $this->headLink()->appendStylesheet($basePath . '/css/bootstrap-responsive.min.css');
 
@@ -34,8 +29,7 @@ echo $this->doctype();
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <?php //Set your headTitle here ?>
-    <?php echo $this->headTitle('') ?>
+    <?php echo $this->headTitle('DluTwBootstrap') ?>
     <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
     <!-- Le styles -->
     <?php echo $this->headLink() ?>
@@ -44,9 +38,25 @@ echo $this->doctype();
     <?php echo $this->headScript() ?>
   </head>
 
-  <body>
+  <body style="padding-top: 60px; padding-bottom: 40px;">
     <div class="container">
+        <!-- NavBar -->
+        <?php
+            //Set up the brand link
+            $brandLink  = new \Zend\Navigation\Page\Mvc();
+            $brandLink->setController('tw-bootstrap-demo');
+            $brandLink->setAction('index');
+            $brandLink->setLabel('DluTwBootstrap');
+            echo $this->navigation()->twbNavbar()->renderNavbar($this->navbar, null, null,
+                                                                $brandLink, null, true, false, true, true);
+
+        ?>
+        <!-- /NavBar -->
         <?php echo $this->content; ?>
+        <hr>
+        <footer>
+        <p>&copy; 2012 by David Lukas @ ZF Daily (<a href="http://www.zfdaily.com">www.zfdaily.com</a>). All rights reserved.</p>
+      </footer>
     </div> <!-- /container -->
     <?php echo $this->inlineScript(); ?>
   </body>

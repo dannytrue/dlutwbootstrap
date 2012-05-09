@@ -29,7 +29,8 @@ return array(
             'Zend\View\Resolver\TemplateMapResolver' => array(
                 'parameters' => array(
                     'map'  => array(
-                        'layout/layouttwb'  => __DIR__ . '/../view/layout/layouttwb.phtml',
+                        'layout/layouttwb'      => __DIR__ . '/../view/layout/layouttwb.phtml',
+                        'layout/layouttwb-demo' => __DIR__ . '/../view/layout/layouttwb-demo.phtml',
                     ),
                 ),
             ),

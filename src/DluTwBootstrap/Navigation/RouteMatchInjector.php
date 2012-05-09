@@ -10,11 +10,7 @@ class RouteMatchInjector
 
     /* *********************** METHODS ********************* */
 
-    public function __construct(\Zend\Mvc\Router\RouteMatch $routeMatch = null) {
-        $this->setRouteMatch($routeMatch);
-    }
-
-    public function setRouteMatch(\Zend\Mvc\Router\RouteMatch $routeMatch = null) {
+    public function __construct(\Zend\Mvc\Router\RouteMatch $routeMatch) {
         $this->routeMatch   = $routeMatch;
     }
 
@@ -25,6 +21,5 @@ class RouteMatchInjector
                 $page->setRouteMatch($this->routeMatch);
             }
         }
-
     }
 }

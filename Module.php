@@ -91,19 +91,20 @@ class Module implements AutoloaderProvider
     public function onRoute(\Zend\Mvc\MvcEvent $e) {
         $routeMatch      = $e->getRouteMatch();
         //Configure routeMatchInjector with the current routeMatch and get it
-        $routeMatchInjector = $this->locator->get('DluTwBootstrap\Navigation\RouteMatchInjector',
-                                                  array('routeMatch' => $routeMatch));
+        $this->locator->instanceManager()->setParameters(
+            'DluTwBootstrap\Navigation\RouteMatchInjector', array(
+                'routeMatch' => $routeMatch,
+        ));
+        $routeMatchInjector = $this->locator->get('DluTwBootstrap\Navigation\RouteMatchInjector');
         /* @var $routeMatchInjector \DluTwBootstrap\Navigation\RouteMatchInjector */
         //Inject routeMatch into url helper
         $this->renderer->plugin('url')->setRouteMatch($routeMatch);
-
-        //Change layout for actions in this module
+        //Module specific bootstrapping
         $controller = $routeMatch->getParam('controller');
         if (strpos($controller, __NAMESPACE__) === 0) {
-            //Do module specific bootstrapping here
             //Set the layout template for every action in this module
             $viewModel = $e->getViewModel();
-            $viewModel->setTemplate('layout/layouttwb');
+            $viewModel->setTemplate('layout/layouttwb-demo');
             $viewModel->setVariable('navbar', $this->navbarContainer);
             //Inject routeMatch into every MVC page, otherwise marking pages as active does not work
             $routeMatchInjector->injectRouteMatch($this->navbarContainer);
