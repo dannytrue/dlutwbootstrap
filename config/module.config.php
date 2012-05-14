@@ -73,6 +73,12 @@ return array(
                                     'controller'    => 'DluTwBootstrap\Controller\DemoController',
                                     'action'        => 'nav-tabs',
                                 ),
+                                array(
+                                    'label'         => 'Buttons',
+                                    'module'        => 'DluTwBootstrap',
+                                    'controller'    => 'DluTwBootstrap\Controller\DemoController',
+                                    'action'        => 'buttons',
+                                ),
                             ),
                         ),
                         array(

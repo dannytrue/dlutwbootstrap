@@ -151,6 +151,41 @@ class DemoController extends ActionController
         return $viewModel;
     }
 
+    public function buttonsAction() {
+        $nav        = new \Zend\Navigation\Navigation(array(
+            array(
+                'label'     => 'Home',
+                'type'      => 'uri',
+                'icon'      => 'icon-home',
+            ),
+            array(
+                'label'     => 'Library',
+                'type'      => 'uri',
+                'icon'      => 'icon-book',
+                'active'    => true,
+            ),
+            array(
+                'label'     => 'Applications',
+                'type'      => 'uri',
+                'icon'      => 'icon-pencil',
+                'pages'     => array(
+                    array(
+                        'label'     => 'Text Editor',
+                        'type'      => 'uri',
+                    ),
+                    array(
+                        'label'     => 'Spreadsheet',
+                        'type'      => 'uri',
+                    ),
+                ),
+            ),
+        ));
+        $viewModel      = new ViewModel(array(
+            'nav'       => $nav,
+        ));
+        return $viewModel;
+    }
+
     public function indexAction() {
         return new ViewModel();
     }

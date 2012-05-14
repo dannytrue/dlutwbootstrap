@@ -33,17 +33,17 @@ class TwbTabs extends AbstractHelper
         //Tabs or Pills
         if($pills) {
             $ulClass            .= ' nav-pills';
-            $activeIconWhite    = true;
+            $activeIconInverse    = true;
         } else {
             $ulClass            .= ' nav-tabs';
-            $activeIconWhite    = false;
+            $activeIconInverse    = false;
         }
         //Stacked
         if($stacked) {
             $ulClass            .= ' nav-stacked';
         }
         //UL
-        $html   .= "\n" . $this->getUlFromContainer($container, $ulClass, null, $renderIcons, $activeIconWhite);
+        $html   .= "\n" . $this->getUlFromContainer($container, $ulClass, null, $renderIcons, $activeIconInverse);
         return $html;
     }
 

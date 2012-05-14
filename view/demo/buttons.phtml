@@ -1,0 +1,77 @@
+<div class="page-header">
+    <h1>Buttons</h1>
+</div>
+<div class="row">
+    <div class="span2">
+        <h4>Standard Buttons</h4>
+    </div>
+    <div class="span6">
+        <p><?php echo $this->navigation()->twbButtons($this->nav); ?></p>
+    </div>
+    <div class="span4">
+        <h5>Navigation helper call</h5>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="span2">
+        <h4>Standard Buttons</h4>
+        <p>Without icons</p>
+    </div>
+    <div class="span6">
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, null, false); ?>
+    </div>
+    <div class="span4">
+        <h5>Navigation helper call</h5>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="span2">
+        <h4>Vertical Buttons</h4>
+    </div>
+    <div class="span6">
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'vertical', true); ?>
+    </div>
+    <div class="span4">
+        <h5>Navigation helper call</h5>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="span2">
+        <h4>Vertical Buttons</h4>
+        <p>Without icons</p>
+    </div>
+    <div class="span6">
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'vertical', false); ?>
+    </div>
+    <div class="span4">
+        <h5>Navigation helper call</h5>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="span2">
+        <h4>Button group</h4>
+    </div>
+    <div class="span6">
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'group', true); ?>
+    </div>
+    <div class="span4">
+        <h5>Navigation helper call</h5>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="span2">
+        <h4>Button group</h4>
+        <p>Without icons</p>
+    </div>
+    <div class="span6">
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'group', false); ?>
+    </div>
+    <div class="span4">
+        <h5>Navigation helper call</h5>
+    </div>
+</div>
