@@ -2,7 +2,7 @@
 namespace DluTwBootstrap\View\Helper\Navigation;
 use DluTwBootstrap\View\Helper\Navigation\Exception\UnsupportedElementTypeException;
 
-class TwbNavbar extends AbstractHelper
+class TwbNavbar extends AbstractNavHelper
 {
 
 
@@ -81,7 +81,11 @@ class TwbNavbar extends AbstractHelper
         }
 
         //Primary container
-        $html   .= "\n" . $this->getUlFromContainer($container, 'nav', null, $renderIcons, true);
+        $options    = array(
+            'align'     => null,
+            'ulClass'   => 'nav',
+        );
+        $html   .= "\n" . $this->renderContainer($container, $renderIcons, true, $options);
 
         //Left elements
         if($leftElements) {
@@ -111,32 +115,36 @@ class TwbNavbar extends AbstractHelper
         $view   = $this->getView();
         foreach($elements as $element) {
             if($element instanceof \Zend\Navigation\Container) {
-                $html   .= "\n" . $this->getUlFromContainer($element, 'nav', $align, $renderIcons, true);
+                $options    = array(
+                    'align'     => $align,
+                    'ulClass'   => 'nav',
+                );
+                $html   .= "\n" . $this->renderContainer($element, $renderIcons, true, $options);
             } elseif ($element instanceof \DluTwBootstrap\Form\Search) {
                 $class  = $element->getAttrib('class');
-                \DluTwBootstrap\Util\Util::addWord('navbar-search', $class);
-                if($align == 'left') {
-                    \DluTwBootstrap\Util\Util::addWord('pull-left', $class);
-                } elseif($align == 'right') {
-                    \DluTwBootstrap\Util\Util::addWord('pull-right', $class);
+                $this->addWord('navbar-search', $class);
+                if($align == self::ALIGN_LEFT) {
+                    $this->addWord('pull-left', $class);
+                } elseif($align == self::ALIGN_RIGHT) {
+                    $this->addWord('pull-right', $class);
                 }
                 $element->setAttrib('class', $class);
                 $html   .= "\n" . $element->render();
             } elseif ($element instanceof \DluTwBootstrap\Form\Inline) {
                 $class  = $element->getAttrib('class');
-                \DluTwBootstrap\Util\Util::addWord('navbar-form', $class);
-                if($align == 'left') {
-                    \DluTwBootstrap\Util\Util::addWord('pull-left', $class);
-                } elseif($align == 'right') {
-                    \DluTwBootstrap\Util\Util::addWord('pull-right', $class);
+                $this->addWord('navbar-form', $class);
+                if($align == self::ALIGN_LEFT) {
+                    $this->addWord('pull-left', $class);
+                } elseif($align == self::ALIGN_RIGHT) {
+                    $this->addWord('pull-right', $class);
                 }
                 $element->setAttrib('class', $class);
                 $html   .= "\n" . $element->render();
             } elseif (is_string($element)) {
                 $pClass    = 'navbar-text';
-                if($align == 'left') {
+                if($align == self::ALIGN_LEFT) {
                     $pClass    .= ' pull-left';
-                } elseif($align == 'right') {
+                } elseif($align == self::ALIGN_RIGHT) {
                     $pClass    .= ' pull-right';
                 }
                 $html   .= "\n" . '<p class="' . $pClass . '">' . $view->escape($element) . '</p>';

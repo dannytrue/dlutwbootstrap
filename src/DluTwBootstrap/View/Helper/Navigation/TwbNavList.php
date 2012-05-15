@@ -1,7 +1,7 @@
 <?php
 namespace DluTwBootstrap\View\Helper\Navigation;
 
-class TwbNavList extends AbstractHelper
+class TwbNavList extends AbstractNavHelper
 {
 
 
@@ -30,13 +30,15 @@ class TwbNavList extends AbstractHelper
         if($well) {
             $html   .= "\n" . '<div class="well" style="padding: 8px 0;">';
         }
-        //UL
-        $html   .= "\n" . $this->getUlFromContainer($container, 'nav nav-list', null, $renderIcons, true);
+        //Container
+        $options    = array(
+            'ulClass'   => 'nav nav-list',
+        );
+        $html   .= "\n" . $this->renderContainer($container, $renderIcons, true, $options);
         //Well (close div)
         if($well) {
             $html   .= "\n" . '</div>';
         }
         return $html;
     }
-
 }

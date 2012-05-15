@@ -1,13 +1,8 @@
 <?php
 namespace DluTwBootstrap\View\Helper\Navigation;
-use \DluTwBootstrap\Util\Util;
 
-class TwbButtons extends AbstractHelper
+class TwbButtons extends AbstractButtonHelper
 {
-    const TYPE_VERTICAL = 'vertical';
-
-    const TYPE_GROUP    = 'group';
-
     /* *********************** METHODS *************************** */
 
     /**
@@ -34,41 +29,11 @@ class TwbButtons extends AbstractHelper
             return '';
         }
         $options    = array('type'  => $type);
-        if($type == self::TYPE_GROUP) {
-            $html       = '<div class="btn-group">';
-        } else {
-            $html       = '';
-        }
-        $html       .= $this->renderItems($container, $renderIcons, false, $options);
-        if($type == self::TYPE_GROUP) {
-            $html       .= "\n</div>";
-        }
+        $html       = $this->renderContainer($container, $renderIcons, false, $options);
         return $html;
     }
 
-    protected function renderLink(\Zend\Navigation\Page\AbstractPage $page,
-                                  $renderIcons = true,
-                                  $activeIconInverse = true,
-                                  array $options = array()) {
-        $class  = $page->getClass();
-        Util::addWord('btn', $class);
-        if($page->isActive(true)) {
-            Util::addWord('active', $class);
-        }
-        $page->setClass($class);
-        $html   = '';
-        $vertical   = array_key_exists('type', $options) && $options['type'] == self::TYPE_VERTICAL;
-        if($vertical) {
-            $html   .= "\n<p>";
-        }
-        $html   .= "\n" . $this->htmlifyA($page, $renderIcons, $activeIconInverse);
-        if($vertical) {
-            $html   .= "\n</p>";
-        }
-        return $html;
-    }
-
-    protected function renderSubnav(\Zend\Navigation\Page\AbstractPage $page,
+    protected function xrenderSubnav(\Zend\Navigation\Page\AbstractPage $page,
                                     $renderIcons = true,
                                     $activeIconInverse = true,
                                     array $options = array()) {
@@ -91,7 +56,7 @@ class TwbButtons extends AbstractHelper
         $html   .= "\n" . '<a href="#"' . $this->_htmlAttribs($aAttribs) . '>'
             . $iconHtml . $escaper($label) . '<b class="caret"></b></a>';
         $html   .= "\n" . '<ul class="dropdown-menu">';
-        $html   .= $this->renderItems($page, $renderIcons, $activeIconInverse, $options);
+        $html   .= $this->renderContainer($page, $renderIcons, $activeIconInverse, $options);
         $html   .= "\n</ul>";
         $html   .= '</div>';
         return $html;

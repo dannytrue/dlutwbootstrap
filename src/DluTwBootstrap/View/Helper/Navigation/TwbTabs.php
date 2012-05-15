@@ -1,7 +1,7 @@
 <?php
 namespace DluTwBootstrap\View\Helper\Navigation;
 
-class TwbTabs extends AbstractHelper
+class TwbTabs extends AbstractNavHelper
 {
 
 
@@ -28,7 +28,6 @@ class TwbTabs extends AbstractHelper
         if (null === $container) {
             $container = $this->getContainer();
         }
-        $html       = '';
         $ulClass    = 'nav';
         //Tabs or Pills
         if($pills) {
@@ -42,8 +41,11 @@ class TwbTabs extends AbstractHelper
         if($stacked) {
             $ulClass            .= ' nav-stacked';
         }
-        //UL
-        $html   .= "\n" . $this->getUlFromContainer($container, $ulClass, null, $renderIcons, $activeIconInverse);
+        //Container
+        $options    = array(
+            'ulClass'   => $ulClass,
+        );
+        $html   = "\n" . $this->renderContainer($container, $renderIcons, $activeIconInverse, $options);
         return $html;
     }
 
