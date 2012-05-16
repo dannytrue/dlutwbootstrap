@@ -44,27 +44,30 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
         }
         if($page->navHeader) {
             //Nav Header
-            $itemHtml   = $this->renderNavHeader($page, $renderIcons, $activeIconInverse, $options);
             if($renderInDropdown) {
-                $html   = $this->decorateNavHeaderInDropdown($itemHtml, $page, $renderIcons, $activeIconInverse, $options);
+                $itemHtml   = $this->renderNavHeaderInDropdown($page, $renderIcons, $activeIconInverse, $options);
+                $html       = $this->decorateNavHeaderInDropdown($itemHtml, $page, $renderIcons, $activeIconInverse, $options);
             } else {
-                $html   = $this->decorateNavHeader($itemHtml, $page, $renderIcons, $activeIconInverse, $options);
+                $itemHtml   = $this->renderNavHeader($page, $renderIcons, $activeIconInverse, $options);
+                $html       = $this->decorateNavHeader($itemHtml, $page, $renderIcons, $activeIconInverse, $options);
             }
         } elseif($page->divider) {
             //Divider
-            $itemHtml   = $this->renderDivider($page, $options);
             if($renderInDropdown) {
-                $html   = $this->decorateDividerInDropdown($itemHtml, $page, $options);
+                $itemHtml   = $this->renderDividerInDropdown($page, $options);
+                $html       = $this->decorateDividerInDropdown($itemHtml, $page, $options);
             } else {
-                $html   = $this->decorateDivider($itemHtml, $page, $options);
+                $itemHtml   = $this->renderDivider($page, $options);
+                $html       = $this->decorateDivider($itemHtml, $page, $options);
             }
         } else {
             //Nav link
-            $itemHtml   = $this->renderLink($page, $renderIcons, $activeIconInverse, $options);
             if($renderInDropdown) {
-                $html   = $this->decorateLinkInDropdown($itemHtml, $page, $renderIcons, $activeIconInverse, $options);
+                $itemHtml   = $this->renderLinkInDropdown($page, $renderIcons, $activeIconInverse, $options);
+                $html       = $this->decorateLinkInDropdown($itemHtml, $page, $renderIcons, $activeIconInverse, $options);
             } else {
-                $html   = $this->decorateLink($itemHtml, $page, $renderIcons, $activeIconInverse, $options);
+                $itemHtml   = $this->renderLink($page, $renderIcons, $activeIconInverse, $options);
+                $html       = $this->decorateLink($itemHtml, $page, $renderIcons, $activeIconInverse, $options);
             }
         }
         return $html;
@@ -77,6 +80,14 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
                                        array $options = array()) {
         $icon   = $this->htmlifyIcon($item, $renderIcons, $activeIconInverse);
         $html   = $icon . $this->getView()->escape($item->getLabel());
+        return $html;
+    }
+
+    protected function renderNavHeaderInDropdown(\Zend\Navigation\Page\AbstractPage $item,
+                                                 $renderIcons = true,
+                                                 $activeIconInverse = true,
+                                                 array $options = array()) {
+        $html   = $this->renderNavHeader($item, $renderIcons, $activeIconInverse, $options);
         return $html;
     }
 
@@ -102,6 +113,12 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
         return '';
     }
 
+    protected function renderDividerInDropdown(\Zend\Navigation\Page\AbstractPage $item,
+                                               array $options = array()) {
+        $html   = $this->renderDivider($item, $options);
+        return $html;
+    }
+
     abstract protected function decorateDivider($content,
                                                 \Zend\Navigation\Page\AbstractPage $item,
                                                 array $options = array());
@@ -119,6 +136,14 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
                                   array $options = array()) {
         //Assemble html
         $html   = $this->htmlifyA($page, $renderIcons, $activeIconInverse);
+        return $html;
+    }
+
+    protected function renderLinkInDropdown(\Zend\Navigation\Page\AbstractPage $page,
+                                            $renderIcons = true,
+                                            $activeIconInverse = true,
+                                            array $options = array()) {
+        $html   = $this->renderLink($page, $renderIcons, $activeIconInverse, $options);
         return $html;
     }
 

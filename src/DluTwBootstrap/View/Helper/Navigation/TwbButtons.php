@@ -28,6 +28,9 @@ class TwbButtons extends AbstractButtonHelper
         if(!$container->hasPages()) {
             return '';
         }
+        if(is_null($type)) {
+            $type   = self::TYPE_GROUPS_HORIZONTAL;
+        }
         $options    = array('type'  => $type);
         $html       = $this->renderContainer($container, $renderIcons, false, $options);
         return $html;

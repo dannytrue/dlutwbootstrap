@@ -1,63 +1,12 @@
-<div class="page-header">
+<div class="page-header" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <h1>Buttons</h1>
 </div>
 <div class="row">
     <div class="span2">
-        <h4>Standard Buttons</h4>
+        <h4>Single Horizontal</h4>
     </div>
     <div class="span6">
-        <?//php echo $this->navigation()->twbButtons($this->nav); ?>
-            <div class="btn-toolbar">
-            <div class="btn-group"><a class="btn" href="#">What is this</a></div>
-            <div class="btn-group">
-                <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
-            </div><!-- /btn-group -->
-            <div class="btn-group">
-                <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
-            </div><!-- /btn-group -->
-            <div class="btn-group">
-                <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown">Danger <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
-            </div><!-- /btn-group -->
-            </div>
-        <div>
-            <a class="btn">Library</a>
-            <a class="btn">Xyz</a>
-            <div class="btn-group">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Applications</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Text Editor</a></li>
-                    <li><a href="#">Spreadsheet</a></li>
-                </ul>
-            </div>
-            <div class="btn-group">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Applications</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Text Editor</a></li>
-                    <li><a href="#">Spreadsheet</a></li>
-                </ul>
-            </div>
-        </div>
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'singleHorizontal', true); ?>
     </div>
     <div class="span4">
         <h5>Navigation helper call</h5>
@@ -66,11 +15,11 @@
 <hr>
 <div class="row">
     <div class="span2">
-        <h4>Standard Buttons</h4>
+        <h4>Single Horizontal</h4>
         <p>Without icons</p>
     </div>
     <div class="span6">
-        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, null, false); ?>
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'singleHorizontal', false); ?>
     </div>
     <div class="span4">
         <h5>Navigation helper call</h5>
@@ -79,10 +28,10 @@
 <hr>
 <div class="row">
     <div class="span2">
-        <h4>Vertical Buttons</h4>
+        <h4>Single Vertical</h4>
     </div>
     <div class="span6">
-        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'vertical', true); ?>
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'singleVertical', true); ?>
     </div>
     <div class="span4">
         <h5>Navigation helper call</h5>
@@ -91,11 +40,11 @@
 <hr>
 <div class="row">
     <div class="span2">
-        <h4>Vertical Buttons</h4>
+        <h4>Single Vertical</h4>
         <p>Without icons</p>
     </div>
     <div class="span6">
-        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'vertical', false); ?>
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'singleVertical', false); ?>
     </div>
     <div class="span4">
         <h5>Navigation helper call</h5>
@@ -104,10 +53,10 @@
 <hr>
 <div class="row">
     <div class="span2">
-        <h4>Button group</h4>
+        <h4>Groups Horizontal</h4>
     </div>
     <div class="span6">
-        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'group', true); ?>
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'groupsHorizontal', true); ?>
     </div>
     <div class="span4">
         <h5>Navigation helper call</h5>
@@ -116,11 +65,61 @@
 <hr>
 <div class="row">
     <div class="span2">
-        <h4>Button group</h4>
+        <h4>Groups Horizontal</h4>
         <p>Without icons</p>
     </div>
     <div class="span6">
-        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'group', false); ?>
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'groupsHorizontal', false); ?>
+    </div>
+    <div class="span4">
+        <h5>Navigation helper call</h5>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="span2">
+        <h4>Groups Vertical</h4>
+    </div>
+    <div class="span6">
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'groupsVertical', true); ?>
+    </div>
+    <div class="span4">
+        <h5>Navigation helper call</h5>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="span2">
+        <h4>Groups Vertical</h4>
+        <p>Without icons</p>
+    </div>
+    <div class="span6">
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'groupsVertical', false); ?>
+    </div>
+    <div class="span4">
+        <h5>Navigation helper call</h5>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="span2">
+        <h4>One Group</h4>
+    </div>
+    <div class="span6">
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'oneGroup', true); ?>
+    </div>
+    <div class="span4">
+        <h5>Navigation helper call</h5>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="span2">
+        <h4>One Group</h4>
+        <p>Without icons</p>
+    </div>
+    <div class="span6">
+        <?php echo $this->navigation()->twbButtons()->renderButtons($this->nav, 'oneGroup', false); ?>
     </div>
     <div class="span4">
         <h5>Navigation helper call</h5>

@@ -159,25 +159,70 @@ class DemoController extends ActionController
                 'icon'      => 'icon-home',
             ),
             array(
-                'label'     => 'Library',
+              'type'      => 'uri',
+              'divider' => true,
+            ),
+            array(
+                'label'     => 'Play',
                 'type'      => 'uri',
-                'icon'      => 'icon-book',
+                'icon'      => 'icon-play',
                 'active'    => true,
             ),
             array(
-                'label'     => 'Applications',
+                'label'     => 'Pause',
                 'type'      => 'uri',
-                'icon'      => 'icon-pencil',
+                'icon'      => 'icon-pause',
+            ),
+            array(
+                'label'     => 'Stop',
+                'type'      => 'uri',
+                'icon'      => 'icon-stop',
+            ),
+            array(
+              'type'      => 'uri',
+              'divider' => true,
+            ),
+            array(
+                'label'     => 'App',
+                'type'      => 'uri',
+                'id'        => 'app',
+                'icon'      => 'icon-random',
                 'pages'     => array(
                     array(
                         'label'     => 'Text Editor',
                         'type'      => 'uri',
+                        'icon'      => 'icon-pencil',
                     ),
                     array(
                         'label'     => 'Spreadsheet',
                         'type'      => 'uri',
+                        'icon'      => 'icon-th',
+                    ),
+                    array(
+                        'type'      => 'uri',
+                        'divider' => true,
+                    ),
+                    array(
+                        'label'     => 'Media Player',
+                        'type'      => 'uri',
+                        'icon'      => 'icon-music',
+                    ),
+                    array(
+                        'label'     => 'E-mail Client',
+                        'type'      => 'uri',
+                        'icon'      => 'icon-envelope',
                     ),
                 ),
+            ),
+            array(
+              'label'     => 'Vol -',
+              'type'      => 'uri',
+              'icon'      => 'icon-volume-down',
+            ),
+            array(
+              'label'     => 'Vol +',
+              'type'      => 'uri',
+              'icon'      => 'icon-volume-up',
             ),
         ));
         $viewModel      = new ViewModel(array(
