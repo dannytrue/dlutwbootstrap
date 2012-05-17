@@ -73,13 +73,13 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
         return $html;
     }
 
-    //TODO - translate nav header
     protected function renderNavHeader(\Zend\Navigation\Page\AbstractPage $item,
                                        $renderIcons = true,
                                        $activeIconInverse = true,
                                        array $options = array()) {
         $icon   = $this->htmlifyIcon($item, $renderIcons, $activeIconInverse);
-        $html   = $icon . $this->getView()->escape($item->getLabel());
+        $label  = $this->translate($item->getLabel());
+        $html   = $icon . $this->getView()->escape($label);
         return $html;
     }
 
@@ -190,7 +190,7 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
         } else {
             $iconHtml   = '';
         }
-        $html   = "\n" . '<a' . $this->_htmlAttribs($aAttribs) . '>'
+        $html   = '<a' . $this->_htmlAttribs($aAttribs) . '>'
             . $iconHtml . $escaper($label) . ' <b class="caret"></b></a>';
         $html   .= "\n" . '<ul class="dropdown-menu">';
         $pages  = $page->getPages();

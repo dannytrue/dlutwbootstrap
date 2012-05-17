@@ -22,8 +22,14 @@ abstract class AbstractButtonHelper extends AbstractHelper
                                          $renderIcons = true,
                                          $activeIconInverse = true,
                                          array $options = array()) {
+        if(array_key_exists('type', $options) && (
+           $options['type'] == self::TYPE_GROUPS_HORIZONTAL
+           || $options['type'] == self::TYPE_GROUPS_VERTICAL
+           || $options['type'] == self::TYPE_ONE_GROUP)) {
+            $content    .= $this->closeButtonGroup();
+        }
         $html   = '<div class="btn-toolbar">';
-        $html   .= $content;
+        $html   .= "\n" . $content;
         $html   .= "\n</div>";
         return $html;
     }
@@ -49,10 +55,10 @@ abstract class AbstractButtonHelper extends AbstractHelper
                                        array $options = array()) {
         if(array_key_exists('type', $options) && $options['type'] == self::TYPE_GROUPS_HORIZONTAL) {
             //Groups horizontal
-            $html   = $this->closeButtonGroup($content);
+            $html   = $this->closeButtonGroup() . $content;
         } elseif(array_key_exists('type', $options) && $options['type'] == self::TYPE_GROUPS_VERTICAL) {
             //Groups vertical
-            $html   = $this->closeButtonGroup($content);
+            $html   = $this->closeButtonGroup() . $content;
             $html   .= "\n<br>";
         } else {
             //Non grouped - do not render divider
@@ -76,7 +82,7 @@ abstract class AbstractButtonHelper extends AbstractHelper
                 . '</div><br>';
         } else {
             //One of the grouped types
-            $html   = $this->openButtonGroup($content);
+            $html   = $this->openButtonGroup() . $content;
         }
         return $html;
     }
@@ -86,11 +92,14 @@ abstract class AbstractButtonHelper extends AbstractHelper
                                         $renderIcons = true,
                                         $activeIconInverse = true,
                                         array $options = array()) {
-        $html   = $this->closeButtonGroup('');
+        $html   = $this->closeButtonGroup();
         $html   .= '<div class="btn-group">'
-            . $content
+            . "\n" . $content
             . "\n</div>";
-        if(array_key_exists('type', $options) && $options['type'] == self::TYPE_SINGLE_VERTICAL) {
+        if(array_key_exists('type', $options) && (
+            $options['type'] == self::TYPE_SINGLE_VERTICAL
+            || $options['type'] == self::TYPE_GROUPS_VERTICAL
+        )) {
             $html   .= "\n<br>";
         }
         return $html;
@@ -132,20 +141,22 @@ abstract class AbstractButtonHelper extends AbstractHelper
         return $html;
     }
 
-    protected function openButtonGroup($html) {
+    protected function openButtonGroup() {
         if(!$this->buttonGroupOpen) {
             $this->buttonGroupOpen = true;
-            $html   = "\n" . '<div class="btn-group">'
-                    . "\n" . $html;
+            $html   = "\n" . '<div class="btn-group">';
+        } else {
+            $html   = '';
         }
         return $html;
     }
 
-    protected function closeButtonGroup($html) {
+    protected function closeButtonGroup() {
         if($this->buttonGroupOpen) {
             $this->buttonGroupOpen = false;
-            $html   = "\n</div>"
-                    . "\n" . $html;
+            $html   = "\n</div>";
+        } else {
+            $html   = '';
         }
         return $html;
     }
