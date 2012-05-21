@@ -1,5 +1,22 @@
 <?php
 return array(
+    'controller' => array(
+        'classes' => array(
+            'tw-bootstrap-demo' => 'DluTwBootstrap\Controller\DemoController'
+        ),
+    ),
+    'view_manager' => array(
+        'template_map' => array(
+            'layout/layouttwb'      => __DIR__ . '/../view/layout/layouttwb.phtml',
+            'layout/layouttwb-demo' => __DIR__ . '/../view/layout/layouttwb-demo.phtml',
+        ),
+        'template_path_stack' => array(
+            'dluTwBootstrap'    => __DIR__ . '/../view',
+            'partials'          => __DIR__ . '/../view/partials',
+        ),
+    ),
+
+
     'di'    => array(
         'instance'  => array(
             //Setup for router and routes
@@ -25,22 +42,6 @@ return array(
 
             'alias'     => array(
                 'dlutwb-nav-menu-main'      => 'Zend\Navigation\Navigation',
-            ),
-            'Zend\View\Resolver\TemplateMapResolver' => array(
-                'parameters' => array(
-                    'map'  => array(
-                        'layout/layouttwb'      => __DIR__ . '/../view/layout/layouttwb.phtml',
-                        'layout/layouttwb-demo' => __DIR__ . '/../view/layout/layouttwb-demo.phtml',
-                    ),
-                ),
-            ),
-            'Zend\View\Resolver\TemplatePathStack'  => array(
-                'parameters'    => array(
-                    'paths'         => array(
-                        'dluTwBootstrap' => __DIR__ . '/../view',
-                        'partials'       => __DIR__ . '/../view/partials',
-                    ),
-                ),
             ),
             'dlutwb-nav-menu-main'  => array(
                 'parameters'    => array(
