@@ -42,10 +42,34 @@ return array(
                 'parameters'    => array(
                     'pages' => array(
                         array(
-                            'label'         => 'Forms',
-                            'module'        => 'DluTwBootstrap',
-                            'controller'    => 'tw-bootstrap-demo',
-                            'action'        => 'form'
+                            'label'         => 'Form',
+                            'type'          => 'uri',
+                            'pages'         => array(
+                                array(
+                                    'label'         => 'Horizontal',
+                                    'module'        => 'DluTwBootstrap',
+                                    'controller'    => 'tw-bootstrap-demo',
+                                    'action'        => 'form-horizontal',
+                                ),
+                                array(
+                                    'label'         => 'Vertical',
+                                    'module'        => 'DluTwBootstrap',
+                                    'controller'    => 'tw-bootstrap-demo',
+                                    'action'        => 'form-vertical',
+                                ),
+                                array(
+                                    'label'         => 'Inline',
+                                    'module'        => 'DluTwBootstrap',
+                                    'controller'    => 'tw-bootstrap-demo',
+                                    'action'        => 'form-inline',
+                                ),
+                                array(
+                                    'label'         => 'Search',
+                                    'module'        => 'DluTwBootstrap',
+                                    'controller'    => 'tw-bootstrap-demo',
+                                    'action'        => 'form-search',
+                                ),
+                            ),
                         ),
                         array(
                             'label'     => 'Navigation',

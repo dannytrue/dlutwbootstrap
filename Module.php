@@ -1,5 +1,6 @@
 <?php
 namespace DluTwBootstrap;
+use DluTwBootstrap\Form\View\HelperLoader as FormHelperLoader;
 
 class Module
 {
@@ -24,7 +25,7 @@ class Module
 
     public function init(\Zend\ModuleManager\ModuleManager $moduleManager) {
         $sharedEvents   = $moduleManager->events()->getSharedManager();
-        $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'onThisModuleDispatch'));
+        $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'onModuleDispatch'));
     }
 
     /**
@@ -37,9 +38,16 @@ class Module
      * @param $e
      */
     public function onBootstrap(\Zend\Mvc\MvcEvent $e) {
-        $app            = $e->getApplication();
-        $serviceManager = $app->getServiceManager();
+        $application    = $e->getApplication();
+        $serviceManager = $application->getServiceManager();
         $renderer       = $serviceManager->get('viewRenderer');
+        $broker         = $renderer->getBroker();
+        $helperLoader   = $broker->getClassLoader();
+        /* @var $helperLoader \Zend\View\HelperLoader */
+
+        //Register form view helpers
+        $helperLoader->registerPlugins(new FormHelperLoader());
+
         //Register DluTwBootstrap view navigation helpers
         $renderer->plugin('navigation')
                        ->getPluginLoader()
@@ -50,7 +58,7 @@ class Module
         //Prepare the \Zend\Navigation\Page\Mvc for use in the navigation view helper
         \Zend\Navigation\Page\Mvc::setDefaultUrlHelper($renderer->plugin('url'));
         //Attach a listener to the app route event
-        $app->events()->attach('route', array($this, 'onRoute'));
+        $application->events()->attach('route', array($this, 'onRoute'));
     }
 
     /**
@@ -72,7 +80,7 @@ class Module
         $renderer->plugin('url')->setRouteMatch($routeMatch);
     }
 
-    public function onThisModuleDispatch(\Zend\Mvc\MvcEvent $e) {
+    public function onModuleDispatch(\Zend\Mvc\MvcEvent $e) {
 
         //Set the layout template for every action in this module
         $controller         = $e->getTarget();

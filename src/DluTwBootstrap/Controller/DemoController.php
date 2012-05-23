@@ -42,6 +42,14 @@ class DemoController extends ActionController
         return $viewModel;
     }
 
+    public function formHorizontalAction() {
+        $form   = new \DluTwBootstrap\Demo\Form\BlockForm();
+        $viewModel  = new ViewModel(array(
+            'form'  => $form,
+        ));
+        return $viewModel;
+    }
+
     /**
      * Navigation action
      * @return \Zend\View\Model\ViewModel

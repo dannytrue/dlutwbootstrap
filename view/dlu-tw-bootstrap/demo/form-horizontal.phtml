@@ -1,0 +1,74 @@
+<div class="page-header">
+    <h1>Horizontal Form</h1>
+</div>
+<?php
+$formType   = \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL;
+$form = $this->form;
+/* @var $form \DluTwBootstrap\Demo\Form\BlockForm */
+$form->setAttribute('class', 'form-horizontal');
+//$form->setAttribute('action', $this->url('form'));
+echo $this->form()->openTag($form);
+?>
+<fieldset>
+    <!-- Hidden -->
+    <?php echo $this->formInput($form->get('hiddenField')); ?>
+    <!-- Text -->
+    <div class="control-group">
+        <?php echo $this->formLabelTwb($form->get('fullName'), null, null, $formType); ?>
+        <div class="controls">
+            <?php echo $this->formInput($form->get('fullName')); ?>
+        </div>
+    </div>
+    <!-- Password -->
+    <div class="control-group">
+        <?php echo $this->formLabelTwb($form->get('password'), null, null, $formType); ?>
+        <div class="controls">
+            <?php echo $this->formInput($form->get('password')); ?>
+        </div>
+    </div>
+    <!-- Textarea -->
+    <div class="control-group">
+        <?php echo $this->formLabelTwb($form->get('notes'), null, null, $formType); ?>
+        <div class="controls">
+            <?php echo $this->formTextarea($form->get('notes')); ?>
+        </div>
+    </div>
+    <!-- Checkbox -->
+    <div class="control-group">
+        <?php echo $this->formLabelTwb($form->get('pastaEater'), null, null, $formType); ?>
+        <div class="controls">
+            <label class="checkbox">
+                <?php echo $this->formInput($form->get('pastaEater')); ?>
+            </label>
+        </div>
+    </div>
+
+
+    <dt><?php echo $this->formLabel($form->get('four')); ?></dt>
+    <dd><?php
+        echo $this->formMultiCheckbox($form->get('four'));
+        echo $this->formElementErrors($form->get('four'));
+        ?></dd>
+
+    <dt><?php echo $this->formLabel($form->get('five')); ?></dt>
+    <dd><?php
+        echo $this->formRadio($form->get('five'));
+        echo $this->formElementErrors($form->get('five'));
+        ?></dd>
+
+    <dt><?php echo $this->formLabel($form->get('six')); ?></dt>
+    <dd><?php
+        echo $this->formSelect($form->get('six'));
+        echo $this->formElementErrors($form->get('six'));
+        ?></dd>
+
+
+    <dd><?php
+        echo $this->formElement($form->get('csrf'));
+        echo $this->formElementErrors($form->get('csrf'));
+
+        echo $this->formInput($form->get('submit'));
+        echo $this->formElementErrors($form->get('submit'));
+        ?></dd>
+</fieldset>
+<?php echo $this->form()->closeTag($form); ?>
