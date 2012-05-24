@@ -14,32 +14,40 @@ echo $this->form()->openTag($form);
     <?php echo $this->formInput($form->get('hiddenField')); ?>
     <!-- Text -->
     <div class="control-group">
-        <?php echo $this->formLabelTwb($form->get('fullName'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('fullName'), null, null, $formType); ?>
         <div class="controls">
             <?php echo $this->formInput($form->get('fullName')); ?>
         </div>
     </div>
     <!-- Password -->
     <div class="control-group">
-        <?php echo $this->formLabelTwb($form->get('password'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('password'), null, null, $formType); ?>
         <div class="controls">
             <?php echo $this->formInput($form->get('password')); ?>
         </div>
     </div>
     <!-- Textarea -->
     <div class="control-group">
-        <?php echo $this->formLabelTwb($form->get('notes'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('notes'), null, null, $formType); ?>
         <div class="controls">
             <?php echo $this->formTextarea($form->get('notes')); ?>
         </div>
     </div>
     <!-- Checkbox -->
     <div class="control-group">
-        <?php echo $this->formLabelTwb($form->get('pastaEater'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('pastaEater'), null, null, $formType); ?>
         <div class="controls">
             <label class="checkbox">
                 <?php echo $this->formInput($form->get('pastaEater')); ?>
             </label>
+        </div>
+    </div>
+
+    <!-- Radio -->
+    <div class="control-group">
+        <?php echo $this->formLabelMainTwb($form->get('level'), null, null, $formType); ?>
+        <div class="controls">
+            <?php echo $this->formRadio($form->get('level')); ?>
         </div>
     </div>
 

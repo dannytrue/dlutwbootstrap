@@ -67,10 +67,10 @@ class Module
      */
     public function onRoute(\Zend\Mvc\MvcEvent $e) {
         $serviceManager = $e->getApplication()->getServiceManager();
+        $routeMatch     = $e->getRouteMatch();
         $renderer       = $serviceManager->get('viewRenderer');
         $locator        = $serviceManager->get('dependencyInjector');
         /* @var $locator \Zend\Di\Di */
-        $routeMatch     = $e->getRouteMatch();
         //Configure routeMatchInjector with the current routeMatch
         $locator->instanceManager()->setParameters(
             'DluTwBootstrap\Navigation\RouteMatchInjector', array(

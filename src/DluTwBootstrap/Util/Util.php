@@ -14,11 +14,12 @@ class Util
     /* ********************* METHODS *************************** */
 
     /**
-     * If missing in the text, adds the space separated word to the text
+     * If missing in the text, adds the space separated word to the text and returns the text
      * @param string $word
      * @param string $text
+     * @return string
      */
-    public static function addWord($word, &$text) {
+    public function addWord($word, $text) {
         $text   = trim($text);
         if(!$text) {
             $wordsLower  = array();
@@ -31,5 +32,25 @@ class Util
             $words[]     = $word;
             $text   = implode(' ', $words);
         }
+        return $text;
+    }
+
+    /**
+     * Adds a space separated word to an array item, if the word is missing there
+     * If the array item does not exist, creates it
+     * Returns the resulting array
+     * @param string $word
+     * @param array $ay
+     * @param string $key
+     * @return array
+     */
+    public function addWordToArrayItem($word, array $ay, $key) {
+        if(!array_key_exists($key, $ay)) {
+            $ay[$key]   = '';
+        }
+        $text       = $ay[$key];
+        $text       = $this->addWord($word, $text);
+        $ay[$key]   = $text;
+        return $ay;
     }
 }

@@ -1,43 +1,24 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 use Zend\Form\ElementInterface;
-use DluTwBootstrap\Util\Util as GenUtil;
-use DluTwBootstrap\Form\Util;
 
-class FormLabelTwb extends \Zend\Form\View\Helper\FormLabel
+class FormLabelMainTwb extends AbstractFormLabel
 {
-    /**
-     * Attributes valid for the label tag
-     *
-     * @var array
-     */
-    protected $validTagAttributes = array(
-        'for'   => true,
-        'form'  => true,
-        'class' => true,
-    );
-
-    /**
-     * @var Util
-     */
-    protected $util;
-
-    /**
-     * @var GenUtil
-     */
-    protected $genUtil;
 
     /* ************************ METHODS ***************************** */
 
     /**
-     * Constructor
-     * @param \DluTwBootstrap\Form\Util $util
-     * @param \DluTwBootstrap\Util\Util $genUtil
+     * Adds attributes specific for this helper
+     * @param array $attributes
+     * @return array
      */
-    public function __construct(Util $util, GenUtil $genUtil) {
-        $this->util     = $util;
-        $this->genUtil  = $genUtil;
+    protected function garnishAttributes(array $attributes) {
+        if($this->formType == \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL) {
+            $attributes = $this->genUtil->addWordToArrayItem('control-label', $attributes, 'class');
+        }
+        return $attributes;
     }
+
 
     /**
      * Generate a form label, optionally with content
@@ -55,7 +36,10 @@ class FormLabelTwb extends \Zend\Form\View\Helper\FormLabel
     public function __invoke(ElementInterface $element,
                              $labelContent = null,
                              $position = null,
-                             $formType = Util::FORM_TYPE_VERTICAL) {
+                             $formType = null) {
+        $this->setFormType($formType);
+        return parent::__invoke($element, $labelContent, $position);
+        /*
         $attributes = $element->getAttributes();
         //Class
         if(array_key_exists('class', $attributes)) {
@@ -105,5 +89,6 @@ class FormLabelTwb extends \Zend\Form\View\Helper\FormLabel
             $labelContent = $label;
         }
         return $openTag . $labelContent . $this->closeTag();
+        */
     }
 }

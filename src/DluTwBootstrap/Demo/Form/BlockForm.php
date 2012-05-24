@@ -68,6 +68,22 @@ class BlockForm extends Form
             ),
         ));
 
+        //Radio
+        $this->add(array(
+            'name'  => 'level',
+            'attributes'    => array(
+                'type'              => 'radio',
+                'label'             => 'Your level',
+                'description'       => 'Radio element (required).',
+                'options'      => array(
+                    'beg'   => 'Beginner',
+                    'int'   => 'Intermediate',
+                    'adv'   => 'Advanced',
+                    'gur'   => 'Guru',
+                ),
+            ),
+        ));
+
 
         // MultiCheckbox
         $this->add(array(
