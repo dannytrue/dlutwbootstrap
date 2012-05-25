@@ -55,9 +55,8 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
     public function openTag($attributesOrElement = null)
     {
         if (null === $attributesOrElement) {
-            return '<label>';
+            $attributesOrElement    = array();
         }
-
         if (is_array($attributesOrElement)) {
             $attributesAy   = $this->garnishAttributes($attributesOrElement);
             $attributes     = $this->createAttributesString($attributesAy);

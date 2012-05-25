@@ -12,6 +12,7 @@ echo $this->form()->openTag($form);
 <fieldset>
     <!-- Hidden -->
     <?php echo $this->formInput($form->get('hiddenField')); ?>
+
     <!-- Text -->
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('fullName'), null, null, $formType); ?>
@@ -19,6 +20,7 @@ echo $this->form()->openTag($form);
             <?php echo $this->formInput($form->get('fullName')); ?>
         </div>
     </div>
+
     <!-- Password -->
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('password'), null, null, $formType); ?>
@@ -26,6 +28,7 @@ echo $this->form()->openTag($form);
             <?php echo $this->formInput($form->get('password')); ?>
         </div>
     </div>
+
     <!-- Textarea -->
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('notes'), null, null, $formType); ?>
@@ -33,6 +36,7 @@ echo $this->form()->openTag($form);
             <?php echo $this->formTextarea($form->get('notes')); ?>
         </div>
     </div>
+
     <!-- Checkbox -->
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('pastaEater'), null, null, $formType); ?>
@@ -47,36 +51,78 @@ echo $this->form()->openTag($form);
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('level'), null, null, $formType); ?>
         <div class="controls">
-            <?php echo $this->formRadio($form->get('level')); ?>
+            <?php echo $this->formRadioTwb($form->get('level')); ?>
         </div>
     </div>
 
+    <!-- Radio inline -->
+    <div class="control-group">
+        <?php echo $this->formLabelMainTwb($form->get('rateUs'), null, null, $formType); ?>
+        <div class="controls">
+            <?php echo $this->formRadioTwb($form->get('rateUs'), true); ?>
+        </div>
+    </div>
 
-    <dt><?php echo $this->formLabel($form->get('four')); ?></dt>
-    <dd><?php
-        echo $this->formMultiCheckbox($form->get('four'));
-        echo $this->formElementErrors($form->get('four'));
-        ?></dd>
+    <!-- MultiCheckbox -->
+    <div class="control-group">
+        <?php echo $this->formLabelMainTwb($form->get('settings'), null, null, $formType); ?>
+        <div class="controls">
+            <?php echo $this->formMultiCheckboxTwb($form->get('settings')); ?>
+        </div>
+    </div>
 
-    <dt><?php echo $this->formLabel($form->get('five')); ?></dt>
-    <dd><?php
-        echo $this->formRadio($form->get('five'));
-        echo $this->formElementErrors($form->get('five'));
-        ?></dd>
+    <!-- MultiCheckbox inline -->
+    <div class="control-group">
+        <?php echo $this->formLabelMainTwb($form->get('seenMovies'), null, null, $formType); ?>
+        <div class="controls">
+            <?php echo $this->formMultiCheckboxTwb($form->get('seenMovies'), true); ?>
+        </div>
+    </div>
 
-    <dt><?php echo $this->formLabel($form->get('six')); ?></dt>
-    <dd><?php
-        echo $this->formSelect($form->get('six'));
-        echo $this->formElementErrors($form->get('six'));
-        ?></dd>
+    <!-- Select -->
+    <div class="control-group">
+        <?php echo $this->formLabelMainTwb($form->get('car'), null, null, $formType); ?>
+        <div class="controls">
+            <?php echo $this->formSelectTwb($form->get('car')); ?>
+        </div>
+    </div>
 
+    <!-- MultiSelect -->
+    <div class="control-group">
+        <?php echo $this->formLabelMainTwb($form->get('pets'), null, null, $formType); ?>
+        <div class="controls">
+            <?php echo $this->formSelectTwb($form->get('pets')); ?>
+        </div>
+    </div>
 
-    <dd><?php
-        echo $this->formElement($form->get('csrf'));
-        echo $this->formElementErrors($form->get('csrf'));
+    <!-- File -->
+    <div class="control-group">
+        <?php echo $this->formLabelMainTwb($form->get('attachment'), null, null, $formType); ?>
+        <div class="controls">
+            <?php echo $this->formInput($form->get('attachment')); ?>
+        </div>
+    </div>
 
-        echo $this->formInput($form->get('submit'));
-        echo $this->formElementErrors($form->get('submit'));
-        ?></dd>
+    <!-- Text with append / prepend -->
+    <?php //TODO - append / prepend text ?>
+    <div class="control-group">
+        <?php echo $this->formLabelMainTwb($form->get('salary'), null, null, $formType); ?>
+        <div class="controls">
+            <div class="input-prepend input-append">
+                <span class="add-on">xyz</span><?php echo $this->formInput($form->get('salary')); ?><span class="add-on">abc</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CSRF -->
+    <?php //TODO - display CSRF errors ?>
+    <?php echo $this->formElement($form->get('csrf')); ?>
+
+    <!-- Form actions -->
+    <div class="form-actions">
+        <?php echo $this->formInput($form->get('submitBtn')); ?>
+        <?php echo $this->formInput($form->get('resetBtn')); ?>
+        <?php echo $this->formInput($form->get('plainBtn')); ?>
+    </div>
 </fieldset>
 <?php echo $this->form()->closeTag($form); ?>

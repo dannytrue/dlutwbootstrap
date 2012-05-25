@@ -74,7 +74,7 @@ class BlockForm extends Form
             'attributes'    => array(
                 'type'              => 'radio',
                 'label'             => 'Your level',
-                'description'       => 'Radio element (required).',
+                'description'       => 'Radio element.',
                 'options'      => array(
                     'beg'   => 'Beginner',
                     'int'   => 'Intermediate',
@@ -84,48 +84,119 @@ class BlockForm extends Form
             ),
         ));
 
-
-        // MultiCheckbox
+        //Radio inline
         $this->add(array(
-                       'name' => 'four',
-                       'attributes' => array(
-                           'type'  => 'multiCheckbox',
-                           'label' => 'Four',
-                           'options' => array(
-                               'one' => '1',
-                               'two' => '2',
-                           ),
-                           //'id' => 'id4',
-                       ),
-                   ));
+            'name'              => 'rateUs',
+            'attributes'        => array(
+                'type'              => 'radio',
+                'label'             => 'Rate us',
+                'description'       => 'Radio element inline.',
+                'inline'            => true,
+                'options'      => array(
+                    'a'   => 'A',
+                    'b'   => 'B',
+                    'c'   => 'C',
+                    'd'   => 'D',
+                    'e'   => 'E',
+                    'f'   => 'F',
+                ),
+            ),
+        ));
 
-        // Radio
+        //Multicheckbox
         $this->add(array(
-                       'name' => 'five',
-                       'attributes' => array(
-                           'type'  => 'radio',
-                           'label' => 'Five',
-                           'options' => array(
-                               'one' => '1',
-                               'two' => '2',
-                           ),
-                           //'id' => 'id5',
+            'name'              => 'settings',
+            'attributes'        => array(
+                'type'              => 'multiCheckbox',
+                'label'             => 'Settings',
+                'description'       => 'Multicheckbox element.',
+                'options'       => array(
+                    'runBkg'        => 'Run on background',
+                    'col'           => 'Use web colour palette',
+                    'slow'          => 'Compensate for slow connection',
+                    'stat'          => 'Collect statistics',
+                ),
+            ),
+        ));
 
-                       ),
-                   ));
-
-        // Select
+        //Multicheckbox inline
         $this->add(array(
-                       'name' => 'six',
-                       'attributes' => array(
-                           'type'  => 'select',
-                           'label' => 'Six',
-                           'options' => array(
-                               'one' => '1',
-                               'two' => '2',
-                           ),
-                       ),
-                   ));
+            'name'              => 'seenMovies',
+            'attributes'        => array(
+                'type'              => 'multiCheckbox',
+                'label'             => 'What have you seen?',
+                'description'       => 'Multicheckbox element inline.',
+                'options'      => array(
+                    'terminator'    => 'Terminator 1',
+                    'eraser'        => 'Eraserhead',
+                    'amBeauty'      => 'American Beauty',
+                    'platoon'       => 'Platoon',
+                ),
+            ),
+        ));
+
+        //Select
+        $this->add(array(
+            'name'              => 'car',
+            'attributes'        => array(
+                'type'              => 'select',
+                'label'             => 'Make of your car',
+                'inlineHelp'        => 'What car do you drive?',
+                'description'       => 'Select element. Supports inline help.',
+                'options'      => array(
+                    'ford'    => 'Ford',
+                    'bmw'     => 'BMW',
+                    'renault' => 'Renault',
+                    'jag'     => 'Jaguar',
+                    'other'   => 'other',
+                ),
+            ),
+        ));
+
+        //Multiselect
+        $this->add(array(
+            'name'              => 'pets',
+            'attributes'        => array(
+                'type'              => 'select',
+                'multiple'          => true,
+                'label'             => 'Your home creatures',
+                'inlineHelp'        => 'Select all that apply',
+                'description'       => 'Multiselect element. Supports inline help.',
+                'options'               => array(
+                    'dog'    => 'Dog',
+                    'cat'     => 'Cat',
+                    'parrot' => 'Parrot',
+                    'fish'     => 'Fish',
+                    'rat'    => 'Rat',
+                    'other' => 'other',
+                ),
+            ),
+        ));
+
+        //File
+        $this->add(array(
+            'name'              => 'attachment',
+            'attributes'        => array(
+                'type'              => 'file',
+                'label'             => 'Attach file',
+                'inlineHelp'        => 'Max. file size 1 MB',
+                'description'       => 'File element. Supports inline help.',
+            ),
+        ));
+
+        //Text with append / prepend
+        $this->add(array(
+            'name'              => 'salary',
+            'attributes'        => array(
+                'type'              => 'text',
+                'label'             => 'Salary',
+                'placeholderText'   => 'Good old cash...',
+                'inlineHelp'        => 'Yearly net salary',
+                'description'       => 'Text element with prepend and append text. Renders correctly on horizontal and inline forms.',
+                'prependText'       => '$',
+                'appendText'        => '.00',
+            ),
+        ));
 
         /*
         // Captcha
@@ -135,17 +206,37 @@ class BlockForm extends Form
         $this->add($captcha);
         */
 
-        // Csrf
+        //Csrf
         $this->add(new Element\Csrf('csrf'));
 
-        // Submit button
+        //Submit button
+        //TODO - submit label not rendered
         $this->add(array(
-                       'name' => 'submit',
+                       'name' => 'submitBtn',
                        'attributes' => array(
                            'type'  => 'submit',
-                           'label' => 'Submit',
+                           'label' => 'Save changes',
                        ),
                    ));
 
+        //Reset button
+        //TODO - reset label not rendered
+        $this->add(array(
+                       'name' => 'resetBtn',
+                       'attributes' => array(
+                           'type'  => 'reset',
+                           'label' => 'Clear form',
+                       ),
+                   ));
+
+        //Plain button
+        //TODO - plain button label not rendered
+        $this->add(array(
+                       'name' => 'plainBtn',
+                       'attributes' => array(
+                           'type'  => 'button',
+                           'label' => 'Other action',
+                       ),
+                   ));
     }
 }
