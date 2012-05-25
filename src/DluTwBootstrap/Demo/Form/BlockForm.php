@@ -210,32 +210,29 @@ class BlockForm extends Form
         $this->add(new Element\Csrf('csrf'));
 
         //Submit button
-        //TODO - submit label not rendered
         $this->add(array(
                        'name' => 'submitBtn',
                        'attributes' => array(
                            'type'  => 'submit',
-                           'label' => 'Save changes',
+                           'value' => 'Save changes',
                        ),
                    ));
 
         //Reset button
-        //TODO - reset label not rendered
         $this->add(array(
                        'name' => 'resetBtn',
                        'attributes' => array(
                            'type'  => 'reset',
-                           'label' => 'Clear form',
+                           'value' => 'Clear form',
                        ),
                    ));
 
         //Plain button
-        //TODO - plain button label not rendered
         $this->add(array(
                        'name' => 'plainBtn',
                        'attributes' => array(
                            'type'  => 'button',
-                           'label' => 'Other action',
+                           'value' => 'Other action',
                        ),
                    ));
     }

@@ -29,5 +29,7 @@ class HelperLoader extends PluginClassLoader
         'form_multicheckbox_twb'                => 'DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb',
         'formselecttwb'                         => 'DluTwBootstrap\Form\View\Helper\FormSelectTwb',
         'form_select_twb'                       => 'DluTwBootstrap\Form\View\Helper\FormSelectTwb',
+        'forminputtwb'                          => 'DluTwBootstrap\Form\View\Helper\FormInputTwb',
+        'form_input_twb'                        => 'DluTwBootstrap\Form\View\Helper\FormInputTwb',
     );
 }
