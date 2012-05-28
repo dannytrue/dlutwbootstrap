@@ -17,7 +17,8 @@ echo $this->form()->openTag($form);
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('fullName'), null, null, $formType); ?>
         <div class="controls">
-            <?php echo $this->formInputTwb($form->get('fullName')); ?>
+            <?php //echo $this->formInputTwb($form->get('fullName')); ?>
+            <?php echo $this->formElementTwb($form->get('fullName')); ?>
         </div>
     </div>
 
@@ -25,7 +26,8 @@ echo $this->form()->openTag($form);
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('password'), null, null, $formType); ?>
         <div class="controls">
-            <?php echo $this->formInputTwb($form->get('password')); ?>
+            <?php //echo $this->formInputTwb($form->get('password')); ?>
+            <?php echo $this->formElementTwb($form->get('password')); ?>
         </div>
     </div>
 
@@ -33,7 +35,8 @@ echo $this->form()->openTag($form);
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('notes'), null, null, $formType); ?>
         <div class="controls">
-            <?php echo $this->formTextarea($form->get('notes')); ?>
+            <?php //echo $this->formTextareaTwb($form->get('notes')); ?>
+            <?php echo $this->formElementTwb($form->get('notes')); ?>
         </div>
     </div>
 
@@ -41,9 +44,8 @@ echo $this->form()->openTag($form);
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('pastaEater'), null, null, $formType); ?>
         <div class="controls">
-            <label class="checkbox">
-                <?php echo $this->formInputTwb($form->get('pastaEater')); ?>
-            </label>
+            <?php //echo $this->formInputTwb($form->get('pastaEater')); ?>
+            <?php echo $this->formElementTwb($form->get('pastaEater')); ?>
         </div>
     </div>
 
@@ -51,7 +53,8 @@ echo $this->form()->openTag($form);
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('level'), null, null, $formType); ?>
         <div class="controls">
-            <?php echo $this->formRadioTwb($form->get('level')); ?>
+            <?php //echo $this->formRadioTwb($form->get('level')); ?>
+            <?php echo $this->formElementTwb($form->get('level')); ?>
         </div>
     </div>
 
@@ -60,6 +63,7 @@ echo $this->form()->openTag($form);
         <?php echo $this->formLabelMainTwb($form->get('rateUs'), null, null, $formType); ?>
         <div class="controls">
             <?php echo $this->formRadioTwb($form->get('rateUs'), true); ?>
+            <?php //echo $this->formElementTwb($form->get('rateUs'), true); ?>
         </div>
     </div>
 
@@ -67,7 +71,8 @@ echo $this->form()->openTag($form);
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('settings'), null, null, $formType); ?>
         <div class="controls">
-            <?php echo $this->formMultiCheckboxTwb($form->get('settings')); ?>
+            <?php //echo $this->formMultiCheckboxTwb($form->get('settings')); ?>
+            <?php echo $this->formElementTwb($form->get('settings')); ?>
         </div>
     </div>
 
@@ -76,6 +81,7 @@ echo $this->form()->openTag($form);
         <?php echo $this->formLabelMainTwb($form->get('seenMovies'), null, null, $formType); ?>
         <div class="controls">
             <?php echo $this->formMultiCheckboxTwb($form->get('seenMovies'), true); ?>
+            <?php //echo $this->formElementTwb($form->get('seenMovies'), true); ?>
         </div>
     </div>
 
@@ -83,7 +89,8 @@ echo $this->form()->openTag($form);
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('car'), null, null, $formType); ?>
         <div class="controls">
-            <?php echo $this->formSelectTwb($form->get('car')); ?>
+            <?php //echo $this->formSelectTwb($form->get('car')); ?>
+            <?php echo $this->formElementTwb($form->get('car')); ?>
         </div>
     </div>
 
@@ -91,7 +98,8 @@ echo $this->form()->openTag($form);
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('pets'), null, null, $formType); ?>
         <div class="controls">
-            <?php echo $this->formSelectTwb($form->get('pets')); ?>
+            <?php //echo $this->formSelectTwb($form->get('pets')); ?>
+            <?php echo $this->formElementTwb($form->get('pets')); ?>
         </div>
     </div>
 
@@ -99,30 +107,32 @@ echo $this->form()->openTag($form);
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('attachment'), null, null, $formType); ?>
         <div class="controls">
-            <?php echo $this->formInputTwb($form->get('attachment')); ?>
+            <?php //echo $this->formInputTwb($form->get('attachment')); ?>
+            <?php echo $this->formElementTwb($form->get('attachment')); ?>
         </div>
     </div>
 
     <!-- Text with append / prepend -->
-    <?php //TODO - append / prepend text ?>
     <div class="control-group">
         <?php echo $this->formLabelMainTwb($form->get('salary'), null, null, $formType); ?>
         <div class="controls">
-            <div class="input-prepend input-append">
-                <span class="add-on">xyz</span><?php echo $this->formInputTwb($form->get('salary')); ?><span class="add-on">abc</span>
-            </div>
+            <?php //echo $this->formInputTwb($form->get('salary')); ?>
+            <?php echo $this->formElementTwb($form->get('salary')); ?>
         </div>
     </div>
 
     <!-- CSRF -->
     <?php //TODO - display CSRF errors ?>
-    <?php echo $this->formElement($form->get('csrf')); ?>
+    <?php echo $this->formElementTwb($form->get('csrf')); ?>
 
     <!-- Form actions -->
     <div class="form-actions">
-        <?php echo $this->formInputTwb($form->get('submitBtn')); ?>
-        <?php echo $this->formInputTwb($form->get('resetBtn')); ?>
-        <?php echo $this->formInputTwb($form->get('plainBtn')); ?>
+        <?php //echo $this->formInputTwb($form->get('submitBtn')); ?>
+        <?php echo $this->formElementTwb($form->get('submitBtn')); ?>
+        <?php //echo $this->formInputTwb($form->get('resetBtn')); ?>
+        <?php echo $this->formElementTwb($form->get('resetBtn')); ?>
+        <?php //echo $this->formInputTwb($form->get('plainBtn')); ?>
+        <?php echo $this->formElementTwb($form->get('plainBtn')); ?>
     </div>
 </fieldset>
 <?php echo $this->form()->closeTag($form); ?>

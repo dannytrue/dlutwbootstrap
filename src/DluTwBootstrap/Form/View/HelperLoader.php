@@ -31,5 +31,13 @@ class HelperLoader extends PluginClassLoader
         'form_select_twb'                       => 'DluTwBootstrap\Form\View\Helper\FormSelectTwb',
         'forminputtwb'                          => 'DluTwBootstrap\Form\View\Helper\FormInputTwb',
         'form_input_twb'                        => 'DluTwBootstrap\Form\View\Helper\FormInputTwb',
+        'formtextareatwb'                       => 'DluTwBootstrap\Form\View\Helper\FormTextareaTwb',
+        'form_textarea_twb'                     => 'DluTwBootstrap\Form\View\Helper\FormTextareaTwb',
+        'formelementtwb'                        => 'DluTwBootstrap\Form\View\Helper\FormElementTwb',
+        'form_element_twb'                      => 'DluTwBootstrap\Form\View\Helper\FormElementTwb',
+        'forminlinehelptwb'                     => 'DluTwBootstrap\Form\View\Helper\FormInlineHelpTwb',
+        'form_inline_help_twb'                  => 'DluTwBootstrap\Form\View\Helper\FormInlineHelpTwb',
+        'formelementdescriptiontwb'             => 'DluTwBootstrap\Form\View\Helper\FormElementDescriptionTwb',
+        'form_element_description_twb'          => 'DluTwBootstrap\Form\View\Helper\FormElementDescriptionTwb',
     );
 }

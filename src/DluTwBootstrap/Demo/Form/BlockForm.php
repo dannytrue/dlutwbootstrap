@@ -27,10 +27,10 @@ class BlockForm extends Form
                        'name' => 'fullName',
                        'attributes' => array(
                            'type'               => 'text',
-                           'label'              => 'Name',
-                           'placeholderText'    => 'Your full name',
-                           'inlineHelp'         => 'Use your real name',
-                           'description'        => 'Text element in error state with error messages. Supports inline help as well as placeholder text.',
+                           'label'              => 'Name <b>BOLD</b>',
+                           'placeholder'        => 'Your full name <b>BOLD</b>',
+                           'inlineHelp'         => 'Use your real name <b>BOLD</b>',
+                           'description'        => '<b>BOLD</b>Text element in error state with error messages. Supports inline help as well as placeholder text.',
                        ),
                    ));
 
@@ -40,7 +40,7 @@ class BlockForm extends Form
             'attributes'    => array(
                 'type'              => 'password',
                 'label'             => 'Password',
-                'placeholderText'   => 'Top secret!',
+                'placeholder'       => 'Top secret!',
                 'inlineHelp'        => 'Do not tell anyone!',
                 'description'       => 'Password element (required).  Supports inline help as well as placeholder text.',
             ),
@@ -52,7 +52,7 @@ class BlockForm extends Form
             'attributes'    => array(
                 'type'              => 'textarea',
                 'label'             => 'Notes',
-                'placeholderText'   => 'Type any notes here',
+                'placeholder'       => 'Type any notes here',
                 'inlineHelp'        => 'A place for your notes',
                 'description'       => 'Textarea element.  Supports inline help as well as placeholder text.',
             ),
@@ -91,7 +91,6 @@ class BlockForm extends Form
                 'type'              => 'radio',
                 'label'             => 'Rate us',
                 'description'       => 'Radio element inline.',
-                'inline'            => true,
                 'options'      => array(
                     'a'   => 'A',
                     'b'   => 'B',
@@ -107,7 +106,7 @@ class BlockForm extends Form
         $this->add(array(
             'name'              => 'settings',
             'attributes'        => array(
-                'type'              => 'multiCheckbox',
+                'type'              => 'checkbox',
                 'label'             => 'Settings',
                 'description'       => 'Multicheckbox element.',
                 'options'       => array(
@@ -123,7 +122,7 @@ class BlockForm extends Form
         $this->add(array(
             'name'              => 'seenMovies',
             'attributes'        => array(
-                'type'              => 'multiCheckbox',
+                'type'              => 'checkbox',
                 'label'             => 'What have you seen?',
                 'description'       => 'Multicheckbox element inline.',
                 'options'      => array(
@@ -190,7 +189,7 @@ class BlockForm extends Form
             'attributes'        => array(
                 'type'              => 'text',
                 'label'             => 'Salary',
-                'placeholderText'   => 'Good old cash...',
+                'placeholder'       => 'Good old cash...',
                 'inlineHelp'        => 'Yearly net salary',
                 'description'       => 'Text element with prepend and append text. Renders correctly on horizontal and inline forms.',
                 'prependText'       => '$',

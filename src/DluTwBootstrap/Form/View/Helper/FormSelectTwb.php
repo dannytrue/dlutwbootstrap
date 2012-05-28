@@ -76,6 +76,26 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
             );
         }
 
-        return implode("\n", $optionStrings);
+        $html   = implode("\n", $optionStrings);
+        return $html;
     }
+
+    /**
+     * Render a form <select> element from the provided $element
+     *
+     * @param  ElementInterface $element
+     * @return string
+     */
+    public function render(ElementInterface $element) {
+        $renderer           = $this->getView();
+        $html               = parent::render($element);
+        //Inline help
+        $inlineHelpHelper   = $renderer->plugin('form_inline_help_twb');
+        $html               .= $inlineHelpHelper($element);
+        //Description
+        $descriptionHelper  = $renderer->plugin('form_element_description_twb');
+        $html               .= $descriptionHelper($element);
+        return $html;
+    }
+
 }

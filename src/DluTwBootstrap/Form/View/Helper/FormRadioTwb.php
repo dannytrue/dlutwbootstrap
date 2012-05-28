@@ -22,7 +22,8 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
     public function __invoke(ElementInterface $element, $inline = false) {
         $this->labelHelper  = null;
         $this->inline       = $inline;
-        return parent::__invoke($element);
+        $html               = parent::__invoke($element);
+        return $html;
     }
 
     /**
@@ -51,6 +52,7 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
     }
 
     //TODO - remove the render() method once the bug with swapped multi-option keys/values has been fixed in ZF2
+    //TODO - do not forget to add the description! See the end of this method.
     /**
      * Render a form <input> element from the provided $element
      *
@@ -132,6 +134,14 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
             $combinedMarkup[] = $markup;
         }
 
-        return implode($this->getSeparator(), $combinedMarkup);
+        $html = implode($this->getSeparator(), $combinedMarkup);
+
+        //TODO - when removing this method, refactor to add description to the element
+        $renderer           = $this->getView();
+        //Description
+        $descriptionHelper  = $renderer->plugin('form_element_description_twb');
+        $html               .= $descriptionHelper($element);
+
+        return $html;
     }
 }

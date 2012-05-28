@@ -84,6 +84,54 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
         return sprintf('<label %s>', $attributes);
     }
 
+    //TODO - remove this method when the labels are escaped by ZF2 FormLabel view helper
+    /**
+     * Generate a form label, optionally with content
+     *
+     * Always generates a "for" statement, as we cannot assume the form input
+     * will be provided in the $labelContent.
+     *
+     * @param  ElementInterface $element
+     * @param  null|string $labelContent
+     * @param  string $position
+     * @return string
+     */
+    public function __invoke(ElementInterface $element, $labelContent = null, $position = null)
+    {
+        $openTag = $this->openTag($element);
+        $label   = false;
+        if (null === $labelContent || null !== $position) {
+            $label = $element->getAttribute('label');
+            if (null === $label) {
+                throw new \Zend\Form\Exception\DomainException(sprintf(
+                                                        '%s expects either label content as the second argument, or that the element provided has a label attribute; neither found',
+                                                        __METHOD__
+                                                    ));
+            }
+        }
+
+        if ($label && $labelContent) {
+            switch ($position) {
+                case self::APPEND:
+                    $labelContent .= $label;
+                    break;
+                case self::PREPEND:
+                default:
+                    $labelContent = $label . $labelContent;
+                    break;
+            }
+        }
+
+        if ($label && null === $labelContent) {
+            $labelContent = $label;
+        }
+
+        $escapeHelper   = $this->getEscapeHelper();
+        $labelContent   = $escapeHelper($labelContent);
+
+        return $openTag . $labelContent . $this->closeTag();
+    }
+
     /**
      * Sets the current form type
      * @param $formType
