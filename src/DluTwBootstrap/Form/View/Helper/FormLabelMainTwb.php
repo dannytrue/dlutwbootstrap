@@ -1,7 +1,8 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
-use Zend\Form\ElementInterface;
+use Zend\Form\ElementInterface,
+    Zend\InputFilter\InputInterface;
 
 class FormLabelMainTwb extends AbstractFormLabel
 {
@@ -31,14 +32,24 @@ class FormLabelMainTwb extends AbstractFormLabel
      * @param  null|string $labelContent
      * @param  string $position
      * @param string $formType
+     * @param $input
      * @return string
      * @throws \Zend\Form\Exception\DomainException
      */
     public function __invoke(ElementInterface $element,
                              $labelContent = null,
                              $position = null,
-                             $formType = null) {
+                             $formType = null,
+                             $input = null) {
         $this->setFormType($formType);
+        if($input instanceof InputInterface) {
+            /* @var $input InputInterface */
+            if($input->isRequired()) {
+                $attributes = $element->getAttributes();
+                $attributes = $this->genUtil->addWordToArrayItem('required', $attributes, 'class');
+                $element->setAttributes($attributes);
+            }
+        }
         return parent::__invoke($element, $labelContent, $position);
    }
 }

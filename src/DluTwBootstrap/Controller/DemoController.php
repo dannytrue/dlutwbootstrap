@@ -43,7 +43,9 @@ class DemoController extends ActionController
     }
 
     public function formHorizontalAction() {
-        $form   = new \DluTwBootstrap\Demo\Form\BlockForm();
+        $form           = new \DluTwBootstrap\Demo\Form\BlockForm();
+        $inputFilter    = new \DluTwBootstrap\Demo\Form\BlockFormInputFilter();
+        $form->setInputFilter($inputFilter);
         $viewModel  = new ViewModel(array(
             'form'  => $form,
         ));

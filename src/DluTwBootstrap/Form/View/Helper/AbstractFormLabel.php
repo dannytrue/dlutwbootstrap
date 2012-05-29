@@ -79,7 +79,11 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
                                                 ));
         }
 
-        $attributesAy   = $this->garnishAttributes(array('for' => $id));
+        $attributesAy   = array('for' => $id);
+        if($attributesOrElement->getAttribute('class')) {
+            $attributesAy['class']  = $attributesOrElement->getAttribute('class');
+        }
+        $attributesAy   = $this->garnishAttributes($attributesAy);
         $attributes     = $this->createAttributesString($attributesAy);
         return sprintf('<label %s>', $attributes);
     }

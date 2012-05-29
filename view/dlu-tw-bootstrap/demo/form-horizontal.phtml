@@ -7,6 +7,7 @@ $form = $this->form;
 /* @var $form \DluTwBootstrap\Demo\Form\BlockForm */
 $form->setAttribute('class', 'form-horizontal');
 //$form->setAttribute('action', $this->url('form'));
+$inputFilter    = $form->getInputFilter();
 echo $this->form()->openTag($form);
 ?>
 <fieldset>
@@ -15,7 +16,7 @@ echo $this->form()->openTag($form);
 
     <!-- Text -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('fullName'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('fullName'), null, null, $formType, $inputFilter->get('fullName')); ?>
         <div class="controls">
             <?php //echo $this->formInputTwb($form->get('fullName')); ?>
             <?php echo $this->formElementTwb($form->get('fullName')); ?>
@@ -24,7 +25,7 @@ echo $this->form()->openTag($form);
 
     <!-- Password -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('password'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('password'), null, null, $formType, $inputFilter->get('password')); ?>
         <div class="controls">
             <?php //echo $this->formInputTwb($form->get('password')); ?>
             <?php echo $this->formElementTwb($form->get('password')); ?>
@@ -33,7 +34,7 @@ echo $this->form()->openTag($form);
 
     <!-- Textarea -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('notes'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('notes'), null, null, $formType, $inputFilter->get('notes')); ?>
         <div class="controls">
             <?php //echo $this->formTextareaTwb($form->get('notes')); ?>
             <?php echo $this->formElementTwb($form->get('notes')); ?>
@@ -42,7 +43,7 @@ echo $this->form()->openTag($form);
 
     <!-- Checkbox -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('pastaEater'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('pastaEater'), null, null, $formType, $inputFilter->get('pastaEater')); ?>
         <div class="controls">
             <?php //echo $this->formInputTwb($form->get('pastaEater')); ?>
             <?php echo $this->formElementTwb($form->get('pastaEater')); ?>
@@ -51,7 +52,7 @@ echo $this->form()->openTag($form);
 
     <!-- Radio -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('level'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('level'), null, null, $formType, $inputFilter->get('level')); ?>
         <div class="controls">
             <?php //echo $this->formRadioTwb($form->get('level')); ?>
             <?php echo $this->formElementTwb($form->get('level')); ?>
@@ -60,7 +61,7 @@ echo $this->form()->openTag($form);
 
     <!-- Radio inline -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('rateUs'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('rateUs'), null, null, $formType, $inputFilter->get('rateUs')); ?>
         <div class="controls">
             <?php echo $this->formRadioTwb($form->get('rateUs'), true); ?>
             <?php //echo $this->formElementTwb($form->get('rateUs'), true); ?>
@@ -69,7 +70,7 @@ echo $this->form()->openTag($form);
 
     <!-- MultiCheckbox -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('settings'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('settings'), null, null, $formType, $inputFilter->get('settings')); ?>
         <div class="controls">
             <?php //echo $this->formMultiCheckboxTwb($form->get('settings')); ?>
             <?php echo $this->formElementTwb($form->get('settings')); ?>
@@ -78,7 +79,7 @@ echo $this->form()->openTag($form);
 
     <!-- MultiCheckbox inline -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('seenMovies'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('seenMovies'), null, null, $formType, $inputFilter->get('seenMovies')); ?>
         <div class="controls">
             <?php echo $this->formMultiCheckboxTwb($form->get('seenMovies'), true); ?>
             <?php //echo $this->formElementTwb($form->get('seenMovies'), true); ?>
@@ -87,7 +88,7 @@ echo $this->form()->openTag($form);
 
     <!-- Select -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('car'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('car'), null, null, $formType, $inputFilter->get('car')); ?>
         <div class="controls">
             <?php //echo $this->formSelectTwb($form->get('car')); ?>
             <?php echo $this->formElementTwb($form->get('car')); ?>
@@ -96,7 +97,7 @@ echo $this->form()->openTag($form);
 
     <!-- MultiSelect -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('pets'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('pets'), null, null, $formType, $inputFilter->get('pets')); ?>
         <div class="controls">
             <?php //echo $this->formSelectTwb($form->get('pets')); ?>
             <?php echo $this->formElementTwb($form->get('pets')); ?>
@@ -105,7 +106,7 @@ echo $this->form()->openTag($form);
 
     <!-- File -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('attachment'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('attachment'), null, null, $formType, $inputFilter->get('attachment')); ?>
         <div class="controls">
             <?php //echo $this->formInputTwb($form->get('attachment')); ?>
             <?php echo $this->formElementTwb($form->get('attachment')); ?>
@@ -114,7 +115,7 @@ echo $this->form()->openTag($form);
 
     <!-- Text with append / prepend -->
     <div class="control-group">
-        <?php echo $this->formLabelMainTwb($form->get('salary'), null, null, $formType); ?>
+        <?php echo $this->formLabelMainTwb($form->get('salary'), null, null, $formType, $inputFilter->get('salary')); ?>
         <div class="controls">
             <?php //echo $this->formInputTwb($form->get('salary')); ?>
             <?php echo $this->formElementTwb($form->get('salary')); ?>
