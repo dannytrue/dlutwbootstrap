@@ -46,6 +46,7 @@ class DemoController extends ActionController
         $form           = new \DluTwBootstrap\Demo\Form\BlockForm();
         $inputFilter    = new \DluTwBootstrap\Demo\Form\BlockFormInputFilter();
         $form->setInputFilter($inputFilter);
+        $form->get('fullName')->setMessages(array('This is not right', 'This is wrong', 'You should correct this'));
         $viewModel  = new ViewModel(array(
             'form'  => $form,
         ));

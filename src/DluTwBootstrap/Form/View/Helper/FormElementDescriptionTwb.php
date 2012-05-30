@@ -5,7 +5,7 @@ use \Zend\Form\ElementInterface;
 class FormElementDescriptionTwb extends \Zend\Form\View\Helper\AbstractHelper
 {
     /**
-     * Which element types support the desctiption?
+     * Which element types support the description?
      * @var array
      */
     protected $supportedTypes   = array(

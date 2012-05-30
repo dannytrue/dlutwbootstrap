@@ -15,11 +15,12 @@ echo $this->form()->openTag($form);
     <?php echo $this->formInputTwb($form->get('hiddenField')); ?>
 
     <!-- Text -->
-    <div class="control-group">
+    <div class="control-group error">
         <?php echo $this->formLabelMainTwb($form->get('fullName'), null, null, $formType, $inputFilter->get('fullName')); ?>
         <div class="controls">
             <?php //echo $this->formInputTwb($form->get('fullName')); ?>
             <?php echo $this->formElementTwb($form->get('fullName')); ?>
+            <?php echo $this->formElementErrorsTwb($form->get('fullName')); ?>
         </div>
     </div>
 
