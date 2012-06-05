@@ -15,113 +15,115 @@ echo $this->form()->openTag($form);
     <?php echo $this->formInputTwb($form->get('hiddenField')); ?>
 
     <!-- Text -->
-    <div class="control-group error">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('fullName')); ?>
         <?php echo $this->formLabelMainTwb($form->get('fullName'), null, null, $formType, $inputFilter->get('fullName')); ?>
         <div class="controls">
-            <?php //echo $this->formInputTwb($form->get('fullName')); ?>
-            <?php echo $this->formElementTwb($form->get('fullName')); ?>
+            <?php //echo $this->formInputTwb($form->get('fullName'), 'span3'); ?>
+            <?php echo $this->formElementTwb($form->get('fullName'), array('sizeClass' => 'span4')); ?>
             <?php echo $this->formElementErrorsTwb($form->get('fullName')); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- Password -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('password')); ?>
         <?php echo $this->formLabelMainTwb($form->get('password'), null, null, $formType, $inputFilter->get('password')); ?>
         <div class="controls">
-            <?php //echo $this->formInputTwb($form->get('password')); ?>
-            <?php echo $this->formElementTwb($form->get('password')); ?>
+            <?php //echo $this->formInputTwb($form->get('password'), 'span3'); ?>
+            <?php echo $this->formElementTwb($form->get('password'), array('sizeClass' => 'span3')); ?>
+            <?php echo $this->formElementErrorsTwb($form->get('password')); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- Textarea -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('notes')); ?>
         <?php echo $this->formLabelMainTwb($form->get('notes'), null, null, $formType, $inputFilter->get('notes')); ?>
         <div class="controls">
-            <?php //echo $this->formTextareaTwb($form->get('notes')); ?>
-            <?php echo $this->formElementTwb($form->get('notes')); ?>
+            <?php //echo $this->formTextareaTwb($form->get('notes'), 'span4', 8); ?>
+            <?php echo $this->formElementTwb($form->get('notes'), array('sizeClass' => 'span4', 'rows' => 4)); ?>
+            <?php echo $this->formElementErrorsTwb($form->get('notes')); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- Checkbox -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('pastaEater')); ?>
         <?php echo $this->formLabelMainTwb($form->get('pastaEater'), null, null, $formType, $inputFilter->get('pastaEater')); ?>
         <div class="controls">
             <?php //echo $this->formInputTwb($form->get('pastaEater')); ?>
             <?php echo $this->formElementTwb($form->get('pastaEater')); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- Radio -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('level')); ?>
         <?php echo $this->formLabelMainTwb($form->get('level'), null, null, $formType, $inputFilter->get('level')); ?>
         <div class="controls">
             <?php //echo $this->formRadioTwb($form->get('level')); ?>
             <?php echo $this->formElementTwb($form->get('level')); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- Radio inline -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('rateUs')); ?>
         <?php echo $this->formLabelMainTwb($form->get('rateUs'), null, null, $formType, $inputFilter->get('rateUs')); ?>
         <div class="controls">
-            <?php echo $this->formRadioTwb($form->get('rateUs'), true); ?>
-            <?php //echo $this->formElementTwb($form->get('rateUs'), true); ?>
+            <?php //echo $this->formRadioTwb($form->get('rateUs'), true); ?>
+            <?php echo $this->formElementTwb($form->get('rateUs'), array('inline' => true)); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- MultiCheckbox -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('settings')); ?>
         <?php echo $this->formLabelMainTwb($form->get('settings'), null, null, $formType, $inputFilter->get('settings')); ?>
         <div class="controls">
             <?php //echo $this->formMultiCheckboxTwb($form->get('settings')); ?>
             <?php echo $this->formElementTwb($form->get('settings')); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- MultiCheckbox inline -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('seenMovies')); ?>
         <?php echo $this->formLabelMainTwb($form->get('seenMovies'), null, null, $formType, $inputFilter->get('seenMovies')); ?>
         <div class="controls">
-            <?php echo $this->formMultiCheckboxTwb($form->get('seenMovies'), true); ?>
-            <?php //echo $this->formElementTwb($form->get('seenMovies'), true); ?>
+            <?php //echo $this->formMultiCheckboxTwb($form->get('seenMovies'), true); ?>
+            <?php echo $this->formElementTwb($form->get('seenMovies'), array('inline' => true)); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- Select -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('car')); ?>
         <?php echo $this->formLabelMainTwb($form->get('car'), null, null, $formType, $inputFilter->get('car')); ?>
         <div class="controls">
-            <?php //echo $this->formSelectTwb($form->get('car')); ?>
-            <?php echo $this->formElementTwb($form->get('car')); ?>
+            <?php //echo $this->formSelectTwb($form->get('car'), 'span3'); ?>
+            <?php echo $this->formElementTwb($form->get('car'), array('sizeClass' => 'span3')); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- MultiSelect -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('pets')); ?>
         <?php echo $this->formLabelMainTwb($form->get('pets'), null, null, $formType, $inputFilter->get('pets')); ?>
         <div class="controls">
-            <?php //echo $this->formSelectTwb($form->get('pets')); ?>
-            <?php echo $this->formElementTwb($form->get('pets')); ?>
+            <?php //echo $this->formSelectTwb($form->get('pets'), 'span4'); ?>
+            <?php echo $this->formElementTwb($form->get('pets'), array('sizeClass' => 'span4')); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- File -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('attachment')); ?>
         <?php echo $this->formLabelMainTwb($form->get('attachment'), null, null, $formType, $inputFilter->get('attachment')); ?>
         <div class="controls">
             <?php //echo $this->formInputTwb($form->get('attachment')); ?>
             <?php echo $this->formElementTwb($form->get('attachment')); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- Text with append / prepend -->
-    <div class="control-group">
+    <?php echo $this->formControlGroupTwb()->openTag($form->get('salary')); ?>
         <?php echo $this->formLabelMainTwb($form->get('salary'), null, null, $formType, $inputFilter->get('salary')); ?>
         <div class="controls">
-            <?php //echo $this->formInputTwb($form->get('salary')); ?>
-            <?php echo $this->formElementTwb($form->get('salary')); ?>
+            <?php //echo $this->formInputTwb($form->get('salary'), 'span5'); ?>
+            <?php echo $this->formElementTwb($form->get('salary'), array('sizeClass' => 'span3')); ?>
         </div>
-    </div>
+    <?php echo $this->formControlGroupTwb()->closeTag(); ?>
 
     <!-- CSRF -->
     <?php //TODO - display CSRF errors ?>
@@ -137,4 +139,4 @@ echo $this->form()->openTag($form);
         <?php echo $this->formElementTwb($form->get('plainBtn')); ?>
     </div>
 </fieldset>
-<?php echo $this->form()->closeTag($form); ?>
+<?php echo $this->form()->closeTag(); ?>

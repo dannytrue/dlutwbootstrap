@@ -21,7 +21,7 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
      */
     public function __invoke(ElementInterface $element, $inline = false) {
         $this->labelHelper  = null;
-        $this->inline       = $inline;
+        $this->inline       = (bool)$inline;
         $html               = parent::__invoke($element);
         return $html;
     }

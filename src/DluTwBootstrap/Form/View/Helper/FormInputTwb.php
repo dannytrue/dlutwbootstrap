@@ -32,9 +32,10 @@ class FormInputTwb extends \Zend\Form\View\Helper\FormInput
     /**
      * Render a form <input> element from the provided $element
      * @param  ElementInterface $element
+     * @param string $sizeClass
      * @return string
      */
-    public function render(ElementInterface $element) {
+    public function render(ElementInterface $element, $sizeClass = null) {
         $escapeHelper   = $this->getEscapeHelper();
         $type           = $element->getAttribute('type');
         //Type specific mods
@@ -53,6 +54,20 @@ class FormInputTwb extends \Zend\Form\View\Helper\FormInput
                 $class  = $element->getAttribute('class');
                 $class  = $this->genUtil->addWord('btn', $class);
                 $element->setAttribute('class', $class);
+                break;
+            case 'text':
+                if($sizeClass) {
+                    $class  = $element->getAttribute('class');
+                    $class  = $this->genUtil->addWord($sizeClass, $class);
+                    $element->setAttribute('class', $class);
+                }
+                break;
+            case 'password':
+                if($sizeClass) {
+                    $class  = $element->getAttribute('class');
+                    $class  = $this->genUtil->addWord($sizeClass, $class);
+                    $element->setAttribute('class', $class);
+                }
                 break;
             default:
                 //No default action
@@ -92,9 +107,10 @@ class FormInputTwb extends \Zend\Form\View\Helper\FormInput
      * Invoke helper as function
      * Proxies to {@link render()}.
      * @param  ElementInterface $element
+     * @param string $sizeClass
      * @return string
      */
-    public function __invoke(ElementInterface $element) {
-        return $this->render($element);
+    public function __invoke(ElementInterface $element, $sizeClass = null) {
+        return $this->render($element, $sizeClass);
     }
 }

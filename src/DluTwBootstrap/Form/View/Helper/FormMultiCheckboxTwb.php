@@ -21,7 +21,7 @@ class FormMultiCheckboxTwb extends \Zend\Form\View\Helper\FormMultiCheckbox
      */
     public function __invoke(ElementInterface $element, $inline = false) {
         $this->labelHelper  = null;
-        $this->inline       = $inline;
+        $this->inline       = (bool)$inline;
         return parent::__invoke($element);
     }
 

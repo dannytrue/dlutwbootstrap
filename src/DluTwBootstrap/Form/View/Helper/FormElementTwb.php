@@ -14,9 +14,10 @@ class FormElementTwb extends \Zend\Form\View\Helper\FormElement
      * helper to utilize when rendering.
      *
      * @param  ElementInterface $element
+     * @param array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element)
+    public function render(ElementInterface $element, array $displayOptions = array())
     {
         $renderer = $this->getView();
         if (!$renderer instanceof Pluggable) {
@@ -45,39 +46,54 @@ class FormElementTwb extends \Zend\Form\View\Helper\FormElement
 
         if (is_array($options) && $type == 'radio') {
             $helper = $renderer->plugin('form_radio_twb');
-            return $helper($element);
+            return $helper($element, $this->getDisplayOption($displayOptions, 'inline'));
         }
 
         if (is_array($options) && $type == 'checkbox') {
             $helper = $renderer->plugin('form_multi_checkbox_twb');
-            return $helper($element);
+            return $helper($element, $this->getDisplayOption($displayOptions, 'inline'));
         }
 
         if (is_array($options) && $type == 'select') {
             $helper = $renderer->plugin('form_select_twb');
-            return $helper($element);
+            return $helper($element, $this->getDisplayOption($displayOptions, 'sizeClass'));
         }
 
         if ($type == 'textarea') {
             $helper = $renderer->plugin('form_textarea_twb');
-            return $helper($element);
+            return $helper($element,
+                           $this->getDisplayOption($displayOptions, 'sizeClass'),
+                           $this->getDisplayOption($displayOptions, 'rows'));
         }
 
-
         $helper = $renderer->plugin('form_input_twb');
-        return $helper($element);
+        return $helper($element, $this->getDisplayOption($displayOptions, 'sizeClass'));
     }
 
     /**
      * Invoke helper as function
-     *
      * Proxies to {@link render()}.
-     *
      * @param  ElementInterface $element
+     * @param array $displayOptions
      * @return string
      */
-    public function __invoke(ElementInterface $element)
-    {
-        return $this->render($element);
+    public function __invoke(ElementInterface $element, array $displayOptions = array()) {
+        return $this->render($element, $displayOptions);
+    }
+
+    /**
+     * Returns an option from the options array, if undefined, returns the default value
+     * @param array $displayOptions
+     * @param $optionName
+     * @param null $default
+     * @return string
+     */
+    protected function getDisplayOption(array $displayOptions, $optionName, $default = null) {
+        if(array_key_exists($optionName, $displayOptions)) {
+            $option = $displayOptions[$optionName];
+        } else {
+            $option = $default;
+        }
+        return $option;
     }
 }

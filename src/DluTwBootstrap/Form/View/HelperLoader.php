@@ -41,5 +41,7 @@ class HelperLoader extends PluginClassLoader
         'form_element_description_twb'          => 'DluTwBootstrap\Form\View\Helper\FormElementDescriptionTwb',
         'formelementerrorstwb'                  => 'DluTwBootstrap\Form\View\Helper\FormElementErrorsTwb',
         'form_element_errors_twb'               => 'DluTwBootstrap\Form\View\Helper\FormElementErrorsTwb',
+        'formcontrolgrouptwb'                   => 'DluTwBootstrap\Form\View\Helper\FormControlGroupTwb',
+        'form_control_group_twb'                => 'DluTwBootstrap\Form\View\Helper\FormControlGroupTwb',
     );
 }

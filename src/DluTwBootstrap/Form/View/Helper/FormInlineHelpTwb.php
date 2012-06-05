@@ -19,7 +19,7 @@ class FormInlineHelpTwb extends \Zend\Form\View\Helper\AbstractHelper
     /* **************************** METHODS ****************************** */
 
     /**
-     * Render a inline help from the provided $element
+     * Render an inline help from the provided $element
      * @param  ElementInterface $element
      * @return string
      */

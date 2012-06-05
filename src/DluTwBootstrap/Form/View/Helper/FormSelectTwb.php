@@ -1,11 +1,27 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
+use \DluTwBootstrap\Util\Util as GenUtil;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
 class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
 {
+    /**
+     * @var GenUtil
+     */
+    protected $genUtil;
+
+    /* **************************** METHODS ****************************** */
+
+    /**
+     * Constructor
+     * @param \DluTwBootstrap\Util\Util $genUtil
+     */
+    public function __construct(GenUtil $genUtil) {
+        $this->genUtil  = $genUtil;
+    }
+
     /**
      * Render an array of options
      *
@@ -84,9 +100,15 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
      * Render a form <select> element from the provided $element
      *
      * @param  ElementInterface $element
+     * @param string $sizeClass
      * @return string
      */
-    public function render(ElementInterface $element) {
+    public function render(ElementInterface $element, $sizeClass = null) {
+        if($sizeClass) {
+            $class  = $element->getAttribute('class');
+            $class  = $this->genUtil->addWord($sizeClass, $class);
+            $element->setAttribute('class', $class);
+        }
         $renderer           = $this->getView();
         $html               = parent::render($element);
         //Inline help
@@ -98,4 +120,14 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
         return $html;
     }
 
+    /**
+     * Invoke helper as function
+     * Proxies to {@link render()}.
+     * @param  ElementInterface $element
+     * @param string $sizeClass
+     * @return string
+     */
+    public function __invoke(ElementInterface $element, $sizeClass = null) {
+        return $this->render($element, $sizeClass);
+    }
 }
