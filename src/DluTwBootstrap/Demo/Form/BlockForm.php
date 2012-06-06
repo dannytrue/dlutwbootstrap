@@ -214,6 +214,7 @@ class BlockForm extends Form
                        'attributes' => array(
                            'type'  => 'submit',
                            'value' => 'Save changes',
+                           'actionElement' => true,
                        ),
                    ));
 
@@ -223,6 +224,7 @@ class BlockForm extends Form
                        'attributes' => array(
                            'type'  => 'reset',
                            'value' => 'Clear form',
+                           'actionElement' => true,
                        ),
                    ));
 
@@ -232,6 +234,7 @@ class BlockForm extends Form
                        'attributes' => array(
                            'type'  => 'button',
                            'value' => 'Other action',
+                           'actionElement' => true,
                        ),
                    ));
     }

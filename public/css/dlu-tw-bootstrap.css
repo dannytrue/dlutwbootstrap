@@ -31,6 +31,12 @@ form p.help-block {
     font-size: 90%;
 }
 
+/* Inline help after a file input needs a bigger left margin otherwise it is rendered over the Browse button */
+input[type=file]+span.help-inline {
+    margin-left: 20px;
+}
+
+
 /* Format fields with validation errors */
 form ul.errors {
     color: #B94A48;
@@ -42,7 +48,6 @@ form ul.errors {
 .control-group.error .help-inline {
     color: #888888;
 }
-
 
 /*
 .control-group.error input,

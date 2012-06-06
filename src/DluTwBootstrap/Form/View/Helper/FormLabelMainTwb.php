@@ -24,10 +24,8 @@ class FormLabelMainTwb extends AbstractFormLabel
 
     /**
      * Generate a form label, optionally with content
-     *
      * Always generates a "for" statement, as we cannot assume the form input
      * will be provided in the $labelContent.
-     *
      * @param  ElementInterface $element
      * @param  null|string $labelContent
      * @param  string $position

@@ -96,10 +96,10 @@ class FormInputTwb extends \Zend\Form\View\Helper\FormInput
         $renderer           = $this->getView();
         //Inline help
         $inlineHelpHelper   = $renderer->plugin('form_inline_help_twb');
-        $html               .= $inlineHelpHelper($element);
+        $html               .= "\n" . $inlineHelpHelper($element);
         //Description
         $descriptionHelper  = $renderer->plugin('form_element_description_twb');
-        $html               .= $descriptionHelper($element);
+        $html               .= "\n" . $descriptionHelper($element);
         return $html;
     }
 

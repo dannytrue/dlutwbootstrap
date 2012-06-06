@@ -48,9 +48,11 @@ class DemoController extends ActionController
         $form->setInputFilter($inputFilter);
         $form->get('fullName')->setMessages(array('This is not right', 'This is wrong', 'You should correct this',));
         $form->get('notes')->setMessages(array('Hmm, you screwed this', 'Try again',));
+        $form->get('csrf')->setMessages(array('CSRF check failed', 'This is suspicious'));
         $viewModel  = new ViewModel(array(
             'form'  => $form,
         ));
+        $viewModel->setTemplate('dlu-tw-bootstrap/demo/form-horizontal2');
         return $viewModel;
     }
 
