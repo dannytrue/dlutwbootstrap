@@ -5,12 +5,12 @@
 $formType   = \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL;
 $form = $this->form;
 /* @var $form \DluTwBootstrap\Demo\Form\BlockForm */
-$form->setAttribute('class', 'form-horizontal');
 //$form->setAttribute('action', $this->url('form'));
 $inputFilter    = $form->getInputFilter();
-echo $this->form()->openTag($form);
+echo $this->formTwb()->openTag($form, $formType);
 ?>
 <fieldset>
+    <?php echo $this->formTwb()->fieldsetLegend('First section'); ?>
     <!-- Hidden -->
     <?php //echo $this->formInputTwb($form->get('hiddenField')); ?>
     <?php //echo $this->formElementTwb($form->get('hiddenField')); ?>
@@ -77,7 +77,9 @@ echo $this->form()->openTag($form);
     <?php echo $this->formElementFullTwb($form->get('pastaEater'),
                                          $formType,
                                          $inputFilter->get('pastaEater')); ?>
-
+</fieldset>
+<fieldset>
+    <?php echo $this->formTwb()->fieldsetLegend('Second section'); ?>
     <!-- Radio -->
     <!--
     <?php //echo $this->formControlGroupTwb()->openTag($form->get('level')); ?>
@@ -216,6 +218,6 @@ echo $this->form()->openTag($form);
         <?php //echo $this->formElementFullTwb($form->get('plainBtn'), $formType); ?>
     </div>
     -->
-    <?php echo $this->formTwb()->formActions($form, $formType); ?>
 </fieldset>
-<?php echo $this->form()->closeTag(); ?>
+<?php echo $this->formTwb()->actions($form, $formType); ?>
+<?php echo $this->formTwb()->closeTag(); ?>

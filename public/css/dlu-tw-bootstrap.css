@@ -32,7 +32,7 @@ form p.help-block {
 }
 
 /* Inline help after a file input needs a bigger left margin otherwise it is rendered over the Browse button */
-input[type=file]+span.help-inline {
+input[type=file] + span.help-inline {
     margin-left: 20px;
 }
 
@@ -58,7 +58,12 @@ form ul.errors {
 */
 
 /* Move inline help for multi select from the center to the top */
-select[multiple]+span.help-inline {
+select[multiple] + span.help-inline {
     vertical-align: top;
     margin-top: 5px;
+}
+
+/* Remove the gap before the first control group after the fieldset legend */
+legend + .control-group {
+    margin-top: 0px;
 }

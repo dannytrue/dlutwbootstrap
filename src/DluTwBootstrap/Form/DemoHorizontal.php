@@ -183,7 +183,7 @@ class DemoHorizontal extends Horizontal
         ));
 
         $this->addDisplayGroup(array('submitBtn2', 'resetBtn2', 'plainBtn2'),
-                               'formActions',
+                               'actions',
                                array('displayGroupClass' => '\DluTwBootstrap\Form\DgFormActions'));
     }
 }

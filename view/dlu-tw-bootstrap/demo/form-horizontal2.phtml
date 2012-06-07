@@ -2,16 +2,39 @@
     <h1>Horizontal Form 2</h1>
 </div>
 <?php
+$formDisplayConfig  = array(
+    'formType'      => \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL,
+    'fieldsets'     => array(
+        'first'         => array(
+            'legend'        => 'My first fieldset',
+            'elements'      => array(
+                'fullName'      => array(
+                    'sizeClass'     => 'span4',
+                ),
+                'password'      => array(
+                    'sizeClass'     => 'span3',
+                ),
+                'rateUs'        => array(
+                    'inline'        => true,
+                ),
+                'seenMovies'    => array(
+                    'inline'        => true,
+                ),
+            ),
+        ),
+    ),
+);
+
+
 $formType   = \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL;
 $form = $this->form;
 /* @var $form \DluTwBootstrap\Demo\Form\BlockForm */
-$form->setAttribute('class', 'form-horizontal');
 //$form->setAttribute('action', $this->url('form'));
-$inputFilter    = $form->getInputFilter();
-echo $this->form()->openTag($form);
 ?>
-<fieldset>
-    <?php echo $this->formTwb()->formElements($form, $formType); ?>
-    <?php echo $this->formTwb()->formActions($form, $formType); ?>
-</fieldset>
-<?php echo $this->form()->closeTag(); ?>
+
+<?php //echo $this->formTwb()->openTag($form, $formType); ?>
+<?php //echo $this->formTwb()->fieldset($form, $formType, array('pastaEater', 'password', 'fullName' => array('sizeClass' => 'span3')), 'Fieldset A'); ?>
+<?php //echo $this->formTwb()->actions($form, $formType, null); ?>
+<?php //echo $this->formTwb()->closeTag(); ?>
+
+<?php echo $this->formTwb($form); ?>
