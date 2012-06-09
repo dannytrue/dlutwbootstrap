@@ -1,0 +1,30 @@
+<div class="page-header">
+    <h1>Inline Form</h1>
+</div>
+<?php
+$formDisplayConfig  = array(
+    'fullName'      => array(
+        'sizeClass'     => 'span4',
+    ),
+    'password'      => array(
+        'sizeClass'     => 'span3',
+    ),
+    'notes'         => array(
+        'sizeClass'     => 'span4',
+        'rows'          => 5,
+    ),
+    'rateUs'        => array(
+        'inline'        => true,
+    ),
+    'seenMovies'    => array(
+        'inline'        => true,
+    ),
+);
+$formType   = \DluTwBootstrap\Form\Util::FORM_TYPE_INLINE;
+$form = $this->form;
+/* @var $form \DluTwBootstrap\Demo\Form\InlineForm */
+$form->prepare();
+//$form->setAttribute('action', $this->url('form'));
+?>
+
+<?php echo $this->formTwb($form, $formType); ?>

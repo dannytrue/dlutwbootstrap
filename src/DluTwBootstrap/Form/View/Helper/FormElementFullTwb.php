@@ -66,7 +66,12 @@ class FormElementFullTwb extends \Zend\Form\View\Helper\AbstractHelper
             case 'radio':
             case 'select':
             case 'file':
-                $html   = $this->getFullElementMarkup($element, $formType, $input, $displayOptions);
+                if($formType == \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL
+                   || $formType == \DluTwBootstrap\Form\Util::FORM_TYPE_VERTICAL) {
+                    $html   = $this->getFullElementMarkupForBlockForms($element, $formType, $input, $displayOptions);
+                } else {
+                    $html   = $this->getFullElementMarkupForInlineForms($element, $formType, $input, $displayOptions);
+                }
                 break;
             default:
                 throw new UnsupportedElementTypeException("Element type '$type' not supported.");
@@ -92,14 +97,14 @@ class FormElementFullTwb extends \Zend\Form\View\Helper\AbstractHelper
     }
 
     /**
-     * Returns full html markup with label, descriptions and errors
+     * Returns full html markup with label, descriptions and errors for block forms (vertical and horizontal)
      * @param ElementInterface $element
      * @param string $formType
      * @param null|InputInterface $input
      * @param array $displayOptions
      * @return string
      */
-    protected function getFullElementMarkup(ElementInterface $element,
+    protected function getFullElementMarkupForBlockForms(ElementInterface $element,
                                               $formType,
                                               InputInterface $input = null,
                                               array $displayOptions = array()) {
@@ -115,6 +120,25 @@ class FormElementFullTwb extends \Zend\Form\View\Helper\AbstractHelper
         $html       .= '</div>';
         $helper     = $this->getHelper('form_control_group_twb');
         $html       .= $helper->closeTag();
+        return $html;
+    }
+
+    /**
+     * Returns full html markup for inline forms (inline and search)
+     * @param ElementInterface $element
+     * @param string $formType
+     * @param null|InputInterface $input
+     * @param array $displayOptions
+     * @return string
+     */
+    protected function getFullElementMarkupForInlineForms(ElementInterface $element,
+                                              $formType,
+                                              InputInterface $input = null,
+                                              array $displayOptions = array()) {
+        $helper     = $this->getHelper('form_label_main_twb');
+        $html       = $helper($element, null, null, $formType, $input);
+        $helper     = $this->getHelper('form_element_twb');
+        $html       .= "\n" . $helper($element, $displayOptions);
         return $html;
     }
 

@@ -18,7 +18,7 @@ abstract class AbstractButtonHelper extends AbstractHelper
     /* *********************** METHODS *************************** */
 
     protected function decorateContainer($content,
-                                         \Zend\Navigation\Container $container,
+                                         \Zend\Navigation\Navigation $container,
                                          $renderIcons = true,
                                          $activeIconInverse = true,
                                          array $options = array()) {

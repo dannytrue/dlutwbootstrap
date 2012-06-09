@@ -5,17 +5,17 @@
 $formType   = \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL;
 $form = $this->form;
 /* @var $form \DluTwBootstrap\Demo\Form\BlockForm */
+$form->prepare();
 //$form->setAttribute('action', $this->url('form'));
 $inputFilter    = $form->getInputFilter();
 echo $this->formTwb()->openTag($form, $formType);
 ?>
-<fieldset>
-    <?php echo $this->formTwb()->fieldsetLegend('First section'); ?>
     <!-- Hidden -->
     <?php //echo $this->formInputTwb($form->get('hiddenField')); ?>
     <?php //echo $this->formElementTwb($form->get('hiddenField')); ?>
     <?php echo $this->formElementFullTwb($form->get('hiddenField'), $formType); ?>
 
+    <?php echo $this->formFieldsetTwb()->openTag($form->get('fsMainInfo'), $formType); ?>
     <!-- Text -->
     <!--
     <?php //echo $this->formControlGroupTwb()->openTag($form->get('fullName')); ?>
@@ -27,7 +27,7 @@ echo $this->formTwb()->openTag($form, $formType);
         </div>
     <?php //echo $this->formControlGroupTwb()->closeTag(); ?>
     -->
-    <?php echo $this->formElementFullTwb($form->get('fullName'),
+    <?php echo $this->formElementFullTwb($form->get('fsMainInfo')->get('fullName'),
                                          $formType,
                                          $inputFilter->get('fullName'),
                                          array('sizeClass' => 'span4')); ?>
@@ -43,7 +43,7 @@ echo $this->formTwb()->openTag($form, $formType);
         </div>
     <?php //echo $this->formControlGroupTwb()->closeTag(); ?>
     -->
-    <?php echo $this->formElementFullTwb($form->get('password'),
+    <?php echo $this->formElementFullTwb($form->get('fsMainInfo')->get('password'),
                                          $formType,
                                          $inputFilter->get('password'),
                                          array('sizeClass' => 'span3')); ?>
@@ -59,10 +59,12 @@ echo $this->formTwb()->openTag($form, $formType);
         </div>
     <?php //echo $this->formControlGroupTwb()->closeTag(); ?>
     -->
-    <?php echo $this->formElementFullTwb($form->get('notes'),
+    <?php echo $this->formElementFullTwb($form->get('fsMainInfo')->get('notes'),
                                          $formType,
                                          $inputFilter->get('notes'),
                                          array('sizeClass' => 'span4', 'rows' => 3)); ?>
+
+    <?php echo $this->formFieldsetTwb()->closeTag(); ?>
 
     <!-- Checkbox -->
     <!--
@@ -77,7 +79,8 @@ echo $this->formTwb()->openTag($form, $formType);
     <?php echo $this->formElementFullTwb($form->get('pastaEater'),
                                          $formType,
                                          $inputFilter->get('pastaEater')); ?>
-</fieldset>
+
+
 <fieldset>
     <?php echo $this->formTwb()->fieldsetLegend('Second section'); ?>
     <!-- Radio -->

@@ -4,12 +4,12 @@ namespace DluTwBootstrap\Demo\Form;
 use Zend\Form\Form;
 use Zend\Form\Element;
 
-class BlockForm extends Form
+class InlineForm extends Form
 {
     public function __construct() {
         parent::__construct();
 
-        $this->setName('demoFormBlock');
+        $this->setName('demoFormInline');
         $this->setAttribute('method', 'post');
 
 
@@ -22,17 +22,8 @@ class BlockForm extends Form
                        ),
                    ));
 
-        //Fieldset Main info
-        $this->add(array(
-            'name'          => 'fsMainInfo',
-            'type'          => 'Zend\Form\Fieldset',
-            'attributes'    => array(
-                'legend'        => 'Main Info',
-            ),
-            'elements'      => array(
                 //Full Name
-                array(
-                    'spec' => array(
+        $this->add(array(
                         'name'          => 'fullName',
                         'attributes'    => array(
                             'type'               => 'text',
@@ -41,11 +32,10 @@ class BlockForm extends Form
                             'inlineHelp'         => 'Use your real name <b>BOLD</b>',
                             'description'        => '<b>BOLD</b>Text element in error state with error messages. Supports inline help as well as placeholder text.',
                         ),
-                    ),
-                ),
-                //Password
-                array(
-                    'spec'  => array(
+        ));
+
+        //Password
+        $this->add(array(
                         'name'  => 'password',
                         'attributes'    => array(
                             'type'              => 'password',
@@ -54,8 +44,9 @@ class BlockForm extends Form
                             'inlineHelp'        => 'Do not tell anyone!',
                             'description'       => 'Password element (required).  Supports inline help as well as placeholder text.',
                         ),
-                    ),
-                ),
+         ));
+
+        /*
                 //Notes
                 array(
                     'spec'  => array(
@@ -70,7 +61,6 @@ class BlockForm extends Form
                     ),
                 ),
             ),
-        ));
 
         //Fieldset Various Settings
         $this->add(array(
@@ -225,7 +215,7 @@ class BlockForm extends Form
                 'appendText'        => '.00',
             ),
         ));
-
+*/
         /*
         // Captcha
         $captcha = new Element\Captcha('seven');

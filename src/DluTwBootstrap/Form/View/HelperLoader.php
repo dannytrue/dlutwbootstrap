@@ -47,5 +47,7 @@ class HelperLoader extends PluginClassLoader
         'form_element_full_twb'                 => 'DluTwBootstrap\Form\View\Helper\FormElementFullTwb',
         'formtwb'                               => 'DluTwBootstrap\Form\View\Helper\FormTwb',
         'form_twb'                              => 'DluTwBootstrap\Form\View\Helper\FormTwb',
+        'formfieldsettwb'                       => 'DluTwBootstrap\Form\View\Helper\FormFieldsetTwb',
+        'form_fieldset_twb'                     => 'DluTwBootstrap\Form\View\Helper\FormFieldsetTwb',
     );
 }

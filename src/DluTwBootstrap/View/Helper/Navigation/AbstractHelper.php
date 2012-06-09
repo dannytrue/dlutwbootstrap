@@ -9,7 +9,7 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
 
     /* *********************** METHODS *************************** */
 
-    protected function renderContainer(\Zend\Navigation\Container $container,
+    protected function renderContainer(\Zend\Navigation\Navigation $container,
                                        $renderIcons = true,
                                        $activeIconInverse = true,
                                        array $options = array()) {
@@ -29,7 +29,7 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
     }
 
     abstract protected function decorateContainer($content,
-                                                  \Zend\Navigation\Container $container,
+                                                  \Zend\Navigation\Navigation $container,
                                                   $renderIcons = true,
                                                   $activeIconInverse = true,
                                                   array $options = array());
@@ -267,10 +267,10 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
     /**
      * View helper entry point:
      * Retrieves helper and optionally sets container to operate on
-     * @param  \Zend\Navigation\Container $container [optional] container to operate on
+     * @param  \Zend\Navigation\Navigation $container [optional] container to operate on
      * @return TwbNavbar    fluent interface, returns self
      */
-    public function __invoke(\Zend\Navigation\Container $container = null) {
+    public function __invoke(\Zend\Navigation\Navigation $container = null) {
         if (null !== $container) {
             $this->setContainer($container);
         }

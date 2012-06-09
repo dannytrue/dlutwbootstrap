@@ -7,19 +7,19 @@ class TwbButtons extends AbstractButtonHelper
 
     /**
      * Renders helper
-     * @param  \Zend\Navigation\Container $container [optional] container to render.
+     * @param  string|Navigation\AbstractContainer $container [optional] container to render.
      *                                         Default is null, which indicates
      *                                         that the helper should render
      *                                         the container returned by {@link
      *                                         getContainer()}.
      * @return string helper output
-     * @throws \Zend\View\Exception if unable to render
+     * @throws \Zend\View\Exception\ExceptionInterface if unable to render
      */
-    public function render(\Zend\Navigation\Container $container = null) {
+    public function render($container = null){
         return $this->renderButtons($container);
     }
 
-    public function renderButtons(\Zend\Navigation\Container $container = null,
+    public function renderButtons(\Zend\Navigation\Navigation $container = null,
                                $type = null,
                                $renderIcons = true) {
         if (null === $container) {

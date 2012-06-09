@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1>Horizontal Form 2</h1>
+    <h1>Vertical Form</h1>
 </div>
 <?php
 $formDisplayConfig  = array(
@@ -20,22 +20,11 @@ $formDisplayConfig  = array(
         'inline'        => true,
     ),
 );
-
-
 $formType   = \DluTwBootstrap\Form\Util::FORM_TYPE_VERTICAL;
 $form = $this->form;
 /* @var $form \DluTwBootstrap\Demo\Form\BlockForm */
 $form->prepare();
-$inputFilter    = $form->getInputFilter();
 //$form->setAttribute('action', $this->url('form'));
 ?>
-
-<?php //echo $this->formTwb()->openTag($form, $formType); ?>
-<?php //echo $this->formFieldsetTwb()->openTag($form->get('fsMainInfo'), $formType); ?>
-<?php //echo $this->formFieldsetTwb()->content($form->get('fsMainInfo'), $formType, $inputFilter, array('fullName' => array('sizeClass' => 'span3'))); ?>
-<?php //echo $this->formFieldsetTwb()->closeTag(); ?>
-<?php //echo $this->formFieldsetTwb($form->get('fsMainInfo'), $formType, $inputFilter, array('fullName' => array('sizeClass' => 'span5'))); ?>
-<?php //echo $this->formTwb()->actions($form, $formType); ?>
-<?php //echo $this->formTwb()->closeTag(); ?>
 
 <?php echo $this->formTwb($form, $formType, $formDisplayConfig); ?>

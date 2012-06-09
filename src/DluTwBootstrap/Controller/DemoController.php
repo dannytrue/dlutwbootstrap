@@ -46,13 +46,39 @@ class DemoController extends ActionController
         $form           = new \DluTwBootstrap\Demo\Form\BlockForm();
         $inputFilter    = new \DluTwBootstrap\Demo\Form\BlockFormInputFilter();
         $form->setInputFilter($inputFilter);
-        $form->get('fullName')->setMessages(array('This is not right', 'This is wrong', 'You should correct this',));
-        $form->get('notes')->setMessages(array('Hmm, you screwed this', 'Try again',));
+        $form->get('fsMainInfo')->get('fullName')->setMessages(array('This is not right', 'This is wrong', 'You should correct this',));
+        $form->get('fsMainInfo')->get('notes')->setMessages(array('Hmm, you screwed this', 'Try again',));
         $form->get('csrf')->setMessages(array('CSRF check failed', 'This is suspicious'));
         $viewModel  = new ViewModel(array(
             'form'  => $form,
         ));
         $viewModel->setTemplate('dlu-tw-bootstrap/demo/form-horizontal2');
+        return $viewModel;
+    }
+
+    public function formVerticalAction() {
+        $form           = new \DluTwBootstrap\Demo\Form\BlockForm();
+        $inputFilter    = new \DluTwBootstrap\Demo\Form\BlockFormInputFilter();
+        $form->setInputFilter($inputFilter);
+        $form->get('fsMainInfo')->get('fullName')->setMessages(array('This is not right', 'This is wrong', 'You should correct this',));
+        $form->get('fsMainInfo')->get('notes')->setMessages(array('Hmm, you screwed this', 'Try again',));
+        $form->get('csrf')->setMessages(array('CSRF check failed', 'This is suspicious'));
+        $viewModel  = new ViewModel(array(
+            'form'  => $form,
+        ));
+        return $viewModel;
+    }
+
+    public function formInlineAction() {
+        $form           = new \DluTwBootstrap\Demo\Form\InlineForm();
+        //$inputFilter    = new \DluTwBootstrap\Demo\Form\BlockFormInputFilter();
+        //$form->setInputFilter($inputFilter);
+        //$form->get('fsMainInfo')->get('fullName')->setMessages(array('This is not right', 'This is wrong', 'You should correct this',));
+        //$form->get('fsMainInfo')->get('notes')->setMessages(array('Hmm, you screwed this', 'Try again',));
+        //$form->get('csrf')->setMessages(array('CSRF check failed', 'This is suspicious'));
+        $viewModel  = new ViewModel(array(
+            'form'  => $form,
+        ));
         return $viewModel;
     }
 

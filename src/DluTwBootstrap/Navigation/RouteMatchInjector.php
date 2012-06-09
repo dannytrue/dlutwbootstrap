@@ -14,7 +14,7 @@ class RouteMatchInjector
         $this->routeMatch   = $routeMatch;
     }
 
-    public function injectRouteMatch(\Zend\Navigation\Container $navContainer) {
+    public function injectRouteMatch(\Zend\Navigation\Navigation $navContainer) {
         $ri = new \RecursiveIteratorIterator($navContainer, \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($ri as $page) {
             if($page instanceof \Zend\Navigation\Page\Mvc) {
