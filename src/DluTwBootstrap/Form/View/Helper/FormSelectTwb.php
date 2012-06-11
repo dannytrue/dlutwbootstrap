@@ -1,7 +1,7 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
-use \DluTwBootstrap\Util\Util as GenUtil;
+use \DluTwBootstrap\Util as GenUtil;
 use \DluTwBootstrap\Form\Util as FormUtil;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
@@ -18,11 +18,20 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
      */
     protected $formUtil;
 
+    /**
+     * @var array
+     */
+    protected $validSelectAttributes = array(
+        'name'     => true,
+        'multiple' => true,
+        'size'     => true,
+    );
+
     /* **************************** METHODS ****************************** */
 
     /**
      * Constructor
-     * @param \DluTwBootstrap\Util\Util $genUtil
+     * @param \DluTwBootstrap\Util $genUtil
      * @param \DluTwBootstrap\Form\Util $formUtil
      */
     public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
@@ -108,14 +117,18 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
      * Render a form <select> element from the provided $element
      *
      * @param  ElementInterface $element
-     * @param string $sizeClass
+     * @param string|null $sizeClass
+     * @param integer|null $size Number of lines/items in the dropdown
      * @return string
      */
-    public function render(ElementInterface $element, $sizeClass = null) {
+    public function render(ElementInterface $element, $sizeClass = null, $size = null) {
         if($sizeClass) {
             $class  = $element->getAttribute('class');
             $class  = $this->genUtil->addWord($sizeClass, $class);
             $element->setAttribute('class', $class);
+        }
+        if($size) {
+            $element->setAttribute('size', (int)$size);
         }
         $this->formUtil->addIdAttributeIfMissing($element);
         $html               = parent::render($element);
@@ -127,9 +140,10 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
      * Proxies to {@link render()}.
      * @param  ElementInterface $element
      * @param string $sizeClass
+     * @param integer|null $size Number of lines/items in the dropdown
      * @return string
      */
-    public function __invoke(ElementInterface $element, $sizeClass = null) {
-        return $this->render($element, $sizeClass);
+    public function __invoke(ElementInterface $element, $sizeClass = null, $size = null) {
+        return $this->render($element, $sizeClass, $size);
     }
 }

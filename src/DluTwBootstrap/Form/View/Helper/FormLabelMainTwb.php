@@ -39,7 +39,9 @@ class FormLabelMainTwb extends AbstractFormLabel
                              $position = null,
                              $formType = null,
                              $input = null) {
-        $this->setFormType($formType);
+        if($formType) {
+            $this->setFormType($formType);
+        }
         if($input instanceof InputInterface) {
             /* @var $input InputInterface */
             if($input->isRequired()) {

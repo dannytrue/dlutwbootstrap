@@ -24,13 +24,12 @@ class DemoController extends ActionController
         $form           = new \DluTwBootstrap\Demo\Form\BlockForm();
         $inputFilter    = new \DluTwBootstrap\Demo\Form\BlockFormInputFilter();
         $form->setInputFilter($inputFilter);
-        $form->get('fsMainInfo')->get('fullName')->setMessages(array('This is not right', 'This is wrong', 'You should correct this',));
-        $form->get('fsMainInfo')->get('notes')->setMessages(array('Hmm, you screwed this', 'Try again',));
-        $form->get('csrf')->setMessages(array('CSRF check failed', 'This is suspicious'));
+        $form->get('fsOne')->get('textarea')->setMessages(array('Error message 1', 'Error message 2', 'Error message 3',));
+        $form->get('csrf')->setMessages(array('CSRF check failed', 'Wrong CSRF code'));
         $viewModel  = new ViewModel(array(
             'form'  => $form,
         ));
-        $viewModel->setTemplate('dlu-tw-bootstrap/demo/form-horizontal2');
+        //$viewModel->setTemplate('dlu-tw-bootstrap/demo/form-horizontal2');
         return $viewModel;
     }
 
@@ -38,9 +37,8 @@ class DemoController extends ActionController
         $form           = new \DluTwBootstrap\Demo\Form\BlockForm();
         $inputFilter    = new \DluTwBootstrap\Demo\Form\BlockFormInputFilter();
         $form->setInputFilter($inputFilter);
-        $form->get('fsMainInfo')->get('fullName')->setMessages(array('This is not right', 'This is wrong', 'You should correct this',));
-        $form->get('fsMainInfo')->get('notes')->setMessages(array('Hmm, you screwed this', 'Try again',));
-        $form->get('csrf')->setMessages(array('CSRF check failed', 'This is suspicious'));
+        $form->get('fsOne')->get('textarea')->setMessages(array('Error message 1', 'Error message 2', 'Error message 3',));
+        $form->get('csrf')->setMessages(array('CSRF check failed', 'Wrong CSRF code'));
         $viewModel  = new ViewModel(array(
             'form'  => $form,
         ));

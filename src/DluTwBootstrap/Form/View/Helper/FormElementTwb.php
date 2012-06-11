@@ -57,7 +57,9 @@ class FormElementTwb extends \Zend\Form\View\Helper\FormElement
 
         if (is_array($options) && $type == 'select') {
             $helper = $renderer->plugin('form_select_twb');
-            return $helper($element, $this->getDisplayOption($displayOptions, 'sizeClass'));
+            return $helper($element,
+                           $this->getDisplayOption($displayOptions, 'sizeClass'),
+                           $this->getDisplayOption($displayOptions, 'size'));
         }
 
         if ($type == 'textarea') {

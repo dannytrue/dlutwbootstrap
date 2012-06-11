@@ -1,0 +1,35 @@
+<div class="page-header">
+    <h1>Horizontal Form</h1>
+</div>
+<?php
+$formDisplayConfig  = array(
+    'text'                  => array(
+        'sizeClass'             => 'span4',
+    ),
+    'password'              => array(
+        'sizeClass'             => 'span3',
+    ),
+    'textarea'              => array(
+        'sizeClass'             => 'span4',
+        'rows'                  => 5,
+    ),
+    'radioInline'           => array(
+        'inline'                => true,
+    ),
+    'multiCheckboxInline'   => array(
+        'inline'                => true,
+    ),
+    'select'                => array(
+        'size'                  => 1,
+    ),
+    'multiSelect'           => array(
+        'size'                  => 3,
+    )
+);
+$formType   = \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL;
+$form = $this->form;
+/* @var $form \DluTwBootstrap\Demo\Form\BlockForm */
+$form->prepare();
+//$form->setAttribute('action', $this->url('form'));
+echo $this->formTwb($form, $formType, $formDisplayConfig);
+?>

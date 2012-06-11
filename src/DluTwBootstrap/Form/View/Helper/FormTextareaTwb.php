@@ -1,7 +1,7 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
-use \DluTwBootstrap\Util\Util as GenUtil;
+use \DluTwBootstrap\Util as GenUtil;
 use \DluTwBootstrap\Form\Util as FormUtil;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
@@ -22,7 +22,7 @@ class FormTextareaTwb extends \Zend\Form\View\Helper\FormTextarea
 
     /**
      * Constructor
-     * @param \DluTwBootstrap\Util\Util $genUtil
+     * @param \DluTwBootstrap\Util $genUtil
      * @param \DluTwBootstrap\Form\Util $formUtil
      */
     public function __construct(GenUtil $genUtil, FormUtil $formUtil) {

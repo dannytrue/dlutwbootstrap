@@ -22,24 +22,24 @@ class BlockForm extends Form
                        ),
                    ));
 
-        //Fieldset Main info
+        //Fieldset One
         $this->add(array(
-            'name'          => 'fsMainInfo',
+            'name'          => 'fsOne',
             'type'          => 'Zend\Form\Fieldset',
             'attributes'    => array(
-                'legend'        => 'Main Info',
+                'legend'        => 'Legend for Fieldset 1',
             ),
             'elements'      => array(
-                //Full Name
+                //Text
                 array(
                     'spec' => array(
-                        'name'          => 'fullName',
+                        'name'          => 'text',
                         'attributes'    => array(
                             'type'               => 'text',
-                            'label'              => 'Name <b>BOLD</b>',
-                            'placeholder'        => 'Your full name <b>BOLD</b>',
-                            'inlineHelp'         => 'Use your real name <b>BOLD</b>',
-                            'description'        => '<b>BOLD</b>Text element in error state with error messages. Supports inline help as well as placeholder text.',
+                            'label'              => 'Text',
+                            'placeholder'        => 'Placeholder',
+                            'inlineHelp'         => 'Inline help',
+                            'description'        => 'Description.',
                         ),
                     ),
                 ),
@@ -50,60 +50,59 @@ class BlockForm extends Form
                         'attributes'    => array(
                             'type'              => 'password',
                             'label'             => 'Password',
-                            'placeholder'       => 'Top secret!',
-                            'inlineHelp'        => 'Do not tell anyone!',
-                            'description'       => 'Password element (required).  Supports inline help as well as placeholder text.',
+                            'placeholder'       => 'Placeholder',
+                            'inlineHelp'        => 'Inline help',
+                            'description'       => 'Description.',
                         ),
                     ),
                 ),
-                //Notes
+                //Textarea
                 array(
                     'spec'  => array(
-                        'name'  => 'notes',
+                        'name'  => 'textarea',
                         'attributes'    => array(
                             'type'              => 'textarea',
-                            'label'             => 'Notes',
-                            'placeholder'       => 'Type any notes here',
-                            'inlineHelp'        => 'A place for your notes',
-                            'description'       => 'Textarea element.  Supports inline help as well as placeholder text.',
+                            'label'             => 'Textarea',
+                            'placeholder'       => 'Placeholder',
+                            'inlineHelp'        => 'Inline help',
+                            'description'       => 'Description.',
                         ),
                     ),
                 ),
             ),
         ));
 
-        //Fieldset Various Settings
+        //Fieldset Two
         $this->add(array(
-            'name'          => 'fsVariousSettings',
+            'name'          => 'fsTwo',
             'type'          => 'Zend\Form\Fieldset',
             'attributes'    => array(
-               'legend'        => 'Various Settings',
+               'legend'        => 'Legend for Fieldset 2',
             ),
             'elements'      => array(
                 //Checkbox
                 array(
                     'spec'  => array(
-                        'name'  => 'pastaEater',
+                        'name'  => 'checkbox',
                         'attributes'    => array(
                             'type'              => 'checkbox',
-                            'label'             => 'Do you like pasta?',
-                            'description'       => 'Checkbox element.',
+                            'label'             => 'Checkbox',
+                            'description'       => 'Description.',
                         ),
                     ),
                 ),
                 //Radio
                 array(
                     'spec'  => array(
-                        'name'  => 'level',
+                        'name'  => 'radio',
                         'attributes'    => array(
                             'type'              => 'radio',
-                            'label'             => 'Your level',
-                            'description'       => 'Radio element.',
+                            'label'             => 'Radio',
+                            'description'       => 'Description.',
                             'options'      => array(
-                                'beg'   => 'Beginner',
-                                'int'   => 'Intermediate',
-                                'adv'   => 'Advanced',
-                                'gur'   => 'Guru',
+                                'fm'   => 'FM',
+                                'am'   => 'AM',
+                                'dig'  => 'Digital',
                             ),
                         ),
                     ),
@@ -111,11 +110,11 @@ class BlockForm extends Form
                 //Radio inline
                 array(
                     'spec'  => array(
-                        'name'              => 'rateUs',
+                        'name'              => 'radioInline',
                         'attributes'        => array(
                             'type'              => 'radio',
-                            'label'             => 'Rate us',
-                            'description'       => 'Radio element inline.',
+                            'label'             => 'Radio Inline',
+                            'description'       => 'Description.',
                             'options'      => array(
                                 'a'   => 'A',
                                 'b'   => 'B',
@@ -130,16 +129,19 @@ class BlockForm extends Form
                 //Multicheckbox
                 array(
                     'spec'  => array(
-                        'name'              => 'settings',
+                        'name'              => 'multiCheckbox',
                         'attributes'        => array(
                             'type'              => 'checkbox',
-                            'label'             => 'Settings',
-                            'description'       => 'Multicheckbox element.',
+                            'label'             => 'Multi Checkbox',
+                            'description'       => 'Description.',
                             'options'       => array(
-                                'runBkg'        => 'Run on background',
-                                'col'           => 'Use web colour palette',
-                                'slow'          => 'Compensate for slow connection',
-                                'stat'          => 'Collect statistics',
+                                'mon'           => 'Monday',
+                                'tue'           => 'Tuesday',
+                                'wed'           => 'Wednesday',
+                                'thu'           => 'Thursday',
+                                'fri'           => 'Friday',
+                                'sat'           => 'Saturday',
+                                'sun'           => 'Sunday',
                             ),
                         ),
                     ),
@@ -147,16 +149,16 @@ class BlockForm extends Form
                 //Multicheckbox inline
                 array(
                     'spec'  => array(
-                        'name'              => 'seenMovies',
+                        'name'              => 'multiCheckboxInline',
                         'attributes'        => array(
                             'type'              => 'checkbox',
-                            'label'             => 'What have you seen?',
-                            'description'       => 'Multicheckbox element inline.',
+                            'label'             => 'Multi Checkbox Inline',
+                            'description'       => 'Description.',
                             'options'      => array(
-                                'terminator'    => 'Terminator 1',
-                                'eraser'        => 'Eraserhead',
-                                'amBeauty'      => 'American Beauty',
-                                'platoon'       => 'Platoon',
+                                'spring'        => 'Spring',
+                                'summer'        => 'Summer',
+                                'autumn'        => 'Autumn',
+                                'winter'        => 'Winter',
                             ),
                         ),
                     ),
@@ -165,64 +167,63 @@ class BlockForm extends Form
 
         //Select
         $this->add(array(
-            'name'              => 'car',
+            'name'              => 'select',
             'attributes'        => array(
                 'type'              => 'select',
-                'label'             => 'Make of your car',
-                'inlineHelp'        => 'What car do you drive?',
-                'description'       => 'Select element. Supports inline help.',
-                'options'      => array(
-                    'ford'    => 'Ford',
-                    'bmw'     => 'BMW',
-                    'renault' => 'Renault',
-                    'jag'     => 'Jaguar',
-                    'other'   => 'other',
+                'label'             => 'Select',
+                'inlineHelp'        => 'Inline help',
+                'description'       => 'Description.',
+                'options'       => array(
+                    'alpha'     => 'Alpha',
+                    'beta'      => 'Beta',
+                    'gamma'     => 'Gamma',
+                    'delta'     => 'Delta',
                 ),
             ),
         ));
 
         //Multiselect
         $this->add(array(
-            'name'              => 'pets',
+            'name'              => 'multiSelect',
             'attributes'        => array(
                 'type'              => 'select',
                 'multiple'          => true,
-                'label'             => 'Your home creatures',
-                'inlineHelp'        => 'Select all that apply',
-                'description'       => 'Multiselect element. Supports inline help.',
+                'label'             => 'Multi Select',
+                'inlineHelp'        => 'Inline help',
+                'description'       => 'Description.',
                 'options'               => array(
-                    'dog'    => 'Dog',
-                    'cat'     => 'Cat',
-                    'parrot' => 'Parrot',
-                    'fish'     => 'Fish',
-                    'rat'    => 'Rat',
-                    'other' => 'other',
+                    'white'     => 'White',
+                    'red'       => 'Red',
+                    'black'     => 'Black',
+                    'blue'      => 'Blue',
+                    'green'     => 'Green',
+                    'yellow'    => 'Yellow',
                 ),
             ),
         ));
 
         //File
         $this->add(array(
-            'name'              => 'attachment',
+            'name'              => 'file',
             'attributes'        => array(
                 'type'              => 'file',
-                'label'             => 'Attach file',
-                'inlineHelp'        => 'Max. file size 1 MB',
-                'description'       => 'File element. Supports inline help.',
+                'label'             => 'File',
+                'inlineHelp'        => 'Inline help',
+                'description'       => 'Description.',
             ),
         ));
 
         //Text with append / prepend
         $this->add(array(
-            'name'              => 'salary',
+            'name'              => 'textAp',
             'attributes'        => array(
                 'type'              => 'text',
-                'label'             => 'Salary',
-                'placeholder'       => 'Good old cash...',
-                'inlineHelp'        => 'Yearly net salary',
-                'description'       => 'Text element with prepend and append text. Renders correctly on horizontal and inline forms.',
-                'prependText'       => '$',
-                'appendText'        => '.00',
+                'label'             => 'Text append/prepend',
+                'placeholder'       => 'Placeholder',
+                'inlineHelp'        => 'Inline help',
+                'description'       => 'Description.',
+                'prependText'       => 'Prepend text',
+                'appendText'        => 'Append text',
             ),
         ));
 

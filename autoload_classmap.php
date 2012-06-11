@@ -46,5 +46,5 @@ return array(
     'DluTwBootstrap\Form\Inline'                                   => __DIR__ . '/src/DluTwBootstrap/Form/Inline.php',
     'DluTwBootstrap\Form\Search'                                   => __DIR__ . '/src/DluTwBootstrap/Form/Search.php',
     'DluTwBootstrap\Form\Vertical'                                 => __DIR__ . '/src/DluTwBootstrap/Form/Vertical.php',
-    'DluTwBootstrap\Util\Util'                                     => __DIR__ . '/src/DluTwBootstrap/Util/Util.php',
+    'DluTwBootstrap\Util'                                          => __DIR__ . '/src/DluTwBootstrap/Util.php',
 );

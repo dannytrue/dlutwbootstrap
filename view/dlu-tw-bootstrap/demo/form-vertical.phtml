@@ -3,20 +3,20 @@
 </div>
 <?php
 $formDisplayConfig  = array(
-    'fullName'      => array(
+    'text'      => array(
         'sizeClass'     => 'span4',
     ),
     'password'      => array(
         'sizeClass'     => 'span3',
     ),
-    'notes'         => array(
+    'textarea'         => array(
         'sizeClass'     => 'span4',
         'rows'          => 5,
     ),
-    'rateUs'        => array(
+    'radioInline'        => array(
         'inline'        => true,
     ),
-    'seenMovies'    => array(
+    'multiCheckboxInline'    => array(
         'inline'        => true,
     ),
 );
@@ -25,6 +25,5 @@ $form = $this->form;
 /* @var $form \DluTwBootstrap\Demo\Form\BlockForm */
 $form->prepare();
 //$form->setAttribute('action', $this->url('form'));
+echo $this->formTwb($form, $formType, $formDisplayConfig);
 ?>
-
-<?php echo $this->formTwb($form, $formType, $formDisplayConfig); ?>

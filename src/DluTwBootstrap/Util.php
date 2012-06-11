@@ -1,5 +1,5 @@
 <?php
-namespace DluTwBootstrap\Util;
+namespace DluTwBootstrap;
 
 /**
  * Util - general utilities

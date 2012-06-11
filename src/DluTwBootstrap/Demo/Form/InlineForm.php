@@ -22,7 +22,7 @@ class InlineForm extends Form
                        ),
                    ));
 
-        //Full Name
+        //Text
         $this->add(array(
                         'name'          => 'text',
                         'attributes'    => array(
@@ -46,16 +46,6 @@ class InlineForm extends Form
                         ),
          ));
 
-        //Checkbox
-        $this->add(array(
-            'name'  => 'checkbox',
-            'attributes'    => array(
-                'type'              => 'checkbox',
-                'label'             => 'Checkbox',
-                'description'       => 'Description.',
-            ),
-        ));
-
         //Select
         $this->add(array(
             'name'              => 'select',
@@ -74,21 +64,6 @@ class InlineForm extends Form
             ),
         ));
 
-        //Multicheckbox inline
-        $this->add(array(
-                       'name'              => 'multiCheckbox',
-                       'attributes'        => array(
-                           'type'              => 'checkbox',
-                           'label'             => 'Multi Checkbox',
-                           'description'       => 'Description.',
-                           'options'      => array(
-                               'opt1'    => 'One',
-                               'opt2'    => 'Two',
-                               'opt3'    => 'Three',
-                           ),
-                       ),
-                   ));
-
         //Text with append / prepend
         $this->add(array(
             'name'              => 'textAp',
@@ -102,6 +77,16 @@ class InlineForm extends Form
                 'appendText'        => 'Append',
             ),
         ));
+
+        //Checkbox
+        $this->add(array(
+                       'name'  => 'checkbox',
+                       'attributes'    => array(
+                           'type'              => 'checkbox',
+                           'label'             => 'Checkbox',
+                           'description'       => 'Description.',
+                       ),
+                   ));
 
         //Csrf
         $this->add(new Element\Csrf('csrf'));

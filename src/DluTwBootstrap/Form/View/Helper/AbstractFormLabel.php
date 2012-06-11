@@ -1,8 +1,8 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 use Zend\Form\ElementInterface;
-use DluTwBootstrap\Util\Util as GenUtil;
-use DluTwBootstrap\Form\Util;
+use DluTwBootstrap\Util as GenUtil;
+use DluTwBootstrap\Form\Util as FormUtil;
 
 abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
 {
@@ -18,7 +18,7 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
     );
 
     /**
-     * @var Util
+     * @var FormUtil
      */
     protected $util;
 
@@ -30,16 +30,16 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
     /**
      * @var string
      */
-    protected $formType     = Util::FORM_TYPE_VERTICAL;
+    protected $formType     = FormUtil::FORM_TYPE_HORIZONTAL;
 
     /* ************************ METHODS ***************************** */
 
     /**
      * Constructor
      * @param \DluTwBootstrap\Form\Util $util
-     * @param \DluTwBootstrap\Util\Util $genUtil
+     * @param \DluTwBootstrap\Util $genUtil
      */
-    public function __construct(Util $util, GenUtil $genUtil) {
+    public function __construct(FormUtil $util, GenUtil $genUtil) {
         $this->util     = $util;
         $this->genUtil  = $genUtil;
     }
@@ -140,12 +140,8 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
      * Sets the current form type
      * @param $formType
      */
-    protected function setFormType($formType = null) {
-        if(is_null($formType)) {
-            $this->formType = Util::FORM_TYPE_VERTICAL;
-        } else {
-            $this->formType = $formType;
-        }
+    protected function setFormType($formType) {
+        $this->formType = $formType;
     }
 
     /**

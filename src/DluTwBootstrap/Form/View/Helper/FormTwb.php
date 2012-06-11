@@ -3,7 +3,7 @@ namespace DluTwBootstrap\Form\View\Helper;
 
 use DluTwBootstrap\Form\Exception\UnsupportedFormTypeException;
 use DluTwBootstrap\Form\Exception\UndefinedFormElementException;
-use DluTwBootstrap\Util\Util as GenUtil;
+use DluTwBootstrap\Util as GenUtil;
 use Zend\Form\Form;
 use Zend\Form\ElementInterface;
 use Zend\Form\FormInterface;
@@ -42,7 +42,7 @@ class FormTwb extends \Zend\Form\View\Helper\Form
 
     /**
      * Constructor
-     * @param \DluTwBootstrap\Util\Util $genUtil
+     * @param \DluTwBootstrap\Util $genUtil
      */
     public function __construct(GenUtil $genUtil) {
         $this->genUtil  = $genUtil;

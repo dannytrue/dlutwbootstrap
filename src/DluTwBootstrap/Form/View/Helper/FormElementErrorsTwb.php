@@ -1,7 +1,7 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 use \Zend\Form\ElementInterface;
-use \DluTwBootstrap\Util\Util as GenUtil;
+use \DluTwBootstrap\Util as GenUtil;
 
 class FormElementErrorsTwb extends \Zend\Form\View\Helper\FormElementErrors
 {
@@ -14,7 +14,7 @@ class FormElementErrorsTwb extends \Zend\Form\View\Helper\FormElementErrors
 
     /**
      * Constructor
-     * @param \DluTwBootstrap\Util\Util $genUtil
+     * @param \DluTwBootstrap\Util $genUtil
      */
     public function __construct(GenUtil $genUtil) {
         $this->genUtil  = $genUtil;

@@ -1,6 +1,6 @@
 <?php
 namespace DluTwBootstrap\Form\Element;
-use DluTwBootstrap\Util\Util;
+use DluTwBootstrap\Util;
 
 /**
  * Reset Element
