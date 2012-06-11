@@ -2,6 +2,7 @@
 namespace DluTwBootstrap\Form\View\Helper;
 
 use \DluTwBootstrap\Util\Util as GenUtil;
+use \DluTwBootstrap\Form\Util as FormUtil;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
@@ -19,23 +20,31 @@ class FormInputTwb extends \Zend\Form\View\Helper\FormInput
      */
     protected $genUtil;
 
+    /**
+     * @var FormUtil
+     */
+    protected $formUtil;
+
     /* **************************** METHODS ****************************** */
 
     /**
      * Constructor
      * @param \DluTwBootstrap\Util\Util $genUtil
+     * @param \DluTwBootstrap\Form\Util $formUtil
      */
-    public function __construct(GenUtil $genUtil) {
+    public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
         $this->genUtil  = $genUtil;
+        $this->formUtil = $formUtil;
     }
 
     /**
      * Render a form <input> element from the provided $element
      * @param  ElementInterface $element
      * @param string $sizeClass
+     * @param string|null $formType
      * @return string
      */
-    public function render(ElementInterface $element, $sizeClass = null) {
+    public function render(ElementInterface $element, $sizeClass = null, $formType = null) {
         $escapeHelper   = $this->getEscapeHelper();
         $type           = $element->getAttribute('type');
         //Type specific mods
@@ -61,6 +70,12 @@ class FormInputTwb extends \Zend\Form\View\Helper\FormInput
                     $class  = $this->genUtil->addWord($sizeClass, $class);
                     $element->setAttribute('class', $class);
                 }
+                if($formType == \DluTwBootstrap\Form\Util::FORM_TYPE_SEARCH) {
+                    $class  = $element->getAttribute('class');
+                    $class  = $this->genUtil->addWord('search-query', $class);
+                    $element->setAttribute('class', $class);
+                }
+                $this->formUtil->addIdAttributeIfMissing($element);
                 break;
             case 'password':
                 if($sizeClass) {
@@ -68,6 +83,13 @@ class FormInputTwb extends \Zend\Form\View\Helper\FormInput
                     $class  = $this->genUtil->addWord($sizeClass, $class);
                     $element->setAttribute('class', $class);
                 }
+                $this->formUtil->addIdAttributeIfMissing($element);
+                break;
+            case 'checkbox':
+                $this->formUtil->addIdAttributeIfMissing($element);
+                break;
+            case 'file':
+                $this->formUtil->addIdAttributeIfMissing($element);
                 break;
             default:
                 //No default action
@@ -93,13 +115,6 @@ class FormInputTwb extends \Zend\Form\View\Helper\FormInput
         if($prepAppClass) {
             $html           = '<div class="' . $prepAppClass . '">' . "\n$html\n" . '</div>';
         }
-        $renderer           = $this->getView();
-        //Inline help
-        $inlineHelpHelper   = $renderer->plugin('form_inline_help_twb');
-        $html               .= "\n" . $inlineHelpHelper($element);
-        //Description
-        $descriptionHelper  = $renderer->plugin('form_element_description_twb');
-        $html               .= "\n" . $descriptionHelper($element);
         return $html;
     }
 
@@ -108,9 +123,10 @@ class FormInputTwb extends \Zend\Form\View\Helper\FormInput
      * Proxies to {@link render()}.
      * @param  ElementInterface $element
      * @param string $sizeClass
+     * @param string|null $formType
      * @return string
      */
-    public function __invoke(ElementInterface $element, $sizeClass = null) {
-        return $this->render($element, $sizeClass);
+    public function __invoke(ElementInterface $element, $sizeClass = null, $formType = null) {
+        return $this->render($element, $sizeClass, $formType);
     }
 }

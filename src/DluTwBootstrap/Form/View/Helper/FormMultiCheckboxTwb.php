@@ -51,7 +51,6 @@ class FormMultiCheckboxTwb extends \Zend\Form\View\Helper\FormMultiCheckbox
     }
 
     //TODO - remove the render() method once the bug with swapped multi-option keys/values has been fixed in ZF2
-    //TODO - do not forget to add the description! See the end of this method.
     /**
      * Render a form <input> element from the provided $element
      *
@@ -134,13 +133,6 @@ class FormMultiCheckboxTwb extends \Zend\Form\View\Helper\FormMultiCheckbox
         }
 
         $html   = implode($this->getSeparator(), $combinedMarkup);
-
-        //TODO - when removing this method, refactor to add description to the element
-        $renderer           = $this->getView();
-        //Description
-        $descriptionHelper  = $renderer->plugin('form_element_description_twb');
-        $html               .= $descriptionHelper($element);
-
         return $html;
     }
 }

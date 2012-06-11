@@ -2,6 +2,7 @@
 namespace DluTwBootstrap\Form\View\Helper;
 
 use \DluTwBootstrap\Util\Util as GenUtil;
+use \DluTwBootstrap\Form\Util as FormUtil;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
@@ -12,14 +13,21 @@ class FormTextareaTwb extends \Zend\Form\View\Helper\FormTextarea
      */
     protected $genUtil;
 
+    /**
+     * @var \DluTwBootstrap\Form\Util
+     */
+    protected $formUtil;
+
     /* **************************** METHODS ****************************** */
 
     /**
      * Constructor
      * @param \DluTwBootstrap\Util\Util $genUtil
+     * @param \DluTwBootstrap\Form\Util $formUtil
      */
-    public function __construct(GenUtil $genUtil) {
+    public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
         $this->genUtil  = $genUtil;
+        $this->formUtil = $formUtil;
     }
 
     /**
@@ -38,14 +46,8 @@ class FormTextareaTwb extends \Zend\Form\View\Helper\FormTextarea
         if($rows) {
             $element->setAttribute('rows', $rows);
         }
+        $this->formUtil->addIdAttributeIfMissing($element);
         $html               = parent::render($element);
-        $renderer           = $this->getView();
-        //Inline help
-        $inlineHelpHelper   = $renderer->plugin('form_inline_help_twb');
-        $html               .= $inlineHelpHelper($element);
-        //Description
-        $descriptionHelper  = $renderer->plugin('form_element_description_twb');
-        $html               .= $descriptionHelper($element);
         return $html;
     }
 

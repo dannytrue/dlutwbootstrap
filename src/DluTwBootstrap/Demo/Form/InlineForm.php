@@ -22,15 +22,15 @@ class InlineForm extends Form
                        ),
                    ));
 
-                //Full Name
+        //Full Name
         $this->add(array(
-                        'name'          => 'fullName',
+                        'name'          => 'text',
                         'attributes'    => array(
                             'type'               => 'text',
-                            'label'              => 'Name <b>BOLD</b>',
-                            'placeholder'        => 'Your full name <b>BOLD</b>',
-                            'inlineHelp'         => 'Use your real name <b>BOLD</b>',
-                            'description'        => '<b>BOLD</b>Text element in error state with error messages. Supports inline help as well as placeholder text.',
+                            'label'              => 'Text',
+                            'placeholder'        => 'Placeholder',
+                            'inlineHelp'         => 'Inline help',
+                            'description'        => 'Description.',
                         ),
         ));
 
@@ -40,189 +40,68 @@ class InlineForm extends Form
                         'attributes'    => array(
                             'type'              => 'password',
                             'label'             => 'Password',
-                            'placeholder'       => 'Top secret!',
-                            'inlineHelp'        => 'Do not tell anyone!',
-                            'description'       => 'Password element (required).  Supports inline help as well as placeholder text.',
+                            'placeholder'       => 'Placeholder',
+                            'inlineHelp'        => 'Inline help',
+                            'description'       => 'Description.',
                         ),
          ));
 
-        /*
-                //Notes
-                array(
-                    'spec'  => array(
-                        'name'  => 'notes',
-                        'attributes'    => array(
-                            'type'              => 'textarea',
-                            'label'             => 'Notes',
-                            'placeholder'       => 'Type any notes here',
-                            'inlineHelp'        => 'A place for your notes',
-                            'description'       => 'Textarea element.  Supports inline help as well as placeholder text.',
-                        ),
-                    ),
-                ),
-            ),
-
-        //Fieldset Various Settings
+        //Checkbox
         $this->add(array(
-            'name'          => 'fsVariousSettings',
-            'type'          => 'Zend\Form\Fieldset',
+            'name'  => 'checkbox',
             'attributes'    => array(
-               'legend'        => 'Various Settings',
+                'type'              => 'checkbox',
+                'label'             => 'Checkbox',
+                'description'       => 'Description.',
             ),
-            'elements'      => array(
-                //Checkbox
-                array(
-                    'spec'  => array(
-                        'name'  => 'pastaEater',
-                        'attributes'    => array(
-                            'type'              => 'checkbox',
-                            'label'             => 'Do you like pasta?',
-                            'description'       => 'Checkbox element.',
-                        ),
-                    ),
-                ),
-                //Radio
-                array(
-                    'spec'  => array(
-                        'name'  => 'level',
-                        'attributes'    => array(
-                            'type'              => 'radio',
-                            'label'             => 'Your level',
-                            'description'       => 'Radio element.',
-                            'options'      => array(
-                                'beg'   => 'Beginner',
-                                'int'   => 'Intermediate',
-                                'adv'   => 'Advanced',
-                                'gur'   => 'Guru',
-                            ),
-                        ),
-                    ),
-                ),
-                //Radio inline
-                array(
-                    'spec'  => array(
-                        'name'              => 'rateUs',
-                        'attributes'        => array(
-                            'type'              => 'radio',
-                            'label'             => 'Rate us',
-                            'description'       => 'Radio element inline.',
-                            'options'      => array(
-                                'a'   => 'A',
-                                'b'   => 'B',
-                                'c'   => 'C',
-                                'd'   => 'D',
-                                'e'   => 'E',
-                                'f'   => 'F',
-                            ),
-                        ),
-                    ),
-                ),
-                //Multicheckbox
-                array(
-                    'spec'  => array(
-                        'name'              => 'settings',
-                        'attributes'        => array(
-                            'type'              => 'checkbox',
-                            'label'             => 'Settings',
-                            'description'       => 'Multicheckbox element.',
-                            'options'       => array(
-                                'runBkg'        => 'Run on background',
-                                'col'           => 'Use web colour palette',
-                                'slow'          => 'Compensate for slow connection',
-                                'stat'          => 'Collect statistics',
-                            ),
-                        ),
-                    ),
-                ),
-                //Multicheckbox inline
-                array(
-                    'spec'  => array(
-                        'name'              => 'seenMovies',
-                        'attributes'        => array(
-                            'type'              => 'checkbox',
-                            'label'             => 'What have you seen?',
-                            'description'       => 'Multicheckbox element inline.',
-                            'options'      => array(
-                                'terminator'    => 'Terminator 1',
-                                'eraser'        => 'Eraserhead',
-                                'amBeauty'      => 'American Beauty',
-                                'platoon'       => 'Platoon',
-                            ),
-                        ),
-                    ),
-                ),
-            )));
+        ));
 
         //Select
         $this->add(array(
-            'name'              => 'car',
+            'name'              => 'select',
             'attributes'        => array(
                 'type'              => 'select',
-                'label'             => 'Make of your car',
-                'inlineHelp'        => 'What car do you drive?',
-                'description'       => 'Select element. Supports inline help.',
+                'label'             => 'Select',
+                'inlineHelp'        => 'Inline help',
+                'description'       => 'Description.',
                 'options'      => array(
-                    'ford'    => 'Ford',
-                    'bmw'     => 'BMW',
-                    'renault' => 'Renault',
-                    'jag'     => 'Jaguar',
-                    'other'   => 'other',
+                    'a' => 'A',
+                    'b' => 'B',
+                    'c' => 'C',
+                    'd' => 'D',
+                    'e' => 'E',
                 ),
             ),
         ));
 
-        //Multiselect
+        //Multicheckbox inline
         $this->add(array(
-            'name'              => 'pets',
-            'attributes'        => array(
-                'type'              => 'select',
-                'multiple'          => true,
-                'label'             => 'Your home creatures',
-                'inlineHelp'        => 'Select all that apply',
-                'description'       => 'Multiselect element. Supports inline help.',
-                'options'               => array(
-                    'dog'    => 'Dog',
-                    'cat'     => 'Cat',
-                    'parrot' => 'Parrot',
-                    'fish'     => 'Fish',
-                    'rat'    => 'Rat',
-                    'other' => 'other',
-                ),
-            ),
-        ));
-
-        //File
-        $this->add(array(
-            'name'              => 'attachment',
-            'attributes'        => array(
-                'type'              => 'file',
-                'label'             => 'Attach file',
-                'inlineHelp'        => 'Max. file size 1 MB',
-                'description'       => 'File element. Supports inline help.',
-            ),
-        ));
+                       'name'              => 'multiCheckbox',
+                       'attributes'        => array(
+                           'type'              => 'checkbox',
+                           'label'             => 'Multi Checkbox',
+                           'description'       => 'Description.',
+                           'options'      => array(
+                               'opt1'    => 'One',
+                               'opt2'    => 'Two',
+                               'opt3'    => 'Three',
+                           ),
+                       ),
+                   ));
 
         //Text with append / prepend
         $this->add(array(
-            'name'              => 'salary',
+            'name'              => 'textAp',
             'attributes'        => array(
                 'type'              => 'text',
-                'label'             => 'Salary',
-                'placeholder'       => 'Good old cash...',
-                'inlineHelp'        => 'Yearly net salary',
-                'description'       => 'Text element with prepend and append text. Renders correctly on horizontal and inline forms.',
-                'prependText'       => '$',
-                'appendText'        => '.00',
+                'label'             => 'Text AP',
+                'placeholder'       => 'Placeholder',
+                'inlineHelp'        => 'Inline help',
+                'description'       => 'Description',
+                'prependText'       => 'Prepend',
+                'appendText'        => 'Append',
             ),
         ));
-*/
-        /*
-        // Captcha
-        $captcha = new Element\Captcha('seven');
-        $captcha->setCaptcha(new DumbCaptchaAdapter);
-        $captcha->setAttribute('label', 'Seven');
-        $this->add($captcha);
-        */
 
         //Csrf
         $this->add(new Element\Csrf('csrf'));
@@ -232,7 +111,7 @@ class InlineForm extends Form
                        'name' => 'submitBtn',
                        'attributes' => array(
                            'type'  => 'submit',
-                           'value' => 'Save changes',
+                           'value' => 'Submit',
                        ),
                    ));
 
@@ -241,7 +120,7 @@ class InlineForm extends Form
                        'name' => 'resetBtn',
                        'attributes' => array(
                            'type'  => 'reset',
-                           'value' => 'Clear form',
+                           'value' => 'Reset',
                        ),
                    ));
 
@@ -250,7 +129,7 @@ class InlineForm extends Form
                        'name' => 'plainBtn',
                        'attributes' => array(
                            'type'  => 'button',
-                           'value' => 'Other action',
+                           'value' => 'Button',
                        ),
                    ));
     }

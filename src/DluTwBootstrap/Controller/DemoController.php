@@ -20,28 +20,6 @@ class DemoController extends ActionController
 
     /* ***************************** METHODS ****************************** */
 
-    /**
-     * Form action
-     * @return \Zend\View\Model\ViewModel
-     */
-    public function formAction() {
-        $formVertical   = new DemoVertical();
-        $nameVertical   = $formVertical->getElement('name');
-        $nameVertical->setErrors(array('Validation error 1', 'Another validation problem', 'You should correct also this'));
-        $formHorizontal = new DemoHorizontal();
-        $nameHorizontal = $formHorizontal->getElement('name2');
-        $nameHorizontal->setErrors(array('This is not right', 'Error!'));
-        $formInline     = new DemoInline();
-        $formSearch     = new DemoSearch();
-        $viewModel      = new ViewModel(array(
-            'formVertical'      => $formVertical,
-            'formHorizontal'    => $formHorizontal,
-            'formInline'        => $formInline,
-            'formSearch'        => $formSearch,
-        ));
-        return $viewModel;
-    }
-
     public function formHorizontalAction() {
         $form           = new \DluTwBootstrap\Demo\Form\BlockForm();
         $inputFilter    = new \DluTwBootstrap\Demo\Form\BlockFormInputFilter();
@@ -70,12 +48,15 @@ class DemoController extends ActionController
     }
 
     public function formInlineAction() {
-        $form           = new \DluTwBootstrap\Demo\Form\InlineForm();
-        //$inputFilter    = new \DluTwBootstrap\Demo\Form\BlockFormInputFilter();
-        //$form->setInputFilter($inputFilter);
-        //$form->get('fsMainInfo')->get('fullName')->setMessages(array('This is not right', 'This is wrong', 'You should correct this',));
-        //$form->get('fsMainInfo')->get('notes')->setMessages(array('Hmm, you screwed this', 'Try again',));
-        //$form->get('csrf')->setMessages(array('CSRF check failed', 'This is suspicious'));
+        $form       = new \DluTwBootstrap\Demo\Form\InlineForm();
+        $viewModel  = new ViewModel(array(
+            'form'  => $form,
+        ));
+        return $viewModel;
+    }
+
+    public function formSearchAction() {
+        $form       = new \DluTwBootstrap\Demo\Form\SearchForm();
         $viewModel  = new ViewModel(array(
             'form'  => $form,
         ));

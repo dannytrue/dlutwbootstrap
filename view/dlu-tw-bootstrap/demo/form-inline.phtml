@@ -3,21 +3,20 @@
 </div>
 <?php
 $formDisplayConfig  = array(
-    'fullName'      => array(
-        'sizeClass'     => 'span4',
+    'text'      => array(
+        'sizeClass'     => 'span1',
     ),
     'password'      => array(
-        'sizeClass'     => 'span3',
+        'sizeClass'     => 'span1',
     ),
-    'notes'         => array(
-        'sizeClass'     => 'span4',
-        'rows'          => 5,
-    ),
-    'rateUs'        => array(
+    'multiCheckbox'    => array(
         'inline'        => true,
     ),
-    'seenMovies'    => array(
-        'inline'        => true,
+    'select'      => array(
+        'sizeClass'     => 'span1',
+    ),
+    'textAp'      => array(
+        'sizeClass'     => 'span1',
     ),
 );
 $formType   = \DluTwBootstrap\Form\Util::FORM_TYPE_INLINE;
@@ -27,4 +26,4 @@ $form->prepare();
 //$form->setAttribute('action', $this->url('form'));
 ?>
 
-<?php echo $this->formTwb($form, $formType); ?>
+<?php echo $this->formTwb($form, $formType, $formDisplayConfig); ?>

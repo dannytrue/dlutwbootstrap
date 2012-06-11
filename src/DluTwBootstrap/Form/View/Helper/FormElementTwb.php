@@ -15,9 +15,10 @@ class FormElementTwb extends \Zend\Form\View\Helper\FormElement
      *
      * @param  ElementInterface $element
      * @param array $displayOptions
+     * @param string|null $formType
      * @return string
      */
-    public function render(ElementInterface $element, array $displayOptions = array())
+    public function render(ElementInterface $element, array $displayOptions = array(), $formType = null)
     {
         $renderer = $this->getView();
         if (!$renderer instanceof Pluggable) {
@@ -67,7 +68,7 @@ class FormElementTwb extends \Zend\Form\View\Helper\FormElement
         }
 
         $helper = $renderer->plugin('form_input_twb');
-        return $helper($element, $this->getDisplayOption($displayOptions, 'sizeClass'));
+        return $helper($element, $this->getDisplayOption($displayOptions, 'sizeClass'), $formType);
     }
 
     /**
@@ -75,10 +76,11 @@ class FormElementTwb extends \Zend\Form\View\Helper\FormElement
      * Proxies to {@link render()}.
      * @param  ElementInterface $element
      * @param array $displayOptions
+     * @param string|null $formType
      * @return string
      */
-    public function __invoke(ElementInterface $element, array $displayOptions = array()) {
-        return $this->render($element, $displayOptions);
+    public function __invoke(ElementInterface $element, array $displayOptions = array(), $formType = null) {
+        return $this->render($element, $displayOptions, $formType);
     }
 
     /**

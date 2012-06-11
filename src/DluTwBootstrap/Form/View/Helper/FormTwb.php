@@ -96,10 +96,18 @@ class FormTwb extends \Zend\Form\View\Helper\Form
      */
     public function actions(Form $form, $formType, array $elements = null) {
         $formIterator   = $form->getIterator();
-        if($formType == \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL) {
-            $html   = '<div class="form-actions">';
-        } else {
-            $html   = '<div>';
+        switch($formType) {
+            case \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL:
+                $html   = '<div class="form-actions">';
+                break;
+            case \DluTwBootstrap\Form\Util::FORM_TYPE_VERTICAL:
+                $html   = '<div>';
+                break;
+            case \DluTwBootstrap\Form\Util::FORM_TYPE_INLINE:
+            case \DluTwBootstrap\Form\Util::FORM_TYPE_SEARCH:
+            default:
+                $html   = '';
+                break;
         }
         $helper         = $this->getHelper('form_element_full_twb');
         if(is_null($elements)) {
@@ -130,7 +138,17 @@ class FormTwb extends \Zend\Form\View\Helper\Form
                 $html   .= "\n" . $helper($element, $formType);
             }
         }
-        $html           .= "\n" . '</div>';
+        switch($formType) {
+            case \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL:
+            case \DluTwBootstrap\Form\Util::FORM_TYPE_VERTICAL:
+                $html   .= "\n" . '</div>';
+                break;
+            case \DluTwBootstrap\Form\Util::FORM_TYPE_INLINE:
+            case \DluTwBootstrap\Form\Util::FORM_TYPE_SEARCH:
+            default:
+                //No action, do not alter the markup
+                break;
+        }
         return $html;
     }
 

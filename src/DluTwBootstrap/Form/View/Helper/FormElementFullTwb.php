@@ -108,16 +108,37 @@ class FormElementFullTwb extends \Zend\Form\View\Helper\AbstractHelper
                                               $formType,
                                               InputInterface $input = null,
                                               array $displayOptions = array()) {
+        //Control Group - open
         $helper     = $this->getHelper('form_control_group_twb');
         $html       = $helper->openTag($element);
-        $helper     = $this->getHelper('form_label_main_twb');
-        $html       .= "\n" . $helper($element, null, null, $formType, $input);
+        //Label
+        if($element->getAttribute('label')) {
+            $helper     = $this->getHelper('form_label_main_twb');
+            $html       .= "\n" . $helper($element, null, null, $formType, $input);
+        }
+        //Controls - open
         $html       .= "\n" . '<div class="controls">';
+        //Element
         $helper     = $this->getHelper('form_element_twb');
-        $html       .= "\n" . $helper($element, $displayOptions);
-        $helper     = $this->getHelper('form_element_errors_twb');
-        $html       .= "\n" . $helper($element);
+        $html       .= "\n" . $helper($element, $displayOptions, $formType);
+        //Inline Help
+        if($element->getAttribute('inlineHelp')) {
+            $helper = $this->getHelper('form_inline_help_twb');
+            $html   .= "\n" . $helper($element);
+        }
+        //Description
+        if($element->getAttribute('description')) {
+            $helper = $this->getHelper('form_element_description_twb');
+            $html   .= "\n" . $helper($element);
+        }
+        //Errors
+        if(count($element->getMessages()) > 0) {
+            $helper     = $this->getHelper('form_element_errors_twb');
+            $html       .= "\n" . $helper($element);
+        }
+        //Controls - close
         $html       .= '</div>';
+        //Control Group - close
         $helper     = $this->getHelper('form_control_group_twb');
         $html       .= $helper->closeTag();
         return $html;
@@ -135,10 +156,13 @@ class FormElementFullTwb extends \Zend\Form\View\Helper\AbstractHelper
                                               $formType,
                                               InputInterface $input = null,
                                               array $displayOptions = array()) {
-        $helper     = $this->getHelper('form_label_main_twb');
-        $html       = $helper($element, null, null, $formType, $input);
+        $html           = '';
+        if($element->getAttribute('label')) {
+            $helper     = $this->getHelper('form_label_main_twb');
+            $html       .= $helper($element, null, null, $formType, $input);
+        }
         $helper     = $this->getHelper('form_element_twb');
-        $html       .= "\n" . $helper($element, $displayOptions);
+        $html       .= "\n" . $helper($element, $displayOptions, $formType);
         return $html;
     }
 
