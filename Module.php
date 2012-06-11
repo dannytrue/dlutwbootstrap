@@ -81,7 +81,6 @@ class Module
     }
 
     public function onModuleDispatch(\Zend\Mvc\MvcEvent $e) {
-
         //Set the layout template for every action in this module
         $controller         = $e->getTarget();
         $controller->layout('layout/layouttwb-demo');

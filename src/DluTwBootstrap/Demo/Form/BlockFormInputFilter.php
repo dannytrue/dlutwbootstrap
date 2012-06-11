@@ -6,9 +6,9 @@ class BlockFormInputFilter extends InputFilter
 {
     public function __construct() {
 
-        //FullName
+        //Text
         $this->add(array(
-            'name'          => 'fullName',
+            'name'          => 'text',
             'required'      => true,
             'validators'    => array(
             ),
@@ -26,9 +26,9 @@ class BlockFormInputFilter extends InputFilter
             ),
         ));
 
-        //Notes
+        //Textarea
         $this->add(array(
-            'name'          => 'notes',
+            'name'          => 'textarea',
             'required'      => false,
             'validators'    => array(
             ),
@@ -36,9 +36,9 @@ class BlockFormInputFilter extends InputFilter
             ),
         ));
 
-        //PastaEater
+        //Checkbox
         $this->add(array(
-            'name'          => 'pastaEater',
+            'name'          => 'checkbox',
             'required'      => false,
             'validators'    => array(
             ),
@@ -46,9 +46,9 @@ class BlockFormInputFilter extends InputFilter
             ),
         ));
 
-        //Level
+        //Radio
         $this->add(array(
-            'name'          => 'level',
+            'name'          => 'radio',
             'required'      => false,
             'validators'    => array(
             ),
@@ -56,9 +56,9 @@ class BlockFormInputFilter extends InputFilter
             ),
         ));
 
-        //RateUs
+        //Radio Inline
         $this->add(array(
-            'name'          => 'rateUs',
+            'name'          => 'radioInline',
             'required'      => false,
             'validators'    => array(
             ),
@@ -66,9 +66,9 @@ class BlockFormInputFilter extends InputFilter
             ),
         ));
 
-        //Settings
+        //Multi Checkbox
         $this->add(array(
-            'name'          => 'settings',
+            'name'          => 'multiCheckbox',
             'required'      => false,
             'validators'    => array(
             ),
@@ -76,9 +76,9 @@ class BlockFormInputFilter extends InputFilter
             ),
         ));
 
-        //SeenMovies
+        //Multi Checkbox Inline
         $this->add(array(
-            'name'          => 'seenMovies',
+            'name'          => 'multiCheckboxInline',
             'required'      => false,
             'validators'    => array(
             ),
@@ -86,9 +86,9 @@ class BlockFormInputFilter extends InputFilter
             ),
         ));
 
-        //Car
+        //Select
         $this->add(array(
-            'name'          => 'car',
+            'name'          => 'select',
             'required'      => false,
             'validators'    => array(
             ),
@@ -96,9 +96,19 @@ class BlockFormInputFilter extends InputFilter
             ),
         ));
 
-        //Pets
+        //Multi Select
         $this->add(array(
-            'name'          => 'pets',
+            'name'          => 'multiSelect',
+            'required'      => true,
+            'validators'    => array(
+            ),
+            'filters'       => array(
+            ),
+        ));
+
+        //File
+        $this->add(array(
+            'name'          => 'file',
             'required'      => false,
             'validators'    => array(
             ),
@@ -106,19 +116,9 @@ class BlockFormInputFilter extends InputFilter
             ),
         ));
 
-        //Attachment
+        //Text Append / Prepend
         $this->add(array(
-            'name'          => 'attachment',
-            'required'      => false,
-            'validators'    => array(
-            ),
-            'filters'       => array(
-            ),
-        ));
-
-        //Salary
-        $this->add(array(
-            'name'          => 'salary',
+            'name'          => 'textAp',
             'required'      => false,
             'validators'    => array(
             ),

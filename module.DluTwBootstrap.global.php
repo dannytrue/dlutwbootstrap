@@ -16,14 +16,10 @@
  */
 
 return array(
-    'di' => array(
-        'instance' => array(
-            // View for the layout
-            'Zend\Mvc\View\DefaultRenderingStrategy' => array(
-                'parameters' => array(
-                    'layoutTemplate' => 'layout/layouttwb',
-                ),
-            ),
+    'view_manager' => array(
+        'layout'                    => 'layout/layouttwb',
+        'template_map' => array(
+            'layout/layouttwb'          => __DIR__ . '/../../Vendor/DluTwBootstrap/view/layout/layouttwb.phtml',
         ),
     ),
 );
