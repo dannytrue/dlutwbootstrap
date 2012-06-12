@@ -18,8 +18,11 @@ $this->headLink()->appendStylesheet($basePath . '/css/bootstrap.min.css');
 $this->headLink()->appendStylesheet($basePath . '/css/dlu-tw-bootstrap.css');
 //Twitter Bootstrap responsive styles
 $this->headLink()->appendStylesheet($basePath . '/css/bootstrap-responsive.min.css');
+//Google Prettify style
+$this->headLink()->appendStylesheet($basePath . '/css/prettify.css');
 
 //jQuery and Twitter Bootstrap JS libraries
+$this->inlineScript()->appendFile($basePath . '/js/prettify.js');
 $this->inlineScript()->appendFile($basePath . '/js/jquery-1.7.2.min.js');
 $this->inlineScript()->appendFile($basePath . '/js/bootstrap.min.js');
 
@@ -38,7 +41,7 @@ echo $this->doctype();
     <?php echo $this->headScript() ?>
   </head>
 
-  <body style="padding-top: 60px; padding-bottom: 40px;">
+  <body style="padding-top: 60px; padding-bottom: 40px;" onload="prettyPrint();">
     <div class="container">
         <!-- NavBar -->
         <?php
@@ -46,7 +49,7 @@ echo $this->doctype();
             $brandLink  = new \Zend\Navigation\Page\Mvc();
             $brandLink->setController('tw-bootstrap-demo');
             $brandLink->setAction('index');
-            $brandLink->setLabel('DluTwBootstrap');
+            $brandLink->setLabel('DluTwBootstrap Demo');
             echo $this->navigation()->twbNavbar()->renderNavbar($this->navbar, null, null,
                                                                 $brandLink, null, true, false, true, true);
 
@@ -55,7 +58,10 @@ echo $this->doctype();
         <?php echo $this->content; ?>
         <hr>
         <footer>
-        <p>&copy; 2012 by David Lukas @ ZF Daily (<a href="http://www.zfdaily.com">www.zfdaily.com</a>). All rights reserved.</p>
+        <p>
+            DluTwBootstrap supports: Zend Framework v<?php echo $this->escape($this->supVerZf2); ?>, Twitter Bootstrap v<?php echo $this->escape($this->supVerTwb); ?>
+            <br/>&copy; 2012 by David Lukas @ ZF Daily (<a href="http://www.zfdaily.com">www.zfdaily.com</a>). All rights reserved.
+        </p>
       </footer>
     </div> <!-- /container -->
     <?php echo $this->inlineScript(); ?>

@@ -93,6 +93,11 @@ class Module
         $viewModel          = $e->getViewModel();
         $viewModel->setVariable('navbar', $navbarContainer);
 
+        //Set the version information into the layout view model
+        $config = $e->getApplication()->getConfiguration();
+        $viewModel->setVariable('supVerZf2', $config['dlu_tw_bootstrap']['sup_ver_zf2']);
+        $viewModel->setVariable('supVerTwb', $config['dlu_tw_bootstrap']['sup_ver_twb']);
+
         //Inject routeMatch into every MVC page, otherwise marking pages as active does not work
         $routeMatchInjector = $locator->get('DluTwBootstrap\Navigation\RouteMatchInjector');
         /* @var $routeMatchInjector \DluTwBootstrap\Navigation\RouteMatchInjector */

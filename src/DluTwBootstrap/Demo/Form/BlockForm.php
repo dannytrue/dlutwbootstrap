@@ -12,7 +12,6 @@ class BlockForm extends Form
         $this->setName('demoFormBlock');
         $this->setAttribute('method', 'post');
 
-
         //Hidden
         $this->add(array(
                        'name' => 'hiddenField',
@@ -243,7 +242,7 @@ class BlockForm extends Form
                        'name' => 'submitBtn',
                        'attributes' => array(
                            'type'  => 'submit',
-                           'value' => 'Save changes',
+                           'value' => 'Submit',
                        ),
                    ));
 
@@ -252,7 +251,7 @@ class BlockForm extends Form
                        'name' => 'resetBtn',
                        'attributes' => array(
                            'type'  => 'reset',
-                           'value' => 'Clear form',
+                           'value' => 'Reset',
                        ),
                    ));
 
@@ -261,7 +260,7 @@ class BlockForm extends Form
                        'name' => 'plainBtn',
                        'attributes' => array(
                            'type'  => 'button',
-                           'value' => 'Other action',
+                           'value' => 'Button',
                        ),
                    ));
     }

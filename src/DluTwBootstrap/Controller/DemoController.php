@@ -26,9 +26,27 @@ class DemoController extends ActionController
         $form->setInputFilter($inputFilter);
         $form->get('fsOne')->get('textarea')->setMessages(array('Error message 1', 'Error message 2', 'Error message 3',));
         $form->get('csrf')->setMessages(array('CSRF check failed', 'Wrong CSRF code'));
-        $viewModel  = new ViewModel(array(
-            'form'  => $form,
+        //Source code
+        $moduleDir          = realpath(__DIR__ . '/../../../');
+        $formFile           = '/src/DluTwBootstrap/Demo/Form/BlockForm.php';
+        $formSource         = file_get_contents($moduleDir . $formFile);
+        $inputFilterFile    = '/src/DluTwBootstrap/Demo/Form/BlockFormInputFilter.php';
+        $inputFilterSource  = file_get_contents($moduleDir . $inputFilterFile);
+        $viewScriptFile     = '/view/dlu-tw-bootstrap/demo/form-horizontal-form.phtml';
+        $viewScriptSource   = file_get_contents($moduleDir . $viewScriptFile);
+        $viewModelForm      = new ViewModel(array(
+            'form'              => $form,
         ));
+        $viewModelForm->setTemplate('dlu-tw-bootstrap/demo/form-horizontal-form');
+        $viewModel  = new ViewModel(array(
+            'formFile'          => $formFile,
+            'formSource'        => $formSource,
+            'inputFilterFile'   => $inputFilterFile,
+            'inputFilterSource' => $inputFilterSource,
+            'viewScriptFile'    => $viewScriptFile,
+            'viewScriptSource'  => $viewScriptSource,
+        ));
+        $viewModel->addChild($viewModelForm, 'formOutput');
         //$viewModel->setTemplate('dlu-tw-bootstrap/demo/form-horizontal2');
         return $viewModel;
     }
