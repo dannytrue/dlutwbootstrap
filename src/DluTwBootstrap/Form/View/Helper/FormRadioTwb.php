@@ -2,6 +2,7 @@
 namespace DluTwBootstrap\Form\View\Helper;
 
 use Zend\Form\ElementInterface;
+use Traversable;
 
 class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
 {
@@ -28,8 +29,7 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
 
     /**
      * Retrieve the FormLabel helper
-     *
-     * @return FormLabelRadioOptionTwb
+     * @return \Zend\Form\View\Helper\FormLabel
      * @throws \Exception
      */
     protected function getLabelHelper() {
@@ -57,6 +57,7 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
      *
      * @param  ElementInterface $element
      * @return string
+     * @throws \Zend\Form\Exception\DomainException
      */
     public function render(ElementInterface $element)
     {
@@ -91,7 +92,6 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
             unset($attributes['value']);
         }
 
-        $inputHelper    = $this->getInputHelper();
         $escapeHelper   = $this->getEscapeHelper();
         $labelHelper    = $this->getLabelHelper();
         $labelOpen      = $labelHelper->openTag();

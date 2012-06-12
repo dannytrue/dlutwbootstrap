@@ -2,6 +2,7 @@
 namespace DluTwBootstrap\Form\View\Helper;
 
 use Zend\Form\ElementInterface;
+use Traversable;
 
 class FormMultiCheckboxTwb extends \Zend\Form\View\Helper\FormMultiCheckbox
 {
@@ -27,8 +28,7 @@ class FormMultiCheckboxTwb extends \Zend\Form\View\Helper\FormMultiCheckbox
 
     /**
      * Retrieve the FormLabel helper
-     *
-     * @return FormLabelRadioOptionTwb
+     * @return \Zend\Form\View\Helper\FormLabel
      * @throws \Exception
      */
     protected function getLabelHelper() {
@@ -56,6 +56,7 @@ class FormMultiCheckboxTwb extends \Zend\Form\View\Helper\FormMultiCheckbox
      *
      * @param  ElementInterface $element
      * @return string
+     * @throws \Zend\Form\Exception\DomainException
      */
     public function render(ElementInterface $element)
     {
@@ -90,7 +91,6 @@ class FormMultiCheckboxTwb extends \Zend\Form\View\Helper\FormMultiCheckbox
             unset($attributes['value']);
         }
 
-        $inputHelper    = $this->getInputHelper();
         $escapeHelper   = $this->getEscapeHelper();
         $labelHelper    = $this->getLabelHelper();
         $labelOpen      = $labelHelper->openTag();

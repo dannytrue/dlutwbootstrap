@@ -49,11 +49,10 @@ class FormTwb extends \Zend\Form\View\Helper\Form
     }
 
     /**
-     * Invoke as function
-     * @param Form|null $form
-     * @param string|null $formType
+     * @param null|Form $form
+     * @param null|string $formType
      * @param array $dispSpec
-     * @return FormTwb|string
+     * @return FormTwb|string|\Zend\Form\View\Helper\Form
      */
     public function __invoke(Form $form = null, $formType = null, array $dispSpec = array()) {
         if(is_null($form)) {
@@ -77,6 +76,7 @@ class FormTwb extends \Zend\Form\View\Helper\Form
         $html   = $this->openTag($form, $formType);
         //Form content
         $fieldsetHelper = $this->getHelper('form_fieldset_twb');
+        /* @var $fieldsetHelper \DluTwBootstrap\Form\View\Helper\FormFieldsetTwb */
         $inputFilter    = $form->getInputFilter();
         $html   .= $fieldsetHelper->content($form, $formType, $inputFilter, $dispSpec, true);
         //Form actions
@@ -157,6 +157,7 @@ class FormTwb extends \Zend\Form\View\Helper\Form
      * @param  null|FormInterface $form
      * @param null|string $formType
      * @return string
+     * @throws \DluTwBootstrap\Form\Exception\UnsupportedFormTypeException
      */
     public function openTag(FormInterface $form = null, $formType = null) {
         if(is_null($formType)) {

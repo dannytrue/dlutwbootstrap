@@ -7,7 +7,7 @@ class TwbButtons extends AbstractButtonHelper
 
     /**
      * Renders helper
-     * @param  string|Navigation\AbstractContainer $container [optional] container to render.
+     * @param  string|\Zend\Navigation\AbstractContainer $container [optional] container to render.
      *                                         Default is null, which indicates
      *                                         that the helper should render
      *                                         the container returned by {@link
@@ -33,35 +33,6 @@ class TwbButtons extends AbstractButtonHelper
         }
         $options    = array('type'  => $type);
         $html       = $this->renderContainer($container, $renderIcons, false, $options);
-        return $html;
-    }
-
-    protected function xrenderSubnav(\Zend\Navigation\Page\AbstractPage $page,
-                                    $renderIcons = true,
-                                    $activeIconInverse = true,
-                                    array $options = array()) {
-        //Get label and title
-        $label      = $this->translate($page->getLabel());
-        $title      = $this->translate($page->getTitle());
-        $escaper    = $this->view->plugin('escape');
-        //Get attribs
-        $aAttribs   = array(
-            'title'         => $title,
-            'class'         => 'btn dropdown-toggle' . ($page->getClass() ? (' ' . $page->getClass()) : ''),
-            'data-toggle'   => 'dropdown',
-        );
-        if($renderIcons) {
-            $iconHtml   = $this->htmlifyIcon($page, $activeIconInverse);
-        } else {
-            $iconHtml   = '';
-        }
-        $html   = '<div class="btn-group">';
-        $html   .= "\n" . '<a href="#"' . $this->_htmlAttribs($aAttribs) . '>'
-            . $iconHtml . $escaper($label) . '<b class="caret"></b></a>';
-        $html   .= "\n" . '<ul class="dropdown-menu">';
-        $html   .= $this->renderContainer($page, $renderIcons, $activeIconInverse, $options);
-        $html   .= "\n</ul>";
-        $html   .= '</div>';
         return $html;
     }
 }

@@ -53,6 +53,7 @@ class FormFieldsetTwb extends \Zend\Form\View\Helper\AbstractHelper
         foreach($iterator as $elementOrFieldset) {
             if($elementOrFieldset instanceof FieldsetInterface) {
                 //Fieldset
+                /* @var $elementOrFieldset FieldsetInterface */
                 $html   .= "\n" . $this->render($elementOrFieldset, $formType, $inputFilter, $displayOptions);
             } elseif ($elementOrFieldset instanceof ElementInterface) {
                 //Element

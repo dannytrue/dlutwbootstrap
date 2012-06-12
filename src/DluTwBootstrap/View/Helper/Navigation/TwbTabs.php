@@ -10,7 +10,7 @@ class TwbTabs extends AbstractNavHelper
     /**
      * Renders helper
      *
-     * @param  string|Navigation\AbstractContainer $container [optional] container to render.
+     * @param  string|\Zend\Navigation\AbstractContainer $container [optional] container to render.
      *                                         Default is null, which indicates
      *                                         that the helper should render
      *                                         the container returned by {@link

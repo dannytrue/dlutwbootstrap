@@ -25,7 +25,7 @@ class FormElementTwb extends \Zend\Form\View\Helper\FormElement
             // Bail early if renderer is not pluggable
             return '';
         }
-
+        /* @var $renderer Pluggable */
         if ($element instanceof Element\Captcha) {
             $helper = $renderer->plugin('form_captcha');
             return $helper($element);

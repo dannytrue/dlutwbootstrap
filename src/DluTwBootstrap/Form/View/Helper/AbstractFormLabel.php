@@ -99,6 +99,7 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
      * @param  null|string $labelContent
      * @param  string $position
      * @return string
+     * @throws \Zend\Form\Exception\DomainException
      */
     public function __invoke(ElementInterface $element, $labelContent = null, $position = null)
     {

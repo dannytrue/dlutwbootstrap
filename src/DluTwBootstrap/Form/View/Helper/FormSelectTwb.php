@@ -64,7 +64,6 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
         $escape        = $this->getEscapeHelper();
 
         foreach ($options as $key => $optionSpec) {
-            $value    = '';
             $label    = '';
             $selected = false;
             $disabled = false;

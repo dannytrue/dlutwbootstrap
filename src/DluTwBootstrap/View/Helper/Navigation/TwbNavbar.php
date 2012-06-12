@@ -10,7 +10,7 @@ class TwbNavbar extends AbstractNavHelper
 
     /**
      * Renders helper
-     * @param  string|Navigation\AbstractContainer $container [optional] container to render.
+     * @param  string|\Zend\Navigation\AbstractContainer $container [optional] container to render.
      *                                         Default is null, which indicates
      *                                         that the helper should render
      *                                         the container returned by {@link
@@ -114,13 +114,16 @@ class TwbNavbar extends AbstractNavHelper
         $html   = '';
         $view   = $this->getView();
         foreach($elements as $element) {
-            if($element instanceof \Zend\Navigation\Container) {
+            if($element instanceof \Zend\Navigation\AbstractContainer) {
                 $options    = array(
                     'align'     => $align,
                     'ulClass'   => 'nav',
                 );
                 $html   .= "\n" . $this->renderContainer($element, $renderIcons, true, $options);
-            } elseif ($element instanceof \DluTwBootstrap\Form\Search) {
+            }
+            //TODO - implement support for search and inline forms
+            /*
+            elseif ($element instanceof \DluTwBootstrap\Form\Search) {
                 $class  = $element->getAttrib('class');
                 $this->addWord('navbar-search', $class);
                 if($align == self::ALIGN_LEFT) {
@@ -140,7 +143,9 @@ class TwbNavbar extends AbstractNavHelper
                 }
                 $element->setAttrib('class', $class);
                 $html   .= "\n" . $element->render();
-            } elseif (is_string($element)) {
+            }
+            */
+            elseif (is_string($element)) {
                 $pClass    = 'navbar-text';
                 if($align == self::ALIGN_LEFT) {
                     $pClass    .= ' pull-left';
