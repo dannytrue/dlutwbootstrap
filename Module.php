@@ -23,11 +23,6 @@ class Module
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function init(\Zend\ModuleManager\ModuleManager $moduleManager) {
-        $sharedEvents   = $moduleManager->events()->getSharedManager();
-        $sharedEvents->attach(__NAMESPACE__, 'dispatch', array($this, 'onModuleDispatch'));
-    }
-
     /**
      * OnBootstrap listener
      * The navigation view helpers do not work 'out-of-the-box' currently,
@@ -78,29 +73,5 @@ class Module
         ));
         //Inject routeMatch into url helper
         $renderer->plugin('url')->setRouteMatch($routeMatch);
-    }
-
-    public function onModuleDispatch(\Zend\Mvc\MvcEvent $e) {
-        //Set the layout template for every action in this module
-        $controller         = $e->getTarget();
-        $controller->layout('layout/layouttwb-demo');
-
-        //Set the main menu into the layout view model
-        $serviceManager     = $e->getApplication()->getServiceManager();
-        $locator  = $serviceManager->get('dependencyInjector');
-        /* @var $locator \Zend\Di\Di */
-        $navbarContainer    = $locator->get('dlutwb-nav-menu-main');
-        $viewModel          = $e->getViewModel();
-        $viewModel->setVariable('navbar', $navbarContainer);
-
-        //Set the version information into the layout view model
-        $config = $e->getApplication()->getConfiguration();
-        $viewModel->setVariable('supVerZf2', $config['dlu_tw_bootstrap']['sup_ver_zf2']);
-        $viewModel->setVariable('supVerTwb', $config['dlu_tw_bootstrap']['sup_ver_twb']);
-
-        //Inject routeMatch into every MVC page, otherwise marking pages as active does not work
-        $routeMatchInjector = $locator->get('DluTwBootstrap\Navigation\RouteMatchInjector');
-        /* @var $routeMatchInjector \DluTwBootstrap\Navigation\RouteMatchInjector */
-        $routeMatchInjector->injectRouteMatch($navbarContainer);
     }
 }

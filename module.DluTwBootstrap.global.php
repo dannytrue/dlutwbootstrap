@@ -18,8 +18,5 @@
 return array(
     'view_manager' => array(
         'layout'                    => 'layout/layouttwb',
-        'template_map' => array(
-            'layout/layouttwb'          => __DIR__ . '/../../Vendor/DluTwBootstrap/view/layout/layouttwb.phtml',
-        ),
     ),
 );
