@@ -39,8 +39,8 @@ Implemented features
 Supported versions
 ------------------
 
-- Zend Framework 2.0.0beta3
-- Twitter Bootstrap v2.0.3
+- Zend Framework 2.0.0beta4
+- Twitter Bootstrap v2.0.4
 
 --------------------------------------------------------------
 
