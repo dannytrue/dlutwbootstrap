@@ -13,28 +13,30 @@ Implemented features
 
 ### [Forms](http://twitter.github.com/bootstrap/base-css.html#forms)
 
-- All four form types supported (Horizontal, Vertical, Inline, Search)
-- All ZF2 form elements except Captcha and Image are supported (MultiCheckbox, Multiselect and Radio elements cannot be used on inline and search forms):
+- All four Twitter Bootstrap form types supported - Horizontal, Vertical, Inline, Search
+- Supported form elements
     - Button
     - Checkbox
+    - Csrf
     - File
-    - Hash
     - Hidden
-    - MultiCheckbox
-    - Multiselect
+    - MultiCheckbox (not supported on Inline and Search forms)
+    - Multiselect (not supported on Inline and Search forms)
     - Password
-    - Radio
+    - Radio (not supported on Inline and Search forms)
     - Reset
     - Select
     - Submit
     - Text
     - Textarea
-- Inline help, block help, placeholder text supported with relevant controls
-- Error state and messages
+- Unsupported form elements
+    - Captcha
+- Inline help, block help (description) and placeholder text are supported with relevant elements
+- Error state and messages (error messages are supported on Horizontal and Vertical forms)
 - Highlighting required fields
 - Prepend / append text to text input
 - Multi-checkbox and radio can be optionally rendered inline
-- Form legend
+- Fieldset legend
 
 Supported versions
 ------------------
@@ -55,104 +57,22 @@ Installation
      *If you already have the Twitter Bootstrap and jQuery environment set-up properly in your project, you just need to reference the style override file `/public/css/dlu-tw-bootstrap.css` in your layout and you may skip the rest of the installation.
      (Please see `/view/layout/layouttwb.phtml` if you are not sure where this file fits.)*
 
-4.   Copy (or link) everything from the module's `public` directory to your project's `public` directory (i.e. Twitter Bootstrap and jQuery css and js files).
-5.   Move `dlutwbootstrap.global.config.php` from the module's root directory to your project's `./config/autoload` directory (this sets the layout script to the one supplied with the module to load all necessary css and js dependencies).
+4.   Copy (or link) everything from the module's `public` directory to your project's `public` directory (i.e. Twitter Bootstrap and jQuery css files, js files and images).
+5.   Move `module.DluTwBootstrap.global.php` from the module's root directory to your project's `./config/autoload` directory .This sets the layout script to the one supplied with the module to load all necessary css and js dependencies.
+     (Do not do this if you have your own layout and you already have the Twitter Bootstrap environment set-up properly in your project!)
 
 Check and Demo
 --------------
 
-Check that everything is working properly by going to the demo page included with the module:  
-`http://<your-machine>/tw-bootstrap-demo/form`
-
-The demo page also describes the capabilities of the individual form elements.
-
-Please check the demo form classes
-
-- `\DluTwBootstrap\Form\DemoHorizontal`
-- `\DluTwBootstrap\Form\DemoVertical`
-- `\DluTwBootstrap\Form\DemoInline`
-- `\DluTwBootstrap\Form\DemoSearch`
-
-to see how the forms are constructed.
+To check that you have installed the module properly and to see it in action, install the [DluTwBootstrap Demo module](https://bitbucket.org/dlu/dlutwbootstrap-demo).
+The Demo module is the easiest and quickest way to start working with the DluTwBootstrap module as it clearly shows the rendered output (e.g. a form) 'side by side'
+with the actual source code used to produce that output. Recommended!
 
 -----------------------------------------------------------------------------------
-
-How to use
-----------
-
-1.   Your form class must extend one of the four supplied form classes (and you are basically done!):
-       - `\DluTwBootstrap\Form\Horizontal`
-       - `\DluTwBootstrap\Form\Vertical`
-       - `\DluTwBootstrap\Form\Inline`
-       - `\DluTwBootstrap\Form\Search`
-2.   Create and add your form elements as usual
-3.   Display your form as usual
-4.   ...that's all there is to it!
-
-### Form Legend
-
-If you want to display a form heading (legend), use the standard form method `setLegend()`.
-
-### Element help texts
-
-Some form elements support an inline help (short line of text displayed inline after the element) and / or a placeholder text (text displayed as an element's value until the actual value is entered). Please check the demo page to see which elements support these texts.
-
-To set these texts, use either the element's setter methods:
-
-- `setInlineHelp()`
-- `setPlaceholderText()`
-
-or use the element's configuration options (see below).
-
-The standard element description is rendered below the element and is supported with all form elements on horizontal and vertical forms either via the standard element's setter (`setDescription()`) or via a configuration option:
-
-    $this->addElement('text', 'name', array(
-        'label'             => 'Name',
-        'placeholderText'   => 'Your name',
-        'inlineHelp'        => 'Use your real name',
-        'description'       => 'We will not use your name for anything bad.',
-    ));
-
-### Inline Radio and Multicheckbox elements
-
-To display the radio buttons or multi checkboxes inline, eiter use the element's method `setInline(true)` or use the element's configuration options:
-
-    $this->addElement('radio', 'rateUs2', array(
-        'label'             => 'Select a letter',
-        'inline'            => true,
-        'multiOptions'      => array(
-            'a'   => 'A',
-            'b'   => 'B',
-            'c'   => 'C',
-        ),
-    ));
-
-### Prepend or append text to Text elements
-
-To display a fixed text before and/or after a text element, either use the element's methods `setPrependText()` and `setAppendText()` or use the element's configuration options:
-
-    $this->addElement('text', 'salary', array(
-        'label'             => 'Salary',
-        'prependText'       => '$',
-        'appendText'        => '.00',
-    ));
-
-Do not escape these texts, they are escaped automatically.
-
-Prepended and appended text is supported on horizontal and inline forms.
-
-### Display form buttons in a gray strip (horizontal form)
-
-To display the buttons on a horizontal form indented on gray background, add them to a display group of `\DluTwBootstrap\Form\DgFormActions` class:
-
-	$this->addDisplayGroup(array('submitBtn', 'resetBtn'),
-		'formActions',
-		array('displayGroupClass' => '\DluTwBootstrap\Form\DgFormActions'));
-
------------------------------------------------------------------
 
 Links
 -----
 
 - The DluTwBootstrap ZF2 module is available at Bitbucket: [https://bitbucket.org/dlu/dlutwbootstrap](https://bitbucket.org/dlu/dlutwbootstrap)
-- You may find other useful information in my blog post at ZF Daily: [Twitter Bootstrap Forms with ZF2. Easily.](http://www.zfdaily.com/2012/04/twitter-bootstrap-forms-with-zf2-easily/) You are welcome to post here any questions related to the DluTwBootstrap form functionality.
+- The DluTwBootstrap Demo ZF2 module is available at Bitbucket: [https://bitbucket.org/dlu/dlutwbootstrap-demo](https://bitbucket.org/dlu/dlutwbootstrap-demo)
+- You may find other useful information and ask about the DluTwBootstrap module on the ZF Daily blog: [DluTwBootstrap stuff @ ZF Daily](http://www.zfdaily.com/tag/dlutwbootstrap/)
