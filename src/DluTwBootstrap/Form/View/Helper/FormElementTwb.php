@@ -5,21 +5,26 @@ use Zend\Form\Element;
 use Zend\Form\ElementInterface;
 use Zend\Loader\Pluggable;
 
+/**
+ * Form Element
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormElementTwb extends \Zend\Form\View\Helper\FormElement
 {
     /**
      * Render an element
-     *
      * Introspects the element type and attributes to determine which
      * helper to utilize when rendering.
-     *
      * @param  ElementInterface $element
      * @param array $displayOptions
      * @param string|null $formType
      * @return string
      */
-    public function render(ElementInterface $element, array $displayOptions = array(), $formType = null)
-    {
+    public function render(ElementInterface $element, array $displayOptions = array(), $formType = null) {
         $renderer = $this->getView();
         if (!$renderer instanceof Pluggable) {
             // Bail early if renderer is not pluggable

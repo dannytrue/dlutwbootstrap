@@ -1,6 +1,14 @@
 <?php
 namespace DluTwBootstrap\View\Helper\Navigation;
 
+/**
+ * TwbButtons
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class TwbButtons extends AbstractButtonHelper
 {
     /* *********************** METHODS *************************** */
@@ -19,6 +27,13 @@ class TwbButtons extends AbstractButtonHelper
         return $this->renderButtons($container);
     }
 
+    /**
+     * Renders buttons
+     * @param null|\Zend\Navigation\Navigation $container
+     * @param null|string $type
+     * @param bool $renderIcons
+     * @return string
+     */
     public function renderButtons(\Zend\Navigation\Navigation $container = null,
                                $type = null,
                                $renderIcons = true) {

@@ -2,7 +2,7 @@
 namespace DluTwBootstrap;
 
 /**
- * Util - general utilities
+ * General Utilities
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License

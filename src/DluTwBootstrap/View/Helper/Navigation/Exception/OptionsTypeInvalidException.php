@@ -3,7 +3,7 @@ namespace DluTwBootstrap\View\Helper\Navigation\Exception;
 use DluTwBootstrap\View\Helper\Navigation\Exception;
 
 /**
- * UnsupportedElementType Exception
+ * UnsupportedElementTypeException
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License

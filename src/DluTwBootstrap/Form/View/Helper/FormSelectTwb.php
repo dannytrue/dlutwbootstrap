@@ -6,19 +6,30 @@ use \DluTwBootstrap\Form\Util as FormUtil;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
+/**
+ * Form Select
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
 {
     /**
+     * General utils
      * @var GenUtil
      */
     protected $genUtil;
 
     /**
+     * Form utils
      * @var \DluTwBootstrap\Form\Util
      */
     protected $formUtil;
 
     /**
+     * Allowed select attributes
      * @var array
      */
     protected $validSelectAttributes = array(
@@ -41,9 +52,7 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
 
     /**
      * Render an array of options
-     *
      * Individual options should be of the form:
-     *
      * <code>
      * array(
      *     'value'    => 'value',
@@ -52,7 +61,6 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
      *     'selected' => $booleanFlag,
      * )
      * </code>
-     *
      * @param  array $options
      * @param  array $selectedOptions Option values that should be marked as selected
      * @return string
@@ -114,7 +122,6 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
 
     /**
      * Render a form <select> element from the provided $element
-     *
      * @param  ElementInterface $element
      * @param string|null $sizeClass
      * @param integer|null $size Number of lines/items in the dropdown

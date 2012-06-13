@@ -8,6 +8,14 @@ use Zend\Form\Form;
 use Zend\Form\ElementInterface;
 use Zend\Form\FormInterface;
 
+/**
+ * Form
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormTwb extends \Zend\Form\View\Helper\Form
 {
     /**
@@ -34,6 +42,7 @@ class FormTwb extends \Zend\Form\View\Helper\Form
     protected $helperInstances  = array();
 
     /**
+     * General utils
      * @var GenUtil
      */
     protected $genUtil;

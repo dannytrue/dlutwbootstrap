@@ -1,14 +1,22 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
+
 use Zend\Form\ElementInterface;
 use DluTwBootstrap\Util as GenUtil;
 use DluTwBootstrap\Form\Util as FormUtil;
 
+/**
+ * Abstract Form Helper
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
 {
     /**
      * Attributes valid for the label tag
-     *
      * @var array
      */
     protected $validTagAttributes = array(
@@ -18,16 +26,19 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
     );
 
     /**
+     * Form utilities
      * @var FormUtil
      */
     protected $util;
 
     /**
+     * General utilities
      * @var GenUtil
      */
     protected $genUtil;
 
     /**
+     * Form type
      * @var string
      */
     protected $formType     = FormUtil::FORM_TYPE_HORIZONTAL;
@@ -46,14 +57,12 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
 
     /**
      * Generate an opening label tag
-     *
      * @param  null|array|ElementInterface $attributesOrElement
      * @return string
      * @throws \Zend\Form\Exception\DomainException
      * @throws \Zend\Form\Exception\InvalidArgumentException
      */
-    public function openTag($attributesOrElement = null)
-    {
+    public function openTag($attributesOrElement = null) {
         if (null === $attributesOrElement) {
             $attributesOrElement    = array();
         }

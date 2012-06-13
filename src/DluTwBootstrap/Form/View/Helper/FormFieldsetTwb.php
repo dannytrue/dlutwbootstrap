@@ -7,6 +7,14 @@ use Zend\Form\ElementInterface;
 use Zend\InputFilter\InputFilterInterface;
 use Zend\Loader\Pluggable;
 
+/**
+ * Form Fieldset
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormFieldsetTwb extends \Zend\Form\View\Helper\AbstractHelper
 {
     /**
@@ -17,6 +25,12 @@ class FormFieldsetTwb extends \Zend\Form\View\Helper\AbstractHelper
 
     /* **************************** METHODS ****************************** */
 
+    /**
+     * Returns the fieldset opening tag and legend tag, if legend is defined
+     * @param FieldsetInterface $fieldset
+     * @param string $formType
+     * @return string
+     */
     public function openTag(FieldsetInterface $fieldset, $formType) {
         $html   = '<fieldset>';
         $legend = $fieldset->getAttribute('legend');
@@ -29,6 +43,10 @@ class FormFieldsetTwb extends \Zend\Form\View\Helper\AbstractHelper
         return $html;
     }
 
+    /**
+     * Returns the fieldset closing tag
+     * @return string
+     */
     public function closeTag() {
         return '</fieldset>';
     }

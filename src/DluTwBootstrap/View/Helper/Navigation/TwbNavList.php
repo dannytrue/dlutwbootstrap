@@ -1,9 +1,16 @@
 <?php
 namespace DluTwBootstrap\View\Helper\Navigation;
 
+/**
+ * TwbNavList
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class TwbNavList extends AbstractNavHelper
 {
-
 
     /* *********************** METHODS *************************** */
 
@@ -21,6 +28,13 @@ class TwbNavList extends AbstractNavHelper
         return $this->renderNavList($container);
     }
 
+    /**
+     * Renders NavList
+     * @param null|\Zend\Navigation\Navigation $container
+     * @param bool $well
+     * @param bool $renderIcons
+     * @return string
+     */
     public function renderNavList(\Zend\Navigation\Navigation $container = null, $well = true, $renderIcons = true) {
         if (null === $container) {
             $container = $this->getContainer();

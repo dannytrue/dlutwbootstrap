@@ -6,14 +6,24 @@ use \DluTwBootstrap\Form\Util as FormUtil;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
+/**
+ * Form Textarea
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormTextareaTwb extends \Zend\Form\View\Helper\FormTextarea
 {
     /**
+     * General utils
      * @var GenUtil
      */
     protected $genUtil;
 
     /**
+     * Form utils
      * @var \DluTwBootstrap\Form\Util
      */
     protected $formUtil;

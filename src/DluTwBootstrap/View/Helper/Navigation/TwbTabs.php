@@ -1,9 +1,16 @@
 <?php
 namespace DluTwBootstrap\View\Helper\Navigation;
 
+/**
+ * TwbTabs
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class TwbTabs extends AbstractNavHelper
 {
-
 
     /* *********************** METHODS *************************** */
 
@@ -22,6 +29,14 @@ class TwbTabs extends AbstractNavHelper
         return $this->renderTabs($container);
     }
 
+    /**
+     * Renders Tabs
+     * @param null|\Zend\Navigation\Navigation $container
+     * @param bool $pills
+     * @param bool $stacked
+     * @param bool $renderIcons
+     * @return string
+     */
     public function renderTabs(\Zend\Navigation\Navigation $container = null,
                                $pills = false,
                                $stacked = false,

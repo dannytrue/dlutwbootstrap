@@ -7,6 +7,14 @@ use Zend\InputFilter\InputInterface;
 use Zend\Form\Element;
 use Zend\Loader\Pluggable;
 
+/**
+ * Form Element Full
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormElementFullTwb extends \Zend\Form\View\Helper\AbstractHelper
 {
     /**

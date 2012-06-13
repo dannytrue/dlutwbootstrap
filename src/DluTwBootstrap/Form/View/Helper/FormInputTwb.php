@@ -7,20 +7,23 @@ use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
 /**
- * @category   Zend
- * @package    Zend_Form
- * @subpackage View
- * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * Form Input
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
 class FormInputTwb extends \Zend\Form\View\Helper\FormInput
 {
     /**
+     * General utils
      * @var GenUtil
      */
     protected $genUtil;
 
     /**
+     * Form utils
      * @var FormUtil
      */
     protected $formUtil;

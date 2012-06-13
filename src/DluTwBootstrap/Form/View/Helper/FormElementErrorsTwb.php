@@ -1,11 +1,21 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
+
 use \Zend\Form\ElementInterface;
 use \DluTwBootstrap\Util as GenUtil;
 
+/**
+ * Form Element Errors
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormElementErrorsTwb extends \Zend\Form\View\Helper\FormElementErrors
 {
     /**
+     * General utils
      * @var GenUtil
      */
     protected $genUtil;
@@ -22,7 +32,6 @@ class FormElementErrorsTwb extends \Zend\Form\View\Helper\FormElementErrors
 
     /**
      * Render validation errors for the provided $element
-     *
      * @param  ElementInterface $element
      * @param array $attributes
      * @return string
