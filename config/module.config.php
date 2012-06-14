@@ -9,7 +9,7 @@ return array(
         ),
     ),
     'dlu_tw_bootstrap'  => array(
-        'sup_ver_zf2'       => '2.0.0beta4-251-g12ccc9c',
+        'sup_ver_zf2'       => '2.0.0beta4-405-g6bf5dff',
         'sup_ver_twb'       => '2.0.4',
     ),
 );
