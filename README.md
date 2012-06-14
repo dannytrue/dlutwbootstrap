@@ -1,5 +1,5 @@
-DluTwBootstrap
-==============
+DluTwBootstrap (ZF2 module)
+===========================
 
 -------------------------------------------------
 
@@ -7,6 +7,8 @@ Introduction
 ------------
 
 DluTwBootstrap is a [Zend Framework 2](http://framework.zend.com/zf2) module facilitating usage of [Twitter Bootstrap](http://twitter.github.com/bootstrap) in ZF2 applications.
+
+If you are new to DluTwBootstrap, first go to [http://apps.zfdaily.com/dlutwbootstrap-demo](http://apps.zfdaily.com/dlutwbootstrap-demo) to see it in action on-line.
 
 Implemented features
 --------------------
@@ -44,6 +46,9 @@ Supported versions
 - Zend Framework 2.0.0beta4 (v2.0.0beta4-405-g6bf5dff)
 - Twitter Bootstrap v2.0.4
 
+IMPORTANT: If the module does not seem to work, check the version of your ZF2 library and update to the version **and commit**
+specified above.
+
 --------------------------------------------------------------
 
 Installation
@@ -73,6 +78,9 @@ with the actual source code used to produce that output. Recommended!
 Links
 -----
 
-- The DluTwBootstrap ZF2 module is available at Bitbucket: [https://bitbucket.org/dlu/dlutwbootstrap](https://bitbucket.org/dlu/dlutwbootstrap)
-- The DluTwBootstrap Demo ZF2 module is available at Bitbucket: [https://bitbucket.org/dlu/dlutwbootstrap-demo](https://bitbucket.org/dlu/dlutwbootstrap-demo)
-- You may find other useful information and ask about the DluTwBootstrap module on the ZF Daily blog: [DluTwBootstrap stuff @ ZF Daily](http://www.zfdaily.com/tag/dlutwbootstrap/)
+- [DluTwBootstrap (ZF2 module) source](https://bitbucket.org/dlu/dlutwbootstrap)
+- [DluTwBootstrap Demo (ZF2 module) source](https://bitbucket.org/dlu/dlutwbootstrap-demo)
+- DluTwBootstrap Demo App (ZF2 application)
+    - [Live Demo App @ http://apps.zfdaily.com/dlutwbootstrap-demo](http://apps.zfdaily.com/dlutwbootstrap-demo)
+    - [Source](https://bitbucket.org/dlu/dlutwbootstrap-demo-app)
+- [Tutorials ans discussion of DluTwBootstrap on ZF Daily](http://www.zfdaily.com/tag/dlutwbootstrap/)
