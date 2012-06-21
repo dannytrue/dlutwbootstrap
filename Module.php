@@ -73,13 +73,10 @@ class Module
         $serviceManager = $e->getApplication()->getServiceManager();
         $routeMatch     = $e->getRouteMatch();
         $renderer       = $serviceManager->get('viewRenderer');
-        $locator        = $serviceManager->get('dependencyInjector');
-        /* @var $locator \Zend\Di\Di */
         //Configure routeMatchInjector with the current routeMatch
-        $locator->instanceManager()->setParameters(
-            'DluTwBootstrap\Navigation\RouteMatchInjector', array(
-                'routeMatch' => $routeMatch,
-        ));
+        $routeMatchInjector = $serviceManager->get('route-match-injector');
+        /* @var $routeMatchInjector \DluTwBootstrap\Navigation\RouteMatchInjector */
+        $routeMatchInjector->setRouteMatch($routeMatch);
         //Inject routeMatch into url helper
         $renderer->plugin('url')->setRouteMatch($routeMatch);
     }

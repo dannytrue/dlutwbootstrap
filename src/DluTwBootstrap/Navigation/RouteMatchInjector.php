@@ -1,6 +1,10 @@
 <?php
 namespace DluTwBootstrap\Navigation;
 
+use Zend\Mvc\Router\RouteMatch;
+use Zend\Navigation\AbstractContainer;
+use Zend\Navigation\Page\Mvc as MvcPage;
+
 /**
  * Route Match Injector
  * @package DluTwBootstrap
@@ -13,29 +17,29 @@ class RouteMatchInjector
 {
     /**
      * Current RouteMatch object
-     * @var  \Zend\Mvc\Router\RouteMatch
+     * @var  RouteMatch
      */
     protected $routeMatch;
 
     /* *********************** METHODS ********************* */
 
     /**
-     * Constructor
-     * @param \Zend\Mvc\Router\RouteMatch $routeMatch
+     * Sets the current RouteMatch object
+     * @param RouteMatch $routeMatch
      */
-    public function __construct(\Zend\Mvc\Router\RouteMatch $routeMatch) {
+    public function setRouteMatch(RouteMatch $routeMatch) {
         $this->routeMatch   = $routeMatch;
     }
 
     /**
      * Injects the current RouteMatch object into every MVC page in the container
-     * @param \Zend\Navigation\AbstractContainer $navContainer
+     * @param AbstractContainer $navContainer
      */
-    public function injectRouteMatch(\Zend\Navigation\AbstractContainer $navContainer) {
+    public function injectRouteMatch(AbstractContainer $navContainer) {
         $ri = new \RecursiveIteratorIterator($navContainer, \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($ri as $page) {
-            if($page instanceof \Zend\Navigation\Page\Mvc) {
-                /* @var $page \Zend\Navigation\Page\Mvc */
+            if($page instanceof MvcPage) {
+                /* @var $page MvcPage */
                 $page->setRouteMatch($this->routeMatch);
             }
         }
