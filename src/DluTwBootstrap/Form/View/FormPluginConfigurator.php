@@ -1,24 +1,23 @@
 <?php
 namespace DluTwBootstrap\Form\View;
 
-use Zend\Loader\PluginClassLoader;
+use Zend\View\HelperPluginManager;
+use DluTwBootstrap\Form\View\Helper\FormLabelMainTwb;
 
 /**
- * Plugin Class Loader implementation for TWB form view helpers.
+ * FormPluginConfigurator
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class HelperLoader extends PluginClassLoader
+class FormPluginConfigurator
 {
     /**
-     * @var array Pre-aliased view helpers
+     * @var array View helpers
      */
-    protected $plugins = array(
-        'formlabelmaintwb'                      => 'DluTwBootstrap\Form\View\Helper\FormLabelMainTwb',
-        'form_label_main_twb'                   => 'DluTwBootstrap\Form\View\Helper\FormLabelMainTwb',
+    protected $invokables = array(
         'formlabelradiooptiontwb'               => 'DluTwBootstrap\Form\View\Helper\FormLabelRadioOptionTwb',
         'form_label_radio_option_twb'           => 'DluTwBootstrap\Form\View\Helper\FormLabelRadioOptionTwb',
         'formlabelradiooptioninlinetwb'         => 'DluTwBootstrap\Form\View\Helper\FormLabelRadioOptionInlineTwb',
@@ -55,4 +54,33 @@ class HelperLoader extends PluginClassLoader
         'formfieldsettwb'                       => 'DluTwBootstrap\Form\View\Helper\FormFieldsetTwb',
         'form_fieldset_twb'                     => 'DluTwBootstrap\Form\View\Helper\FormFieldsetTwb',
     );
+
+    protected $aliases      = array(
+        'form_label_main_twb'       => 'formlabelmaintwb',
+    );
+
+    /* **************************** METHODS ************************** */
+
+    public function getFactories() {
+        $factories  = array(
+            'formlabelmaintwb'                      => function($sm) {
+                /* @var $sm \Zend\ServiceManager\ServiceManager */
+                $formUtil       = $sm->get('dlu-twb-form-util');
+                $genUtil        = $sm->get('dlu-twb-gen-util');
+                $instance       = new FormLabelMainTwb($formUtil, $genUtil);
+                return $instance;
+            },
+        );
+        return $factories;
+    }
+
+    /**
+     * Configures the submitted HelperPluginManager with the predefined view helpers
+     * @param HelperPluginManager $helperPluginManager
+     */
+    public function configureHelperPluginManager(HelperPluginManager $helperPluginManager) {
+        foreach($this->helpers as $name => $fqcn) {
+            $helperPluginManager->setInvokableClass($name, $fqcn);
+        }
+    }
 }

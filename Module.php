@@ -1,7 +1,8 @@
 <?php
 namespace DluTwBootstrap;
 
-use DluTwBootstrap\Form\View\HelperLoader as FormHelperLoader;
+use DluTwBootstrap\Form\View\FormPluginConfigurator;
+use DluTwBootstrap\View\NavPluginConfigurator;
 
 /**
  * Module
@@ -42,27 +43,27 @@ class Module
      * @param $e
      */
     public function onBootstrap(\Zend\Mvc\MvcEvent $e) {
-        $application    = $e->getApplication();
-        $serviceManager = $application->getServiceManager();
-        $renderer       = $serviceManager->get('viewRenderer');
-        $broker         = $renderer->getBroker();
-        $helperLoader   = $broker->getClassLoader();
-        /* @var $helperLoader \Zend\View\HelperLoader */
+        $application                = $e->getApplication();
+        $serviceManager             = $application->getServiceManager();
+        $renderer                   = $serviceManager->get('viewRenderer');
+        /* @var $renderer \Zend\View\Renderer\PhpRenderer */
+        $viewHelperPluginManager    = $renderer->getHelperPluginManager();
+        /* @var $viewHelperPluginManager \Zend\View\HelperPluginManager */
 
         //Register form view helpers
-        $helperLoader->registerPlugins(new FormHelperLoader());
+        $formPluginConfigurator     = new FormPluginConfigurator();
+        $formPluginConfigurator->configureHelperPluginManager($viewHelperPluginManager);
 
         //Register DluTwBootstrap view navigation helpers
-        $renderer->plugin('navigation')
-                       ->getPluginLoader()
-                       ->registerPlugin('twbNavbar', 'DluTwBootstrap\View\Helper\Navigation\TwbNavbar')
-                       ->registerPlugin('twbNavList', 'DluTwBootstrap\View\Helper\Navigation\TwbNavList')
-                       ->registerPlugin('twbTabs', 'DluTwBootstrap\View\Helper\Navigation\TwbTabs')
-                       ->registerPlugin('twbButtons', 'DluTwBootstrap\View\Helper\Navigation\TwbButtons');
+        $navPluginConfigurator      = new NavPluginConfigurator();
+        $navHelperPluginManager     = $viewHelperPluginManager->get('navigation')->getPluginManager();
+        $navPluginConfigurator->configureHelperPluginManager($navHelperPluginManager);
+
         //Prepare the \Zend\Navigation\Page\Mvc for use in the navigation view helper
-        \Zend\Navigation\Page\Mvc::setDefaultUrlHelper($renderer->plugin('url'));
+        $router                     = $serviceManager->get('router');
+        \Zend\Navigation\Page\Mvc::setDefaultRouter($router);
         //Attach a listener to the app route event
-        $application->events()->attach('route', array($this, 'onRoute'));
+        $application->getEventManager()->attach('route', array($this, 'onRoute'));
     }
 
     /**

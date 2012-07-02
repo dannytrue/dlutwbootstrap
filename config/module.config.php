@@ -9,8 +9,10 @@ return array(
         ),
     ),
     'service_manager'   => array(
-         'invokables'       => array(
+        'invokables'       => array(
             'route-match-injector'  => 'DluTwBootstrap\Navigation\RouteMatchInjector',
+            'dlu-twb-gen-util'      => 'DluTwBootstrap\Util',
+            'dlu-twb-form-util'     => 'DluTwBootstrap\Form\Util',
          ),
     ),
     'dlu_tw_bootstrap'  => array(
