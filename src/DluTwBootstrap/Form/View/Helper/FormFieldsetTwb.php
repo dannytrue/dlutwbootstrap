@@ -5,7 +5,6 @@ use DluTwBootstrap\Form\Exception\UnsupportedElementTypeException;
 use Zend\Form\FieldsetInterface;
 use Zend\Form\ElementInterface;
 use Zend\InputFilter\InputFilterInterface;
-use Zend\Loader\Pluggable;
 
 /**
  * Form Fieldset

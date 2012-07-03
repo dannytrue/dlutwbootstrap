@@ -29,7 +29,7 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
      * Form utilities
      * @var FormUtil
      */
-    protected $util;
+    protected $formUtil;
 
     /**
      * General utilities
@@ -47,12 +47,13 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
 
     /**
      * Constructor
-     * @param \DluTwBootstrap\Form\Util $util
-     * @param \DluTwBootstrap\Util $genUtil
+     * @param GenUtil $genUtil
+     * @param FormUtil $formUtil
      */
-    public function __construct(FormUtil $util, GenUtil $genUtil) {
-        $this->util     = $util;
+    public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
         $this->genUtil  = $genUtil;
+        $this->formUtil = $formUtil;
+
     }
 
     /**

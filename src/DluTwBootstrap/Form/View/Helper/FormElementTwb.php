@@ -3,7 +3,6 @@ namespace DluTwBootstrap\Form\View\Helper;
 
 use Zend\Form\Element;
 use Zend\Form\ElementInterface;
-use Zend\Loader\Pluggable;
 
 /**
  * Form Element
@@ -26,11 +25,6 @@ class FormElementTwb extends \Zend\Form\View\Helper\FormElement
      */
     public function render(ElementInterface $element, array $displayOptions = array(), $formType = null) {
         $renderer = $this->getView();
-        if (!$renderer instanceof Pluggable) {
-            // Bail early if renderer is not pluggable
-            return '';
-        }
-        /* @var $renderer Pluggable */
         if ($element instanceof Element\Captcha) {
             $helper = $renderer->plugin('form_captcha');
             return $helper($element);

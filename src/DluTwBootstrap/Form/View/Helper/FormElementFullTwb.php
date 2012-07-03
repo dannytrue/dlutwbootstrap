@@ -5,7 +5,6 @@ use \DluTwBootstrap\Form\Exception\UnsupportedElementTypeException;
 use Zend\Form\ElementInterface;
 use Zend\InputFilter\InputInterface;
 use Zend\Form\Element;
-use Zend\Loader\Pluggable;
 
 /**
  * Form Element Full
@@ -38,12 +37,6 @@ class FormElementFullTwb extends \Zend\Form\View\Helper\AbstractHelper
                            $formType,
                            InputInterface $input = null,
                            array $displayOptions = array()) {
-        $renderer = $this->getView();
-        if (!$renderer instanceof Pluggable) {
-            //Bail early if renderer is not pluggable
-            return '';
-        }
-
         //CSRF
         if ($element instanceof Element\Csrf) {
             $html   = $this->getBareElementWithErrorsMarkup($element, $displayOptions);

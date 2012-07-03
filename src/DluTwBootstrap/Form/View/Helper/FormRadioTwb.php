@@ -44,15 +44,11 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
         if ($this->labelHelper) {
             return $this->labelHelper;
         }
-
-        if ($this->view instanceof \Zend\Loader\Pluggable) {
-            if($this->inline) {
-                $this->labelHelper = $this->view->plugin('form_label_radio_option_inline_twb');
-            } else {
-                $this->labelHelper = $this->view->plugin('form_label_radio_option_twb');
-            }
+        if($this->inline) {
+            $this->labelHelper = $this->view->plugin('form_label_radio_option_inline_twb');
+        } else {
+            $this->labelHelper = $this->view->plugin('form_label_radio_option_twb');
         }
-
         if (!$this->labelHelper instanceof AbstractFormLabel) {
             throw new \Exception('Wrong type of label helper.');
         }
