@@ -96,7 +96,7 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
             unset($attributes['value']);
         }
 
-        $escapeHelper   = $this->getEscapeHelper();
+        $escapeHelper   = $this->getEscapeHtmlHelper();
         $labelHelper    = $this->getLabelHelper();
         $labelOpen      = $labelHelper->openTag();
         $labelClose     = $labelHelper->closeTag();

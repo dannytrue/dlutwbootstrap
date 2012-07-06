@@ -87,7 +87,7 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
                                        array $options = array()) {
         $icon   = $this->htmlifyIcon($item, $renderIcons, $activeIconInverse);
         $label  = $this->translate($item->getLabel());
-        $html   = $icon . $this->getView()->escape($label);
+        $html   = $icon . $this->getView()->escapeHtml($label);
         return $html;
     }
 
@@ -183,7 +183,7 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
         //Get label and title
         $label      = $this->translate($page->getLabel());
         $title      = $this->translate($page->getTitle());
-        $escaper    = $this->view->plugin('escape');
+        $escaper    = $this->view->plugin('escapeHtml');
         //Get attribs
         $class      = $page->getClass();
         $this->addWord('dropdown-toggle', $class);
@@ -230,7 +230,7 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
         // get label and title for translating
         $label      = $this->translate($page->getLabel());
         $title      = $this->translate($page->getTitle());
-        $escaper    = $this->view->plugin('escape');
+        $escaper    = $this->view->plugin('escapeHtml');
         //Get attribs for anchor element
         $attribs = array(
             'id'     => $page->getId(),

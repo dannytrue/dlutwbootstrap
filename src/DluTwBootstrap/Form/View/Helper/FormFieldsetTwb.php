@@ -35,7 +35,7 @@ class FormFieldsetTwb extends \Zend\Form\View\Helper\AbstractHelper
         $legend = $fieldset->getAttribute('legend');
         if($legend && ($formType == \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL
                 || $formType == \DluTwBootstrap\Form\Util::FORM_TYPE_VERTICAL)) {
-            $escapeHelper   = $this->getEscapeHelper();
+            $escapeHelper   = $this->getEscapeHtmlHelper();
             $legend         = $escapeHelper($legend);
             $html           .= "<legend>$legend</legend>";
         }

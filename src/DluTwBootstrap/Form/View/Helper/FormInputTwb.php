@@ -48,7 +48,7 @@ class FormInputTwb extends \Zend\Form\View\Helper\FormInput
      * @return string
      */
     public function render(ElementInterface $element, $sizeClass = null, $formType = null) {
-        $escapeHelper   = $this->getEscapeHelper();
+        $escapeHelper   = $this->getEscapeHtmlHelper();
         $type           = $element->getAttribute('type');
         //Type specific mods
         switch($type) {

@@ -38,7 +38,7 @@ class FormElementDescriptionTwb extends \Zend\Form\View\Helper\AbstractHelper
         if(!in_array($type, $this->supportedTypes)) {
             return '';
         }
-        $escapeHelper   = $this->getEscapeHelper();
+        $escapeHelper   = $this->getEscapeHtmlHelper();
         $html           = '';
         //Description
         if($element->getAttribute('description')) {

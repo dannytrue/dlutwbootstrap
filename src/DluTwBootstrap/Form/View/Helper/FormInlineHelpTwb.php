@@ -36,7 +36,7 @@ class FormInlineHelpTwb extends \Zend\Form\View\Helper\AbstractHelper
         if(!in_array($type, $this->supportedTypes)) {
             return '';
         }
-        $escapeHelper   = $this->getEscapeHelper();
+        $escapeHelper   = $this->getEscapeHtmlHelper();
         $html           = '';
         //Inline help
         if($element->getAttribute('inlineHelp')) {

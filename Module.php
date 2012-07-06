@@ -79,60 +79,60 @@ class Module
         return array(
             'factories'     => array(
                 'formlabelmaintwb'      => function($sm) {
-                    $formUtil       = $sm->get('dlu-twb-form-util');
-                    $genUtil        = $sm->get('dlu-twb-gen-util');
+                    $formUtil       = $sm->getServiceLocator()->get('dlu-twb-form-util');
+                    $genUtil        = $sm->getServiceLocator()->get('dlu-twb-gen-util');
                     $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelMainTwb($genUtil, $formUtil);
                     return $instance;
                 },
                 'formlabelradiooptiontwb'      => function($sm) {
-                    $formUtil       = $sm->get('dlu-twb-form-util');
-                    $genUtil        = $sm->get('dlu-twb-gen-util');
+                    $formUtil       = $sm->getServiceLocator()->get('dlu-twb-form-util');
+                    $genUtil        = $sm->getServiceLocator()->get('dlu-twb-gen-util');
                     $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelRadioOptionTwb($genUtil, $formUtil);
                     return $instance;
                 },
                 'formlabelradiooptioninlinetwb'      => function($sm) {
-                    $formUtil       = $sm->get('dlu-twb-form-util');
-                    $genUtil        = $sm->get('dlu-twb-gen-util');
+                    $formUtil       = $sm->getServiceLocator()->get('dlu-twb-form-util');
+                    $genUtil        = $sm->getServiceLocator()->get('dlu-twb-gen-util');
                     $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelRadioOptionInlineTwb($genUtil, $formUtil);
                     return $instance;
                 },
                 'formlabelcheckboxoptiontwb'      => function($sm) {
-                    $formUtil       = $sm->get('dlu-twb-form-util');
-                    $genUtil        = $sm->get('dlu-twb-gen-util');
+                    $formUtil       = $sm->getServiceLocator()->get('dlu-twb-form-util');
+                    $genUtil        = $sm->getServiceLocator()->get('dlu-twb-gen-util');
                     $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelCheckboxOptionTwb($genUtil, $formUtil);
                     return $instance;
                 },
                 'formlabelcheckboxoptioninlinetwb'      => function($sm) {
-                    $formUtil       = $sm->get('dlu-twb-form-util');
-                    $genUtil        = $sm->get('dlu-twb-gen-util');
+                    $formUtil       = $sm->getServiceLocator()->get('dlu-twb-form-util');
+                    $genUtil        = $sm->getServiceLocator()->get('dlu-twb-gen-util');
                     $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelCheckboxOptionInlineTwb($genUtil, $formUtil);
                     return $instance;
                 },
                 'formselecttwb'      => function($sm) {
-                    $formUtil       = $sm->get('dlu-twb-form-util');
-                    $genUtil        = $sm->get('dlu-twb-gen-util');
+                    $formUtil       = $sm->getServiceLocator()->get('dlu-twb-form-util');
+                    $genUtil        = $sm->getServiceLocator()->get('dlu-twb-gen-util');
                     $instance       = new \DluTwBootstrap\Form\View\Helper\FormSelectTwb($genUtil, $formUtil);
                     return $instance;
                 },
                 'forminputtwb'      => function($sm) {
-                    $formUtil       = $sm->get('dlu-twb-form-util');
-                    $genUtil        = $sm->get('dlu-twb-gen-util');
+                    $formUtil       = $sm->getServiceLocator()->get('dlu-twb-form-util');
+                    $genUtil        = $sm->getServiceLocator()->get('dlu-twb-gen-util');
                     $instance       = new \DluTwBootstrap\Form\View\Helper\FormInputTwb($genUtil, $formUtil);
                     return $instance;
                 },
                 'formtextareatwb'      => function($sm) {
-                    $formUtil       = $sm->get('dlu-twb-form-util');
-                    $genUtil        = $sm->get('dlu-twb-gen-util');
+                    $formUtil       = $sm->getServiceLocator()->get('dlu-twb-form-util');
+                    $genUtil        = $sm->getServiceLocator()->get('dlu-twb-gen-util');
                     $instance       = new \DluTwBootstrap\Form\View\Helper\FormTextareaTwb($genUtil, $formUtil);
                     return $instance;
                 },
                 'formelementerrorstwb'      => function($sm) {
-                    $genUtil        = $sm->get('dlu-twb-gen-util');
+                    $genUtil        = $sm->getServiceLocator()->get('dlu-twb-gen-util');
                     $instance       = new \DluTwBootstrap\Form\View\Helper\FormElementErrorsTwb($genUtil);
                     return $instance;
                 },
                 'formtwb'      => function($sm) {
-                    $genUtil        = $sm->get('dlu-twb-gen-util');
+                    $genUtil        = $sm->getServiceLocator()->get('dlu-twb-gen-util');
                     $instance       = new \DluTwBootstrap\Form\View\Helper\FormTwb($genUtil);
                     return $instance;
                 },

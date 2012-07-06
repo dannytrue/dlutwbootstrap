@@ -69,7 +69,7 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
     {
         $template      = '<option %s>%s</option>';
         $optionStrings = array();
-        $escape        = $this->getEscapeHelper();
+        $escape        = $this->getEscapeHtmlHelper();
 
         foreach ($options as $key => $optionSpec) {
             $label    = '';

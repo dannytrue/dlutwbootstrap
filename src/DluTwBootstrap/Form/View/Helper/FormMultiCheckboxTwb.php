@@ -95,7 +95,7 @@ class FormMultiCheckboxTwb extends \Zend\Form\View\Helper\FormMultiCheckbox
             unset($attributes['value']);
         }
 
-        $escapeHelper   = $this->getEscapeHelper();
+        $escapeHelper   = $this->getEscapeHtmlHelper();
         $labelHelper    = $this->getLabelHelper();
         $labelOpen      = $labelHelper->openTag();
         $labelClose     = $labelHelper->closeTag();

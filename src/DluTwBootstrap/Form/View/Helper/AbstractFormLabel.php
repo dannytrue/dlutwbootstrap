@@ -141,7 +141,7 @@ abstract class AbstractFormLabel extends \Zend\Form\View\Helper\FormLabel
             $labelContent = $label;
         }
 
-        $escapeHelper   = $this->getEscapeHelper();
+        $escapeHelper   = $this->getEscapeHtmlHelper();
         $labelContent   = $escapeHelper($labelContent);
 
         return $openTag . $labelContent . $this->closeTag();

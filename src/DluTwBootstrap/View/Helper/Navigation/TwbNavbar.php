@@ -75,9 +75,9 @@ class TwbNavbar extends AbstractNavHelper
         if($brandLink) {
             $view   = $this->getView();
             if($brandName) {
-                $brandName  = $view->escape($brandName);
+                $brandName  = $view->escapeHtml($brandName);
             } else {
-                $brandName  = $view->escape($brandLink->getLabel());
+                $brandName  = $view->escapeHtml($brandLink->getLabel());
             }
             $html   .= "\n" . '<a class="brand" href="' . $brandLink->getHref() . '">' . $brandName . '</a>';
         }
@@ -159,7 +159,7 @@ class TwbNavbar extends AbstractNavHelper
                 } elseif($align == self::ALIGN_RIGHT) {
                     $pClass    .= ' pull-right';
                 }
-                $html   .= "\n" . '<p class="' . $pClass . '">' . $view->escape($element) . '</p>';
+                $html   .= "\n" . '<p class="' . $pClass . '">' . $view->escapeHtml($element) . '</p>';
             } else {
                 throw new UnsupportedElementTypeException('Unsupported element type.');
             }
