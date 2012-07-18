@@ -1,0 +1,72 @@
+<?php
+    use DluTwBootstrap\Exception\ParameterMissingException;
+
+    if($this->pageCount):
+        if(!$this->routeName) {
+            throw new ParameterMissingException("Pagination control view partial: Missing parameter 'routeName' (i.e. route to use when building page link URLs).");
+        }
+        if(!$this->routeParamName) {
+            throw new ParameterMissingException("Pagination control view partial: Missing parameter 'routeParamName' (i.e. route parameter name containing the page number).");
+        }
+        //Pagination control alignment
+        switch ($this->align) {
+            case 'right':
+                $alignClass = ' pagination-right';
+                break;
+            case 'center':
+            case 'centre':
+                $alignClass = ' pagination-centered';
+                break;
+            default:
+                $alignClass = '';
+                break;
+        }
+        //Previous page number - $this->previous is not available when at the beginning
+        $previous   = ($this->previous ?: 1);
+        //Next page number - $this->next is not available when at the end
+        $next       = ($this->next ?: $this->last);
+?>
+<div class="pagination<?php echo($alignClass); ?>" xmlns="http://www.w3.org/1999/html">
+    <ul>
+        <!-- First page -->
+        <li<?php echo(($this->current == 1) ? ' class="disabled"' : ''); ?>>
+            <a href="<?php echo $this->url($this->routeName, array($this->routeParamName => 1)); ?>"
+               title="<?php echo($this->escapeHtml('First page (1)')); ?>">
+                <i class="icon-step-backward"></i>
+            </a>
+        </li>
+        <!-- Previous page -->
+        <li<?php echo(($this->current == 1) ? ' class="disabled"' : ''); ?>>
+            <a href="<?php echo $this->url($this->routeName, array($this->routeParamName => $previous)); ?>"
+               title="<?php echo(sprintf($this->escapeHtml('Previous page (%s)'), $previous)); ?>">
+                <i class="icon-arrow-left"></i>
+            </a>
+        </li>
+        <!-- Page numbers -->
+        <?php
+            foreach($this->pagesInRange as $pageInRange):
+                $isCurrentPage  = ($pageInRange == $this->current);
+        ?>
+            <li<?php echo($isCurrentPage ? ' class="active"' : ''); ?>>
+                <a href="<?php echo $this->url($this->routeName, array($this->routeParamName => $pageInRange)); ?>">
+                    <?php echo($pageInRange); ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+        <!-- Next page -->
+        <li<?php echo(($this->current == $this->last) ? ' class="disabled"' : ''); ?>>
+            <a href="<?php echo $this->url($this->routeName, array($this->routeParamName => $next)); ?>"
+               title="<?php echo(sprintf($this->escapeHtml('Next page (%s)'), $next)); ?>">
+                <i class="icon-arrow-right"></i>
+            </a>
+        </li>
+        <!-- Last page -->
+        <li<?php echo(($this->current == $this->last) ? ' class="disabled"' : ''); ?>>
+            <a href="<?php echo $this->url($this->routeName, array($this->routeParamName => $this->last)); ?>"
+               title="<?php echo(sprintf($this->escapeHtml('Last page (%s)'), $this->last)); ?>">
+                <i class="icon-step-forward"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+<?php endif; ?>
