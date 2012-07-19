@@ -74,3 +74,63 @@ legend + .control-group {
     background-color: #ededed;
     font-weight: bold;
 }
+
+/* Outer container for pagination, encompasses the actual pagination control and the optional statistics */
+div.pagination-container {
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+/* Remove the original .pagination class margins */
+.pagination {
+    margin: 0;
+}
+
+/* An extra class added to the right aligned pagination control when statistics are displayed inline */
+.pagination-float-right {
+    float: right;
+}
+
+/* An extra class added to the left aligned pagination control when statistics are displayed inline */
+.pagination-float-left {
+    float: left;
+}
+
+/* Pagination statistics */
+.pagination-stats {
+    margin-top: 4px;
+    margin-bottom: 0;
+    color: #808080;
+    font-size: 90%;
+}
+
+/* Pagination statistics aligned left */
+.pagination-stats-left {
+    text-align: left;
+}
+
+/* Pagination statistics aligned center */
+.pagination-stats-center {
+    text-align: center;
+}
+
+/* Pagination statistics aligned right */
+.pagination-stats-right {
+    text-align: right;
+}
+
+/* An extra class added to the right aligned pagination statistics when statistics are displayed inline */
+.pagination-stats-float-right {
+    float: right;
+    margin-right: 8px;
+    margin-top: 0;
+    line-height: 36px;
+}
+
+/* An extra class added to the left aligned pagination statistics when statistics are displayed inline */
+.pagination-stats-float-left {
+    float: left;
+    margin-left: 8px;
+    margin-top: 0;
+    line-height: 36px;
+}
