@@ -25,6 +25,19 @@
         $previous   = ($this->previous ?: 1);
         //Next page number - $this->next is not available when at the end
         $next       = ($this->next ?: $this->last);
+        //Icons for first, previous, next and last
+        if($this->icons && is_array($this->icons) && count($this->icons) == 4) {
+            //Custom icons
+            $icons   = $this->icons;
+        } else {
+            //Default icons
+            $icons  = array(
+                'icon-step-backward',
+                'icon-arrow-left',
+                'icon-arrow-right',
+                'icon-step-forward',
+            );
+        }
 ?>
 <div class="pagination<?php echo($alignClass); ?>" xmlns="http://www.w3.org/1999/html">
     <ul>
@@ -32,14 +45,14 @@
         <li<?php echo(($this->current == 1) ? ' class="disabled"' : ''); ?>>
             <a href="<?php echo $this->url($this->routeName, array($this->routeParamName => 1)); ?>"
                title="<?php echo($this->escapeHtml('First page (1)')); ?>">
-                <i class="icon-step-backward"></i>
+                <i class="<?php echo($icons[0]) ?>"></i>
             </a>
         </li>
         <!-- Previous page -->
         <li<?php echo(($this->current == 1) ? ' class="disabled"' : ''); ?>>
             <a href="<?php echo $this->url($this->routeName, array($this->routeParamName => $previous)); ?>"
                title="<?php echo(sprintf($this->escapeHtml('Previous page (%s)'), $previous)); ?>">
-                <i class="icon-arrow-left"></i>
+                <i class="<?php echo($icons[1]) ?>"></i>
             </a>
         </li>
         <!-- Page numbers -->
@@ -57,14 +70,14 @@
         <li<?php echo(($this->current == $this->last) ? ' class="disabled"' : ''); ?>>
             <a href="<?php echo $this->url($this->routeName, array($this->routeParamName => $next)); ?>"
                title="<?php echo(sprintf($this->escapeHtml('Next page (%s)'), $next)); ?>">
-                <i class="icon-arrow-right"></i>
+                <i class="<?php echo($icons[2]) ?>"></i>
             </a>
         </li>
         <!-- Last page -->
         <li<?php echo(($this->current == $this->last) ? ' class="disabled"' : ''); ?>>
             <a href="<?php echo $this->url($this->routeName, array($this->routeParamName => $this->last)); ?>"
                title="<?php echo(sprintf($this->escapeHtml('Last page (%s)'), $this->last)); ?>">
-                <i class="icon-step-forward"></i>
+                <i class="<?php echo($icons[3]) ?>"></i>
             </a>
         </li>
     </ul>

@@ -67,3 +67,10 @@ select[multiple] + span.help-inline {
 legend + .control-group {
     margin-top: 0px;
 }
+
+/* A bit more visible active page on the pagination control */
+.pagination .active a {
+    color: #666666;
+    background-color: #ededed;
+    font-weight: bold;
+}
