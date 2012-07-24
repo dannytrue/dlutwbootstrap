@@ -1,6 +1,8 @@
 <?php
 namespace DluTwBootstrap\View\Helper\Navigation;
 
+use Zend\View\Helper\Navigation\AbstractHelper as AbstractZfNavigationHelper;
+
 /**
  * Abstract Helper
  * @package DluTwBootstrap
@@ -9,7 +11,7 @@ namespace DluTwBootstrap\View\Helper\Navigation;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelper
+abstract class AbstractHelper extends AbstractZfNavigationHelper
 {
     const ALIGN_LEFT    = 'left';
 
@@ -287,7 +289,7 @@ abstract class AbstractHelper extends \Zend\View\Helper\Navigation\AbstractHelpe
 
     protected function translate($text) {
         $t = $this->getTranslator();
-        if ($this->getUseTranslator()
+        if ($this->isTranslatorEnabled()
             && $t
             && is_string($text)
             && !empty($text)) {

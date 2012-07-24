@@ -75,7 +75,7 @@ class Module
         $renderer->plugin('url')->setRouteMatch($routeMatch);
     }
 
-    public function getViewHelperConfiguration() {
+    public function getViewHelperConfig() {
         return array(
             'factories'     => array(
                 'formlabelmaintwb'      => function($sm) {
