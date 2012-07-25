@@ -23,9 +23,12 @@ return array(
             'forminlinehelptwb'                     => 'DluTwBootstrap\Form\View\Helper\FormHintTwb',
             'formelementdescriptiontwb'             => 'DluTwBootstrap\Form\View\Helper\FormDescriptionTwb',
             'formcontrolgrouptwb'                   => 'DluTwBootstrap\Form\View\Helper\FormControlGroupTwb',
+            'formcontrolstwb'                       => 'DluTwBootstrap\Form\View\Helper\FormControlsTwb',
             'formelementfulltwb'                    => 'DluTwBootstrap\Form\View\Helper\FormElementFullTwb',
             'formfieldsettwb'                       => 'DluTwBootstrap\Form\View\Helper\FormFieldsetTwb',
             'formrowtwb'                            => 'DluTwBootstrap\Form\View\Helper\FormRowTwb',
+            'formhinttwb'                           => 'DluTwBootstrap\Form\View\Helper\FormHintTwb',
+            'formdescriptiontwb'                    => 'DluTwBootstrap\Form\View\Helper\FormDescriptionTwb',
         ),
     ),
     'dlu_tw_bootstrap'  => array(
