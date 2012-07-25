@@ -1,6 +1,7 @@
 <?php
 namespace DluTwBootstrap\View\Helper\Navigation\Exception;
-use DluTwBootstrap\View\Helper\Navigation\Exception;
+
+use DluTwBootstrap\View\Helper\Navigation\Exception\ExceptionInterface;
 
 /**
  * UnsupportedElementTypeException
@@ -10,7 +11,7 @@ use DluTwBootstrap\View\Helper\Navigation\Exception;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class UnsupportedElementTypeException extends \Exception implements Exception
+class UnsupportedElementTypeException extends \Exception implements ExceptionInterface
 {
 
 }

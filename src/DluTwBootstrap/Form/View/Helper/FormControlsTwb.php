@@ -4,19 +4,19 @@ namespace DluTwBootstrap\Form\View\Helper;
 use \Zend\Form\ElementInterface;
 
 /**
- * Form Control Group
+ * Form Controls Twb
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormControlGroupTwb extends \Zend\Form\View\Helper\AbstractHelper
+class FormControlsTwb extends \Zend\Form\View\Helper\AbstractHelper
 {
     /* **************************** METHODS ****************************** */
 
     /**
-     * Renders the control group div tag
+     * Renders the controls div tag
      * @param  ElementInterface $element
      * @param string $content
      * @return string
@@ -34,10 +34,7 @@ class FormControlGroupTwb extends \Zend\Form\View\Helper\AbstractHelper
      * @return string
      */
     public function openTag(ElementInterface $element) {
-        $class  = 'control-group';
-        if($element->getMessages()) {
-            $class  .= ' error';
-        }
+        $class  = 'controls';
         $html   = '<div class="' . $class . '">';
         return $html;
     }

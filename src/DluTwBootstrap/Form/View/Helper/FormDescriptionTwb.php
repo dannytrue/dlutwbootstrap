@@ -10,7 +10,7 @@ use \Zend\Form\ElementInterface;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormElementDescriptionTwb extends \Zend\Form\View\Helper\AbstractHelper
+class FormDescriptionTwb extends \Zend\Form\View\Helper\AbstractHelper
 {
     /**
      * Which element types support the description?
@@ -41,8 +41,8 @@ class FormElementDescriptionTwb extends \Zend\Form\View\Helper\AbstractHelper
         $escapeHelper   = $this->getEscapeHtmlHelper();
         $html           = '';
         //Description
-        if($element->getAttribute('description')) {
-            $html   = '<p class="help-block">' . $escapeHelper($element->getAttribute('description')) . '</p>';
+        if($element->getOption('description')) {
+            $html   = '<p class="help-block">' . $escapeHelper($element->getOption('description')) . '</p>';
         }
         return $html;
     }

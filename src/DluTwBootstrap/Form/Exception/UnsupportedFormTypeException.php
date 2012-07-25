@@ -1,6 +1,6 @@
 <?php
 namespace DluTwBootstrap\Form\Exception;
-use DluTwBootstrap\Form\Exception;
+use DluTwBootstrap\Form\Exception\ExceptionInterface;
 
 /**
  * UnsupportedFormTypeException
@@ -10,7 +10,7 @@ use DluTwBootstrap\Form\Exception;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class UnsupportedFormTypeException extends \Exception implements Exception
+class UnsupportedFormTypeException extends \Exception implements ExceptionInterface
 {
 
 }
