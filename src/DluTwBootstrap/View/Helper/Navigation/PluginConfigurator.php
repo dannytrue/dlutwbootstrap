@@ -1,17 +1,18 @@
 <?php
-namespace DluTwBootstrap\View;
+namespace DluTwBootstrap\View\Helper\Navigation;
 
-use Zend\ServiceManager\AbstractPluginManager;
+use Zend\ServiceManager\ConfigInterface;
+use Zend\ServiceManager\ServiceManager;
 
 /**
- * NavPluginConfigurator
+ * PluginConfigurator
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class NavPluginConfigurator
+class PluginConfigurator implements ConfigInterface
 {
     /**
      * @var array Nav View helpers
@@ -25,13 +26,10 @@ class NavPluginConfigurator
 
     /* **************************** METHODS ************************** */
 
-    /**
-     * Configures the submitted Plugin manager with the predefined helpers
-     * @param AbstractPluginManager $pluginManager
-     */
-    public function configureHelperPluginManager(AbstractPluginManager $pluginManager) {
+    public function configureServiceManager(ServiceManager $serviceManager)
+    {
         foreach($this->helpers as $name => $fqcn) {
-            $pluginManager->setInvokableClass($name, $fqcn);
+            $serviceManager->setInvokableClass($name, $fqcn);
         }
     }
 }
