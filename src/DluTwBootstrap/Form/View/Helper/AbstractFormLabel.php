@@ -2,8 +2,8 @@
 namespace DluTwBootstrap\Form\View\Helper;
 
 use Zend\Form\ElementInterface;
-use DluTwBootstrap\Util as GenUtil;
-use DluTwBootstrap\Form\Util as FormUtil;
+use DluTwBootstrap\GenUtil;
+use DluTwBootstrap\Form\FormUtil;
 
 /**
  * Abstract Form Helper

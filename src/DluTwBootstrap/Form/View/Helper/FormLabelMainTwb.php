@@ -23,7 +23,7 @@ class FormLabelMainTwb extends AbstractFormLabel
      * @return array
      */
     protected function garnishAttributes(array $attributes) {
-        if($this->formType == \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL) {
+        if($this->formType == \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL) {
             $attributes = $this->genUtil->addWordToArrayItem('control-label', $attributes, 'class');
         }
         return $attributes;

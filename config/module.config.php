@@ -10,8 +10,8 @@ return array(
     ),
     'service_manager'   => array(
         'invokables'       => array(
-            'dlu_twb_gen_util'                      => 'DluTwBootstrap\Util',
-            'dlu_twb_form_util'                     => 'DluTwBootstrap\Form\Util',
+            'dlu_twb_gen_util'                      => 'DluTwBootstrap\GenUtil',
+            'dlu_twb_form_util'                     => 'DluTwBootstrap\Form\FormUtil',
             'dlu_twb_nav_view_helper_configurator'  => 'DluTwBootstrap\View\Helper\Navigation\PluginConfigurator',
          ),
     ),

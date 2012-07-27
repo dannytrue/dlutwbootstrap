@@ -8,7 +8,8 @@ use DluTwBootstrap\Form\View\Helper\FormElementErrorsTwb;
 use DluTwBootstrap\Form\View\Helper\FormControlGroupTwb;
 use DluTwBootstrap\Form\View\Helper\FormControlsTwb;
 use DluTwBootstrap\Form\Exception\UnsupportedHelperTypeException;
-use DluTwBootstrap\Form\Util;
+use DluTwBootstrap\GenUtil;
+use DluTwBootstrap\Form\FormUtil;
 
 use Zend\Form\View\Helper\FormLabel;
 use Zend\Form\ElementInterface;
@@ -30,7 +31,7 @@ class FormRowTwb extends AbstractHelper
     /**
      * @var array
      */
-    protected $labelAttributes;
+    protected $labelAttributes      = array();
 
     /**
      * @var FormLabel
@@ -68,12 +69,29 @@ class FormRowTwb extends AbstractHelper
     protected $controlsHelper;
 
     /**
+     * @var GenUtil
+     */
+    protected $genUtil;
+
+    /* ******************** METHODS ******************** */
+
+    /**
+     * Constructor
+     * @param GenUtil $genUtil
+     */
+    public function __construct(GenUtil $genUtil)
+    {
+        $this->genUtil  = $genUtil;
+    }
+
+    /**
      * Utility form helper that renders a label (if it exists), an element, hint, description and errors
      * @param ElementInterface $element
-     * @param string $formType
+     * @param string|null $formType
+     * @param array $displayConfig
      * @return string
      */
-    public function render(ElementInterface $element, $formType)
+    public function render(ElementInterface $element, $formType = null, array $displayConfig = array())
     {
         $escapeHtmlHelper    = $this->getEscapeHtmlHelper();
         $elementHelper       = $this->getElementHelper();
@@ -82,12 +100,12 @@ class FormRowTwb extends AbstractHelper
         $descriptionHelper   = $this->getDescriptionHelper();
 
         $label               = $element->getLabel();
-        $elementString       = $elementHelper->render($element);
+        $elementString       = $elementHelper->render($element, $formType, $displayConfig);
         $hint                = $hintHelper->render($element);
         $description         = $descriptionHelper->render($element);
         $elementErrors       = $elementErrorsHelper->render($element);
 
-        if ($formType == Util::FORM_TYPE_HORIZONTAL || $formType == Util::FORM_TYPE_VERTICAL) {
+        if ($formType == FormUtil::FORM_TYPE_HORIZONTAL || $formType == FormUtil::FORM_TYPE_VERTICAL) {
             $controlGroupHelper     = $this->getControlGroupHelper();
             $controlsHelper         = $this->getControlsHelper();
             $controlGroupOpen       = $controlGroupHelper->openTag($element);
@@ -108,6 +126,9 @@ class FormRowTwb extends AbstractHelper
             if (empty($labelAttributes)) {
                 $labelAttributes = $this->labelAttributes;
             }
+            $labelAttributes    = $this->genUtil->addWordToArrayItem('control-label', $labelAttributes, 'class');
+            $element->setLabelAttributes($labelAttributes);
+
 
             // Multicheckbox elements have to be handled differently as the HTML standard does not allow nested
             // labels. The semantic way is to group them inside a fieldset
@@ -130,7 +151,17 @@ class FormRowTwb extends AbstractHelper
 
                 switch ($this->labelPosition) {
                     case self::LABEL_PREPEND:
-                        $markup = $labelOpen . $label . $elementString . $labelClose . $elementErrors;
+                        $markup = $controlGroupOpen
+                                . $labelOpen
+                                . $label
+                                . $controlsOpen
+                                . $elementString
+                                . $hint
+                                . $description
+                                . $elementErrors
+                                . $controlsClose
+                                . $labelClose
+                            . $controlGroupClose;
                         break;
                     case self::LABEL_APPEND:
                     default:
@@ -156,14 +187,15 @@ class FormRowTwb extends AbstractHelper
      * Invoke helper as a function
      * Proxies to {@link render()}.
      * @param null|ElementInterface $element
-     * @param string $formType
+     * @param string|null $formType
+     * @param array $displayConfig
      * @return string|FormRowTwb
      */
-    public function __invoke(ElementInterface $element = null, $formType) {
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayConfig = array()) {
         if (!$element) {
             return $this;
         }
-        return $this->render($element, $formType);
+        return $this->render($element, $formType, $displayConfig);
     }
 
     /**

@@ -74,7 +74,7 @@ abstract class AbstractNavHelper extends AbstractHelper
             'id'            => $page->getId(),
             'class'         => 'dropdown' . ($page->isActive(true) ? ' active' : ''),
         );
-        $html   = "\n" . '<li' . $this->_htmlAttribs($liAttribs) . '>'
+        $html   = "\n" . '<li' . $this->htmlAttribs($liAttribs) . '>'
                 . "\n" . $content
                 . "\n</li>";
         return $html;

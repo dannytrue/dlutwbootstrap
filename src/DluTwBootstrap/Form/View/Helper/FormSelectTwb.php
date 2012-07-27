@@ -1,8 +1,8 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
-use \DluTwBootstrap\Util as GenUtil;
-use \DluTwBootstrap\Form\Util as FormUtil;
+use \DluTwBootstrap\GenUtil;
+use \DluTwBootstrap\Form\FormUtil;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
@@ -24,7 +24,7 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
 
     /**
      * Form utils
-     * @var \DluTwBootstrap\Form\Util
+     * @var \DluTwBootstrap\Form\FormUtil
      */
     protected $formUtil;
 
@@ -42,8 +42,8 @@ class FormSelectTwb extends \Zend\Form\View\Helper\FormSelect
 
     /**
      * Constructor
-     * @param \DluTwBootstrap\Util $genUtil
-     * @param \DluTwBootstrap\Form\Util $formUtil
+     * @param \DluTwBootstrap\GenUtil $genUtil
+     * @param \DluTwBootstrap\Form\FormUtil $formUtil
      */
     public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
         $this->genUtil  = $genUtil;

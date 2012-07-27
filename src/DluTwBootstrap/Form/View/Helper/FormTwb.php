@@ -3,7 +3,7 @@ namespace DluTwBootstrap\Form\View\Helper;
 
 use DluTwBootstrap\Form\Exception\UnsupportedFormTypeException;
 use DluTwBootstrap\Form\Exception\UndefinedFormElementException;
-use DluTwBootstrap\Util as GenUtil;
+use DluTwBootstrap\GenUtil;
 use Zend\Form\Form;
 use Zend\Form\ElementInterface;
 use Zend\Form\FormInterface;
@@ -22,17 +22,17 @@ class FormTwb extends \Zend\Form\View\Helper\Form
      * Default form type if not explicitly given
      * @var string
      */
-    const DEFAULT_FORM_TYPE     = \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL;
+    const DEFAULT_FORM_TYPE     = \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL;
 
     /**
      * Mapping of form types to form css classes
      * @var array
      */
     protected $formTypeMap      = array(
-        \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL => 'form-horizontal',
-        \DluTwBootstrap\Form\Util::FORM_TYPE_VERTICAL   => 'form-vertical',
-        \DluTwBootstrap\Form\Util::FORM_TYPE_INLINE     => 'form-inline',
-        \DluTwBootstrap\Form\Util::FORM_TYPE_SEARCH     => 'form-search',
+        \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL => 'form-horizontal',
+        \DluTwBootstrap\Form\FormUtil::FORM_TYPE_VERTICAL   => 'form-vertical',
+        \DluTwBootstrap\Form\FormUtil::FORM_TYPE_INLINE     => 'form-inline',
+        \DluTwBootstrap\Form\FormUtil::FORM_TYPE_SEARCH     => 'form-search',
     );
 
     /**
@@ -51,7 +51,7 @@ class FormTwb extends \Zend\Form\View\Helper\Form
 
     /**
      * Constructor
-     * @param \DluTwBootstrap\Util $genUtil
+     * @param \DluTwBootstrap\GenUtil $genUtil
      */
     public function __construct(GenUtil $genUtil) {
         $this->genUtil  = $genUtil;
@@ -106,14 +106,14 @@ class FormTwb extends \Zend\Form\View\Helper\Form
     public function actions(Form $form, $formType, array $elements = null) {
         $formIterator   = $form->getIterator();
         switch($formType) {
-            case \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL:
+            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL:
                 $html   = '<div class="form-actions">';
                 break;
-            case \DluTwBootstrap\Form\Util::FORM_TYPE_VERTICAL:
+            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_VERTICAL:
                 $html   = '<div>';
                 break;
-            case \DluTwBootstrap\Form\Util::FORM_TYPE_INLINE:
-            case \DluTwBootstrap\Form\Util::FORM_TYPE_SEARCH:
+            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_INLINE:
+            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_SEARCH:
             default:
                 $html   = '';
                 break;
@@ -148,12 +148,12 @@ class FormTwb extends \Zend\Form\View\Helper\Form
             }
         }
         switch($formType) {
-            case \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL:
-            case \DluTwBootstrap\Form\Util::FORM_TYPE_VERTICAL:
+            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL:
+            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_VERTICAL:
                 $html   .= "\n" . '</div>';
                 break;
-            case \DluTwBootstrap\Form\Util::FORM_TYPE_INLINE:
-            case \DluTwBootstrap\Form\Util::FORM_TYPE_SEARCH:
+            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_INLINE:
+            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_SEARCH:
             default:
                 //No action, do not alter the markup
                 break;

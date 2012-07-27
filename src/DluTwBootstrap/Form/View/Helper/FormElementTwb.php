@@ -3,6 +3,7 @@ namespace DluTwBootstrap\Form\View\Helper;
 
 use Zend\Form\Element;
 use Zend\Form\ElementInterface;
+use Zend\Form\View\Helper\FormElement as ViewHelperFormElement;
 
 /**
  * Form Element
@@ -12,91 +13,79 @@ use Zend\Form\ElementInterface;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormElementTwb extends \Zend\Form\View\Helper\FormElement
+class FormElementTwb extends ViewHelperFormElement
 {
     /**
      * Render an element
-     * Introspects the element type and attributes to determine which
-     * helper to utilize when rendering.
      * @param  ElementInterface $element
-     * @param array $displayOptions
-     * @param string|null $formType
+     * @param  null|string $formType
+     * @param  array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element, array $displayOptions = array(), $formType = null) {
+    public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
+    {
         $renderer = $this->getView();
+        if (!method_exists($renderer, 'plugin')) {
+            // Bail early if renderer is not pluggable
+            return '';
+        }
+
+        //TODO - captcha
         if ($element instanceof Element\Captcha) {
             $helper = $renderer->plugin('form_captcha');
             return $helper($element);
         }
 
+        //CSRF
         if ($element instanceof Element\Csrf) {
-            $helper = $renderer->plugin('form_input_twb');
+            $helper = $renderer->plugin('form_hidden_twb');
+            return $helper($element, $formType, $displayOptions);
+        }
+
+        //TODO - collection
+        if ($element instanceof Element\Collection) {
+            $helper = $renderer->plugin('form_collection');
             return $helper($element);
         }
 
         $type    = $element->getAttribute('type');
         $options = $element->getAttribute('options');
-        $captcha = $element->getAttribute('captcha');
 
-        if (!empty($captcha)) {
-            $helper = $renderer->plugin('form_captcha');
+        //TODO - multi_checkbox
+        if ('multi_checkbox' == $type && is_array($options)) {
+            $helper = $renderer->plugin('form_multi_checkbox');
             return $helper($element);
         }
 
-        if (is_array($options) && $type == 'radio') {
-            $helper = $renderer->plugin('form_radio_twb');
-            return $helper($element, $this->getDisplayOption($displayOptions, 'inline'));
+        //TODO - select
+        if ('select' == $type && is_array($options)) {
+            $helper = $renderer->plugin('form_select');
+            return $helper($element);
         }
 
-        if (is_array($options) && $type == 'checkbox') {
-            $helper = $renderer->plugin('form_multi_checkbox_twb');
-            return $helper($element, $this->getDisplayOption($displayOptions, 'inline'));
-        }
-
-        if (is_array($options) && $type == 'select') {
-            $helper = $renderer->plugin('form_select_twb');
-            return $helper($element,
-                           $this->getDisplayOption($displayOptions, 'sizeClass'),
-                           $this->getDisplayOption($displayOptions, 'size'));
-        }
-
-        if ($type == 'textarea') {
+        if ('textarea' == $type) {
             $helper = $renderer->plugin('form_textarea_twb');
-            return $helper($element,
-                           $this->getDisplayOption($displayOptions, 'sizeClass'),
-                           $this->getDisplayOption($displayOptions, 'rows'));
+            return $helper($element, $formType, $displayOptions);
         }
 
+        //Input
         $helper = $renderer->plugin('form_input_twb');
-        return $helper($element, $this->getDisplayOption($displayOptions, 'sizeClass'), $formType);
+        return $helper($element, $formType, $displayOptions);
     }
 
     /**
      * Invoke helper as function
      * Proxies to {@link render()}.
-     * @param  ElementInterface $element
-     * @param array $displayOptions
-     * @param string|null $formType
-     * @return string
+     * @param  ElementInterface|null $element
+     * @param  null|string $formType
+     * @param  array $displayOptions
+     * @return string|FormElementTwb
      */
-    public function __invoke(ElementInterface $element, array $displayOptions = array(), $formType = null) {
-        return $this->render($element, $displayOptions, $formType);
-    }
-
-    /**
-     * Returns an option from the options array, if undefined, returns the default value
-     * @param array $displayOptions
-     * @param $optionName
-     * @param null $default
-     * @return string
-     */
-    protected function getDisplayOption(array $displayOptions, $optionName, $default = null) {
-        if(array_key_exists($optionName, $displayOptions)) {
-            $option = $displayOptions[$optionName];
-        } else {
-            $option = $default;
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array())
+    {
+        if (!$element) {
+            return $this;
         }
-        return $option;
+        return $this->render($element, $formType, $displayOptions);
     }
 }

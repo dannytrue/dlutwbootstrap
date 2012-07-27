@@ -9,7 +9,7 @@ namespace DluTwBootstrap;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class Util
+class GenUtil
 {
     /* ********************* METHODS *************************** */
 

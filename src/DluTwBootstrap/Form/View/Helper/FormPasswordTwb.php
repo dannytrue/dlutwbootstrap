@@ -1,41 +1,30 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
-use \DluTwBootstrap\GenUtil;
-use \DluTwBootstrap\Form\FormUtil;
+use DluTwBootstrap\Form\FormUtil;
+use DluTwBootstrap\GenUtil;
 
 use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
-use Zend\Form\View\Helper\FormTextarea;
+use Zend\Form\View\Helper\FormPassword;
 
-/**
- * Form Textarea
- * @package DluTwBootstrap
- * @copyright David Lukas (c) - http://www.zfdaily.com
- * @license http://www.zfdaily.com/code/license New BSD License
- * @link http://www.zfdaily.com
- * @link https://bitbucket.org/dlu/dlutwbootstrap
- */
-class FormTextareaTwb extends FormTextarea
+class FormPasswordTwb extends FormPassword
 {
     /**
-     * General utils
-     * @var GenUtil
-     */
-    protected $genUtil;
-
-    /**
-     * Form utils
      * @var FormUtil
      */
     protected $formUtil;
 
-    /* **************************** METHODS ****************************** */
+    /**
+     * @var GenUtil
+     */
+    protected $genUtil;
+
+    /* ******************** METHODS ******************** */
 
     /**
      * Constructor
-     * @param GenUtil $genUtil
-     * @param FormUtil $formUtil
+     * @param \DluTwBootstrap\GenUtil $genUtil
+     * @param \DluTwBootstrap\Form\FormUtil $formUtil
      */
     public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
         $this->genUtil  = $genUtil;
@@ -55,20 +44,20 @@ class FormTextareaTwb extends FormTextarea
             $class  = $this->genUtil->addWord($displayOptions['class'], $class);
             $element->setAttribute('class', $class);
         }
-        if(array_key_exists('rows', $displayOptions)) {
-            $element->setAttribute('rows', $displayOptions['rows']);
-        }
         $this->formUtil->addIdAttributeIfMissing($element);
     }
 
     /**
-     * Render a form <input> text element from the provided $element,
+     * Render a form <input> password element from the provided $element,
      * @param  ElementInterface $element
      * @param  null|string $formType
      * @param  array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element, $formType = null, array $displayOptions = array()) {
+    public function render(ElementInterface $element,
+                           $formType = null,
+                           array $displayOptions = array()
+    ) {
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
         $html   = parent::render($element);
         return $html;
@@ -80,7 +69,7 @@ class FormTextareaTwb extends FormTextarea
      * @param  ElementInterface|null $element
      * @param  null|string $formType
      * @param  array $displayOptions
-     * @return string|FormTextareaTwb
+     * @return string|FormPasswordTwb
      */
     public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array()
     ) {

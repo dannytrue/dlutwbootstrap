@@ -1,135 +1,123 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
-use \DluTwBootstrap\Util as GenUtil;
-use \DluTwBootstrap\Form\Util as FormUtil;
+use Zend\View\Helper\AbstractHelper as BaseAbstractHelper;
 use Zend\Form\ElementInterface;
-use Zend\Form\Exception;
+use Zend\Form\View\Helper\FormElement as ViewHelperFormElement;
 
-/**
- * Form Input
- * @package DluTwBootstrap
- * @copyright David Lukas (c) - http://www.zfdaily.com
- * @license http://www.zfdaily.com/code/license New BSD License
- * @link http://www.zfdaily.com
- * @link https://bitbucket.org/dlu/dlutwbootstrap
- */
-class FormInputTwb extends \Zend\Form\View\Helper\FormInput
+class FormInputTwb extends BaseAbstractHelper
 {
     /**
-     * General utils
-     * @var GenUtil
+     * Valid values for the input type
+     * @var array
      */
-    protected $genUtil;
+    protected $validTypes = array(
+        'button'         => true,
+        'checkbox'       => true,
+        'file'           => true,
+        'hidden'         => true,
+        //'image'          => true,
+        'password'       => true,
+        //'radio'          => true,
+        'reset'          => true,
+        'submit'         => true,
+        'text'           => true,
+        /*
+        'color'          => true,
+        'date'           => true,
+        'datetime'       => true,
+        'datetime-local' => true,
+        'email'          => true,
+        'month'          => true,
+        'number'         => true,
+        'range'          => true,
+        'search'         => true,
+        'tel'            => true,
+        'time'           => true,
+        'url'            => true,
+        'week'           => true,
+        */
+    );
 
     /**
-     * Form utils
-     * @var FormUtil
-     */
-    protected $formUtil;
-
-    /* **************************** METHODS ****************************** */
-
-    /**
-     * Constructor
-     * @param \DluTwBootstrap\Util $genUtil
-     * @param \DluTwBootstrap\Form\Util $formUtil
-     */
-    public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
-        $this->genUtil  = $genUtil;
-        $this->formUtil = $formUtil;
-    }
-
-    /**
-     * Render a form <input> element from the provided $element
+     * Render an input element
+     * If the passed element has no type set assumes 'text'
+     * If the element type is not supported, returns an empty string
      * @param  ElementInterface $element
-     * @param string $sizeClass
-     * @param string|null $formType
+     * @param  null|string $formType
+     * @param  array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element, $sizeClass = null, $formType = null) {
-        $escapeHelper   = $this->getEscapeHtmlHelper();
-        $type           = $element->getAttribute('type');
-        //Type specific mods
-        switch($type) {
-            case 'submit':
-                $class  = $element->getAttribute('class');
-                $class  = $this->genUtil->addWord('btn btn-primary', $class);
-                $element->setAttribute('class', $class);
-                break;
-            case 'reset':
-                $class  = $element->getAttribute('class');
-                $class  = $this->genUtil->addWord('btn', $class);
-                $element->setAttribute('class', $class);
-                break;
-            case 'button':
-                $class  = $element->getAttribute('class');
-                $class  = $this->genUtil->addWord('btn', $class);
-                $element->setAttribute('class', $class);
-                break;
-            case 'text':
-                if($sizeClass) {
-                    $class  = $element->getAttribute('class');
-                    $class  = $this->genUtil->addWord($sizeClass, $class);
-                    $element->setAttribute('class', $class);
-                }
-                if($formType == \DluTwBootstrap\Form\Util::FORM_TYPE_SEARCH) {
-                    $class  = $element->getAttribute('class');
-                    $class  = $this->genUtil->addWord('search-query', $class);
-                    $element->setAttribute('class', $class);
-                }
-                $this->formUtil->addIdAttributeIfMissing($element);
-                break;
-            case 'password':
-                if($sizeClass) {
-                    $class  = $element->getAttribute('class');
-                    $class  = $this->genUtil->addWord($sizeClass, $class);
-                    $element->setAttribute('class', $class);
-                }
-                $this->formUtil->addIdAttributeIfMissing($element);
-                break;
-            case 'checkbox':
-                $this->formUtil->addIdAttributeIfMissing($element);
-                break;
-            case 'file':
-                $this->formUtil->addIdAttributeIfMissing($element);
-                break;
-            default:
-                //No default action
-                break;
+    public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
+    {
+        $renderer = $this->getView();
+        if (!method_exists($renderer, 'plugin')) {
+            // Bail early if renderer is not pluggable
+            return '';
         }
-        //Generate the element
-        $html   = parent::render($element);
-        //Wrap simple checkbox into label for proper rendering
-        if($type == 'checkbox' && !is_array($element->getAttribute('options'))) {
-            $html   = '<label class="checkbox">' . $html . '</label>';
+        $type    = $element->getAttribute('type');
+        if (empty($type)) {
+            $type   = 'text';
         }
-        //Text prepend / append
-        $prepAppClass   = '';
-        if($type == 'text' && $element->getAttribute('prependText')) {
-            $prepAppClass   = $this->genUtil->addWord('input-prepend', $prepAppClass);
-            $html           = '<span class="add-on">' . $escapeHelper($element->getAttribute('prependText')) . '</span>'
-                              . $html;
+        $type = strtolower($type);
+        if (!isset($this->validTypes[$type])) {
+            $type   = 'text';
         }
-        if($type == 'text' && $element->getAttribute('appendText')) {
-            $prepAppClass   = $this->genUtil->addWord('input-append', $prepAppClass);
-            $html           .= '<span class="add-on">' . $escapeHelper($element->getAttribute('appendText')) . '</span>';
+
+        if ('button' == $type) {
+            $helper = $renderer->plugin('form_button_twb');
+            return $helper($element, null, $formType, $displayOptions);
         }
-        if($prepAppClass) {
-            $html           = '<div class="' . $prepAppClass . '">' . "\n$html\n" . '</div>';
+        if ('checkbox' == $type) {
+            $helper = $renderer->plugin('form_checkbox_twb');
+            return $helper($element, $formType, $displayOptions);
         }
-        return $html;
+        if ('file' == $type) {
+            $helper = $renderer->plugin('form_file_twb');
+            return $helper($element, $formType, $displayOptions);
+        }
+        if ('hidden' == $type) {
+            $helper = $renderer->plugin('form_hidden_twb');
+            return $helper($element, $formType, $displayOptions);
+        }
+
+        //TODO - image input
+
+        if ('password' == $type) {
+            $helper = $renderer->plugin('form_password_twb');
+            return $helper($element, $formType, $displayOptions);
+        }
+
+        //TODO - radio input?
+
+        if ('reset' == $type) {
+            $helper = $renderer->plugin('form_reset_twb');
+            return $helper($element, $formType, $displayOptions);
+        }
+        if ('submit' == $type) {
+            $helper = $renderer->plugin('form_submit_twb');
+            return $helper($element, $formType, $displayOptions);
+        }
+        if ('text' == $type) {
+            $helper = $renderer->plugin('form_text_twb');
+            return $helper($element, $formType, $displayOptions);
+        }
+        return '';
     }
 
     /**
      * Invoke helper as function
      * Proxies to {@link render()}.
-     * @param  ElementInterface $element
-     * @param string $sizeClass
-     * @param string|null $formType
-     * @return string
+     * @param  ElementInterface|null $element
+     * @param  null|string $formType
+     * @param  array $displayOptions
+     * @return string|FormInputTwb
      */
-    public function __invoke(ElementInterface $element, $sizeClass = null, $formType = null) {
-        return $this->render($element, $sizeClass, $formType);
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array())
+    {
+        if (!$element) {
+            return $this;
+        }
+        return $this->render($element, $formType, $displayOptions);
     }
 }

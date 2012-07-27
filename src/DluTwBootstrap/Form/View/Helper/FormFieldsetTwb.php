@@ -33,8 +33,8 @@ class FormFieldsetTwb extends \Zend\Form\View\Helper\AbstractHelper
     public function openTag(FieldsetInterface $fieldset, $formType) {
         $html   = '<fieldset>';
         $legend = $fieldset->getAttribute('legend');
-        if($legend && ($formType == \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL
-                || $formType == \DluTwBootstrap\Form\Util::FORM_TYPE_VERTICAL)) {
+        if($legend && ($formType == \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL
+                || $formType == \DluTwBootstrap\Form\FormUtil::FORM_TYPE_VERTICAL)) {
             $escapeHelper   = $this->getEscapeHtmlHelper();
             $legend         = $escapeHelper($legend);
             $html           .= "<legend>$legend</legend>";

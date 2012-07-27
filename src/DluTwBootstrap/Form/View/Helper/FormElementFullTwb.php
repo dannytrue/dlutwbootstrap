@@ -67,8 +67,8 @@ class FormElementFullTwb extends \Zend\Form\View\Helper\AbstractHelper
             case 'radio':
             case 'select':
             case 'file':
-                if($formType == \DluTwBootstrap\Form\Util::FORM_TYPE_HORIZONTAL
-                   || $formType == \DluTwBootstrap\Form\Util::FORM_TYPE_VERTICAL) {
+                if($formType == \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL
+                   || $formType == \DluTwBootstrap\Form\FormUtil::FORM_TYPE_VERTICAL) {
                     $html   = $this->getFullElementMarkupForBlockForms($element, $formType, $input, $displayOptions);
                 } else {
                     $html   = $this->getFullElementMarkupForInlineForms($element, $formType, $input, $displayOptions);

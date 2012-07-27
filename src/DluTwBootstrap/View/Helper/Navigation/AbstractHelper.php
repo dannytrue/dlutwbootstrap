@@ -200,7 +200,7 @@ abstract class AbstractHelper extends AbstractZfNavigationHelper
         } else {
             $iconHtml   = '';
         }
-        $html   = '<a' . $this->_htmlAttribs($aAttribs) . '>'
+        $html   = '<a' . $this->htmlAttribs($aAttribs) . '>'
             . $iconHtml . $escaper($label) . ' <b class="caret"></b></a>';
         $html   .= "\n" . '<ul class="dropdown-menu">';
         $pages  = $page->getPages();
@@ -246,7 +246,7 @@ abstract class AbstractHelper extends AbstractZfNavigationHelper
         } else {
             $iconHtml   = '';
         }
-        $html       = '<a' . $this->_htmlAttribs($attribs) . '>'
+        $html       = '<a' . $this->htmlAttribs($attribs) . '>'
                       . $iconHtml . $escaper($label)
                       . '</a>';
         return $html;
