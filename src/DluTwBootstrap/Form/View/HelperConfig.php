@@ -16,18 +16,20 @@ class HelperConfig implements ConfigInterface
      * @var array Pre-aliased view helpers
      */
     protected $invokables = array(
+        'formactionstwb'                        => 'DluTwBootstrap\Form\View\Helper\FormActionsTwb',
         'formcontrolgrouptwb'                   => 'DluTwBootstrap\Form\View\Helper\FormControlGroupTwb',
         'formcontrolstwb'                       => 'DluTwBootstrap\Form\View\Helper\FormControlsTwb',
         'formdescriptiontwb'                    => 'DluTwBootstrap\Form\View\Helper\FormDescriptionTwb',
         //'formelementfulltwb'                    => 'DluTwBootstrap\Form\View\Helper\FormElementFullTwb',
         'formelementtwb'                        => 'DluTwBootstrap\Form\View\Helper\FormElementTwb',
         //'formfieldsettwb'                       => 'DluTwBootstrap\Form\View\Helper\FormFieldsetTwb',
+        'formlabeltwb'                          => 'DluTwBootstrap\Form\View\Helper\FormLabelTwb',
         'formhiddentwb'                         => 'DluTwBootstrap\Form\View\Helper\FormHiddenTwb',
         'formhinttwb'                           => 'DluTwBootstrap\Form\View\Helper\FormHintTwb',
         'forminlinehelptwb'                     => 'DluTwBootstrap\Form\View\Helper\FormHintTwb',
         'forminputtwb'                          => 'DluTwBootstrap\Form\View\Helper\FormInputTwb',
         //'formmulticheckboxtwb'                  => 'DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb',
-        //'formradiotwb'                          => 'DluTwBootstrap\Form\View\Helper\FormRadioTwb',
+        'formradiotwb'                          => 'DluTwBootstrap\Form\View\Helper\FormRadioTwb',
     );
 
     /**
@@ -86,6 +88,10 @@ class HelperConfig implements ConfigInterface
         return array(
             'formbuttontwb'                     => function($sm) use ($genUtil) {
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormButtonTwb($genUtil);
+                return $instance;
+            },
+            'formcheckboxtwb'                   => function($sm) use ($formUtil) {
+                $instance       = new \DluTwBootstrap\Form\View\Helper\FormCheckboxTwb($formUtil);
                 return $instance;
             },
             'formelementerrorstwb'              => function($sm) use ($genUtil) {

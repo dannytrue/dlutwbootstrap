@@ -1,7 +1,11 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
+use DluTwBootstrap\Form\View\Helper\FormLabelTwb;
+use DluTwBootstrap\Form\Exception\UnsupportedHelperTypeException;
+
 use Zend\Form\ElementInterface;
+use Zend\Form\View\Helper\FormRadio;
 use Traversable;
 
 /**
@@ -12,15 +16,62 @@ use Traversable;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
+class FormRadioTwb extends FormRadio
 {
     /**
-     * Render as inline radio?
-     * @var bool
+     * @var array
      */
-    protected $inline;
+    protected $labelAttributes  = array(
+        'class'     => 'radio',
+    );
+
+    /**
+     * @var string
+     */
+    protected $labelPosition = self::LABEL_APPEND;
 
     /* ************************ METHODS ***************************** */
+
+    /**
+     * Invoke helper as functor
+     *
+     * Proxies to {@link render()}.
+     *
+     * @param  ElementInterface|null $element
+     * @param  null|string           $labelPosition
+     * @return string|FormRadioTwb
+     */
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array())
+    {
+        if (!$element) {
+            return $this;
+        }
+
+        if ($labelPosition !== null) {
+            $this->setLabelPosition($labelPosition);
+        }
+
+        return $this->render($element);
+    }
+
+    /**
+     * Retrieve the FormLabelTwb helper
+     * @return FormLabelTwb
+     * @throws \DluTwBootstrap\Form\Exception\UnsupportedHelperTypeException
+     */
+    protected function getLabelHelper()
+    {
+        if (!$this->labelHelper) {
+            if (method_exists($this->view, 'plugin')) {
+                $this->labelHelper = $this->view->plugin('form_label_twb');
+            }
+            if (!$this->labelHelper instanceof FormLabelTwb) {
+                throw new UnsupportedHelperTypeException('Label helper (FormLabelTwb) unavailable or unsupported type.');
+            }
+        }
+        return $this->labelHelper;
+    }
+
 
     /**
      * Invoke helper as function
@@ -28,7 +79,7 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
      * @param bool $inline
      * @return string
      */
-    public function __invoke(ElementInterface $element, $inline = false) {
+    public function __invokeX(ElementInterface $element, $inline = false) {
         $this->labelHelper  = null;
         $this->inline       = (bool)$inline;
         $html               = parent::__invoke($element);
@@ -40,7 +91,7 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
      * @return \Zend\Form\View\Helper\FormLabel
      * @throws \Exception
      */
-    protected function getLabelHelper() {
+    protected function getLabelHelperX() {
         if ($this->labelHelper) {
             return $this->labelHelper;
         }
@@ -63,7 +114,7 @@ class FormRadioTwb extends \Zend\Form\View\Helper\FormRadio
      * @return string
      * @throws \Zend\Form\Exception\DomainException
      */
-    public function render(ElementInterface $element)
+    public function renderX(ElementInterface $element)
     {
         $name   = static::getName($element);
         if (empty($name)) {

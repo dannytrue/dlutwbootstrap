@@ -2,6 +2,7 @@
 namespace DluTwBootstrap\Form\View\Helper;
 
 use \Zend\Form\ElementInterface;
+use Zend\Form\View\Helper\AbstractHelper as AbstractViewHelper;
 
 /**
  * Form Controls Twb
@@ -11,7 +12,7 @@ use \Zend\Form\ElementInterface;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormControlsTwb extends \Zend\Form\View\Helper\AbstractHelper
+class FormControlsTwb extends AbstractViewHelper
 {
     /* **************************** METHODS ****************************** */
 

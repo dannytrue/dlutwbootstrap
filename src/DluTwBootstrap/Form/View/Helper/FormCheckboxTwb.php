@@ -47,12 +47,8 @@ class FormCheckboxTwb extends FormCheckbox
     ) {
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
         $html   = parent::render($element);
-
-        //TODO - check this: Wrap simple checkbox into label for proper rendering
-        if(!is_array($element->getAttribute('options'))) {
-            $html   = '<label class="checkbox">' . $html . '</label>';
-        }
-
+        //Wrap the simple checkbox into label for proper rendering
+        $html   = '<label class="checkbox">' . $html . '</label>';
         return $html;
     }
 

@@ -255,17 +255,18 @@ class FormRowTwb extends AbstractHelper
     }
 
     /**
-     * Retrieve the FormLabel helper
-     * @return FormLabel
+     * Retrieve the FormLabelTwb helper
+     * @return FormLabelTwb
+     * @throws \DluTwBootstrap\Form\Exception\UnsupportedHelperTypeException
      */
     protected function getLabelHelper()
     {
         if (!$this->labelHelper) {
             if (method_exists($this->view, 'plugin')) {
-                $this->labelHelper = $this->view->plugin('form_label');
+                $this->labelHelper = $this->view->plugin('form_label_twb');
             }
-            if (!$this->labelHelper instanceof FormLabel) {
-                $this->labelHelper = new FormLabel();
+            if (!$this->labelHelper instanceof FormLabelTwb) {
+                throw new UnsupportedHelperTypeException('Label helper (FormLabelTwb) unavailable or unsupported type.');
             }
         }
         return $this->labelHelper;
