@@ -18,7 +18,7 @@ class FormInputTwb extends BaseAbstractHelper
         'hidden'         => true,
         //'image'          => true,
         'password'       => true,
-        //'radio'          => true,
+        'radio'          => true,
         'reset'          => true,
         'submit'         => true,
         'text'           => true,
@@ -64,18 +64,22 @@ class FormInputTwb extends BaseAbstractHelper
             $type   = 'text';
         }
 
+        //Button
         if ('button' == $type) {
             $helper = $renderer->plugin('form_button_twb');
             return $helper($element, null, $formType, $displayOptions);
         }
+        //Checkbox
         if ('checkbox' == $type) {
             $helper = $renderer->plugin('form_checkbox_twb');
             return $helper($element, $formType, $displayOptions);
         }
+        //File
         if ('file' == $type) {
             $helper = $renderer->plugin('form_file_twb');
             return $helper($element, $formType, $displayOptions);
         }
+        //Hidden
         if ('hidden' == $type) {
             $helper = $renderer->plugin('form_hidden_twb');
             return $helper($element, $formType, $displayOptions);
@@ -83,21 +87,28 @@ class FormInputTwb extends BaseAbstractHelper
 
         //TODO - image input
 
+        //Password
         if ('password' == $type) {
             $helper = $renderer->plugin('form_password_twb');
             return $helper($element, $formType, $displayOptions);
         }
 
-        //TODO - radio input?
-
+        //Radio
+        if ('radio' == $type) {
+            $helper = $renderer->plugin('form_radio_twb');
+            return $helper($element, $formType, $displayOptions);
+        }
+        //Reset
         if ('reset' == $type) {
             $helper = $renderer->plugin('form_reset_twb');
             return $helper($element, $formType, $displayOptions);
         }
+        //Submit
         if ('submit' == $type) {
             $helper = $renderer->plugin('form_submit_twb');
             return $helper($element, $formType, $displayOptions);
         }
+        //Text
         if ('text' == $type) {
             $helper = $renderer->plugin('form_text_twb');
             return $helper($element, $formType, $displayOptions);

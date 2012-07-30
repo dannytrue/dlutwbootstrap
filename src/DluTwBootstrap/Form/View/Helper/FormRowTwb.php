@@ -93,13 +93,12 @@ class FormRowTwb extends AbstractHelper
      */
     public function render(ElementInterface $element, $formType = null, array $displayConfig = array())
     {
-        $escapeHtmlHelper    = $this->getEscapeHtmlHelper();
         $elementHelper       = $this->getElementHelper();
         $elementErrorsHelper = $this->getElementErrorsHelper();
         $hintHelper          = $this->getHintHelper();
         $descriptionHelper   = $this->getDescriptionHelper();
 
-        $label               = $element->getLabel();
+        $label               = (string)$element->getLabel();
         $elementString       = $elementHelper->render($element, $formType, $displayConfig);
         $hint                = $hintHelper->render($element);
         $description         = $descriptionHelper->render($element);
@@ -120,66 +119,25 @@ class FormRowTwb extends AbstractHelper
         }
 
         if (!empty($label)) {
-            $label = $escapeHtmlHelper($label);
+            //Element has a label
             $labelAttributes = $element->getLabelAttributes();
-
             if (empty($labelAttributes)) {
                 $labelAttributes = $this->labelAttributes;
             }
             $labelAttributes    = $this->genUtil->addWordToArrayItem('control-label', $labelAttributes, 'class');
             $element->setLabelAttributes($labelAttributes);
-
-
-            // Multicheckbox elements have to be handled differently as the HTML standard does not allow nested
-            // labels. The semantic way is to group them inside a fieldset
-            $type = $element->getAttribute('type');
-            if ($type === 'multi_checkbox' || $type === 'multicheckbox' || $type === 'radio') {
-                $markup = sprintf(
-                    '<fieldset><legend>%s</legend>%s</fieldset>',
-                    $label,
-                    $elementString);
-            } else {
-                $labelHelper         = $this->getLabelHelper();
-                if ($element->hasAttribute('id')) {
-                    $labelOpen = $labelHelper($element);
-                    $labelClose = '';
-                    $label = '';
-                } else {
-                    $labelOpen  = $labelHelper->openTag($labelAttributes);
-                    $labelClose = $labelHelper->closeTag();
-                }
-
-                switch ($this->labelPosition) {
-                    case self::LABEL_PREPEND:
-                        $markup = $controlGroupOpen
-                                . $labelOpen
-                                . $label
-                                . $controlsOpen
-                                . $elementString
-                                . $hint
-                                . $description
-                                . $elementErrors
-                                . $controlsClose
-                                . $labelClose
-                            . $controlGroupClose;
-                        break;
-                    case self::LABEL_APPEND:
-                    default:
-                        $markup = $labelOpen . $elementString . $label . $labelClose . $elementErrors;
-                        break;
-                }
-            }
-        } else {
-            $markup = $controlGroupOpen
-                    . $controlsOpen
-                    . $elementString
-                    . $hint
-                    . $description
-                    . $elementErrors
-                    . $controlsClose
-                    . $controlGroupClose;
+            $labelHelper        = $this->getLabelHelper();
+            $label              = $labelHelper($element);
         }
-
+        $markup = $controlGroupOpen
+            . $label
+            . $controlsOpen
+            . $elementString
+            . $hint
+            . $description
+            . $elementErrors
+            . $controlsClose
+            . $controlGroupClose;
         return $markup;
     }
 

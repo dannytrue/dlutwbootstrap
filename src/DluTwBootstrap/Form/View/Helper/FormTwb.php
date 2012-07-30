@@ -4,7 +4,11 @@ namespace DluTwBootstrap\Form\View\Helper;
 use DluTwBootstrap\Form\Exception\UnsupportedFormTypeException;
 use DluTwBootstrap\Form\Exception\UndefinedFormElementException;
 use DluTwBootstrap\GenUtil;
+use DluTwBootstrap\Form\FormUtil;
+
+use Zend\Form\View\Helper\Form as ViewHelperForm;
 use Zend\Form\Form;
+use Zend\Form\FieldsetInterface;
 use Zend\Form\ElementInterface;
 use Zend\Form\FormInterface;
 
@@ -16,30 +20,18 @@ use Zend\Form\FormInterface;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormTwb extends \Zend\Form\View\Helper\Form
+class FormTwb extends ViewHelperForm
 {
-    /**
-     * Default form type if not explicitly given
-     * @var string
-     */
-    const DEFAULT_FORM_TYPE     = \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL;
-
     /**
      * Mapping of form types to form css classes
      * @var array
      */
     protected $formTypeMap      = array(
-        \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL => 'form-horizontal',
-        \DluTwBootstrap\Form\FormUtil::FORM_TYPE_VERTICAL   => 'form-vertical',
-        \DluTwBootstrap\Form\FormUtil::FORM_TYPE_INLINE     => 'form-inline',
-        \DluTwBootstrap\Form\FormUtil::FORM_TYPE_SEARCH     => 'form-search',
+        FormUtil::FORM_TYPE_HORIZONTAL => 'form-horizontal',
+        FormUtil::FORM_TYPE_VERTICAL   => 'form-vertical',
+        FormUtil::FORM_TYPE_INLINE     => 'form-inline',
+        FormUtil::FORM_TYPE_SEARCH     => 'form-search',
     );
-
-    /**
-     * Helpers instantiated so far
-     * @var array
-     */
-    protected $helperInstances  = array();
 
     /**
      * General utils
@@ -47,152 +39,127 @@ class FormTwb extends \Zend\Form\View\Helper\Form
      */
     protected $genUtil;
 
+    /**
+     * @var FormUtil
+     */
+    protected $formUtil;
+
     /* **************************** METHODS ****************************** */
 
     /**
      * Constructor
      * @param \DluTwBootstrap\GenUtil $genUtil
+     * @param \DluTwBootstrap\Form\FormUtil $formUtil
      */
-    public function __construct(GenUtil $genUtil) {
+    public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
         $this->genUtil  = $genUtil;
+        $this->formUtil = $formUtil;
     }
 
     /**
      * @param null|Form $form
      * @param null|string $formType
-     * @param array $dispSpec
-     * @return FormTwb|string|\Zend\Form\View\Helper\Form
+     * @param array $displayOptions
+     * @return FormTwb|string
      */
-    public function __invoke(Form $form = null, $formType = null, array $dispSpec = array()) {
+    public function __invoke(Form $form = null, $formType = null, array $displayOptions = array())
+    {
         if(is_null($form)) {
             return $this;
         }
-        return $this->render($form, $formType, $dispSpec);
+        return $this->render($form, $formType, $displayOptions);
     }
 
     /**
      * Renders a quick form
      * @param Form $form
      * @param string|null $formType
-     * @param array $dispSpec
+     * @param array $displayOptions
      * @return string
      */
-    public function render(Form $form, $formType = null, array $dispSpec = array()) {
+    public function render(Form $form, $formType = null, array $displayOptions = array())
+    {
+        $renderer = $this->getView();
+        if (!method_exists($renderer, 'plugin')) {
+            // Bail early if renderer is not pluggable
+            return '';
+        }
         if(is_null($formType)) {
-            $formType           = self::DEFAULT_FORM_TYPE;
+            $formType           = $this->formUtil->getDefaultFormType();
         }
         //Open Tag
-        $html   = $this->openTag($form, $formType);
+        if (array_key_exists('form', $displayOptions)) {
+            $displayOptionsForm = $displayOptions['form'];
+        } else {
+            $displayOptionsForm = array();
+        }
+        $html   = $this->openTag($form, $formType, $displayOptionsForm);
         //Form content
-        $fieldsetHelper = $this->getHelper('form_fieldset_twb');
-        /* @var $fieldsetHelper \DluTwBootstrap\Form\View\Helper\FormFieldsetTwb */
+        $fieldsetHelper = $renderer->plugin('form_fieldset_twb');
         $inputFilter    = $form->getInputFilter();
-        $html   .= $fieldsetHelper->content($form, $formType, $inputFilter, $dispSpec, true);
-        //Form actions
-        $html   .= $this->actions($form, $formType);
+        //TODO - use the input filter
+        $html   .= $fieldsetHelper($form, $formType, $displayOptions, null, false);
+        //Form renderActions
+        $actionsHelper  = $renderer->plugin('form_actions_twb');
+        $actions        = $this->getActions($form);
+        if (array_key_exists('elements', $displayOptions)) {
+            $displayOptionsActions  = $displayOptions['elements'];
+        } else {
+            $displayOptionsActions  = array();
+        }
+        $html   .= $actionsHelper($actions, $formType, $displayOptionsActions);
         //Close Tag
         $html   .= $this->closeTag();
         return $html;
     }
 
     /**
-     * Returns the form actions (ie form buttons section)
-     * @param Form $form
-     * @param string $formType
-     * @param array|null $elements
-     * @return string
-     * @throws \DluTwBootstrap\Form\Exception\UndefinedFormElementException
+     * Finds action buttons in a form and retruns them
+     * @param \Zend\Form\Form $form
+     * @return array
      */
-    public function actions(Form $form, $formType, array $elements = null) {
-        $formIterator   = $form->getIterator();
-        switch($formType) {
-            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL:
-                $html   = '<div class="form-actions">';
-                break;
-            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_VERTICAL:
-                $html   = '<div>';
-                break;
-            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_INLINE:
-            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_SEARCH:
-            default:
-                $html   = '';
-                break;
-        }
-        $helper         = $this->getHelper('form_element_full_twb');
-        if(is_null($elements)) {
-            //Iterate over all form elements (outside any fieldsets) and render only buttons
-            foreach($formIterator as $element) {
-                /* @var $element ElementInterface */
-                if($element instanceof \Zend\Form\FieldsetInterface
-                   || $element instanceof \Zend\Form\FormInterface) {
-                    //Do not inspect fieldsets
-                    continue;
-                }
-                $elementType    = $element->getAttribute('type');
-                if(in_array($elementType, array('submit', 'reset', 'button',))) {
-                    //It is one of the 'button' elements
-                    $html   .= "\n" . $helper($element, $formType);
-                }
+    protected function getActions(Form $form)
+    {
+        //Iterate over all form elements (outside any fieldsets) and find buttons
+        $iterator   = $form->getIterator();
+        $actions    = array();
+        foreach($iterator as $element) {
+            /* @var $element ElementInterface */
+            if($element instanceof \Zend\Form\FieldsetInterface) {
+                //Do not inspect fieldsets
+                continue;
             }
-        } else {
-            //The elements are specified, use only the specified elements in this order
-            foreach($elements as $element) {
-                if(is_string($element)) {
-                    $elementObj = $form->get($element);
-                    if(!$elementObj) {
-                        throw new UndefinedFormElementException("Form element '$element' is not defined.");
-                    }
-                    $element    = $elementObj;
-                }
-                $html   .= "\n" . $helper($element, $formType);
+            if(in_array($element->getAttribute('type'), array('submit', 'reset', 'button',))) {
+                //It is one of the 'button' elements
+                $actions[]  = $element;
             }
         }
-        switch($formType) {
-            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_HORIZONTAL:
-            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_VERTICAL:
-                $html   .= "\n" . '</div>';
-                break;
-            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_INLINE:
-            case \DluTwBootstrap\Form\FormUtil::FORM_TYPE_SEARCH:
-            default:
-                //No action, do not alter the markup
-                break;
-        }
-        return $html;
+        return $actions;
     }
 
     /**
      * Generate an opening form tag
      * @param  null|FormInterface $form
      * @param null|string $formType
-     * @return string
+     * @param array $displayOptions
      * @throws \DluTwBootstrap\Form\Exception\UnsupportedFormTypeException
+     * @return string
      */
-    public function openTag(FormInterface $form = null, $formType = null) {
-        if(is_null($formType)) {
-            $formType   = self::DEFAULT_FORM_TYPE;
+    public function openTag(FormInterface $form = null, $formType = null, $displayOptions = array())
+    {
+        if (is_null($formType)) {
+            $formType   = $this->formUtil->getDefaultFormType();
         }
-        if(!array_key_exists($formType, $this->formTypeMap)) {
+        if (!array_key_exists($formType, $this->formTypeMap)) {
             throw new UnsupportedFormTypeException("Unsupported form type '$formType'.");
         }
-        if($form) {
+        if ($form) {
             $class  = $this->genUtil->addWord($this->formTypeMap[$formType], $form->getAttribute('class'));
+            if (array_key_exists('class', $displayOptions)) {
+                $class  = $this->genUtil->addWord($displayOptions['class'], $class);
+            }
             $form->setAttribute('class', $class);
         }
         return parent::openTag($form);
-    }
-
-    /**
-     * Retrieves and caches a view helper
-     * @param $helperName
-     * @return \callable
-     */
-    protected function getHelper($helperName) {
-        if(!array_key_exists($helperName, $this->helperInstances)) {
-            $renderer   = $this->getView();
-            $helper     = $renderer->plugin($helperName);
-            $this->helperInstances[$helperName] = $helper;
-        }
-        return $this->helperInstances[$helperName];
     }
 }

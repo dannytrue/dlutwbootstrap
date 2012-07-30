@@ -37,7 +37,7 @@ class FormActionsTwb extends AbstractViewHelper
             foreach ($content as $element) {
                 if (!($element instanceof ElementInterface)) {
                     //Only objects of type ElementInterface are accepted as content
-                    return '';
+                    continue;
                 }
                 if (array_key_exists($element->getName(), $displayConfig)) {
                     $elemDisplayConfig  = $displayConfig[$element->getName()];
@@ -59,7 +59,7 @@ class FormActionsTwb extends AbstractViewHelper
     }
 
     /**
-     * Returns the form-actions open tag
+     * Returns the form-renderActions open tag
      * @param null|string $formType
      * @param array $displayConfig
      * @return string
@@ -83,7 +83,7 @@ class FormActionsTwb extends AbstractViewHelper
     /**
      * Invoke helper as function
      * Proxies to {@link render()}.
-     * @param string|array|null $content
+     * @param string|array|null $content Either a string or an array of elements
      * @param null|string $formType
      * @param array $displayConfig
      * @return string|FormActionsTwb

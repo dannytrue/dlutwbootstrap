@@ -22,14 +22,10 @@ class HelperConfig implements ConfigInterface
         'formdescriptiontwb'                    => 'DluTwBootstrap\Form\View\Helper\FormDescriptionTwb',
         //'formelementfulltwb'                    => 'DluTwBootstrap\Form\View\Helper\FormElementFullTwb',
         'formelementtwb'                        => 'DluTwBootstrap\Form\View\Helper\FormElementTwb',
-        //'formfieldsettwb'                       => 'DluTwBootstrap\Form\View\Helper\FormFieldsetTwb',
         'formlabeltwb'                          => 'DluTwBootstrap\Form\View\Helper\FormLabelTwb',
         'formhiddentwb'                         => 'DluTwBootstrap\Form\View\Helper\FormHiddenTwb',
         'formhinttwb'                           => 'DluTwBootstrap\Form\View\Helper\FormHintTwb',
-        'forminlinehelptwb'                     => 'DluTwBootstrap\Form\View\Helper\FormHintTwb',
         'forminputtwb'                          => 'DluTwBootstrap\Form\View\Helper\FormInputTwb',
-        //'formmulticheckboxtwb'                  => 'DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb',
-        'formradiotwb'                          => 'DluTwBootstrap\Form\View\Helper\FormRadioTwb',
     );
 
     /**
@@ -98,6 +94,10 @@ class HelperConfig implements ConfigInterface
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormElementErrorsTwb($genUtil);
                 return $instance;
             },
+            'formfieldsettwb'                   => function($sm) use ($formUtil) {
+                $instance       = new \DluTwBootstrap\Form\View\Helper\FormFieldsetTwb($formUtil);
+                return $instance;
+            },
             'formfiletwb'                       => function($sm) use ($formUtil) {
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormFileTwb($formUtil);
                 return $instance;
@@ -124,8 +124,16 @@ class HelperConfig implements ConfigInterface
                 return $instance;
             },
             */
+            'formmulticheckboxtwb'              => function($sm) use ($genUtil) {
+                $instance       = new \DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb($genUtil);
+                return $instance;
+            },
             'formpasswordtwb'                   => function($sm) use ($genUtil, $formUtil) {
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormPasswordTwb($genUtil, $formUtil);
+                return $instance;
+            },
+            'formradiotwb'                      => function($sm) use ($genUtil) {
+                $instance       = new \DluTwBootstrap\Form\View\Helper\FormRadioTwb($genUtil);
                 return $instance;
             },
             'formresettwb'                      => function($sm) use ($genUtil) {
@@ -136,12 +144,10 @@ class HelperConfig implements ConfigInterface
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormRowTwb($genUtil);
                 return $instance;
             },
-            /*
             'formselecttwb'                     => function($sm) use ($genUtil, $formUtil) {
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormSelectTwb($genUtil, $formUtil);
                 return $instance;
             },
-            */
             'formsubmittwb'                     => function($sm) use ($genUtil) {
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormSubmitTwb($genUtil);
                 return $instance;
@@ -154,8 +160,8 @@ class HelperConfig implements ConfigInterface
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormTextareaTwb($genUtil, $formUtil);
                 return $instance;
             },
-            'formtwb'                           => function($sm) use ($genUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormTwb($genUtil);
+            'formtwb'                           => function($sm) use ($genUtil, $formUtil) {
+                $instance       = new \DluTwBootstrap\Form\View\Helper\FormTwb($genUtil, $formUtil);
                 return $instance;
             },
         );

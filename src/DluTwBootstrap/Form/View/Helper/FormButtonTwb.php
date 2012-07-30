@@ -33,6 +33,9 @@ class FormButtonTwb extends FormButton
     protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions) {
         $class  = $element->getAttribute('class');
         $class  = $this->genUtil->addWord('btn', $class);
+        if (array_key_exists('class', $displayOptions)) {
+            $class = $this->genUtil->addWord($displayOptions['class'], $class);
+        }
         if($element->getOption('primary') && ($element->getOption('primary') == true)) {
             $class  = $this->genUtil->addWord('btn-primary', $class);
         }
@@ -75,6 +78,6 @@ class FormButtonTwb extends FormButton
         if (!$element) {
             return $this;
         }
-        return $this->render($element, $buttonContent);
+        return $this->render($element, $buttonContent, $formType, $displayOptions);
     }
 }
