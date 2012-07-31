@@ -8,9 +8,16 @@
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
 
-/* Narrower space between the form legend and the first form element */
-legend {
+/* Fieldset legend */
+form fieldset legend {
+    font-size: 17px;
+    line-height: 32px;
     margin-bottom: 16px;
+}
+
+/* Remove the gap before the first control group after the fieldset legend */
+legend + .control-group {
+    margin-top: 0px;
 }
 
 /* Denote required fields */
@@ -61,11 +68,6 @@ form ul.errors {
 select[multiple] + span.help-inline {
     vertical-align: top;
     margin-top: 5px;
-}
-
-/* Remove the gap before the first control group after the fieldset legend */
-legend + .control-group {
-    margin-top: 0px;
 }
 
 /* A bit more visible active page on the pagination control */

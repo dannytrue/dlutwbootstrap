@@ -78,6 +78,7 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
     }
 
     /**
+     * Renders the fieldset content
      * @param FieldsetInterface $fieldset
      * @param string|null $formType
      * @param array $displayOptions
@@ -103,34 +104,56 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
         $rowHelper  = $renderer->plugin('form_row_twb');
         $iterator   = $fieldset->getIterator();
         $html       = '';
+        if (array_key_exists('fieldsets', $displayOptions)) {
+            $displayOptionsFieldsets    = $displayOptions['fieldsets'];
+        } else {
+            $displayOptionsFieldsets    = array();
+        }
+        if (array_key_exists('elements', $displayOptions)) {
+            $displayOptionsElements     = $displayOptions['elements'];
+        } else {
+            $displayOptionsElements     = array();
+        }
         //Iterate over all fieldset elements and render them
         foreach($iterator as $elementOrFieldset) {
             if ($elementOrFieldset instanceof FieldsetInterface) {
                 //Fieldset
                 /* @var $elementOrFieldset FieldsetInterface */
-                $html   .= "\n" . $this->render($elementOrFieldset, $formType, $displayOptions, $inputFilter, true);
+                $fieldsetName   = $elementOrFieldset->getName();
+                //Get fieldset display options
+                if (array_key_exists($fieldsetName, $displayOptionsFieldsets)) {
+                    $displayOptionsFieldset = $displayOptionsFieldsets[$fieldsetName];
+                } else {
+                    $displayOptionsFieldset = array();
+                }
+                $html   .= "\n" . $this->render($elementOrFieldset,
+                                                $formType,
+                                                $displayOptionsFieldset,
+                                                $inputFilter,
+                                                true);
             } elseif ($elementOrFieldset instanceof ElementInterface) {
                 //Element
                 /* @var $element ElementInterface */
-                if(!$displayButtons && in_array($elementOrFieldset->getAttribute('type'), array('submit', 'reset', 'button'))) {
+                if (!$displayButtons && in_array($elementOrFieldset->getAttribute('type'), array('submit', 'reset', 'button'))) {
                     //We should ignore 'button' elements and this is a 'button' element, so skip the rest of the iteration
                     continue;
                 }
-                $elementName    = $elementOrFieldset->getName();
+                $elementName        = $elementOrFieldset->getName();
+                $elementBareName    = $this->formUtil->getBareElementName($elementName);
+                //Get element display options
+                if (array_key_exists($elementBareName, $displayOptionsElements)) {
+                    $displayOptionsElement  = $displayOptionsElements[$elementBareName];
+                } else {
+                    $displayOptionsElement  = array();
+                }
                 //Get input
-                if($inputFilter && $inputFilter->has($elementName)) {
+                if ($inputFilter && $inputFilter->has($elementName)) {
                     $input  = $inputFilter->get($elementName);
                 } else {
                     $input  = null;
                 }
-                //Get display options
-                if(array_key_exists($elementName, $displayOptions)) {
-                    $elemDisplayOptions = $displayOptions[$elementName];
-                } else {
-                    $elemDisplayOptions = array();
-                }
                 //TODO - include input
-                $html   .= "\n" . $rowHelper($elementOrFieldset, $formType, $elemDisplayOptions);
+                $html   .= "\n" . $rowHelper($elementOrFieldset, $formType, $displayOptionsElement);
             } else {
                 //Unsupported item type
                 throw new UnsupportedElementTypeException('Fieldsets may contain only fieldsets or elements.');

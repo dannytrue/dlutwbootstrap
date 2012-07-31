@@ -71,7 +71,7 @@ class FormUtil
      */
     public function addIdAttributeIfMissing(ElementInterface $element)
     {
-        if(!$element->getAttribute('id')) {
+        if (!$element->getAttribute('id')) {
             $element->setAttribute('id', $element->getName());
         }
     }
@@ -82,7 +82,7 @@ class FormUtil
      */
     public function setDefaultFormType($defaultFormType)
     {
-        if(!$this->isFormTypeSupported($defaultFormType)) {
+        if (!$this->isFormTypeSupported($defaultFormType)) {
             $defaultFormType    = self::FORM_TYPE_HORIZONTAL;
         }
         $this->defaultFormType = $defaultFormType;
@@ -105,5 +105,25 @@ class FormUtil
     public function isFormTypeSupported($formType)
     {
         return in_array($formType, $this->supportedFormTypes);
+    }
+
+    /**
+     * Returns a bare element name extracted from a hierarchical element name
+     * E.g. for 'person[contacts][tel]' returns 'tel'
+     * If the passed name is not hierarchical, returns it as it is
+     * @param string $hierarchicalName
+     * @return string
+     */
+    public function getBareElementName($hierarchicalName)
+    {
+        $lastLeftBracketPos = strrpos($hierarchicalName, '[');
+        if ($lastLeftBracketPos === false) {
+            //The passed name is not hierarchical
+            $bareName   = $hierarchicalName;
+        } else {
+            //The passed name is hierarchical
+            $bareName   = substr($hierarchicalName, $lastLeftBracketPos + 1, -1);
+        }
+        return $bareName;
     }
 }
