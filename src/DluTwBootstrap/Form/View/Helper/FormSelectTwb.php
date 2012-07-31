@@ -9,7 +9,7 @@ use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 
 /**
- * Form Select
+ * FormSelectTwb
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License
@@ -37,7 +37,8 @@ class FormSelectTwb extends FormSelect
      * @param \DluTwBootstrap\GenUtil $genUtil
      * @param \DluTwBootstrap\Form\FormUtil $formUtil
      */
-    public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
+    public function __construct(GenUtil $genUtil, FormUtil $formUtil)
+    {
         $this->genUtil  = $genUtil;
         $this->formUtil = $formUtil;
     }
@@ -49,10 +50,13 @@ class FormSelectTwb extends FormSelect
      * @param array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element, $formType = null, array $displayOptions = array()) {
+    public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
+    {
         if (array_key_exists('class', $displayOptions)) {
-            $class  = $element->getAttribute('class');
-            $class  = $this->genUtil->addWord($displayOptions['class'], $class);
+            $class                  = $element->getAttribute('class');
+            $class                  = $this->genUtil->addWord($displayOptions['class'], $class);
+            $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
+            $class                  = $escapeHtmlAttrHelper($class);
             $element->setAttribute('class', $class);
         }
         if (array_key_exists('size', $displayOptions)) {

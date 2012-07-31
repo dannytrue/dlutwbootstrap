@@ -6,7 +6,7 @@ use Zend\Form\ElementInterface;
 use Zend\Form\View\Helper\FormElement as ViewHelperFormElement;
 
 /**
- * Form Element
+ * FormElementTwb
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License

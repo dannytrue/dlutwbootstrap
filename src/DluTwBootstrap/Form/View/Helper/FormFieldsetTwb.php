@@ -2,6 +2,7 @@
 namespace DluTwBootstrap\Form\View\Helper;
 
 use DluTwBootstrap\Form\Exception\UnsupportedElementTypeException;
+use DluTwBootstrap\GenUtil;
 use DluTwBootstrap\Form\FormUtil;
 
 use Zend\Form\View\Helper\AbstractHelper as AbstractFormViewHelper;
@@ -12,7 +13,7 @@ use Zend\Form\ElementInterface;
 use Zend\InputFilter\InputFilterInterface;
 
 /**
- * Form Fieldset
+ * FormFieldsetTwb
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License
@@ -22,6 +23,11 @@ use Zend\InputFilter\InputFilterInterface;
 class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareInterface
 {
     /**
+     * @var GenUtil
+     */
+    protected $genUtil;
+
+    /**
      * @var FormUtil
      */
     protected $formUtil;
@@ -30,10 +36,12 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
 
     /**
      * Constructor
+     * @param \DluTwBootstrap\GenUtil $genUtil
      * @param \DluTwBootstrap\Form\FormUtil $formUtil
      */
-    public function __construct(FormUtil $formUtil)
+    public function __construct(GenUtil $genUtil, FormUtil $formUtil)
     {
+        $this->genUtil  = $genUtil;
         $this->formUtil = $formUtil;
     }
 
@@ -45,17 +53,24 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @return string
      */
     public function openTag(FieldsetInterface $fieldset, $formType = null, array $displayOptions = array()) {
-        if(is_null($formType)) {
+        if (is_null($formType)) {
             $formType           = $this->formUtil->getDefaultFormType();
         }
+        $class  = $fieldset->getAttribute('class');
         if (array_key_exists('class', $displayOptions)) {
-            $class  = ' class="' . $displayOptions['class'] . '"';
-        } else {
-            $class  = '';
+            $class  = $this->genUtil->addWord($displayOptions['class'], $class);
         }
-        $html   = sprintf('<fieldset%s>', $class);
-        $legend = $fieldset->getAttribute('legend');
-        if($legend && ($formType == FormUtil::FORM_TYPE_HORIZONTAL
+        $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
+        $class                  = $escapeHtmlAttrHelper($class);
+        $fieldset->setAttribute('class', $class);
+        if ($class) {
+            $classAttrib        = sprintf(' class="%s"', $class);
+        } else {
+            $classAttrib        = '';
+        }
+        $html   = sprintf('<fieldset%s>', $classAttrib);
+        $legend = $fieldset->getOption('legend');
+        if ($legend && ($formType == FormUtil::FORM_TYPE_HORIZONTAL
                 || $formType == FormUtil::FORM_TYPE_VERTICAL)) {
             //Translate
             if (null !== ($translator = $this->getTranslator())) {

@@ -13,7 +13,7 @@ use Zend\Form\ElementInterface;
 use Zend\Form\FormInterface;
 
 /**
- * Form
+ * FormTwb
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License
@@ -158,6 +158,8 @@ class FormTwb extends ViewHelperForm
             if (array_key_exists('class', $displayOptions)) {
                 $class  = $this->genUtil->addWord($displayOptions['class'], $class);
             }
+            $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
+            $class                  = $escapeHtmlAttrHelper($class);
             $form->setAttribute('class', $class);
         }
         return parent::openTag($form);

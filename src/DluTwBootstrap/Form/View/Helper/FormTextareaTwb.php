@@ -9,7 +9,7 @@ use Zend\Form\Exception;
 use Zend\Form\View\Helper\FormTextarea;
 
 /**
- * Form Textarea
+ * FormTextareaTwb
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License
@@ -51,12 +51,14 @@ class FormTextareaTwb extends FormTextarea
      */
     protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions) {
         if(array_key_exists('class', $displayOptions)) {
-            $class  = $element->getAttribute('class');
-            $class  = $this->genUtil->addWord($displayOptions['class'], $class);
+            $class                  = $element->getAttribute('class');
+            $class                  = $this->genUtil->addWord($displayOptions['class'], $class);
+            $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
+            $class                  = $escapeHtmlAttrHelper($class);
             $element->setAttribute('class', $class);
         }
         if(array_key_exists('rows', $displayOptions)) {
-            $element->setAttribute('rows', $displayOptions['rows']);
+            $element->setAttribute('rows', (int)$displayOptions['rows']);
         }
         $this->formUtil->addIdAttributeIfMissing($element);
     }

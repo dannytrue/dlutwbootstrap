@@ -16,23 +16,16 @@ use Zend\Form\ElementInterface;
 use Zend\Form\Exception;
 use Zend\Form\View\Helper\AbstractHelper;
 
-//TODO - refactor
-
+/**
+ * FormRowTwb
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormRowTwb extends AbstractHelper
 {
-    const LABEL_APPEND  = 'append';
-    const LABEL_PREPEND = 'prepend';
-
-    /**
-     * @var string
-     */
-    protected $labelPosition = self::LABEL_PREPEND;
-
-    /**
-     * @var array
-     */
-    protected $labelAttributes      = array();
-
     /**
      * @var FormLabel
      */
@@ -122,7 +115,7 @@ class FormRowTwb extends AbstractHelper
             //Element has a label
             $labelAttributes = $element->getLabelAttributes();
             if (empty($labelAttributes)) {
-                $labelAttributes = $this->labelAttributes;
+                $labelAttributes = array();
             }
             $labelAttributes    = $this->genUtil->addWordToArrayItem('control-label', $labelAttributes, 'class');
             $element->setLabelAttributes($labelAttributes);
@@ -154,62 +147,6 @@ class FormRowTwb extends AbstractHelper
             return $this;
         }
         return $this->render($element, $formType, $displayConfig);
-    }
-
-    /**
-     * Set the label position
-     *
-     * @param $labelPosition
-     * @return FormRow
-     * @throws \Zend\Form\Exception\InvalidArgumentException
-     */
-    public function setLabelPosition($labelPosition)
-    {
-        $labelPosition = strtolower($labelPosition);
-        if (!in_array($labelPosition, array(self::LABEL_APPEND, self::LABEL_PREPEND))) {
-            throw new Exception\InvalidArgumentException(sprintf(
-                '%s expects either %s::LABEL_APPEND or %s::LABEL_PREPEND; received "%s"',
-                __METHOD__,
-                __CLASS__,
-                __CLASS__,
-                (string) $labelPosition
-            ));
-        }
-        $this->labelPosition = $labelPosition;
-
-        return $this;
-    }
-
-    /**
-     * Get the label position
-     *
-     * @return string
-     */
-    public function getLabelPosition()
-    {
-        return $this->labelPosition;
-    }
-
-    /**
-     * Set the attributes for the row label
-     *
-     * @param  array $labelAttributes
-     * @return FormRow
-     */
-    public function setLabelAttributes($labelAttributes)
-    {
-        $this->labelAttributes = $labelAttributes;
-        return $this;
-    }
-
-    /**
-     * Get the attributes for the row label
-     *
-     * @return array
-     */
-    public function getLabelAttributes()
-    {
-        return $this->labelAttributes;
     }
 
     /**
@@ -337,5 +274,4 @@ class FormRowTwb extends AbstractHelper
         }
         return $this->controlsHelper;
     }
-
 }

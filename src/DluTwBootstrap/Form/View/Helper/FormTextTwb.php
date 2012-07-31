@@ -7,6 +7,14 @@ use DluTwBootstrap\GenUtil;
 use Zend\Form\ElementInterface;
 use Zend\Form\View\Helper\FormText;
 
+/**
+ * FormTextTwb
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormTextTwb extends FormText
 {
     /**
@@ -26,7 +34,8 @@ class FormTextTwb extends FormText
      * @param \DluTwBootstrap\GenUtil $genUtil
      * @param \DluTwBootstrap\Form\FormUtil $formUtil
      */
-    public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
+    public function __construct(GenUtil $genUtil, FormUtil $formUtil)
+    {
         $this->genUtil  = $genUtil;
         $this->formUtil = $formUtil;
     }
@@ -38,20 +47,21 @@ class FormTextTwb extends FormText
      * @param array $displayOptions
      * @return void
      */
-    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions) {
-        if(!$this->formUtil->isFormTypeSupported($formType)) {
+    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions)
+    {
+        if (!$this->formUtil->isFormTypeSupported($formType)) {
             $formType   = $this->formUtil->getDefaultFormType();
         }
-        if(array_key_exists('class', $displayOptions)) {
-            $class  = $element->getAttribute('class');
+        $class  = $element->getAttribute('class');
+        if (array_key_exists('class', $displayOptions)) {
             $class  = $this->genUtil->addWord($displayOptions['class'], $class);
-            $element->setAttribute('class', $class);
         }
-        if($formType == FormUtil::FORM_TYPE_SEARCH) {
-            $class  = $element->getAttribute('class');
+        if ($formType == FormUtil::FORM_TYPE_SEARCH) {
             $class  = $this->genUtil->addWord('search-query', $class);
-            $element->setAttribute('class', $class);
         }
+        $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
+        $class                  = $escapeHtmlAttrHelper($class);
+        $element->setAttribute('class', $class);
         $this->formUtil->addIdAttributeIfMissing($element);
     }
 

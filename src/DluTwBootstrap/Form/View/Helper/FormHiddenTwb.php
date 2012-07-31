@@ -4,9 +4,16 @@ namespace DluTwBootstrap\Form\View\Helper;
 use Zend\Form\ElementInterface;
 use Zend\Form\View\Helper\FormHidden;
 
+/**
+ * FormHiddenTwb
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormHiddenTwb extends FormHidden
 {
-
     /* ******************** METHODS ******************** */
 
     /**

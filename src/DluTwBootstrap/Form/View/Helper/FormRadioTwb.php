@@ -6,7 +6,7 @@ use DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb;
 use Zend\Form\ElementInterface;
 
 /**
- * Form Radio
+ * FormRadioTwb
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License

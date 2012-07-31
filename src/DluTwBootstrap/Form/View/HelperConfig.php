@@ -20,7 +20,6 @@ class HelperConfig implements ConfigInterface
         'formcontrolgrouptwb'                   => 'DluTwBootstrap\Form\View\Helper\FormControlGroupTwb',
         'formcontrolstwb'                       => 'DluTwBootstrap\Form\View\Helper\FormControlsTwb',
         'formdescriptiontwb'                    => 'DluTwBootstrap\Form\View\Helper\FormDescriptionTwb',
-        //'formelementfulltwb'                    => 'DluTwBootstrap\Form\View\Helper\FormElementFullTwb',
         'formelementtwb'                        => 'DluTwBootstrap\Form\View\Helper\FormElementTwb',
         'formlabeltwb'                          => 'DluTwBootstrap\Form\View\Helper\FormLabelTwb',
         'formhiddentwb'                         => 'DluTwBootstrap\Form\View\Helper\FormHiddenTwb',
@@ -94,36 +93,14 @@ class HelperConfig implements ConfigInterface
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormElementErrorsTwb($genUtil);
                 return $instance;
             },
-            'formfieldsettwb'                   => function($sm) use ($formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormFieldsetTwb($formUtil);
+            'formfieldsettwb'                   => function($sm) use ($genUtil, $formUtil) {
+                $instance       = new \DluTwBootstrap\Form\View\Helper\FormFieldsetTwb($genUtil, $formUtil);
                 return $instance;
             },
             'formfiletwb'                       => function($sm) use ($formUtil) {
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormFileTwb($formUtil);
                 return $instance;
             },
-            /*
-            'formlabelcheckboxoptioninlinetwb'  => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelCheckboxOptionInlineTwb($genUtil, $formUtil);
-                return $instance;
-            },
-            'formlabelcheckboxoptiontwb'        => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelCheckboxOptionTwb($genUtil, $formUtil);
-                return $instance;
-            },
-            'formlabelmaintwb'                  => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelMainTwb($genUtil, $formUtil);
-                return $instance;
-            },
-            'formlabelradiooptioninlinetwb'     => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelRadioOptionInlineTwb($genUtil, $formUtil);
-                return $instance;
-            },
-            'formlabelradiooptiontwb'           => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelRadioOptionTwb($genUtil, $formUtil);
-                return $instance;
-            },
-            */
             'formmulticheckboxtwb'              => function($sm) use ($genUtil) {
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb($genUtil);
                 return $instance;

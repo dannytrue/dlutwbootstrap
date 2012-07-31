@@ -3,7 +3,7 @@ namespace DluTwBootstrap\Form\View\Helper;
 use \Zend\Form\ElementInterface;
 
 /**
- * Form Hint
+ * FormHintTwb
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License

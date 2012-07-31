@@ -5,6 +5,14 @@ use Zend\View\Helper\AbstractHelper as BaseAbstractHelper;
 use Zend\Form\ElementInterface;
 use Zend\Form\View\Helper\FormElement as ViewHelperFormElement;
 
+/**
+ * FormInputTwb
+ * @package DluTwBootstrap
+ * @copyright David Lukas (c) - http://www.zfdaily.com
+ * @license http://www.zfdaily.com/code/license New BSD License
+ * @link http://www.zfdaily.com
+ * @link https://bitbucket.org/dlu/dlutwbootstrap
+ */
 class FormInputTwb extends BaseAbstractHelper
 {
     /**
@@ -92,7 +100,6 @@ class FormInputTwb extends BaseAbstractHelper
             $helper = $renderer->plugin('form_password_twb');
             return $helper($element, $formType, $displayOptions);
         }
-
         //Radio
         if ('radio' == $type) {
             $helper = $renderer->plugin('form_radio_twb');

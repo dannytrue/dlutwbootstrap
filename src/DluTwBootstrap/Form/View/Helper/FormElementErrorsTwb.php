@@ -5,7 +5,7 @@ use \Zend\Form\ElementInterface;
 use \DluTwBootstrap\GenUtil;
 
 /**
- * Form Element Errors
+ * FormElementErrorsTwb
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License
