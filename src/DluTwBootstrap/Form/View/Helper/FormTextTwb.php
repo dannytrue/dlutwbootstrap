@@ -49,18 +49,15 @@ class FormTextTwb extends FormText
      */
     protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions)
     {
-        if (!$this->formUtil->isFormTypeSupported($formType)) {
-            $formType   = $this->formUtil->getDefaultFormType();
-        }
         $class  = $element->getAttribute('class');
         if (array_key_exists('class', $displayOptions)) {
-            $class  = $this->genUtil->addWord($displayOptions['class'], $class);
+            $class  = $this->genUtil->addWords($displayOptions['class'], $class);
         }
         if ($formType == FormUtil::FORM_TYPE_SEARCH) {
-            $class  = $this->genUtil->addWord('search-query', $class);
+            $class  = $this->genUtil->addWords('search-query', $class);
         }
         $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
-        $class                  = $escapeHtmlAttrHelper($class);
+        $class                  = $this->genUtil->escapeWords($class, $escapeHtmlAttrHelper);
         $element->setAttribute('class', $class);
         $this->formUtil->addIdAttributeIfMissing($element);
     }
@@ -76,18 +73,19 @@ class FormTextTwb extends FormText
                            $formType = null,
                            array $displayOptions = array()
     ) {
+        $formType   = $this->formUtil->filterFormType($formType);
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
         $html   = parent::render($element);
         //Text prepend / append
         $escapeHelper   = $this->getEscapeHtmlHelper();
         $prepAppClass   = '';
         if($element->getOption('prependText')) {
-            $prepAppClass   = $this->genUtil->addWord('input-prepend', $prepAppClass);
+            $prepAppClass   = $this->genUtil->addWords('input-prepend', $prepAppClass);
             $html           = '<span class="add-on">' . $escapeHelper($element->getOption('prependText')) . '</span>'
                 . $html;
         }
         if($element->getOption('appendText')) {
-            $prepAppClass   = $this->genUtil->addWord('input-append', $prepAppClass);
+            $prepAppClass   = $this->genUtil->addWords('input-append', $prepAppClass);
             $html           .= '<span class="add-on">' . $escapeHelper($element->getOption('appendText')) . '</span>';
         }
         if($prepAppClass) {

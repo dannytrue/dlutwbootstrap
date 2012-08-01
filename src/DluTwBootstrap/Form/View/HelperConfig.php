@@ -21,10 +21,8 @@ class HelperConfig implements ConfigInterface
         'formcontrolstwb'                       => 'DluTwBootstrap\Form\View\Helper\FormControlsTwb',
         'formdescriptiontwb'                    => 'DluTwBootstrap\Form\View\Helper\FormDescriptionTwb',
         'formelementtwb'                        => 'DluTwBootstrap\Form\View\Helper\FormElementTwb',
-        'formlabeltwb'                          => 'DluTwBootstrap\Form\View\Helper\FormLabelTwb',
         'formhiddentwb'                         => 'DluTwBootstrap\Form\View\Helper\FormHiddenTwb',
         'formhinttwb'                           => 'DluTwBootstrap\Form\View\Helper\FormHintTwb',
-        'forminputtwb'                          => 'DluTwBootstrap\Form\View\Helper\FormInputTwb',
     );
 
     /**
@@ -101,6 +99,14 @@ class HelperConfig implements ConfigInterface
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormFileTwb($formUtil);
                 return $instance;
             },
+            'forminputtwb'                      => function($sm) use ($formUtil) {
+                $instance       = new \DluTwBootstrap\Form\View\Helper\FormInputTwb($formUtil);
+                return $instance;
+            },
+            'formlabeltwb'                      => function($sm) use ($genUtil) {
+                $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelTwb($genUtil);
+                return $instance;
+            },
             'formmulticheckboxtwb'              => function($sm) use ($genUtil) {
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb($genUtil);
                 return $instance;
@@ -117,8 +123,8 @@ class HelperConfig implements ConfigInterface
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormResetTwb($genUtil);
                 return $instance;
             },
-            'formrowtwb'                        => function($sm) use ($genUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormRowTwb($genUtil);
+            'formrowtwb'                        => function($sm) use ($genUtil, $formUtil) {
+                $instance       = new \DluTwBootstrap\Form\View\Helper\FormRowTwb($genUtil, $formUtil);
                 return $instance;
             },
             'formselecttwb'                     => function($sm) use ($genUtil, $formUtil) {

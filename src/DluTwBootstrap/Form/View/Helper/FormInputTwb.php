@@ -1,6 +1,8 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
+use DluTwBootstrap\Form\FormUtil;
+
 use Zend\View\Helper\AbstractHelper as BaseAbstractHelper;
 use Zend\Form\ElementInterface;
 use Zend\Form\View\Helper\FormElement as ViewHelperFormElement;
@@ -15,6 +17,11 @@ use Zend\Form\View\Helper\FormElement as ViewHelperFormElement;
  */
 class FormInputTwb extends BaseAbstractHelper
 {
+    /**
+     * @var FormUtil
+     */
+    protected $formUtil;
+
     /**
      * Valid values for the input type
      * @var array
@@ -48,6 +55,15 @@ class FormInputTwb extends BaseAbstractHelper
     );
 
     /**
+     * Constructor
+     * @param \DluTwBootstrap\Form\FormUtil $formUtil
+     */
+    public function __construct(FormUtil $formUtil)
+    {
+        $this->formUtil = $formUtil;
+    }
+
+    /**
      * Render an input element
      * If the passed element has no type set assumes 'text'
      * If the element type is not supported, returns an empty string
@@ -63,7 +79,8 @@ class FormInputTwb extends BaseAbstractHelper
             // Bail early if renderer is not pluggable
             return '';
         }
-        $type    = $element->getAttribute('type');
+        $formType   = $this->formUtil->filterFormType($formType);
+        $type       = $element->getAttribute('type');
         if (empty($type)) {
             $type   = 'text';
         }

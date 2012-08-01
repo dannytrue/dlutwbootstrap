@@ -40,15 +40,14 @@ class FormSubmitTwb extends FormSubmit
      */
     protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions) {
         $class  = $element->getAttribute('class');
-        $class  = $this->genUtil->addWord('btn', $class);
+        $class  = $this->genUtil->addWords('btn', $class);
         if (array_key_exists('class', $displayOptions)) {
-            $class = $this->genUtil->addWord($displayOptions['class'], $class);
+            $class = $this->genUtil->addWords($displayOptions['class'], $class);
         }
         if ($element->getOption('primary') && ($element->getOption('primary') == true)) {
-            $class  = $this->genUtil->addWord('btn-primary', $class);
+            $class  = $this->genUtil->addWords('btn-primary', $class);
         }
-        $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
-        $class                  = $escapeHtmlAttrHelper($class);
+        $class  = $this->genUtil->escapeWords($class, $this->getEscapeHtmlAttrHelper());
         $element->setAttribute('class', $class);
     }
 

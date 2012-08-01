@@ -84,22 +84,15 @@ class FormTwb extends ViewHelperForm
             // Bail early if renderer is not pluggable
             return '';
         }
-        if(is_null($formType)) {
-            $formType           = $this->formUtil->getDefaultFormType();
-        }
+        $formType   = $this->formUtil->filterFormType($formType);
         //Open Tag
-        if (array_key_exists('form', $displayOptions)) {
-            $displayOptionsForm = $displayOptions['form'];
-        } else {
-            $displayOptionsForm = array();
-        }
-        $html   = $this->openTag($form, $formType, $displayOptionsForm);
+        $html   = $this->openTag($form, $formType, $displayOptions);
         //Form content
         $fieldsetHelper = $renderer->plugin('form_fieldset_twb');
         $inputFilter    = $form->getInputFilter();
         //TODO - use the input filter
-        $html   .= $fieldsetHelper($form, $formType, $displayOptions, null, false);
-        //Form renderActions
+        $html   .= $fieldsetHelper($form, $formType, $displayOptions, null, false, false);
+        //Form actions
         $actionsHelper  = $renderer->plugin('form_actions_twb');
         $actions        = $this->getActions($form);
         if (array_key_exists('elements', $displayOptions)) {
@@ -147,19 +140,17 @@ class FormTwb extends ViewHelperForm
      */
     public function openTag(FormInterface $form = null, $formType = null, $displayOptions = array())
     {
-        if (is_null($formType)) {
-            $formType   = $this->formUtil->getDefaultFormType();
-        }
+        $formType   = $this->formUtil->filterFormType($formType);
         if (!array_key_exists($formType, $this->formTypeMap)) {
             throw new UnsupportedFormTypeException("Unsupported form type '$formType'.");
         }
         if ($form) {
-            $class  = $this->genUtil->addWord($this->formTypeMap[$formType], $form->getAttribute('class'));
+            $class  = $this->genUtil->addWords($this->formTypeMap[$formType], $form->getAttribute('class'));
             if (array_key_exists('class', $displayOptions)) {
-                $class  = $this->genUtil->addWord($displayOptions['class'], $class);
+                $class  = $this->genUtil->addWords($displayOptions['class'], $class);
             }
             $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
-            $class                  = $escapeHtmlAttrHelper($class);
+            $class                  = $this->genUtil->escapeWords($class, $escapeHtmlAttrHelper);
             $form->setAttribute('class', $class);
         }
         return parent::openTag($form);

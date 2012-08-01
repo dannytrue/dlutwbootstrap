@@ -53,15 +53,13 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @return string
      */
     public function openTag(FieldsetInterface $fieldset, $formType = null, array $displayOptions = array()) {
-        if (is_null($formType)) {
-            $formType           = $this->formUtil->getDefaultFormType();
-        }
-        $class  = $fieldset->getAttribute('class');
+        $formType   = $this->formUtil->filterFormType($formType);
+        $class      = $fieldset->getAttribute('class');
         if (array_key_exists('class', $displayOptions)) {
-            $class  = $this->genUtil->addWord($displayOptions['class'], $class);
+            $class  = $this->genUtil->addWords($displayOptions['class'], $class);
         }
         $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
-        $class                  = $escapeHtmlAttrHelper($class);
+        $class                  = $this->genUtil->escapeWords($class, $escapeHtmlAttrHelper);
         $fieldset->setAttribute('class', $class);
         if ($class) {
             $classAttrib        = sprintf(' class="%s"', $class);
@@ -113,9 +111,7 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
             // Bail early if renderer is not pluggable
             return '';
         }
-        if(is_null($formType)) {
-            $formType           = $this->formUtil->getDefaultFormType();
-        }
+        $formType   = $this->formUtil->filterFormType($formType);
         $rowHelper  = $renderer->plugin('form_row_twb');
         $iterator   = $fieldset->getIterator();
         $html       = '';
@@ -134,10 +130,11 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
             if ($elementOrFieldset instanceof FieldsetInterface) {
                 //Fieldset
                 /* @var $elementOrFieldset FieldsetInterface */
-                $fieldsetName   = $elementOrFieldset->getName();
+                $fieldsetName       = $elementOrFieldset->getName();
+                $fieldsetBareName   = $this->formUtil->getBareElementName($fieldsetName);
                 //Get fieldset display options
-                if (array_key_exists($fieldsetName, $displayOptionsFieldsets)) {
-                    $displayOptionsFieldset = $displayOptionsFieldsets[$fieldsetName];
+                if (array_key_exists($fieldsetBareName, $displayOptionsFieldsets)) {
+                    $displayOptionsFieldset = $displayOptionsFieldsets[$fieldsetBareName];
                 } else {
                     $displayOptionsFieldset = array();
                 }
@@ -145,6 +142,7 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                                                 $formType,
                                                 $displayOptionsFieldset,
                                                 $inputFilter,
+                                                true,
                                                 true);
             } elseif ($elementOrFieldset instanceof ElementInterface) {
                 //Element
@@ -182,21 +180,26 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param string|null $formType
      * @param array $displayOptions
      * @param null|InputFilterInterface $inputFilter
-     * @param bool $displayButtons
+     * @param bool $displayButtons Should buttons found in this fieldset be rendered?
+     * @param bool $renderFieldsetTag Should we render the <fieldset> tag around the fieldset?
      * @return string
      */
     public function render(FieldsetInterface $fieldset,
                            $formType = null,
                            array $displayOptions = array(),
                            InputFilterInterface $inputFilter = null,
-                           $displayButtons = true
+                           $displayButtons = true,
+                           $renderFieldsetTag = true
     ) {
-        if(is_null($formType)) {
-            $formType           = $this->formUtil->getDefaultFormType();
+        $formType   = $this->formUtil->filterFormType($formType);
+        $html       = '';
+        if ($renderFieldsetTag) {
+            $html   .= $this->openTag($fieldset, $formType, $displayOptions);
         }
-        $html   = $this->openTag($fieldset, $formType, $displayOptions);
         $html   .= "\n" . $this->content($fieldset, $formType, $displayOptions, $inputFilter, $displayButtons);
-        $html   .= "\n" . $this->closeTag();
+        if ($renderFieldsetTag) {
+            $html       .= "\n" . $this->closeTag();
+        }
         return $html;
     }
 
@@ -205,18 +208,20 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param string|null $formType
      * @param array $displayOptions
      * @param null|InputFilterInterface $inputFilter
-     * @param bool $displayButtons
+     * @param bool $displayButtons Should buttons found in this fieldset be rendered?
+     * @param bool $renderFieldsetTag Should we render the <fieldset> tag around the fieldset?
      * @return string
      */
     public function __invoke(FieldsetInterface $fieldset = null,
                              $formType = null,
                              array $displayOptions = array(),
                              InputFilterInterface $inputFilter = null,
-                             $displayButtons = true
+                             $displayButtons = true,
+                             $renderFieldsetTag = true
     ) {
         if(is_null($fieldset)) {
             return $this;
         }
-        return $this->render($fieldset, $formType, $displayOptions, $inputFilter, $displayButtons);
+        return $this->render($fieldset, $formType, $displayOptions, $inputFilter, $displayButtons, $renderFieldsetTag);
     }
 }

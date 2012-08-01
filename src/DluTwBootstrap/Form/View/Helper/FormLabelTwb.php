@@ -1,6 +1,8 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
+use DluTwBootstrap\GenUtil;
+
 use Zend\Form\View\Helper\FormLabel;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception\DomainException;
@@ -16,12 +18,27 @@ use Zend\Form\Exception\DomainException;
 class FormLabelTwb extends FormLabel
 {
     /**
+     * @var GenUtil
+     */
+    protected $genUtil;
+
+    /**
+     * Constructor
+     * @param \DluTwBootstrap\GenUtil $genUtil
+     */
+    public function __construct(GenUtil $genUtil)
+    {
+        $this->genUtil  = $genUtil;
+    }
+
+    /**
      * Generate a form label from an element
      * @param  ElementInterface $element
+     * @param bool $required
      * @throws \Zend\Form\Exception\DomainException
      * @return string|FormLabelTwb
      */
-    public function __invoke(ElementInterface $element = null)
+    public function __invoke(ElementInterface $element = null, $required = false)
     {
         if (!$element) {
             return $this;
@@ -37,6 +54,16 @@ class FormLabelTwb extends FormLabel
         //Escape
         $escaperHtml    = $this->getEscapeHtmlHelper();
         $labelContent   = $escaperHtml($labelContent);
+        //Label attributes
+        $labelAttributes = $element->getLabelAttributes();
+        if (empty($labelAttributes)) {
+            $labelAttributes = array();
+        }
+        $labelAttributes    = $this->genUtil->addWordsToArrayItem('control-label', $labelAttributes, 'class');
+        if ($required) {
+            $labelAttributes    = $this->genUtil->addWordsToArrayItem('required', $labelAttributes, 'class');
+        }
+        $element->setLabelAttributes($labelAttributes);
         return parent::__invoke($element, $labelContent);
     }
 }

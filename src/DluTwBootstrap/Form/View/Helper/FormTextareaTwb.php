@@ -52,9 +52,9 @@ class FormTextareaTwb extends FormTextarea
     protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions) {
         if(array_key_exists('class', $displayOptions)) {
             $class                  = $element->getAttribute('class');
-            $class                  = $this->genUtil->addWord($displayOptions['class'], $class);
+            $class                  = $this->genUtil->addWords($displayOptions['class'], $class);
             $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
-            $class                  = $escapeHtmlAttrHelper($class);
+            $class                  = $this->genUtil->escapeWords($class, $escapeHtmlAttrHelper);
             $element->setAttribute('class', $class);
         }
         if(array_key_exists('rows', $displayOptions)) {

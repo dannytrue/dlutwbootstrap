@@ -66,15 +66,22 @@ class FormRowTwb extends AbstractHelper
      */
     protected $genUtil;
 
+    /**
+     * @var FormUtil
+     */
+    protected $formUtil;
+
     /* ******************** METHODS ******************** */
 
     /**
      * Constructor
      * @param GenUtil $genUtil
+     * @param FormUtil $formUtil
      */
-    public function __construct(GenUtil $genUtil)
+    public function __construct(GenUtil $genUtil, FormUtil $formUtil)
     {
         $this->genUtil  = $genUtil;
+        $this->formUtil = $formUtil;
     }
 
     /**
@@ -82,10 +89,16 @@ class FormRowTwb extends AbstractHelper
      * @param ElementInterface $element
      * @param string|null $formType
      * @param array $displayConfig
+     * @param bool $required
      * @return string
      */
-    public function render(ElementInterface $element, $formType = null, array $displayConfig = array())
+    public function render(ElementInterface $element,
+                           $formType = null,
+                           array $displayConfig = array(),
+                           $required = false)
     {
+        $formType            = $this->formUtil->filterFormType($formType);
+
         $elementHelper       = $this->getElementHelper();
         $elementErrorsHelper = $this->getElementErrorsHelper();
         $hintHelper          = $this->getHintHelper();
@@ -113,14 +126,8 @@ class FormRowTwb extends AbstractHelper
 
         if (!empty($label)) {
             //Element has a label
-            $labelAttributes = $element->getLabelAttributes();
-            if (empty($labelAttributes)) {
-                $labelAttributes = array();
-            }
-            $labelAttributes    = $this->genUtil->addWordToArrayItem('control-label', $labelAttributes, 'class');
-            $element->setLabelAttributes($labelAttributes);
             $labelHelper        = $this->getLabelHelper();
-            $label              = $labelHelper($element);
+            $label              = $labelHelper($element, $required);
         }
         $markup = $controlGroupOpen
             . $label
@@ -140,13 +147,17 @@ class FormRowTwb extends AbstractHelper
      * @param null|ElementInterface $element
      * @param string|null $formType
      * @param array $displayConfig
+     * @param bool $required
      * @return string|FormRowTwb
      */
-    public function __invoke(ElementInterface $element = null, $formType = null, array $displayConfig = array()) {
+    public function __invoke(ElementInterface $element = null,
+                             $formType = null,
+                             array $displayConfig = array(),
+                             $required = false) {
         if (!$element) {
             return $this;
         }
-        return $this->render($element, $formType, $displayConfig);
+        return $this->render($element, $formType, $displayConfig, $required);
     }
 
     /**

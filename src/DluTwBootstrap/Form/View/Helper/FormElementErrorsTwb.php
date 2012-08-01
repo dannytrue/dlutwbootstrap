@@ -37,7 +37,7 @@ class FormElementErrorsTwb extends \Zend\Form\View\Helper\FormElementErrors
      * @return string
      */
     public function render(ElementInterface $element, array $attributes = array()) {
-        $attributes = $this->genUtil->addWordToArrayItem('errors', $attributes, 'class');
+        $attributes = $this->genUtil->addWordsToArrayItem('errors', $attributes, 'class');
         return parent::render($element, $attributes);
     }
 

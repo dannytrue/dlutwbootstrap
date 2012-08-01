@@ -1,6 +1,8 @@
 <?php
 namespace DluTwBootstrap\Form;
 
+use DluTwBootstrap\Exception\InvalidParameterException;
+
 use Zend\Form\ElementInterface;
 
 /**
@@ -106,6 +108,23 @@ class FormUtil
     public function isFormTypeSupported($formType)
     {
         return in_array($formType, $this->supportedFormTypes);
+    }
+
+    /**
+     * Filters the specified form type and returns it - if null, uses the default, otherwise checks if the type is supported
+     * @param $formType
+     * @return string
+     * @throws \DluTwBootstrap\Exception\InvalidParameterException
+     */
+    public function filterFormType($formType)
+    {
+        if (is_null($formType)) {
+            $formType   = $this->getDefaultFormType();
+        }
+        if (!$this->isFormTypeSupported($formType)) {
+            throw new InvalidParameterException(sprintf("Form type '%s' is not supported.", $formType));
+        }
+        return $formType;
     }
 
     /**
