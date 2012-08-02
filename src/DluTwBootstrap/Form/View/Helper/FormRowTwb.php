@@ -88,14 +88,12 @@ class FormRowTwb extends AbstractHelper
      * Utility form helper that renders a label (if it exists), an element, hint, description and errors
      * @param ElementInterface $element
      * @param string|null $formType
-     * @param array $displayConfig
-     * @param bool $required
+     * @param array $displayOptions
      * @return string
      */
     public function render(ElementInterface $element,
                            $formType = null,
-                           array $displayConfig = array(),
-                           $required = false)
+                           array $displayOptions = array())
     {
         $formType            = $this->formUtil->filterFormType($formType);
 
@@ -105,7 +103,7 @@ class FormRowTwb extends AbstractHelper
         $descriptionHelper   = $this->getDescriptionHelper();
 
         $label               = (string)$element->getLabel();
-        $elementString       = $elementHelper->render($element, $formType, $displayConfig);
+        $elementString       = $elementHelper->render($element, $formType, $displayOptions);
         $hint                = $hintHelper->render($element);
         $description         = $descriptionHelper->render($element);
         $elementErrors       = $elementErrorsHelper->render($element);
@@ -127,7 +125,7 @@ class FormRowTwb extends AbstractHelper
         if (!empty($label)) {
             //Element has a label
             $labelHelper        = $this->getLabelHelper();
-            $label              = $labelHelper($element, $required);
+            $label              = $labelHelper($element, $displayOptions);
         }
         $markup = $controlGroupOpen
             . $label
@@ -146,18 +144,16 @@ class FormRowTwb extends AbstractHelper
      * Proxies to {@link render()}.
      * @param null|ElementInterface $element
      * @param string|null $formType
-     * @param array $displayConfig
-     * @param bool $required
+     * @param array $displayOptions
      * @return string|FormRowTwb
      */
     public function __invoke(ElementInterface $element = null,
                              $formType = null,
-                             array $displayConfig = array(),
-                             $required = false) {
+                             array $displayOptions = array()) {
         if (!$element) {
             return $this;
         }
-        return $this->render($element, $formType, $displayConfig, $required);
+        return $this->render($element, $formType, $displayOptions);
     }
 
     /**

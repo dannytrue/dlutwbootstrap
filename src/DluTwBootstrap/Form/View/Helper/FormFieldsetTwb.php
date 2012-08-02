@@ -10,7 +10,6 @@ use Zend\I18n\Translator\TranslatorAwareInterface;
 use Zend\I18n\Translator\Translator;
 use Zend\Form\FieldsetInterface;
 use Zend\Form\ElementInterface;
-use Zend\InputFilter\InputFilterInterface;
 
 /**
  * FormFieldsetTwb
@@ -95,7 +94,6 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param FieldsetInterface $fieldset
      * @param string|null $formType
      * @param array $displayOptions
-     * @param InputFilterInterface|null $inputFilter
      * @param bool $displayButtons
      * @return string
      * @throws UnsupportedElementTypeException
@@ -103,7 +101,6 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
     public function content(FieldsetInterface $fieldset,
                             $formType = null,
                             array $displayOptions = array(),
-                            InputFilterInterface $inputFilter = null,
                             $displayButtons = true
     ) {
         $renderer = $this->getView();
@@ -127,21 +124,20 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
         }
         //Iterate over all fieldset elements and render them
         foreach($iterator as $elementOrFieldset) {
+            $elementName        = $elementOrFieldset->getName();
+            $elementBareName    = $this->formUtil->getBareElementName($elementName);
             if ($elementOrFieldset instanceof FieldsetInterface) {
                 //Fieldset
                 /* @var $elementOrFieldset FieldsetInterface */
-                $fieldsetName       = $elementOrFieldset->getName();
-                $fieldsetBareName   = $this->formUtil->getBareElementName($fieldsetName);
                 //Get fieldset display options
-                if (array_key_exists($fieldsetBareName, $displayOptionsFieldsets)) {
-                    $displayOptionsFieldset = $displayOptionsFieldsets[$fieldsetBareName];
+                if (array_key_exists($elementBareName, $displayOptionsFieldsets)) {
+                    $displayOptionsFieldset = $displayOptionsFieldsets[$elementBareName];
                 } else {
                     $displayOptionsFieldset = array();
                 }
                 $html   .= "\n" . $this->render($elementOrFieldset,
                                                 $formType,
                                                 $displayOptionsFieldset,
-                                                $inputFilter,
                                                 true,
                                                 true);
             } elseif ($elementOrFieldset instanceof ElementInterface) {
@@ -151,21 +147,12 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                     //We should ignore 'button' elements and this is a 'button' element, so skip the rest of the iteration
                     continue;
                 }
-                $elementName        = $elementOrFieldset->getName();
-                $elementBareName    = $this->formUtil->getBareElementName($elementName);
                 //Get element display options
                 if (array_key_exists($elementBareName, $displayOptionsElements)) {
                     $displayOptionsElement  = $displayOptionsElements[$elementBareName];
                 } else {
                     $displayOptionsElement  = array();
                 }
-                //Get input
-                if ($inputFilter && $inputFilter->has($elementName)) {
-                    $input  = $inputFilter->get($elementName);
-                } else {
-                    $input  = null;
-                }
-                //TODO - include input
                 $html   .= "\n" . $rowHelper($elementOrFieldset, $formType, $displayOptionsElement);
             } else {
                 //Unsupported item type
@@ -179,7 +166,6 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param FieldsetInterface $fieldset
      * @param string|null $formType
      * @param array $displayOptions
-     * @param null|InputFilterInterface $inputFilter
      * @param bool $displayButtons Should buttons found in this fieldset be rendered?
      * @param bool $renderFieldsetTag Should we render the <fieldset> tag around the fieldset?
      * @return string
@@ -187,7 +173,6 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
     public function render(FieldsetInterface $fieldset,
                            $formType = null,
                            array $displayOptions = array(),
-                           InputFilterInterface $inputFilter = null,
                            $displayButtons = true,
                            $renderFieldsetTag = true
     ) {
@@ -196,7 +181,7 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
         if ($renderFieldsetTag) {
             $html   .= $this->openTag($fieldset, $formType, $displayOptions);
         }
-        $html   .= "\n" . $this->content($fieldset, $formType, $displayOptions, $inputFilter, $displayButtons);
+        $html   .= "\n" . $this->content($fieldset, $formType, $displayOptions, $displayButtons);
         if ($renderFieldsetTag) {
             $html       .= "\n" . $this->closeTag();
         }
@@ -207,7 +192,6 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param FieldsetInterface|null $fieldset
      * @param string|null $formType
      * @param array $displayOptions
-     * @param null|InputFilterInterface $inputFilter
      * @param bool $displayButtons Should buttons found in this fieldset be rendered?
      * @param bool $renderFieldsetTag Should we render the <fieldset> tag around the fieldset?
      * @return string
@@ -215,13 +199,12 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
     public function __invoke(FieldsetInterface $fieldset = null,
                              $formType = null,
                              array $displayOptions = array(),
-                             InputFilterInterface $inputFilter = null,
                              $displayButtons = true,
                              $renderFieldsetTag = true
     ) {
         if(is_null($fieldset)) {
             return $this;
         }
-        return $this->render($fieldset, $formType, $displayOptions, $inputFilter, $displayButtons, $renderFieldsetTag);
+        return $this->render($fieldset, $formType, $displayOptions, $displayButtons, $renderFieldsetTag);
     }
 }

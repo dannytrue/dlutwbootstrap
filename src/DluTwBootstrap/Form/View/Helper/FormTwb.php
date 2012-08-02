@@ -89,9 +89,7 @@ class FormTwb extends ViewHelperForm
         $html   = $this->openTag($form, $formType, $displayOptions);
         //Form content
         $fieldsetHelper = $renderer->plugin('form_fieldset_twb');
-        $inputFilter    = $form->getInputFilter();
-        //TODO - use the input filter
-        $html   .= $fieldsetHelper($form, $formType, $displayOptions, null, false, false);
+        $html   .= $fieldsetHelper($form, $formType, $displayOptions, false, false);
         //Form actions
         $actionsHelper  = $renderer->plugin('form_actions_twb');
         $actions        = $this->getActions($form);

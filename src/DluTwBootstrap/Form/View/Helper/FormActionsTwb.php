@@ -20,10 +20,10 @@ class FormActionsTwb extends AbstractViewHelper
      * Renders the form-actions div tag
      * @param string|array $content Either a string or an array of elements
      * @param null|string $formType
-     * @param array $displayConfig
+     * @param array $displayOptions
      * @return string
      */
-    public function render($content, $formType = null, array $displayConfig = array())
+    public function render($content, $formType = null, array $displayOptions = array())
     {
         if (is_array($content)) {
             $renderer = $this->getView();
@@ -39,8 +39,8 @@ class FormActionsTwb extends AbstractViewHelper
                     //Only objects of type ElementInterface are accepted as content
                     continue;
                 }
-                if (array_key_exists($element->getName(), $displayConfig)) {
-                    $elemDisplayConfig  = $displayConfig[$element->getName()];
+                if (array_key_exists($element->getName(), $displayOptions)) {
+                    $elemDisplayConfig  = $displayOptions[$element->getName()];
                 } else {
                     $elemDisplayConfig  = array();
                 }
@@ -61,10 +61,10 @@ class FormActionsTwb extends AbstractViewHelper
     /**
      * Returns the form-renderActions open tag
      * @param null|string $formType
-     * @param array $displayConfig
+     * @param array $displayOptions
      * @return string
      */
-    public function openTag($formType = null, array $displayConfig = array())
+    public function openTag($formType = null, array $displayOptions = array())
     {
         $class  = 'form-actions';
         $html   = '<div class="' . $class . '">';
@@ -85,14 +85,14 @@ class FormActionsTwb extends AbstractViewHelper
      * Proxies to {@link render()}.
      * @param string|array|null $content Either a string or an array of elements
      * @param null|string $formType
-     * @param array $displayConfig
+     * @param array $displayOptions
      * @return string|FormActionsTwb
      */
-    public function __invoke($content = null, $formType = null, array $displayConfig = array())
+    public function __invoke($content = null, $formType = null, array $displayOptions = array())
     {
         if (is_null($content)) {
             return $this;
         }
-        return $this->render($content, $formType, $displayConfig);
+        return $this->render($content, $formType, $displayOptions);
     }
 }

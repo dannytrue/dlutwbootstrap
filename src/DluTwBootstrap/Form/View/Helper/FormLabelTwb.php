@@ -34,11 +34,11 @@ class FormLabelTwb extends FormLabel
     /**
      * Generate a form label from an element
      * @param  ElementInterface $element
-     * @param bool $required
+     * @param array $displayOptions
      * @throws \Zend\Form\Exception\DomainException
      * @return string|FormLabelTwb
      */
-    public function __invoke(ElementInterface $element = null, $required = false)
+    public function __invoke(ElementInterface $element = null, array $displayOptions = array())
     {
         if (!$element) {
             return $this;
@@ -60,7 +60,7 @@ class FormLabelTwb extends FormLabel
             $labelAttributes = array();
         }
         $labelAttributes    = $this->genUtil->addWordsToArrayItem('control-label', $labelAttributes, 'class');
-        if ($required) {
+        if (array_key_exists('required', $displayOptions) && $displayOptions['required']) {
             $labelAttributes    = $this->genUtil->addWordsToArrayItem('required', $labelAttributes, 'class');
         }
         $element->setLabelAttributes($labelAttributes);
