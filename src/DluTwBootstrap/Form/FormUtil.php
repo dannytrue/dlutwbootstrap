@@ -69,7 +69,7 @@ class FormUtil
 
     /**
      * If the 'id' attribute of the element is not defined, it is set to equal the element's name value
-     * //TODO - escape html attr!
+     * //TODO - escape html attr?
      * @param ElementInterface $element
      */
     public function addIdAttributeIfMissing(ElementInterface $element)

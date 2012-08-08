@@ -64,8 +64,8 @@ form ul.errors {
 }
 */
 
-/* Move inline help for multi select from the center to the top */
-select[multiple] + span.help-inline {
+/* Move inline help from the center to the top (for multi select) and align it correctly on vertical forms */
+span.help-inline {
     vertical-align: top;
     margin-top: 5px;
 }

@@ -1,6 +1,8 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
+use DluTwBootstrap\Form\FormUtil;
+
 use Zend\Form\ElementInterface;
 use Zend\Form\View\Helper\AbstractHelper as AbstractViewHelper;
 
@@ -14,7 +16,21 @@ use Zend\Form\View\Helper\AbstractHelper as AbstractViewHelper;
  */
 class FormActionsTwb extends AbstractViewHelper
 {
+    /**
+     * @var FormUtil
+     */
+    protected $formUtil;
+
     /* **************************** METHODS ****************************** */
+
+    /**
+     * Constructor
+     * @param \DluTwBootstrap\Form\FormUtil $formUtil
+     */
+    public function __construct(FormUtil $formUtil)
+    {
+        $this->formUtil = $formUtil;
+    }
 
     /**
      * Renders the form-actions div tag
@@ -52,9 +68,9 @@ class FormActionsTwb extends AbstractViewHelper
             //Unsupported content type
             return '';
         }
-        $html   = $this->openTag();
+        $html   = $this->openTag($formType, $displayOptions);
         $html   .= "\n" . $content;
-        $html   .= "\n" . $this->closeTag();
+        $html   .= "\n" . $this->closeTag($formType);
         return $html;
     }
 
@@ -66,18 +82,27 @@ class FormActionsTwb extends AbstractViewHelper
      */
     public function openTag($formType = null, array $displayOptions = array())
     {
-        $class  = 'form-actions';
-        $html   = '<div class="' . $class . '">';
+        if (in_array($formType, array(FormUtil::FORM_TYPE_HORIZONTAL, FormUtil::FORM_TYPE_VERTICAL))) {
+            $html   = '<div class="form-actions">';
+        } else {
+            $html   = '';
+        }
         return $html;
     }
 
     /**
      * Returns the control group closing tag
+     * @param null|string $formType
      * @return string
      */
-    public function closeTag()
+    public function closeTag($formType = null)
     {
-        return '</div>';
+        if (in_array($formType, array(FormUtil::FORM_TYPE_HORIZONTAL, FormUtil::FORM_TYPE_VERTICAL))) {
+            $html   = '</div>';
+        } else {
+            $html   = '';
+        }
+        return $html;
     }
 
     /**

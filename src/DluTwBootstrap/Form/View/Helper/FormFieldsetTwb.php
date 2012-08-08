@@ -67,8 +67,9 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
         }
         $html   = sprintf('<fieldset%s>', $classAttrib);
         $legend = $fieldset->getOption('legend');
-        if ($legend && ($formType == FormUtil::FORM_TYPE_HORIZONTAL
-                || $formType == FormUtil::FORM_TYPE_VERTICAL)) {
+        if ($legend
+            && (!array_key_exists('display_legend', $displayOptions) || $displayOptions['display_legend'])
+            && ($formType == FormUtil::FORM_TYPE_HORIZONTAL || $formType == FormUtil::FORM_TYPE_VERTICAL)) {
             //Translate
             if (null !== ($translator = $this->getTranslator())) {
                 $legend = $translator->translate($legend, $this->getTranslatorTextDomain());

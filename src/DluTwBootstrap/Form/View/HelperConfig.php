@@ -16,7 +16,6 @@ class HelperConfig implements ConfigInterface
      * @var array Pre-aliased view helpers
      */
     protected $invokables = array(
-        'formactionstwb'                        => 'DluTwBootstrap\Form\View\Helper\FormActionsTwb',
         'formcontrolgrouptwb'                   => 'DluTwBootstrap\Form\View\Helper\FormControlGroupTwb',
         'formcontrolstwb'                       => 'DluTwBootstrap\Form\View\Helper\FormControlsTwb',
         'formdescriptiontwb'                    => 'DluTwBootstrap\Form\View\Helper\FormDescriptionTwb',
@@ -79,6 +78,10 @@ class HelperConfig implements ConfigInterface
         $genUtil    = $this->genUtil;
         $formUtil   = $this->formUtil;
         return array(
+            'formactionstwb'                    => function($sm) use ($formUtil) {
+                $instance       = new \DluTwBootstrap\Form\View\Helper\FormActionsTwb($formUtil);
+                return $instance;
+            },
             'formbuttontwb'                     => function($sm) use ($genUtil) {
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormButtonTwb($genUtil);
                 return $instance;

@@ -108,17 +108,21 @@ class FormRowTwb extends AbstractHelper
         $description         = $descriptionHelper->render($element);
         $elementErrors       = $elementErrorsHelper->render($element);
 
-        if ($formType == FormUtil::FORM_TYPE_HORIZONTAL || $formType == FormUtil::FORM_TYPE_VERTICAL) {
+        //Divs for control-group and controls are generated only for visible elements on horizontal and vertical forms,
+        //otherwise a blank vertical space is rendered
+        if (($formType == FormUtil::FORM_TYPE_HORIZONTAL || $formType == FormUtil::FORM_TYPE_VERTICAL)
+            && !($element instanceof \Zend\Form\Element\Hidden)
+            && !($element instanceof \Zend\Form\Element\Csrf)) {
             $controlGroupHelper     = $this->getControlGroupHelper();
-            $controlsHelper         = $this->getControlsHelper();
             $controlGroupOpen       = $controlGroupHelper->openTag($element);
             $controlGroupClose      = $controlGroupHelper->closeTag();
+            $controlsHelper         = $this->getControlsHelper();
             $controlsOpen           = $controlsHelper->openTag($element);
             $controlsClose          = $controlsHelper->closeTag();
         } else {
             $controlGroupOpen       = '';
             $controlGroupClose      = '';
-            $controlsOpen           = '';
+            $controlsOpen           = "\n";
             $controlsClose          = '';
         }
 
