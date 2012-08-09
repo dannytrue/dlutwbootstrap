@@ -1,0 +1,19 @@
+{
+    "name": "dlutwbootstrap/dlutwbootstrap",
+    "description": "ZF2 module to generate Twitter Bootstrap UI - forms, navigation, etc.",
+    "license": "New-BSD-License",
+    "keywords": [
+        "dlutwbootstrap",
+        "twitter bootstrap",
+        "zf2",
+        "zend framework 2",
+        "module"
+    ],
+    "homepage": "https://bitbucket.org/dlu/dlutwbootstrap",
+    "authors": [
+        {
+            "name": "David Lukas",
+            "homepage": "http://www.zfdaily.com"
+        }
+    ]
+}
