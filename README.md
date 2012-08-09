@@ -31,9 +31,7 @@ Implemented features
     - Submit
     - Text
     - Textarea
-- Unsupported form elements
-    - Captcha
-- Inline help, block help (description) and placeholder text are supported with relevant elements
+- Inline help (hint), block help (description) and placeholder texts are supported with relevant elements
 - Error state and messages (error messages are supported on Horizontal and Vertical forms)
 - Highlighting required fields
 - Prepend / append text to text input
@@ -43,7 +41,7 @@ Implemented features
 Supported versions
 ------------------
 
-- [Zend Framework 2.0.0beta4 - 1364 (commit 8f535f3b23)](https://github.com/zendframework/zf2/tree/8f535f3b231c0617d0cdfc897f955282174bfe9e)
+- [Zend Framework 2.0.0rc2 - 79 (commit 18222634a9)](https://github.com/zendframework/zf2/tree/18222634a91a6fb57369faad0c48fe0ab898109b)
 - Twitter Bootstrap v2.0.4
 
 IMPORTANT: If the module does not seem to work, check the version of your ZF2 library and update to the version **and commit**

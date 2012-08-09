@@ -104,10 +104,8 @@ class FormRowTwb extends AbstractHelper
 
         $label               = (string)$element->getLabel();
         $elementString       = $elementHelper->render($element, $formType, $displayOptions);
-        $hint                = $hintHelper->render($element);
-        $description         = $descriptionHelper->render($element);
-        $elementErrors       = $elementErrorsHelper->render($element);
 
+        //Hint, description and element errors are generated only for visible elements on horizontal and vertical forms
         //Divs for control-group and controls are generated only for visible elements on horizontal and vertical forms,
         //otherwise a blank vertical space is rendered
         if (($formType == FormUtil::FORM_TYPE_HORIZONTAL || $formType == FormUtil::FORM_TYPE_VERTICAL)
@@ -119,11 +117,19 @@ class FormRowTwb extends AbstractHelper
             $controlsHelper         = $this->getControlsHelper();
             $controlsOpen           = $controlsHelper->openTag($element);
             $controlsClose          = $controlsHelper->closeTag();
+            $hint                   = $hintHelper->render($element);
+            $description            = $descriptionHelper->render($element);
+            $elementErrors          = $elementErrorsHelper->render($element);
+
         } else {
             $controlGroupOpen       = '';
             $controlGroupClose      = '';
+            //We need some whitespace between label and element on inline and search forms
             $controlsOpen           = "\n";
             $controlsClose          = '';
+            $hint                   = '';
+            $description            = '';
+            $elementErrors          = '';
         }
 
         if (!empty($label)) {
