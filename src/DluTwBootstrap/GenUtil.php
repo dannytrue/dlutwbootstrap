@@ -5,6 +5,7 @@ use DluTwBootstrap\Exception\InvalidParameterTypeException;
 use DluTwBootstrap\Exception\InvalidParameterException;
 
 /**
+ * GenUtil
  * General Utilities
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com

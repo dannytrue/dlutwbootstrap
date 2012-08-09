@@ -3,7 +3,7 @@ namespace DluTwBootstrap\Form\Exception;
 use DluTwBootstrap\Form\Exception\ExceptionInterface;
 
 /**
- * UnsupportedElementType Exception
+ * UnsupportedElementTypeException
  * @package DluTwBootstrap
  * @copyright David Lukas (c) - http://www.zfdaily.com
  * @license http://www.zfdaily.com/code/license New BSD License
