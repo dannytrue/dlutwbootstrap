@@ -3,6 +3,7 @@ namespace DluTwBootstrap\Form\View\Helper;
 
 use DluTwBootstrap\GenUtil;
 
+use Zend\Form\View\Helper\AbstractHelper;
 use Zend\Form\View\Helper\FormLabel;
 use Zend\Form\ElementInterface;
 use Zend\Form\Exception\DomainException;
@@ -15,7 +16,7 @@ use Zend\Form\Exception\DomainException;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormLabelTwb extends FormLabel
+class FormLabelTwb extends AbstractHelper
 {
     /**
      * @var GenUtil
@@ -31,15 +32,10 @@ class FormLabelTwb extends FormLabel
         $this->genUtil  = $genUtil;
     }
 
-    /**
-     * Generate a form label from an element
-     * @param  ElementInterface $element
-     * @param array $displayOptions
-     * @throws \Zend\Form\Exception\DomainException
-     * @return string|FormLabelTwb
-     */
-    public function __invoke(ElementInterface $element = null, array $displayOptions = array())
-    {
+
+    public function __invoke(ElementInterface $element = null, $labelContent = null, $position = null
+
+    ) {
         if (!$element) {
             return $this;
         }
