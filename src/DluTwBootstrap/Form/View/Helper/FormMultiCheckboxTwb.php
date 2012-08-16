@@ -2,6 +2,8 @@
 namespace DluTwBootstrap\Form\View\Helper;
 
 use DluTwBootstrap\GenUtil;
+
+use Zend\Form\View\Helper\AbstractHelper as AbstractFormViewHelper;
 use Zend\Form\ElementInterface;
 use Zend\Form\View\Helper\FormMultiCheckbox;
 use Traversable;
@@ -14,7 +16,7 @@ use Traversable;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormMultiCheckboxTwb extends FormMultiCheckbox
+class FormMultiCheckboxTwb extends AbstractFormViewHelper
 {
     /**
      * @var array
@@ -24,24 +26,27 @@ class FormMultiCheckboxTwb extends FormMultiCheckbox
     );
 
     /**
-     * @var string
-     */
-    protected $labelPosition = self::LABEL_APPEND;
-
-    /**
      * @var GenUtil
      */
     protected $genUtil;
+
+    /**
+     * ZF2 multi checkbox helper
+     * @var FormMultiCheckbox
+     */
+    protected $formMultiCheckboxHelper;
 
     /* ************************ METHODS ***************************** */
 
     /**
      * Constructor
+     * @param \Zend\Form\View\Helper\FormMultiCheckbox $formMultiCheckboxHelper
      * @param \DluTwBootstrap\GenUtil $genUtil
      */
-    public function __construct(GenUtil $genUtil)
+    public function __construct(FormMultiCheckbox $formMultiCheckboxHelper, GenUtil $genUtil)
     {
-        $this->genUtil  = $genUtil;
+        $this->formMultiCheckboxHelper  = $formMultiCheckboxHelper;
+        $this->genUtil                  = $genUtil;
     }
 
     /**
@@ -73,7 +78,8 @@ class FormMultiCheckboxTwb extends FormMultiCheckbox
         if(array_key_exists('inline', $displayOptions) && $displayOptions['inline'] == true) {
             $labelAttributes = $this->genUtil->addWordsToArrayItem('inline', $labelAttributes, 'class');
         }
-        $this->setLabelAttributes($labelAttributes);
-        return parent::render($element);
+        $formMultiCheckboxHelper    = $this->formMultiCheckboxHelper;
+        $formMultiCheckboxHelper->setLabelAttributes($labelAttributes);
+        return $formMultiCheckboxHelper($element);
     }
 }

@@ -1,8 +1,10 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
-use \Zend\Form\ElementInterface;
 use \DluTwBootstrap\GenUtil;
+
+use Zend\Form\View\Helper\FormElementErrors;
+use \Zend\Form\ElementInterface;
 
 /**
  * FormElementErrorsTwb
@@ -12,7 +14,7 @@ use \DluTwBootstrap\GenUtil;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormElementErrorsTwb extends \Zend\Form\View\Helper\FormElementErrors
+class FormElementErrorsTwb extends FormElementErrors
 {
     /**
      * General utils

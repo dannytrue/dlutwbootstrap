@@ -1,5 +1,7 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
+
+use Zend\Form\View\Helper\AbstractHelper as AbstractFormViewHelper;
 use \Zend\Form\ElementInterface;
 
 /**
@@ -10,7 +12,7 @@ use \Zend\Form\ElementInterface;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormHintTwb extends \Zend\Form\View\Helper\AbstractHelper
+class FormHintTwb extends AbstractFormViewHelper
 {
     /**
      * Which element types support the inline help?

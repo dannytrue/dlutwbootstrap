@@ -1,8 +1,10 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
-use DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb;
+use DluTwBootstrap\GenUtil;
 
+use Zend\Form\View\Helper\AbstractHelper as AbstractFormViewHelper;
+use Zend\Form\View\Helper\FormRadio;
 use Zend\Form\ElementInterface;
 
 /**
@@ -13,7 +15,7 @@ use Zend\Form\ElementInterface;
  * @link http://www.zfdaily.com
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormRadioTwb extends FormMultiCheckboxTwb
+class FormRadioTwb extends AbstractFormViewHelper
 {
     /**
      * @var array
@@ -23,21 +25,60 @@ class FormRadioTwb extends FormMultiCheckboxTwb
     );
 
     /**
-     * Return input type
-     * @return string
+     * @var GenUtil
      */
-    protected function getInputType()
+    protected $genUtil;
+
+    /**
+     * ZF2 radio helper
+     * @var FormRadio
+     */
+    protected $formRadioHelper;
+
+    /* ************************ METHODS ***************************** */
+
+    /**
+     * Constructor
+     * @param FormRadio $formRadioHelper
+     * @param GenUtil $genUtil
+     */
+    public function __construct(FormRadio $formRadioHelper, GenUtil $genUtil)
     {
-        return 'radio';
+        $this->formRadioHelper  = $formRadioHelper;
+        $this->genUtil          = $genUtil;
     }
 
     /**
-     * Get element name
+     * Invoke helper as function
+     * Proxies to {@link render()}.
+     * @param  ElementInterface|null $element
+     * @param null|string $formType
+     * @param array $displayOptions
+     * @return string|FormRadioTwb
+     */
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array())
+    {
+        if (!$element) {
+            return $this;
+        }
+        return $this->render($element, $formType, $displayOptions);
+    }
+
+    /**
+     * Render a form <input> element from the provided $element
      * @param  ElementInterface $element
+     * @param null|string $formType
+     * @param array $displayOptions
      * @return string
      */
-    protected static function getName(ElementInterface $element)
+    public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
     {
-        return $element->getName();
+        $labelAttributes    = $this->twbLabelAttributes;
+        if(array_key_exists('inline', $displayOptions) && $displayOptions['inline'] == true) {
+            $labelAttributes = $this->genUtil->addWordsToArrayItem('inline', $labelAttributes, 'class');
+        }
+        $formRadioHelper    = $this->formRadioHelper;
+        $formRadioHelper->setLabelAttributes($labelAttributes);
+        return $formRadioHelper($element);
     }
 }

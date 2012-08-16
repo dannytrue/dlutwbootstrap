@@ -113,11 +113,14 @@ class HelperConfig implements ConfigInterface
                 return $instance;
             },
             'formlabeltwb'                      => function($sm) use ($genUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormLabelTwb($genUtil);
+                $formLabelHelper    = $sm->get('formLabel');
+                $instance           = new \DluTwBootstrap\Form\View\Helper\FormLabelTwb($formLabelHelper, $genUtil);
                 return $instance;
             },
             'formmulticheckboxtwb'              => function($sm) use ($genUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb($genUtil);
+                $formMultiCheckboxHelper    = $sm->get('formMultiCheckbox');
+                $instance                   = new \DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb(
+                                                $formMultiCheckboxHelper, $genUtil);
                 return $instance;
             },
             'formpasswordtwb'                   => function($sm) use ($genUtil, $formUtil) {
@@ -125,7 +128,9 @@ class HelperConfig implements ConfigInterface
                 return $instance;
             },
             'formradiotwb'                      => function($sm) use ($genUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormRadioTwb($genUtil);
+                $formRadioHelper            = $sm->get('formRadio');
+                $instance                   = new \DluTwBootstrap\Form\View\Helper\FormRadioTwb(
+                                                $formRadioHelper, $genUtil);
                 return $instance;
             },
             'formresettwb'                      => function($sm) use ($genUtil) {

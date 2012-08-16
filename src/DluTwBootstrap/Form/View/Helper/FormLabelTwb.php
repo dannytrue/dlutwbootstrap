@@ -24,21 +24,31 @@ class FormLabelTwb extends AbstractHelper
     protected $genUtil;
 
     /**
+     * ZF2 label helper
+     * @var FormLabel
+     */
+    protected $formLabelHelper;
+
+    /**
      * Constructor
+     * @param \Zend\Form\View\Helper\FormLabel $formLabelHelper
      * @param \DluTwBootstrap\GenUtil $genUtil
      */
-    public function __construct(GenUtil $genUtil)
+    public function __construct(FormLabel $formLabelHelper, GenUtil $genUtil)
     {
-        $this->genUtil  = $genUtil;
+        $this->formLabelHelper  = $formLabelHelper;
+        $this->genUtil          = $genUtil;
     }
 
-
-    public function __invoke(ElementInterface $element = null, $labelContent = null, $position = null
-
-    ) {
-        if (!$element) {
-            return $this;
-        }
+    /**
+     * Renders a form element label from an element
+     * @param \Zend\Form\ElementInterface $element
+     * @param array|null $displayOptions
+     * @return string
+     * @throws \Zend\Form\Exception\DomainException
+     */
+    public function render(ElementInterface $element, array $displayOptions = array())
+    {
         $labelContent   = $element->getLabel();
         if (empty($labelContent)) {
             throw new DomainException(sprintf('%s: No label set in the element.', __METHOD__));
@@ -60,6 +70,22 @@ class FormLabelTwb extends AbstractHelper
             $labelAttributes    = $this->genUtil->addWordsToArrayItem('required', $labelAttributes, 'class');
         }
         $element->setLabelAttributes($labelAttributes);
-        return parent::__invoke($element, $labelContent);
+        $formLabelHelper    = $this->formLabelHelper;
+        return $formLabelHelper($element, $labelContent);
+    }
+
+    /**
+     * Generate a form label from an element
+     * @param  ElementInterface $element
+     * @param array|null $displayOptions
+     * @throws \Zend\Form\Exception\DomainException
+     * @return string|FormLabelTwb
+     */
+    public function __invoke(ElementInterface $element = null, array $displayOptions = array())
+    {
+        if (!$element) {
+            return $this;
+        }
+        return $this->render($element, $displayOptions);
     }
 }
