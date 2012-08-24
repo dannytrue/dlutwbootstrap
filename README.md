@@ -54,7 +54,9 @@ Installation - manual
 
 1.   Go to your project's directory.
 2.   Clone this project into your `./vendor` directory as a `dlu/dlutwbootstrap` module:
+
      `git clone https://bitbucket.org/dlu/dlutwbootstrap.git ./vendor/dlu/dlutwbootstrap`
+
 3.   Follow the Post installation steps bellow
 
 Installation - with Composer
@@ -100,4 +102,4 @@ Links
 - DluTwBootstrap Demo App (ZF2 application)
     - [Live Demo App @ http://apps.zfdaily.com/dlutwbootstrap-demo](http://apps.zfdaily.com/dlutwbootstrap-demo)
     - [Source](https://bitbucket.org/dlu/dlutwbootstrap-demo-app)
-- [Tutorials ans discussion of DluTwBootstrap on ZF Daily](http://www.zfdaily.com/tag/dlutwbootstrap/)
+- [Tutorials and discussion of DluTwBootstrap on ZF Daily](http://www.zfdaily.com/tag/dlutwbootstrap/)
