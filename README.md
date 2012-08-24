@@ -41,7 +41,7 @@ Implemented features
 Supported versions
 ------------------
 
-- [Zend Framework 2.0.0rc4 - 0 (commit 022113e031)](https://github.com/zendframework/zf2/tree/022113e03159495809bd87c14cd91939c31d0738)
+- [Zend Framework 2.0.0rc5 - 1 (commit 0598a05ba1)](https://github.com/zendframework/zf2/tree/0598a05ba145b453eeb5c98512f6cdcfb00b9416)
 - Twitter Bootstrap v2.0.4
 
 IMPORTANT: If the module does not seem to work, check the version of your ZF2 library and update to the version **and commit**
@@ -49,20 +49,39 @@ specified above.
 
 --------------------------------------------------------------
 
-Installation
-------------
+Installation - manual
+---------------------
 
 1.   Go to your project's directory.
-2.   Clone this project into your `./vendor/` directory as a `DluTwBootstrap` module:  
-     `git clone https://bitbucket.org/dlu/dlutwbootstrap.git ./vendor/DluTwBootstrap`
-3.   Enable this module in your `./config/application.config.php`.
+2.   Clone this project into your `./vendor` directory as a `dlu/dlutwbootstrap` module:
+     `git clone https://bitbucket.org/dlu/dlutwbootstrap.git ./vendor/dlu/dlutwbootstrap`
+3.   Follow the Post installation steps bellow
 
-     *If you already have the Twitter Bootstrap and jQuery environment set-up properly in your project, you just need to reference the style override file `/public/css/dlu-tw-bootstrap.css` in your layout and you may skip the rest of the installation.
-     (Please see `/view/layout/layouttwb.phtml` if you are not sure where this file fits.)*
+Installation - with Composer
+----------------------------
 
-4.   Copy (or link) everything from the module's `public` directory to your project's `public` directory (i.e. Twitter Bootstrap and jQuery css files, js files and images).
-5.   Move `module.DluTwBootstrap.global.php` from the module's root directory to your project's `./config/autoload` directory .This sets the layout script to the one supplied with the module to load all necessary css and js dependencies.
+If you are using Composer in your application to install dependencies, you can use it to facilitate the installation of DluTwBootstrap too.
+
+1.   Go to your project's directory.
+2.   Edit your `composer.json` file and add `"dlu/dlutwbootstrap": "dev-master"` into `require` section.
+3.   Run `php composer.phar install` (or `php composer.phar update`).
+4.   Follow the Post installation steps bellow
+
+
+Post installation steps
+-----------------------
+
+1.   Copy everything from `<your app>/vendor/dlu/dlutwbootstrap/public` to `<your app>/public`
+     (i.e. Twitter Bootstrap and jQuery css files, js files and images).
+2.   Enable the DluTwBootstrap module in your app config file `<your app>/config/application.config.php`:
+
+     - add `'./vendor/dlu',` under `module_paths`
+     - add `'DluTwBootstrap',` under `modules`
+
+5.   Move `module.DluTwBootstrap.global.php` from the module's root directory to `<your app>/config/autoload` directory.
+     This sets the layout script to the one supplied with the module to load all necessary css and js dependencies.
      (Do not do this if you have your own layout and you already have the Twitter Bootstrap environment set-up properly in your project!)
+
 
 Check and Demo
 --------------
