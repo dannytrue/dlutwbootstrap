@@ -37,7 +37,8 @@ class TwbNavbar extends AbstractNavHelper
                                     $fixed = false,
                                     $fixedBottom = false,
                                     $responsive = true,
-                                    $renderIcons = true) {
+                                    $renderIcons = true,
+                                    $inverse = false) {
         if (null === $container) {
             $container = $this->getContainer();
         }
@@ -57,6 +58,9 @@ class TwbNavbar extends AbstractNavHelper
             } else {
                 $navbarClass    .= ' navbar-fixed-top';
             }
+        }
+        if ($inverse) {
+            $navbarClass        .= ' navbar-inverse';
         }
         $html   .= '<div class="' . $navbarClass . '">';
         $html   .= "\n" . '<div class="navbar-inner">';
