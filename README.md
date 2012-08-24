@@ -69,7 +69,6 @@ If you are using Composer in your application to install dependencies, you can u
 3.   Run `php composer.phar install` (or `php composer.phar update`).
 4.   Follow the Post installation steps bellow
 
-
 Post installation steps
 -----------------------
 
@@ -80,10 +79,9 @@ Post installation steps
      - add `'./vendor/dlu',` under `module_paths`
      - add `'DluTwBootstrap',` under `modules`
 
-5.   Move `module.DluTwBootstrap.global.php` from the module's root directory to `<your app>/config/autoload` directory.
+3.   Move `module.DluTwBootstrap.global.php` from the module's root directory to `<your app>/config/autoload` directory.
      This sets the layout script to the one supplied with the module to load all necessary css and js dependencies.
      (Do not do this if you have your own layout and you already have the Twitter Bootstrap environment set-up properly in your project!)
-
 
 Check and Demo
 --------------
