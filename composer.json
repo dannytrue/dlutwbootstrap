@@ -16,6 +16,9 @@
             "homepage": "http://www.zfdaily.com"
         }
     ],
+    "require": {
+        "zendframework/zendframework": "dev-master#89eaf412a789a191a468977d3500e9adf0bb1d68"
+    },
     "autoload": {
         "psr-0": {
             "DluTwBootstrap": "src/"
@@ -24,5 +27,4 @@
             "./Module.php"
         ]
     }
-
 }

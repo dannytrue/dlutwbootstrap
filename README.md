@@ -41,7 +41,7 @@ Implemented features
 Supported versions
 ------------------
 
-- [Zend Framework 2.0.0rc5 - 96 (commit de807ffc3d)](https://github.com/zendframework/zf2/tree/de807ffc3dd1a5ca0495e300724ace1e6d15ffae)
+- [Zend Framework 2.0.0rc6 - 2 (commit 89eaf412a7)](https://github.com/zendframework/zf2/tree/89eaf412a789a191a468977d3500e9adf0bb1d68)
 - Twitter Bootstrap v2.1.0
 
 IMPORTANT: If the module does not seem to work, check the version of your ZF2 library and update to the version **and commit**
