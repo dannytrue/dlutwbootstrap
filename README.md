@@ -53,16 +53,14 @@ Installation - manual
 ---------------------
 
 1.   Go to your project's directory.
-2.   Clone this project into your `./vendor` directory as a `dlu/dlutwbootstrap` module:
+2.   Clone this project into your `./vendor` directory as a `DluTwBootstrap` module:
 
-     `git clone https://bitbucket.org/dlu/dlutwbootstrap.git ./vendor/dlu/dlutwbootstrap`
+     `git clone https://bitbucket.org/dlu/dlutwbootstrap.git ./vendor/DluTwBootstrap`
 
 3.   Follow the Post installation steps bellow
 
 Installation - with Composer
 ----------------------------
-
-If you are using Composer in your application to install dependencies, you can use it to facilitate the installation of DluTwBootstrap too.
 
 1.   Go to your project's directory.
 2.   Edit your `composer.json` file and add `"dlu/dlutwbootstrap": "dev-master"` into `require` section.
@@ -72,14 +70,13 @@ If you are using Composer in your application to install dependencies, you can u
 Post installation steps
 -----------------------
 
-1.   Copy everything from `<your app>/vendor/dlu/dlutwbootstrap/public` to `<your app>/public`
+1.   Copy everything from the module's `public` directory to `<your app>/public`
      (i.e. Twitter Bootstrap and jQuery css files, js files and images).
 2.   Enable the DluTwBootstrap module in your app config file `<your app>/config/application.config.php`:
 
-     - add `'./vendor/dlu',` under `module_paths`
      - add `'DluTwBootstrap',` under `modules`
 
-3.   Move `module.DluTwBootstrap.global.php` from the module's root directory to `<your app>/config/autoload` directory.
+3.   Optional: Move `module.DluTwBootstrap.global.php` from the module's root directory to `<your app>/config/autoload` directory.
      This sets the layout script to the one supplied with the module to load all necessary css and js dependencies.
      (Do not do this if you have your own layout and you already have the Twitter Bootstrap environment set-up properly in your project!)
 
