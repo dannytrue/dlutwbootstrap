@@ -60,14 +60,15 @@ class FormTwb extends ViewHelperForm
      * @param null|Form $form
      * @param null|string $formType
      * @param array $displayOptions
+     * @param bool $renderErrors
      * @return FormTwb|string
      */
-    public function __invoke(Form $form = null, $formType = null, array $displayOptions = array())
+    public function __invoke(Form $form = null, $formType = null, array $displayOptions = array(), $renderErrors = true)
     {
         if(is_null($form)) {
             return $this;
         }
-        return $this->render($form, $formType, $displayOptions);
+        return $this->render($form, $formType, $displayOptions, $renderErrors);
     }
 
     /**
@@ -75,9 +76,10 @@ class FormTwb extends ViewHelperForm
      * @param Form $form
      * @param string|null $formType
      * @param array $displayOptions
+     * @param bool $renderErrors
      * @return string
      */
-    public function render(Form $form, $formType = null, array $displayOptions = array())
+    public function render(Form $form, $formType = null, array $displayOptions = array(), $renderErrors = true)
     {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
@@ -89,7 +91,7 @@ class FormTwb extends ViewHelperForm
         $html   = $this->openTag($form, $formType, $displayOptions);
         //Form content
         $fieldsetHelper = $renderer->plugin('form_fieldset_twb');
-        $html   .= $fieldsetHelper($form, $formType, $displayOptions, false, false);
+        $html   .= $fieldsetHelper($form, $formType, $displayOptions, false, false, $renderErrors);
         //Form actions
         $actionsHelper  = $renderer->plugin('form_actions_twb');
         $actions        = $this->getActions($form);

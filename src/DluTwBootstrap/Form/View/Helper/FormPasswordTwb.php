@@ -72,6 +72,36 @@ class FormPasswordTwb extends FormPassword
     ) {
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
         $html   = parent::render($element);
+        //Text prepend / append
+        $escapeHelper       = $this->getEscapeHtmlHelper();
+        $escapeAttribHelper = $this->getEscapeHtmlAttrHelper();
+        $prepAppClass       = '';
+        //Prepend icon (not possible on Search forms)
+        if (($formType != FormUtil::FORM_TYPE_SEARCH) && array_key_exists('prependIcon', $displayOptions)) {
+            $prepAppClass   = $this->genUtil->addWords('input-prepend', $prepAppClass);
+            $html           = sprintf('<span class="add-on"><i class="%s"></i></span>%s',
+                                      $escapeAttribHelper($displayOptions['prependIcon']), $html);
+        }
+        //Prepend text
+        if ($element->getOption('prependText')) {
+            $prepAppClass   = $this->genUtil->addWords('input-prepend', $prepAppClass);
+            $html           = '<span class="add-on">' . $escapeHelper($element->getOption('prependText')) . '</span>'
+                . $html;
+        }
+        //Append icon (not possible on Search forms)
+        if (($formType != FormUtil::FORM_TYPE_SEARCH) && array_key_exists('appendIcon', $displayOptions)) {
+            $prepAppClass   = $this->genUtil->addWords('input-append', $prepAppClass);
+            $html           .= sprintf('<span class="add-on"><i class="%s"></i></span>',
+                                       $escapeAttribHelper($displayOptions['appendIcon']));
+        }
+        //Append text
+        if ($element->getOption('appendText')) {
+            $prepAppClass   = $this->genUtil->addWords('input-append', $prepAppClass);
+            $html           .= '<span class="add-on">' . $escapeHelper($element->getOption('appendText')) . '</span>';
+        }
+        if ($prepAppClass) {
+            $html           = '<div class="' . $prepAppClass . '">' . "\n$html\n" . '</div>';
+        }
         return $html;
     }
 

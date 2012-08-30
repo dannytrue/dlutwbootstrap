@@ -96,13 +96,15 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param string|null $formType
      * @param array $displayOptions
      * @param bool $displayButtons
+     * @param bool $renderErrors
+     * @throws \DluTwBootstrap\Form\Exception\UnsupportedElementTypeException
      * @return string
-     * @throws UnsupportedElementTypeException
      */
     public function content(FieldsetInterface $fieldset,
                             $formType = null,
                             array $displayOptions = array(),
-                            $displayButtons = true
+                            $displayButtons = true,
+                            $renderErrors = true
     ) {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
@@ -140,7 +142,8 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                                                 $formType,
                                                 $displayOptionsFieldset,
                                                 true,
-                                                true);
+                                                true,
+                                                $renderErrors);
             } elseif ($elementOrFieldset instanceof ElementInterface) {
                 //Element
                 /* @var $element ElementInterface */
@@ -154,7 +157,7 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                 } else {
                     $displayOptionsElement  = array();
                 }
-                $html   .= "\n" . $rowHelper($elementOrFieldset, $formType, $displayOptionsElement);
+                $html   .= "\n" . $rowHelper($elementOrFieldset, $formType, $displayOptionsElement, $renderErrors);
             } else {
                 //Unsupported item type
                 throw new UnsupportedElementTypeException('Fieldsets may contain only fieldsets or elements.');
@@ -169,20 +172,22 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param array $displayOptions
      * @param bool $displayButtons Should buttons found in this fieldset be rendered?
      * @param bool $renderFieldsetTag Should we render the <fieldset> tag around the fieldset?
+     * @param bool $renderErrors
      * @return string
      */
     public function render(FieldsetInterface $fieldset,
                            $formType = null,
                            array $displayOptions = array(),
                            $displayButtons = true,
-                           $renderFieldsetTag = true
+                           $renderFieldsetTag = true,
+                           $renderErrors = true
     ) {
         $formType   = $this->formUtil->filterFormType($formType);
         $html       = '';
         if ($renderFieldsetTag) {
             $html   .= $this->openTag($fieldset, $formType, $displayOptions);
         }
-        $html   .= "\n" . $this->content($fieldset, $formType, $displayOptions, $displayButtons);
+        $html   .= "\n" . $this->content($fieldset, $formType, $displayOptions, $displayButtons, $renderErrors);
         if ($renderFieldsetTag) {
             $html       .= "\n" . $this->closeTag();
         }
@@ -195,17 +200,19 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param array $displayOptions
      * @param bool $displayButtons Should buttons found in this fieldset be rendered?
      * @param bool $renderFieldsetTag Should we render the <fieldset> tag around the fieldset?
+     * @param bool $renderErrors
      * @return string
      */
     public function __invoke(FieldsetInterface $fieldset = null,
                              $formType = null,
                              array $displayOptions = array(),
                              $displayButtons = true,
-                             $renderFieldsetTag = true
+                             $renderFieldsetTag = true,
+                             $renderErrors = true
     ) {
         if(is_null($fieldset)) {
             return $this;
         }
-        return $this->render($fieldset, $formType, $displayOptions, $displayButtons, $renderFieldsetTag);
+        return $this->render($fieldset, $formType, $displayOptions, $displayButtons, $renderFieldsetTag, $renderErrors);
     }
 }

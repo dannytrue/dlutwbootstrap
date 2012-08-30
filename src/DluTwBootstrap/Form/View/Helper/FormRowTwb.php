@@ -89,11 +89,13 @@ class FormRowTwb extends AbstractHelper
      * @param ElementInterface $element
      * @param string|null $formType
      * @param array $displayOptions
+     * @param bool $renderErrors
      * @return string
      */
     public function render(ElementInterface $element,
                            $formType = null,
-                           array $displayOptions = array())
+                           array $displayOptions = array(),
+                           $renderErrors = true)
     {
         $formType            = $this->formUtil->filterFormType($formType);
 
@@ -119,8 +121,11 @@ class FormRowTwb extends AbstractHelper
             $controlsClose          = $controlsHelper->closeTag();
             $hint                   = $hintHelper->render($element);
             $description            = $descriptionHelper->render($element);
-            $elementErrors          = $elementErrorsHelper->render($element);
-
+            if ($renderErrors) {
+                $elementErrors          = $elementErrorsHelper->render($element);
+            } else {
+                $elementErrors          = '';
+            }
         } else {
             $controlGroupOpen       = '';
             $controlGroupClose      = '';
@@ -155,15 +160,17 @@ class FormRowTwb extends AbstractHelper
      * @param null|ElementInterface $element
      * @param string|null $formType
      * @param array $displayOptions
+     * @param bool $renderErrors
      * @return string|FormRowTwb
      */
     public function __invoke(ElementInterface $element = null,
                              $formType = null,
-                             array $displayOptions = array()) {
+                             array $displayOptions = array(),
+                             $renderErrors = true) {
         if (!$element) {
             return $this;
         }
-        return $this->render($element, $formType, $displayOptions);
+        return $this->render($element, $formType, $displayOptions, $renderErrors);
     }
 
     /**
