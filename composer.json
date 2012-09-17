@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "zendframework/zendframework": "dev-master#89eaf412a789a191a468977d3500e9adf0bb1d68"
+        "zendframework/zendframework": "dev-master#2a398b4e81c31bdfbda917a867896c48d4f62bcf"
     },
     "autoload": {
         "psr-0": {

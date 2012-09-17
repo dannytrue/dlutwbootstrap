@@ -16,7 +16,7 @@ return array(
          ),
     ),
     'dlu_tw_bootstrap'  => array(
-        'sup_ver_zf2'       => '2.0.0rc6 - 2 (commit 89eaf412a7)',
+        'sup_ver_zf2'       => '2.0.0 - 218 (commit 2a398b4e81)',
         'sup_ver_twb'       => '2.1.0',
     ),
 );

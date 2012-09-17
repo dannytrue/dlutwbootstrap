@@ -52,8 +52,7 @@ class FormElementTwb extends ViewHelperFormElement
         $valueOptions   = $element->getOption('value_options');
 
         //Multi Checkbox
-        //TODO - the Zend\Form\Element\MultiCheckbox has 'checkbox' type, not 'multi_checkbox'. A bug?
-        if ('checkbox' == $type && is_array($valueOptions)) {
+        if ('multi_checkbox' == $type && is_array($valueOptions)) {
             $helper = $renderer->plugin('form_multi_checkbox_twb');
             return $helper($element, $formType, $displayOptions);
         }
