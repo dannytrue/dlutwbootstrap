@@ -50,15 +50,16 @@ class FormElementTwb extends ViewHelperFormElement
 
         $type           = $element->getAttribute('type');
         $valueOptions   = $element->getOption('value_options');
+        $objectManager   = $element->getOption('object_manager');
 
         //Multi Checkbox
-        if ('multi_checkbox' == $type && is_array($valueOptions)) {
+        if ('multi_checkbox' == $type && (is_array($valueOptions) || is_object($objectManager))) {
             $helper = $renderer->plugin('form_multi_checkbox_twb');
             return $helper($element, $formType, $displayOptions);
         }
 
         //Select
-        if ('select' == $type && is_array($valueOptions)) {
+        if ('select' == $type && (is_array($valueOptions) || is_object($objectManager))) {
             $helper = $renderer->plugin('form_select_twb');
             return $helper($element, $formType, $displayOptions);
         }
