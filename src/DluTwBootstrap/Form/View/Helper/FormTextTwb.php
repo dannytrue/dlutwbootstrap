@@ -92,6 +92,12 @@ class FormTextTwb extends FormText
             $html           = '<span class="add-on">' . $escapeHelper($element->getOption('prependText')) . '</span>'
                             . $html;
         }
+        //Prepend icon
+        if ($element->getOption('prependIcon')) {
+            $prepAppClass   = $this->genUtil->addWords('input-prepend', $prepAppClass);
+            $html           .= sprintf('<span class="add-on"><i class="%s"></i></span>',
+                                      $escapeAttribHelper($element->getOption('prependIcon')));
+        }
         //Append icon (not possible on Search forms)
         if (($formType != FormUtil::FORM_TYPE_SEARCH) && array_key_exists('appendIcon', $displayOptions)) {
             $prepAppClass   = $this->genUtil->addWords('input-append', $prepAppClass);
@@ -102,6 +108,12 @@ class FormTextTwb extends FormText
         if ($element->getOption('appendText')) {
             $prepAppClass   = $this->genUtil->addWords('input-append', $prepAppClass);
             $html           .= '<span class="add-on">' . $escapeHelper($element->getOption('appendText')) . '</span>';
+        }
+        //Append icon
+        if ($element->getOption('appendIcon')) {
+            $prepAppClass   = $this->genUtil->addWords('input-append', $prepAppClass);
+            $html           .= sprintf('<span class="add-on"><i class="%s"></i></span>',
+                                      $escapeAttribHelper($element->getOption('appendIcon')));
         }
         if ($prepAppClass) {
             $html           = '<div class="' . $prepAppClass . '">' . "\n$html\n" . '</div>';
