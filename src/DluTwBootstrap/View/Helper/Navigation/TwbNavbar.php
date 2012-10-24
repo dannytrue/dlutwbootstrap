@@ -34,7 +34,7 @@ class TwbNavbar extends AbstractNavHelper
                                     $rightElements = null,
                                     \Zend\Navigation\Page\AbstractPage $brandLink = null,
                                     $brandName = null,
-                                    $fixed = false,
+                                    $fixed = true,
                                     $fixedBottom = false,
                                     $responsive = true,
                                     $renderIcons = true,
