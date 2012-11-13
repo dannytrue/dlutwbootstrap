@@ -1,5 +1,5 @@
 {
-    "name": "dlu/dlutwbootstrap",
+    "name": "ajanssen/dlutwbootstrap",
     "description": "ZF2 module to generate Twitter Bootstrap UI - forms, navigation, etc.",
     "license": "New-BSD-License",
     "keywords": [
@@ -14,6 +14,9 @@
         {
             "name": "David Lukas",
             "homepage": "http://www.zfdaily.com"
+        },{
+            "name": "Alexander Janssen",
+            "homepage": "http://www.tnajanssen.nl"
         }
     ],
     "require": {
