@@ -130,6 +130,8 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
         foreach($iterator as $elementOrFieldset) {
             $elementName        = $elementOrFieldset->getName();
             $elementBareName    = $this->formUtil->getBareElementName($elementName);
+            $templateMarkup = "";
+
             if ($elementOrFieldset instanceof FieldsetInterface) {
 
                 //Fieldset
@@ -140,26 +142,19 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                 } else {
                     $displayOptionsFieldset = array();
                 }
-                $templateMarkup = $this->render($elementOrFieldset,
+
+
+                $renderedMarkup = $this->render($elementOrFieldset,
                                                 $formType,
                                                 $displayOptionsFieldset,
                                                 true,
                                                 true,
                                                 $renderErrors);
 
-                $html   .= "\n" . $templateMarkup;
+                $html   .= "\n" . $renderedMarkup;
 
                 if ($fieldset instanceof CollectionElement && $fieldset->shouldCreateTemplate()) {
-
-                    // If $templateMarkup is not empty, use it for simplify adding new element in JavaScript
-                    if (!empty($templateMarkup)) {
-                        $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
-
-                        $html .= sprintf(
-                            '<span data-template="%s"></span>',
-                            $escapeHtmlAttribHelper($templateMarkup)
-                        );
-                    }
+                    $templateMarkup .= $renderedMarkup;
                 }
 
             } elseif ($elementOrFieldset instanceof ElementInterface) {
@@ -177,11 +172,27 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                     $displayOptionsElement  = array();
                 }
                 $html   .= "\n" . $rowHelper($elementOrFieldset, $formType, $displayOptionsElement, $renderErrors);
+
+                if ($fieldset instanceof CollectionElement && $fieldset->shouldCreateTemplate()) {
+                    $templateMarkup .= $rowHelper($elementOrFieldset);
+                }
+
             } else {
                 //Unsupported item type
                 throw new UnsupportedElementTypeException('Fieldsets may contain only fieldsets or elements.');
             }
         }
+
+        // If $templateMarkup is not empty, use it for simplify adding new element in JavaScript
+        if (!empty($templateMarkup)) {
+            $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
+
+            $html .= sprintf(
+                '<span data-template="%s"></span>',
+                $escapeHtmlAttribHelper($templateMarkup)
+            );
+        }
+
         return $html;
     }
 
