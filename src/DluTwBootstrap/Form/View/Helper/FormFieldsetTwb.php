@@ -10,6 +10,7 @@ use Zend\I18n\Translator\TranslatorAwareInterface;
 use Zend\I18n\Translator\Translator;
 use Zend\Form\FieldsetInterface;
 use Zend\Form\ElementInterface;
+use Zend\Form\Element\Collection as CollectionElement;
 
 /**
  * FormFieldsetTwb
@@ -148,17 +149,24 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
 
                 $html   .= "\n" . $templateMarkup;
 
-                // If $templateMarkup is not empty, use it for simplify adding new element in JavaScript
-                if (!empty($templateMarkup)) {
-                    $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
+                if ($fieldset instanceof CollectionElement && $fieldset->shouldCreateTemplate()) {
 
-                    $html .= sprintf(
-                        '<span data-template="%s"></span>',
-                        $escapeHtmlAttribHelper($templateMarkup)
-                    );
+                    // If $templateMarkup is not empty, use it for simplify adding new element in JavaScript
+                    if (!empty($templateMarkup)) {
+                        $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
+
+                        $html .= sprintf(
+                            '<span data-template="%s"></span>',
+                            $escapeHtmlAttribHelper($templateMarkup)
+                        );
+                    }
                 }
 
+
             } elseif ($elementOrFieldset instanceof ElementInterface) {
+
+
+
                 //Element
                 /* @var $element ElementInterface */
                 if (!$displayButtons && in_array($elementOrFieldset->getAttribute('type'), array('submit', 'reset', 'button'))) {
