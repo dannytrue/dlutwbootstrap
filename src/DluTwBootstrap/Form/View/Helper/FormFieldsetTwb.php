@@ -162,10 +162,7 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                     }
                 }
 
-
             } elseif ($elementOrFieldset instanceof ElementInterface) {
-
-
 
                 //Element
                 /* @var $element ElementInterface */
