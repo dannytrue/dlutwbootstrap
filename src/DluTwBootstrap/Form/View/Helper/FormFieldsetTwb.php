@@ -130,6 +130,7 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
             $elementName        = $elementOrFieldset->getName();
             $elementBareName    = $this->formUtil->getBareElementName($elementName);
             if ($elementOrFieldset instanceof FieldsetInterface) {
+
                 //Fieldset
                 /* @var $elementOrFieldset FieldsetInterface */
                 //Get fieldset display options
@@ -138,12 +139,25 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                 } else {
                     $displayOptionsFieldset = array();
                 }
-                $html   .= "\n" . $this->render($elementOrFieldset,
+                $templateMarkup = $this->render($elementOrFieldset,
                                                 $formType,
                                                 $displayOptionsFieldset,
                                                 true,
                                                 true,
                                                 $renderErrors);
+
+                $html   .= "\n" . $templateMarkup;
+
+                // If $templateMarkup is not empty, use it for simplify adding new element in JavaScript
+                if (!empty($templateMarkup)) {
+                    $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
+
+                    $html .= sprintf(
+                        '<span data-template="%s"></span>',
+                        $escapeHtmlAttribHelper($templateMarkup)
+                    );
+                }
+
             } elseif ($elementOrFieldset instanceof ElementInterface) {
                 //Element
                 /* @var $element ElementInterface */
