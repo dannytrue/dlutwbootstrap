@@ -17,10 +17,13 @@
         },{
             "name": "Alexander Janssen",
             "homepage": "http://www.tnajanssen.nl"
+        },{
+            "name": "Daniel Kozhemyako",
+            "homepage": "http://www.zf2.by"
         }
     ],
     "require": {
-        "zendframework/zendframework": "dev-master#2a398b4e81c31bdfbda917a867896c48d4f62bcf"
+        "zendframework/zendframework": "dev-develop"
     },
     "autoload": {
         "psr-0": {
