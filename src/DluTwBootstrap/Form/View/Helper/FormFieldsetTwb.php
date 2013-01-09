@@ -130,8 +130,6 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
         foreach($iterator as $elementOrFieldset) {
             $elementName        = $elementOrFieldset->getName();
             $elementBareName    = $this->formUtil->getBareElementName($elementName);
-            $templateMarkup = "";
-
             if ($elementOrFieldset instanceof FieldsetInterface) {
 
                 //Fieldset
@@ -142,22 +140,32 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                 } else {
                     $displayOptionsFieldset = array();
                 }
-
-
-                $renderedMarkup = $this->render($elementOrFieldset,
+                $templateMarkup = $this->render($elementOrFieldset,
                                                 $formType,
                                                 $displayOptionsFieldset,
                                                 true,
                                                 true,
                                                 $renderErrors);
 
-                $html   .= "\n" . $renderedMarkup;
+                $html   .= "\n" . $templateMarkup;
 
                 if ($fieldset instanceof CollectionElement && $fieldset->shouldCreateTemplate()) {
-                    $templateMarkup .= $renderedMarkup;
+
+                    // If $templateMarkup is not empty, use it for simplify adding new element in JavaScript
+                    if (!empty($templateMarkup)) {
+                        $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
+
+                        $html .= sprintf(
+                            '<span data-template="%s"></span>',
+                            $escapeHtmlAttribHelper($templateMarkup)
+                        );
+                    }
                 }
 
+
             } elseif ($elementOrFieldset instanceof ElementInterface) {
+
+
 
                 //Element
                 /* @var $element ElementInterface */
@@ -172,27 +180,11 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                     $displayOptionsElement  = array();
                 }
                 $html   .= "\n" . $rowHelper($elementOrFieldset, $formType, $displayOptionsElement, $renderErrors);
-
-                if ($fieldset instanceof CollectionElement && $fieldset->shouldCreateTemplate()) {
-                    $templateMarkup .= $rowHelper($elementOrFieldset);
-                }
-
             } else {
                 //Unsupported item type
                 throw new UnsupportedElementTypeException('Fieldsets may contain only fieldsets or elements.');
             }
         }
-
-        // If $templateMarkup is not empty, use it for simplify adding new element in JavaScript
-        if (!empty($templateMarkup)) {
-            $escapeHtmlAttribHelper = $this->getEscapeHtmlAttrHelper();
-
-            $html .= sprintf(
-                '<span data-template="%s"></span>',
-                $escapeHtmlAttribHelper($templateMarkup)
-            );
-        }
-
         return $html;
     }
 
