@@ -155,9 +155,6 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
 
                 if ($fieldset instanceof CollectionElement && $fieldset->shouldCreateTemplate()) {
                     $templateMarkup = $this->renderTemplate($fieldset);
-                    //$fieldset->getTemplatePlaceholder();
-                    //$templateMarkup .= preg_replace('/\['. $elementBareName .'+\]/i', '[' . $fieldset->getTemplatePlaceholder() .']', $renderedMarkup);
-                    //$templateMarkup .= $renderedMarkup;
                 }
 
             } elseif ($elementOrFieldset instanceof ElementInterface) {
