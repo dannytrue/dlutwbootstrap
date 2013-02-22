@@ -77,10 +77,10 @@ class FormPasswordTwb extends FormPassword
         $escapeAttribHelper = $this->getEscapeHtmlAttrHelper();
         $prepAppClass       = '';
         //Prepend icon (not possible on Search forms)
-        if (($formType != FormUtil::FORM_TYPE_SEARCH) && array_key_exists('prependIcon', $displayOptions)) {
+        if ($formType != FormUtil::FORM_TYPE_SEARCH && $element->getOption('prependIcon')) {
             $prepAppClass   = $this->genUtil->addWords('input-prepend', $prepAppClass);
             $html           = sprintf('<span class="add-on"><i class="%s"></i></span>%s',
-                                      $escapeAttribHelper($displayOptions['prependIcon']), $html);
+                                      $escapeAttribHelper($element->getOption('prependIcon')), $html);
         }
         //Prepend text
         if ($element->getOption('prependText')) {
@@ -89,10 +89,10 @@ class FormPasswordTwb extends FormPassword
                 . $html;
         }
         //Append icon (not possible on Search forms)
-        if (($formType != FormUtil::FORM_TYPE_SEARCH) && array_key_exists('appendIcon', $displayOptions)) {
+        if ($formType != FormUtil::FORM_TYPE_SEARCH && $element->getOption('appendIcon')) {
             $prepAppClass   = $this->genUtil->addWords('input-append', $prepAppClass);
             $html           .= sprintf('<span class="add-on"><i class="%s"></i></span>',
-                                       $escapeAttribHelper($displayOptions['appendIcon']));
+                                      $escapeAttribHelper($element->getOption('appendIcon')));
         }
         //Append text
         if ($element->getOption('appendText')) {
