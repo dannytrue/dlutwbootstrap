@@ -96,6 +96,10 @@ class HelperConfig implements ConfigInterface
                 $instance = new \DluTwBootstrap\Form\View\Helper\FormCheckboxTwb($formUtil);
                 return $instance;
             },
+            'formdatetwb' => function ($sm) use ($genUtil, $formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormDateTwb($genUtil, $formUtil);
+                return $instance;
+            },
             'formelementerrorstwb' => function ($sm) use ($genUtil) {
                 $instance = new \DluTwBootstrap\Form\View\Helper\FormElementErrorsTwb($genUtil);
                 return $instance;
