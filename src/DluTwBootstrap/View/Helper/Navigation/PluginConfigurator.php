@@ -28,7 +28,7 @@ class PluginConfigurator implements ConfigInterface
 
     public function configureServiceManager(ServiceManager $serviceManager)
     {
-        foreach($this->helpers as $name => $fqcn) {
+        foreach ($this->helpers as $name => $fqcn) {
             $serviceManager->setInvokableClass($name, $fqcn);
         }
     }

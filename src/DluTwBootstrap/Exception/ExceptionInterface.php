@@ -10,4 +10,5 @@ namespace DluTwBootstrap\Exception;
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
 interface ExceptionInterface
-{}
+{
+}

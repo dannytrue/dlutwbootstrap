@@ -36,7 +36,7 @@ class FormTwb extends ViewHelperForm
     /**
      * General utils
      * @var GenUtil
-     */
+    */
     protected $genUtil;
 
     /**
@@ -51,7 +51,8 @@ class FormTwb extends ViewHelperForm
      * @param \DluTwBootstrap\GenUtil $genUtil
      * @param \DluTwBootstrap\Form\FormUtil $formUtil
      */
-    public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
+    public function __construct(GenUtil $genUtil, FormUtil $formUtil)
+    {
         $this->genUtil  = $genUtil;
         $this->formUtil = $formUtil;
     }
@@ -65,7 +66,7 @@ class FormTwb extends ViewHelperForm
      */
     public function __invoke(Form $form = null, $formType = null, array $displayOptions = array(), $renderErrors = true)
     {
-        if(is_null($form)) {
+        if (is_null($form)) {
             return $this;
         }
         return $this->render($form, $formType, $displayOptions, $renderErrors);
@@ -116,13 +117,13 @@ class FormTwb extends ViewHelperForm
         //Iterate over all form elements (outside any fieldsets) and find buttons
         $iterator   = $form->getIterator();
         $actions    = array();
-        foreach($iterator as $element) {
+        foreach ($iterator as $element) {
             /* @var $element ElementInterface */
-            if($element instanceof \Zend\Form\FieldsetInterface) {
+            if ($element instanceof \Zend\Form\FieldsetInterface) {
                 //Do not inspect fieldsets
                 continue;
             }
-            if(in_array($element->getAttribute('type'), array('submit', 'reset', 'button',))) {
+            if (in_array($element->getAttribute('type'), array('submit', 'reset', 'button',))) {
                 //It is one of the 'button' elements
                 $actions[]  = $element;
             }

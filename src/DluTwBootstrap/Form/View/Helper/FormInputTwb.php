@@ -40,7 +40,6 @@ class FormInputTwb extends BaseAbstractHelper
         'text'           => true,
         /*
         'color'          => true,
-        'date'           => true,
         'datetime'       => true,
         'datetime-local' => true,
         'email'          => true,

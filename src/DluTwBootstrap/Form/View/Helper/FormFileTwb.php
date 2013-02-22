@@ -27,7 +27,8 @@ class FormFileTwb extends FormFile
      * Constructor
      * @param FormUtil $formUtil
      */
-    public function __construct(FormUtil $formUtil) {
+    public function __construct(FormUtil $formUtil)
+    {
         $this->formUtil  = $formUtil;
     }
 
@@ -38,7 +39,8 @@ class FormFileTwb extends FormFile
      * @param array $displayOptions
      * @return void
      */
-    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions) {
+    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions)
+    {
         $this->formUtil->addIdAttributeIfMissing($element);
     }
 
@@ -49,10 +51,8 @@ class FormFileTwb extends FormFile
      * @param  array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element,
-                           $formType = null,
-                           array $displayOptions = array()
-    ) {
+    public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
+    {
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
         $html   = parent::render($element);
         return $html;
@@ -66,8 +66,8 @@ class FormFileTwb extends FormFile
      * @param  array $displayOptions
      * @return string|FormFileTwb
      */
-    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array()
-    ) {
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array())
+    {
         if (!$element) {
             return $this;
         }

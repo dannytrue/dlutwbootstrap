@@ -69,10 +69,8 @@ class FormTextTwb extends FormText
      * @param  array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element,
-                           $formType = null,
-                           array $displayOptions = array()
-    ) {
+    public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
+    {
         $formType   = $this->formUtil->filterFormType($formType);
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
         $html   = parent::render($element);
@@ -84,27 +82,32 @@ class FormTextTwb extends FormText
         if ($element->getOption('prependText')) {
             $prepAppClass   = $this->genUtil->addWords('input-prepend', $prepAppClass);
             $html           = '<span class="add-on">' . $escapeHelper($element->getOption('prependText')) . '</span>'
-                            . $html;
+                . $html;
         }
         //Prepend icon
         if ($element->getOption('prependIcon')) {
-            $prepAppClass   = $this->genUtil->addWords('input-prepend', $prepAppClass);
-            $html           = sprintf('<span class="add-on"><i class="%s"></i></span>%s',
-                                      $escapeAttribHelper($element->getOption('prependIcon')), $html);
+            $prepAppClass = $this->genUtil->addWords('input-prepend', $prepAppClass);
+            $html = sprintf(
+                '<span class="add-on"><i class="%s"></i></span>%s',
+                $escapeAttribHelper($element->getOption('prependIcon')),
+                $html
+            );
         }
         //Append text
         if ($element->getOption('appendText')) {
-            $prepAppClass   = $this->genUtil->addWords('input-append', $prepAppClass);
-            $html           .= '<span class="add-on">' . $escapeHelper($element->getOption('appendText')) . '</span>';
+            $prepAppClass = $this->genUtil->addWords('input-append', $prepAppClass);
+            $html .= '<span class="add-on">' . $escapeHelper($element->getOption('appendText')) . '</span>';
         }
         //Append icon
         if ($element->getOption('appendIcon')) {
             $prepAppClass   = $this->genUtil->addWords('input-append', $prepAppClass);
-            $html           .= sprintf('<span class="add-on"><i class="%s"></i></span>',
-                                      $escapeAttribHelper($element->getOption('appendIcon')));
+            $html .= sprintf(
+                '<span class="add-on"><i class="%s"></i></span>',
+                $escapeAttribHelper($element->getOption('appendIcon'))
+            );
         }
         if ($prepAppClass) {
-            $html           = '<div class="' . $prepAppClass . '">' . "\n$html\n" . '</div>';
+            $html = '<div class="'.$prepAppClass.'">'."\n$html\n".'</div>';
         }
         return $html;
     }
@@ -117,8 +120,8 @@ class FormTextTwb extends FormText
      * @param  array $displayOptions
      * @return string|FormTextTwb
      */
-    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array()
-    ) {
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array())
+    {
         if (!$element) {
             return $this;
         }

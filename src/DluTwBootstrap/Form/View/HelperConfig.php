@@ -32,7 +32,7 @@ class HelperConfig implements ConfigInterface
 
     /**
      * @var GenUtil
-     */
+    */
     protected $genUtil;
 
     /**
@@ -84,81 +84,82 @@ class HelperConfig implements ConfigInterface
         $genUtil    = $this->genUtil;
         $formUtil   = $this->formUtil;
         return array(
-            'formactionstwb'                    => function($sm) use ($formUtil) {
+            'formactionstwb' => function ($sm) use ($formUtil) {
                 $instance       = new \DluTwBootstrap\Form\View\Helper\FormActionsTwb($formUtil);
                 return $instance;
             },
-            'formbuttontwb'                     => function($sm) use ($genUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormButtonTwb($genUtil);
+            'formbuttontwb' => function ($sm) use ($genUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormButtonTwb($genUtil);
                 return $instance;
             },
-            'formcheckboxtwb'                   => function($sm) use ($formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormCheckboxTwb($formUtil);
+            'formcheckboxtwb' => function ($sm) use ($formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormCheckboxTwb($formUtil);
                 return $instance;
             },
-            'formelementerrorstwb'              => function($sm) use ($genUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormElementErrorsTwb($genUtil);
+            'formelementerrorstwb' => function ($sm) use ($genUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormElementErrorsTwb($genUtil);
                 return $instance;
             },
-            'formfieldsettwb'                   => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormFieldsetTwb($genUtil, $formUtil);
+            'formfieldsettwb' => function ($sm) use ($genUtil, $formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormFieldsetTwb($genUtil, $formUtil);
                 return $instance;
             },
-            'formfiletwb'                       => function($sm) use ($formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormFileTwb($formUtil);
+            'formfiletwb' => function ($sm) use ($formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormFileTwb($formUtil);
                 return $instance;
             },
-            'forminputtwb'                      => function($sm) use ($formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormInputTwb($formUtil);
+            'forminputtwb' => function ($sm) use ($formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormInputTwb($formUtil);
                 return $instance;
             },
-            'formlabeltwb'                      => function($sm) use ($genUtil) {
-                $formLabelHelper    = $sm->get('formLabel');
-                $instance           = new \DluTwBootstrap\Form\View\Helper\FormLabelTwb($formLabelHelper, $genUtil);
+            'formlabeltwb' => function ($sm) use ($genUtil) {
+                $formLabelHelper = $sm->get('formLabel');
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormLabelTwb($formLabelHelper, $genUtil);
                 return $instance;
             },
-            'formmulticheckboxtwb'              => function($sm) use ($genUtil) {
-                $formMultiCheckboxHelper    = $sm->get('formMultiCheckbox');
-                $instance                   = new \DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb(
-                                                $formMultiCheckboxHelper, $genUtil);
+            'formmulticheckboxtwb' => function ($sm) use ($genUtil) {
+                $formMultiCheckboxHelper = $sm->get('formMultiCheckbox');
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormMultiCheckboxTwb(
+                    $formMultiCheckboxHelper,
+                    $genUtil
+                );
                 return $instance;
             },
-            'formpasswordtwb'                   => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormPasswordTwb($genUtil, $formUtil);
+            'formpasswordtwb' => function ($sm) use ($genUtil, $formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormPasswordTwb($genUtil, $formUtil);
                 return $instance;
             },
-            'formradiotwb'                      => function($sm) use ($genUtil) {
-                $formRadioHelper            = $sm->get('formRadio');
-                $instance                   = new \DluTwBootstrap\Form\View\Helper\FormRadioTwb(
-                                                $formRadioHelper, $genUtil);
+            'formradiotwb' => function ($sm) use ($genUtil) {
+                $formRadioHelper = $sm->get('formRadio');
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormRadioTwb($formRadioHelper, $genUtil);
                 return $instance;
             },
-            'formresettwb'                      => function($sm) use ($genUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormResetTwb($genUtil);
+            'formresettwb' => function ($sm) use ($genUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormResetTwb($genUtil);
                 return $instance;
             },
-            'formrowtwb'                        => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormRowTwb($genUtil, $formUtil);
+            'formrowtwb' => function ($sm) use ($genUtil, $formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormRowTwb($genUtil, $formUtil);
                 return $instance;
             },
-            'formselecttwb'                     => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormSelectTwb($genUtil, $formUtil);
+            'formselecttwb' => function ($sm) use ($genUtil, $formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormSelectTwb($genUtil, $formUtil);
                 return $instance;
             },
-            'formsubmittwb'                     => function($sm) use ($genUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormSubmitTwb($genUtil);
+            'formsubmittwb' => function ($sm) use ($genUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormSubmitTwb($genUtil);
                 return $instance;
             },
-            'formtexttwb'                       => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormTextTwb($genUtil, $formUtil);
+            'formtexttwb' => function ($sm) use ($genUtil, $formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormTextTwb($genUtil, $formUtil);
                 return $instance;
             },
-            'formtextareatwb'                   => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormTextareaTwb($genUtil, $formUtil);
+            'formtextareatwb' => function ($sm) use ($genUtil, $formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormTextareaTwb($genUtil, $formUtil);
                 return $instance;
             },
-            'formtwb'                           => function($sm) use ($genUtil, $formUtil) {
-                $instance       = new \DluTwBootstrap\Form\View\Helper\FormTwb($genUtil, $formUtil);
+            'formtwb' => function ($sm) use ($genUtil, $formUtil) {
+                $instance = new \DluTwBootstrap\Form\View\Helper\FormTwb($genUtil, $formUtil);
                 return $instance;
             },
         );

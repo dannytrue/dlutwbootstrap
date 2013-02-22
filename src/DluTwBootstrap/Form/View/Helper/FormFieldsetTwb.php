@@ -52,7 +52,8 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param array $displayOptions
      * @return string
      */
-    public function openTag(FieldsetInterface $fieldset, $formType = null, array $displayOptions = array()) {
+    public function openTag(FieldsetInterface $fieldset, $formType = null, array $displayOptions = array())
+    {
         $formType   = $this->formUtil->filterFormType($formType);
         $class      = $fieldset->getAttribute('class');
         if (array_key_exists('class', $displayOptions)) {
@@ -87,7 +88,8 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * Returns the fieldset closing tag
      * @return string
      */
-    public function closeTag() {
+    public function closeTag()
+    {
         return '</fieldset>';
     }
 
@@ -101,11 +103,12 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @throws \DluTwBootstrap\Form\Exception\UnsupportedElementTypeException
      * @return string
      */
-    public function content(FieldsetInterface $fieldset,
-                            $formType = null,
-                            array $displayOptions = array(),
-                            $displayButtons = true,
-                            $renderErrors = true
+    public function content(
+        FieldsetInterface $fieldset,
+        $formType = null,
+        array $displayOptions = array(),
+        $displayButtons = true,
+        $renderErrors = true
     ) {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
@@ -127,7 +130,7 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
             $displayOptionsElements     = array();
         }
         //Iterate over all fieldset elements and render them
-        foreach($iterator as $elementOrFieldset) {
+        foreach ($iterator as $elementOrFieldset) {
             $elementName        = $elementOrFieldset->getName();
             $elementBareName    = $this->formUtil->getBareElementName($elementName);
             $templateMarkup = "";
@@ -142,27 +145,25 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
                 } else {
                     $displayOptionsFieldset = array();
                 }
-
-
-                $renderedMarkup = $this->render($elementOrFieldset,
+                $renderedMarkup = $this->render(
+                    $elementOrFieldset,
                     $formType,
                     $displayOptionsFieldset,
                     true,
                     true,
-                    $renderErrors);
-
-                $html   .= "\n" . $renderedMarkup;
-
+                    $renderErrors
+                );
+                $html .= "\n".$renderedMarkup;
                 if ($fieldset instanceof CollectionElement && $fieldset->shouldCreateTemplate()) {
                     $templateMarkup = $this->renderTemplate($fieldset);
                 }
-
             } elseif ($elementOrFieldset instanceof ElementInterface) {
-
                 //Element
                 /* @var $element ElementInterface */
-                if (!$displayButtons && in_array($elementOrFieldset->getAttribute('type'), array('submit', 'reset', 'button'))) {
-                    //We should ignore 'button' elements and this is a 'button' element, so skip the rest of the iteration
+                if (!$displayButtons
+                    && in_array($elementOrFieldset->getAttribute('type'), array('submit', 'reset', 'button'))) {
+                    //We should ignore 'button' elements and this is a 'button' element,
+                    //so skip the rest of the iteration
                     continue;
                 }
                 //Get element display options
@@ -205,13 +206,10 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
     public function renderTemplate(CollectionElement $collection)
     {
         $templateMarkup         = '';
-
         $elementOrFieldset = $collection->getTemplateElement();
-
         if ($elementOrFieldset instanceof FieldsetInterface) {
             $templateMarkup .= $this->render($elementOrFieldset);
         }
-
         return $templateMarkup;
     }
 
@@ -224,12 +222,13 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param bool $renderErrors
      * @return string
      */
-    public function render(FieldsetInterface $fieldset,
-                           $formType = null,
-                           array $displayOptions = array(),
-                           $displayButtons = true,
-                           $renderFieldsetTag = true,
-                           $renderErrors = true
+    public function render(
+        FieldsetInterface $fieldset,
+        $formType = null,
+        array $displayOptions = array(),
+        $displayButtons = true,
+        $renderFieldsetTag = true,
+        $renderErrors = true
     ) {
         $formType   = $this->formUtil->filterFormType($formType);
         $html       = '';
@@ -252,14 +251,15 @@ class FormFieldsetTwb extends AbstractFormViewHelper implements TranslatorAwareI
      * @param bool $renderErrors
      * @return string
      */
-    public function __invoke(FieldsetInterface $fieldset = null,
-                             $formType = null,
-                             array $displayOptions = array(),
-                             $displayButtons = true,
-                             $renderFieldsetTag = true,
-                             $renderErrors = true
+    public function __invoke(
+        FieldsetInterface $fieldset = null,
+        $formType = null,
+        array $displayOptions = array(),
+        $displayButtons = true,
+        $renderFieldsetTag = true,
+        $renderErrors = true
     ) {
-        if(is_null($fieldset)) {
+        if (is_null($fieldset)) {
             return $this;
         }
         return $this->render($fieldset, $formType, $displayOptions, $displayButtons, $renderFieldsetTag, $renderErrors);

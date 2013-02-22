@@ -32,16 +32,17 @@ class FormHintTwb extends AbstractFormViewHelper
      * Render element hint from the provided $element
      * @param  ElementInterface $element
      * @return string
-     */
-    public function render(ElementInterface $element) {
-        $type           = $element->getAttribute('type');
-        if(!in_array($type, $this->supportedTypes)) {
+    */
+    public function render(ElementInterface $element)
+    {
+        $type = $element->getAttribute('type');
+        if (!in_array($type, $this->supportedTypes)) {
             return '';
         }
-        $escapeHelper   = $this->getEscapeHtmlHelper();
-        $html           = '';
+        $escapeHelper = $this->getEscapeHtmlHelper();
+        $html = '';
         //Hint
-        if($element->getOption('hint')) {
+        if ($element->getOption('hint')) {
             $html   = '<span class="help-inline">' . $escapeHelper($element->getOption('hint')) . '</span>';
         }
         return $html;
@@ -53,7 +54,8 @@ class FormHintTwb extends AbstractFormViewHelper
      * @param  ElementInterface $element
      * @return string
      */
-    public function __invoke(ElementInterface $element) {
+    public function __invoke(ElementInterface $element)
+    {
         return $this->render($element);
     }
 }

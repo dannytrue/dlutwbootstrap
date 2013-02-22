@@ -23,7 +23,8 @@ class FormHiddenTwb extends FormHidden
      * @param array $displayOptions
      * @return void
      */
-    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions) {
+    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions)
+    {
     }
 
     /**
@@ -33,10 +34,10 @@ class FormHiddenTwb extends FormHidden
      * @param  array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element, $formType = null, array $displayOptions = array()
-    ) {
+    public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
+    {
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
-        $html   = parent::render($element);
+        $html = parent::render($element);
         return $html;
     }
 
@@ -48,8 +49,8 @@ class FormHiddenTwb extends FormHidden
      * @param  array $displayOptions
      * @return string|FormHiddenTwb
      */
-    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array()
-    ) {
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array())
+    {
         if (!$element) {
             return $this;
         }

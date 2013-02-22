@@ -22,7 +22,8 @@ class FormControlsTwb extends AbstractViewHelper
      * @param string $content
      * @return string
      */
-    public function render(ElementInterface $element, $content) {
+    public function render(ElementInterface $element, $content)
+    {
         $html   = $this->openTag($element);
         $html   .= "\n" . $content;
         $html   .= "\n" . $this->closeTag();
@@ -34,7 +35,8 @@ class FormControlsTwb extends AbstractViewHelper
      * @param ElementInterface $element
      * @return string
      */
-    public function openTag(ElementInterface $element) {
+    public function openTag(ElementInterface $element)
+    {
         $class  = 'controls';
         $html   = '<div class="' . $class . '">';
         return $html;
@@ -44,7 +46,8 @@ class FormControlsTwb extends AbstractViewHelper
      * Returns the control group closing tag
      * @return string
      */
-    public function closeTag() {
+    public function closeTag()
+    {
         return '</div>';
     }
 
@@ -55,8 +58,9 @@ class FormControlsTwb extends AbstractViewHelper
      * @param string $content
      * @return string
      */
-    public function __invoke(ElementInterface $element = null, $content = null) {
-        if(is_null($element)) {
+    public function __invoke(ElementInterface $element = null, $content = null)
+    {
+        if (is_null($element)) {
             return $this;
         } else {
             return $this->render($element, $content);

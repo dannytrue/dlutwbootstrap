@@ -34,16 +34,17 @@ class FormDescriptionTwb extends AbstractFormViewHelper
      * Render a description from the provided $element
      * @param  ElementInterface $element
      * @return string
-     */
-    public function render(ElementInterface $element) {
+    */
+    public function render(ElementInterface $element)
+    {
         $type           = $element->getAttribute('type');
-        if(!in_array($type, $this->supportedTypes)) {
+        if (!in_array($type, $this->supportedTypes)) {
             return '';
         }
         $escapeHelper   = $this->getEscapeHtmlHelper();
         $html           = '';
         //Description
-        if($element->getOption('description')) {
+        if ($element->getOption('description')) {
             $html   = '<p class="help-block">' . $escapeHelper($element->getOption('description')) . '</p>';
         }
         return $html;
@@ -55,7 +56,8 @@ class FormDescriptionTwb extends AbstractFormViewHelper
      * @param  ElementInterface $element
      * @return string
      */
-    public function __invoke(ElementInterface $element) {
+    public function __invoke(ElementInterface $element)
+    {
         return $this->render($element);
     }
 }

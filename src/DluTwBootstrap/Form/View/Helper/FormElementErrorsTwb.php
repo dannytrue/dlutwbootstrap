@@ -28,7 +28,8 @@ class FormElementErrorsTwb extends FormElementErrors
      * Constructor
      * @param \DluTwBootstrap\GenUtil $genUtil
      */
-    public function __construct(GenUtil $genUtil) {
+    public function __construct(GenUtil $genUtil)
+    {
         $this->genUtil  = $genUtil;
     }
 
@@ -38,9 +39,9 @@ class FormElementErrorsTwb extends FormElementErrors
      * @param array $attributes
      * @return string
      */
-    public function render(ElementInterface $element, array $attributes = array()) {
+    public function render(ElementInterface $element, array $attributes = array())
+    {
         $attributes = $this->genUtil->addWordsToArrayItem('errors', $attributes, 'class');
         return parent::render($element, $attributes);
     }
-
 }

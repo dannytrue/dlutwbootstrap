@@ -37,7 +37,8 @@ class FormTextareaTwb extends FormTextarea
      * @param GenUtil $genUtil
      * @param FormUtil $formUtil
      */
-    public function __construct(GenUtil $genUtil, FormUtil $formUtil) {
+    public function __construct(GenUtil $genUtil, FormUtil $formUtil)
+    {
         $this->genUtil  = $genUtil;
         $this->formUtil = $formUtil;
     }
@@ -49,15 +50,16 @@ class FormTextareaTwb extends FormTextarea
      * @param array $displayOptions
      * @return void
      */
-    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions) {
-        if(array_key_exists('class', $displayOptions)) {
+    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions)
+    {
+        if (array_key_exists('class', $displayOptions)) {
             $class                  = $element->getAttribute('class');
             $class                  = $this->genUtil->addWords($displayOptions['class'], $class);
             $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
             $class                  = $this->genUtil->escapeWords($class, $escapeHtmlAttrHelper);
             $element->setAttribute('class', $class);
         }
-        if(array_key_exists('rows', $displayOptions)) {
+        if (array_key_exists('rows', $displayOptions)) {
             $element->setAttribute('rows', (int)$displayOptions['rows']);
         }
         $this->formUtil->addIdAttributeIfMissing($element);
@@ -70,7 +72,8 @@ class FormTextareaTwb extends FormTextarea
      * @param  array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element, $formType = null, array $displayOptions = array()) {
+    public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
+    {
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
         $html   = parent::render($element);
         return $html;
@@ -84,8 +87,8 @@ class FormTextareaTwb extends FormTextarea
      * @param  array $displayOptions
      * @return string|FormTextareaTwb
      */
-    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array()
-    ) {
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array())
+    {
         if (!$element) {
             return $this;
         }

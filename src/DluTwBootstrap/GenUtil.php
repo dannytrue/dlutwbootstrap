@@ -33,7 +33,9 @@ class GenUtil
             $words  = $this->getWordsArray($words);
         }
         if (!is_array($words)) {
-            throw new InvalidParameterTypeException(sprintf("%s expects either a string or an array as the 'spec' parameter.", __METHOD__));
+            throw new InvalidParameterTypeException(
+                sprintf("%s expects either a string or an array as the 'spec' parameter.", __METHOD__)
+            );
         }
         $currentWords       = $this->getWordsArray($text);
         $currentWordsLower  = $this->getWordsArray(strtolower($text));
@@ -69,7 +71,8 @@ class GenUtil
     }
 
     /**
-     * Breaks the submitted $words into individual words, escapes them with the escaper and returns space separated words
+     * Breaks the submitted $words into individual words, escapes them
+     * with the escaper and returns space separated words
      * The spaces between words are NOT escaped
      * @param string $words
      * @param callable $escaper

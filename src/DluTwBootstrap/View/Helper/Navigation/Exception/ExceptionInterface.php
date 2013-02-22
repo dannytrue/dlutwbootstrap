@@ -12,4 +12,5 @@ use DluTwBootstrap\Exception\ExceptionInterface as DluTwbExceptionInterface;
  * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
 interface ExceptionInterface extends DluTwbExceptionInterface
-{}
+{
+}

@@ -27,7 +27,8 @@ class FormButtonTwb extends FormButton
      * Constructor
      * @param \DluTwBootstrap\GenUtil $genUtil
      */
-    public function __construct(GenUtil $genUtil) {
+    public function __construct(GenUtil $genUtil)
+    {
         $this->genUtil  = $genUtil;
     }
 
@@ -38,13 +39,14 @@ class FormButtonTwb extends FormButton
      * @param array $displayOptions
      * @return void
      */
-    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions) {
+    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions)
+    {
         $class  = $element->getAttribute('class');
         $class  = $this->genUtil->addWords('btn', $class);
         if (array_key_exists('class', $displayOptions)) {
             $class = $this->genUtil->addWords($displayOptions['class'], $class);
         }
-        if($element->getOption('primary') && ($element->getOption('primary') == true)) {
+        if ($element->getOption('primary') && ($element->getOption('primary') == true)) {
             $class  = $this->genUtil->addWords('btn-primary', $class);
         }
         $escapeHtmlAttrHelper   = $this->getEscapeHtmlAttrHelper();
@@ -61,10 +63,11 @@ class FormButtonTwb extends FormButton
      * @param  array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element,
-                           $buttonContent = null,
-                           $formType = null,
-                           array $displayOptions = array()
+    public function render(
+        ElementInterface $element,
+        $buttonContent = null,
+        $formType = null,
+        array $displayOptions = array()
     ) {
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
         $html   = parent::render($element, $buttonContent);
@@ -80,10 +83,11 @@ class FormButtonTwb extends FormButton
      * @param  array $displayOptions
      * @return string|FormButtonTwb
      */
-    public function __invoke(ElementInterface $element = null,
-                             $buttonContent = null,
-                             $formType = null,
-                             array $displayOptions = array()
+    public function __invoke(
+        ElementInterface $element = null,
+        $buttonContent = null,
+        $formType = null,
+        array $displayOptions = array()
     ) {
         if (!$element) {
             return $this;
