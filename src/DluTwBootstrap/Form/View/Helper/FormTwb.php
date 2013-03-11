@@ -58,13 +58,13 @@ class FormTwb extends ViewHelperForm
     }
 
     /**
-     * @param null|Form $form
+     * @param null|FormInterface $form
      * @param null|string $formType
      * @param array $displayOptions
      * @param bool $renderErrors
      * @return FormTwb|string
      */
-    public function __invoke(Form $form = null, $formType = null, array $displayOptions = array(), $renderErrors = true)
+    public function __invoke(FormInterface $form = null, $formType = null, array $displayOptions = array(), $renderErrors = true)
     {
         if (is_null($form)) {
             return $this;
@@ -74,13 +74,13 @@ class FormTwb extends ViewHelperForm
 
     /**
      * Renders a quick form
-     * @param Form $form
+     * @param FormInterface $form
      * @param string|null $formType
      * @param array $displayOptions
      * @param bool $renderErrors
      * @return string
      */
-    public function render(Form $form, $formType = null, array $displayOptions = array(), $renderErrors = true)
+    public function render(FormInterface $form, $formType = null, array $displayOptions = array(), $renderErrors = true)
     {
         $renderer = $this->getView();
         if (!method_exists($renderer, 'plugin')) {
