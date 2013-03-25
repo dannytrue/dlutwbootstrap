@@ -232,7 +232,11 @@ abstract class AbstractHelper extends AbstractZfNavigationHelper
             'href'          => '#',
         );
         if ($renderIcons) {
-            $iconHtml   = $this->htmlifyIcon($page, $activeIconInverse);
+            if (isset($page->image)) {
+                $iconHtml = '<img src="'.$page->image.'"> ';
+            } else {
+                $iconHtml = $this->htmlifyIcon($page, $activeIconInverse);
+            }
         } else {
             $iconHtml   = '';
         }
@@ -280,7 +284,7 @@ abstract class AbstractHelper extends AbstractZfNavigationHelper
         );
         if ($renderIcons) {
             if (isset($page->image)) {
-                $iconHtml = '<img src="'.$page->image.'">';
+                $iconHtml = '<img src="'.$page->image.'"> ';
             } else {
                 $iconHtml = $this->htmlifyIcon($page, $activeIconInverse);
             }
