@@ -279,7 +279,11 @@ abstract class AbstractHelper extends AbstractZfNavigationHelper
             'target' => $page->getTarget()
         );
         if ($renderIcons) {
-            $iconHtml   = $this->htmlifyIcon($page, $activeIconInverse);
+            if (isset($page->image)) {
+                $iconHtml = '<img src="'.$page->image.'">';
+            } else {
+                $iconHtml = $this->htmlifyIcon($page, $activeIconInverse);
+            }
         } else {
             $iconHtml   = '';
         }
