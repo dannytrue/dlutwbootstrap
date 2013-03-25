@@ -246,10 +246,54 @@ abstract class AbstractHelper extends AbstractZfNavigationHelper
         $pages  = $page->getPages();
         foreach ($pages as $dropdownPage) {
             /* @var $dropdownPage \Zend\Navigation\Page\AbstractPage */
-            $html   .= "\n" . $this->renderItem($dropdownPage, $renderIcons, $activeIconInverse, true, $options);
+            if ($dropdownPage->hasPages()) {
+                //Dropdown menu
+                $html   .= "\n" . $this->renderSubDropdown($dropdownPage, $renderIcons, $activeIconInverse, $options);
+            } else {
+                $html   .= "\n" . $this->renderItem($dropdownPage, $renderIcons, $activeIconInverse, false, $options);
+            }
         }
         $html   .= "\n</ul>";
         $html   = $this->decorateDropdown($html, $page, $renderIcons, $activeIconInverse, $options);
+        return $html;
+    }
+    
+    protected function renderSubDropdown(
+        \Zend\Navigation\Page\AbstractPage $page,
+        $renderIcons = true,
+        $activeIconInverse = true,
+        array $options = array()
+    ) {
+        //Get label and title
+        $label      = $this->translate($page->getLabel());
+        $title      = $this->translate($page->getTitle());
+        $escaper    = $this->view->plugin('escapeHtml');
+        //Get attribs
+        $class      = $page->getClass();
+        $aAttribs   = array(
+            'title'         => $title,
+            'class'         => $class,
+            'href'          => '#',
+        );
+        if ($renderIcons) {
+            if (isset($page->image)) {
+                $iconHtml = '<img src="'.$page->image.'"> ';
+            } else {
+                $iconHtml = $this->htmlifyIcon($page, $activeIconInverse);
+            }
+        } else {
+            $iconHtml   = '';
+        }
+        $html   = '<a' . $this->htmlAttribs($aAttribs) . '>'
+            . $iconHtml . $escaper($label) . '</a>';
+        $html   .= "\n" . '<ul class="dropdown-menu">';
+        $pages  = $page->getPages();
+        foreach ($pages as $dropdownPage) {
+            /* @var $dropdownPage \Zend\Navigation\Page\AbstractPage */
+            $html   .= "\n" . $this->renderItem($dropdownPage, $renderIcons, $activeIconInverse, true, $options);
+        }
+        $html   .= "\n</ul>";
+        $html   = $this->decorateSubDropdown($html, $page, $renderIcons, $activeIconInverse, $options);
         return $html;
     }
 

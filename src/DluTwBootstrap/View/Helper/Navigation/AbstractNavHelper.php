@@ -89,4 +89,22 @@ abstract class AbstractNavHelper extends AbstractHelper
             . "\n</li>";
         return $html;
     }
+    
+    protected function decorateSubDropdown(
+        $content,
+        \Zend\Navigation\Page\AbstractPage $page,
+        $renderIcons = true,
+        $activeIconInverse = true,
+        array $options = array()
+    ) {
+        //Get attribs
+        $liAttribs = array(
+            'id'            => $page->getId(),
+            'class'         => 'dropdown-submenu' . ($page->isActive(true) ? ' active' : ''),
+        );
+        $html   = "\n" . '<li' . $this->htmlAttribs($liAttribs) . '>'
+            . "\n" . $content
+            . "\n</li>";
+        return $html;
+    }
 }
