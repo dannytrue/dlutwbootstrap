@@ -1,7 +1,7 @@
 {
     "name": "dannytrue/dlutwbootstrap",
     "description": "ZF2 module to generate Twitter Bootstrap UI - forms, navigation, etc.",
-    "license": "New-BSD-License",
+    "license": "BSD-3-Clause",
     "keywords": [
         "dlutwbootstrap",
         "twitter bootstrap",
