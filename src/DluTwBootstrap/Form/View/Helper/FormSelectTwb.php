@@ -75,7 +75,8 @@ class FormSelectTwb extends FormSelect
      * @param array $displayOptions
      * @return string|FormSelectTwb
      */
-    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array()) {
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array())
+    {
         if (!$element) {
             return $this;
         }

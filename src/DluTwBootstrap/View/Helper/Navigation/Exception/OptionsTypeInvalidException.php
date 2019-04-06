@@ -13,5 +13,4 @@ use DluTwBootstrap\View\Helper\Navigation\Exception\ExceptionInterface;
  */
 class UnsupportedElementTypeException extends \Exception implements ExceptionInterface
 {
-
 }

@@ -1,5 +1,6 @@
 <?php
 namespace DluTwBootstrap\View\Helper\Navigation;
+
 use DluTwBootstrap\View\Helper\Navigation\Exception\UnsupportedElementTypeException;
 
 /**
@@ -25,35 +26,38 @@ class TwbNavbar extends AbstractNavHelper
      * @return string helper output
      * @throws \Zend\View\Exception\ExceptionInterface if unable to render
      */
-    public function render($container = null) {
+    public function render($container = null)
+    {
         return $this->renderNavbar($container);
     }
 
-    public function renderNavbar(\Zend\Navigation\Navigation $container = null,
-                                    $leftElements = null,
-                                    $rightElements = null,
-                                    \Zend\Navigation\Page\AbstractPage $brandLink = null,
-                                    $brandName = null,
-                                    $fixed = true,
-                                    $fixedBottom = false,
-                                    $responsive = true,
-                                    $renderIcons = true,
-                                    $inverse = false) {
+    public function renderNavbar(
+        \Zend\Navigation\Navigation $container = null,
+        $leftElements = null,
+        $rightElements = null,
+        \Zend\Navigation\Page\AbstractPage $brandLink = null,
+        $brandName = null,
+        $fixed = true,
+        $fixedBottom = false,
+        $responsive = true,
+        $renderIcons = true,
+        $inverse = false
+    ) {
         if (null === $container) {
             $container = $this->getContainer();
         }
-        if($leftElements && !is_array($leftElements)) {
+        if ($leftElements && !is_array($leftElements)) {
             $leftElements   = array($leftElements);
         }
-        if($rightElements && !is_array($rightElements)) {
+        if ($rightElements && !is_array($rightElements)) {
             $rightElements  = array($rightElements);
         }
         $html   = '';
 
         //Navbar scaffolding
         $navbarClass    = 'navbar';
-        if($fixed) {
-            if($fixedBottom) {
+        if ($fixed) {
+            if ($fixedBottom) {
                 $navbarClass    .= ' navbar-fixed-bottom';
             } else {
                 $navbarClass    .= ' navbar-fixed-top';
@@ -67,7 +71,7 @@ class TwbNavbar extends AbstractNavHelper
         $html   .= "\n" . '<div class="container">';
 
         //Responsive (button)
-        if($responsive) {
+        if ($responsive) {
             $html   .= "\n" . '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">';
             $html   .= "\n" . '<span class="icon-bar"></span>';
             $html   .= "\n" . '<span class="icon-bar"></span>';
@@ -76,9 +80,9 @@ class TwbNavbar extends AbstractNavHelper
         }
 
         //Brand
-        if($brandLink) {
+        if ($brandLink) {
             $view   = $this->getView();
-            if($brandName) {
+            if ($brandName) {
                 $brandName  = $view->escapeHtml($brandName);
             } else {
                 $brandName  = $view->escapeHtml($brandLink->getLabel());
@@ -87,7 +91,7 @@ class TwbNavbar extends AbstractNavHelper
         }
 
         //Responsive (div)
-        if($responsive) {
+        if ($responsive) {
             $html   .= "\n" . '<div class="nav-collapse">';
         }
 
@@ -99,17 +103,17 @@ class TwbNavbar extends AbstractNavHelper
         $html   .= "\n" . $this->renderContainer($container, $renderIcons, true, $options);
 
         //Left elements
-        if($leftElements) {
+        if ($leftElements) {
             $html   .= "\n" . $this->renderElements($leftElements, 'left', $renderIcons);
         }
 
         //Right elements
-        if($rightElements) {
+        if ($rightElements) {
             $html   .= "\n" . $this->renderElements($rightElements, 'right', $renderIcons);
         }
 
         //Responsive (close div)
-        if($responsive) {
+        if ($responsive) {
             $html   .= "\n" . '</div>';
         }
 
@@ -121,46 +125,46 @@ class TwbNavbar extends AbstractNavHelper
         return $html;
     }
 
-    protected function renderElements(array $elements, $align = null, $renderIcons = true) {
+    protected function renderElements(array $elements, $align = null, $renderIcons = true)
+    {
         $html   = '';
         $view   = $this->getView();
-        foreach($elements as $element) {
-            if($element instanceof \Zend\Navigation\AbstractContainer) {
+        foreach ($elements as $element) {
+            if ($element instanceof \Zend\Navigation\AbstractContainer) {
                 $options    = array(
                     'align'     => $align,
                     'ulClass'   => 'nav',
                 );
                 $html   .= "\n" . $this->renderContainer($element, $renderIcons, true, $options);
-            }
-            //TODO - implement support for search and inline forms
-            /*
-            elseif ($element instanceof \DluTwBootstrap\Form\Search) {
+                //TODO - implement support for search and inline forms
+                /*
+                } elseif ($element instanceof \DluTwBootstrap\Form\Search) {
                 $class  = $element->getAttrib('class');
                 $this->addWord('navbar-search', $class);
                 if($align == self::ALIGN_LEFT) {
-                    $this->addWord('pull-left', $class);
+                $this->addWord('pull-left', $class);
                 } elseif($align == self::ALIGN_RIGHT) {
-                    $this->addWord('pull-right', $class);
+                $this->addWord('pull-right', $class);
                 }
                 $element->setAttrib('class', $class);
                 $html   .= "\n" . $element->render();
-            } elseif ($element instanceof \DluTwBootstrap\Form\Inline) {
+                } elseif ($element instanceof \DluTwBootstrap\Form\Inline) {
                 $class  = $element->getAttrib('class');
                 $this->addWord('navbar-form', $class);
                 if($align == self::ALIGN_LEFT) {
-                    $this->addWord('pull-left', $class);
+                $this->addWord('pull-left', $class);
                 } elseif($align == self::ALIGN_RIGHT) {
-                    $this->addWord('pull-right', $class);
+                $this->addWord('pull-right', $class);
                 }
                 $element->setAttrib('class', $class);
                 $html   .= "\n" . $element->render();
-            }
-            */
-            elseif (is_string($element)) {
+                }
+                */
+            } elseif (is_string($element)) {
                 $pClass    = 'navbar-text';
-                if($align == self::ALIGN_LEFT) {
+                if ($align == self::ALIGN_LEFT) {
                     $pClass    .= ' pull-left';
-                } elseif($align == self::ALIGN_RIGHT) {
+                } elseif ($align == self::ALIGN_RIGHT) {
                     $pClass    .= ' pull-right';
                 }
                 $html   .= "\n" . '<p class="' . $pClass . '">' . $view->escapeHtml($element) . '</p>';

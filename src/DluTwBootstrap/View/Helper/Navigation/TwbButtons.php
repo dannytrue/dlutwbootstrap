@@ -23,7 +23,8 @@ class TwbButtons extends AbstractButtonHelper
      * @return string helper output
      * @throws \Zend\View\Exception\ExceptionInterface if unable to render
      */
-    public function render($container = null){
+    public function render($container = null)
+    {
         return $this->renderButtons($container);
     }
 
@@ -34,16 +35,18 @@ class TwbButtons extends AbstractButtonHelper
      * @param bool $renderIcons
      * @return string
      */
-    public function renderButtons(\Zend\Navigation\Navigation $container = null,
-                               $type = null,
-                               $renderIcons = true) {
+    public function renderButtons(
+        \Zend\Navigation\Navigation $container = null,
+        $type = null,
+        $renderIcons = true
+    ) {
         if (null === $container) {
             $container = $this->getContainer();
         }
-        if(!$container->hasPages()) {
+        if (!$container->hasPages()) {
             return '';
         }
-        if(is_null($type)) {
+        if (is_null($type)) {
             $type   = self::TYPE_GROUPS_HORIZONTAL;
         }
         $options    = array('type'  => $type);

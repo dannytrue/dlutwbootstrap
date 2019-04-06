@@ -53,7 +53,7 @@ class FormUtil
     /**
      * Default form type
      * @var string
-     */
+    */
     protected $defaultFormType;
 
     /* ********************************** METHODS ***************************** */
@@ -111,7 +111,8 @@ class FormUtil
     }
 
     /**
-     * Filters the specified form type and returns it - if null, uses the default, otherwise checks if the type is supported
+     * Filters the specified form type and returns it - if null,
+     * uses the default, otherwise checks if the type is supported
      * @param $formType
      * @return string
      * @throws \DluTwBootstrap\Exception\InvalidParameterException

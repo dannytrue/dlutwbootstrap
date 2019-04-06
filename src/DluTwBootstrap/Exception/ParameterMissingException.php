@@ -11,5 +11,4 @@ namespace DluTwBootstrap\Exception;
  */
 class ParameterMissingException extends \InvalidArgumentException implements ExceptionInterface
 {
-
 }

@@ -25,7 +25,8 @@ class TwbTabs extends AbstractNavHelper
      * @return string helper output
      * @throws \Zend\View\Exception\ExceptionInterface if unable to render
      */
-    public function render($container = null){
+    public function render($container = null)
+    {
         return $this->renderTabs($container);
     }
 
@@ -37,16 +38,18 @@ class TwbTabs extends AbstractNavHelper
      * @param bool $renderIcons
      * @return string
      */
-    public function renderTabs(\Zend\Navigation\Navigation $container = null,
-                               $pills = false,
-                               $stacked = false,
-                               $renderIcons = true) {
+    public function renderTabs(
+        \Zend\Navigation\Navigation $container = null,
+        $pills = false,
+        $stacked = false,
+        $renderIcons = true
+    ) {
         if (null === $container) {
             $container = $this->getContainer();
         }
         $ulClass    = 'nav';
         //Tabs or Pills
-        if($pills) {
+        if ($pills) {
             $ulClass            .= ' nav-pills';
             $activeIconInverse    = true;
         } else {
@@ -54,7 +57,7 @@ class TwbTabs extends AbstractNavHelper
             $activeIconInverse    = false;
         }
         //Stacked
-        if($stacked) {
+        if ($stacked) {
             $ulClass            .= ' nav-stacked';
         }
         //Container
@@ -64,5 +67,4 @@ class TwbTabs extends AbstractNavHelper
         $html   = "\n" . $this->renderContainer($container, $renderIcons, $activeIconInverse, $options);
         return $html;
     }
-
 }

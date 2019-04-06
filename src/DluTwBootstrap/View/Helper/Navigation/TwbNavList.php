@@ -24,7 +24,8 @@ class TwbNavList extends AbstractNavHelper
      * @return string helper output
      * @throws \Zend\View\Exception\ExceptionInterface if unable to render
      */
-    public function render($container = null) {
+    public function render($container = null)
+    {
         return $this->renderNavList($container);
     }
 
@@ -35,13 +36,14 @@ class TwbNavList extends AbstractNavHelper
      * @param bool $renderIcons
      * @return string
      */
-    public function renderNavList(\Zend\Navigation\Navigation $container = null, $well = true, $renderIcons = true) {
+    public function renderNavList(\Zend\Navigation\Navigation $container = null, $well = true, $renderIcons = true)
+    {
         if (null === $container) {
             $container = $this->getContainer();
         }
         $html   = '';
         //Well
-        if($well) {
+        if ($well) {
             $html   .= "\n" . '<div class="well" style="padding: 8px 0;">';
         }
         //Container
@@ -50,7 +52,7 @@ class TwbNavList extends AbstractNavHelper
         );
         $html   .= "\n" . $this->renderContainer($container, $renderIcons, true, $options);
         //Well (close div)
-        if($well) {
+        if ($well) {
             $html   .= "\n" . '</div>';
         }
         return $html;

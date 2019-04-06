@@ -75,7 +75,7 @@ class FormMultiCheckboxTwb extends AbstractFormViewHelper
     public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
     {
         $labelAttributes    = $this->twbLabelAttributes;
-        if(array_key_exists('inline', $displayOptions) && $displayOptions['inline'] == true) {
+        if (array_key_exists('inline', $displayOptions) && $displayOptions['inline'] == true) {
             $labelAttributes = $this->genUtil->addWordsToArrayItem('inline', $labelAttributes, 'class');
         }
         $formMultiCheckboxHelper    = $this->formMultiCheckboxHelper;

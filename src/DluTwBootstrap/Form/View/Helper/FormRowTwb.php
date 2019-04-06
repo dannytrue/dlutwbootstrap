@@ -92,11 +92,12 @@ class FormRowTwb extends AbstractHelper
      * @param bool $renderErrors
      * @return string
      */
-    public function render(ElementInterface $element,
-                           $formType = null,
-                           array $displayOptions = array(),
-                           $renderErrors = true)
-    {
+    public function render(
+        ElementInterface $element,
+        $formType = null,
+        array $displayOptions = array(),
+        $renderErrors = true
+    ) {
         $formType            = $this->formUtil->filterFormType($formType);
 
         $elementHelper       = $this->getElementHelper();
@@ -143,14 +144,14 @@ class FormRowTwb extends AbstractHelper
             $label              = $labelHelper($element, $displayOptions);
         }
         $markup = $controlGroupOpen
-            . $label
-            . $controlsOpen
-            . $elementString
-            . $hint
-            . $description
-            . $elementErrors
-            . $controlsClose
-            . $controlGroupClose;
+        . $label
+        . $controlsOpen
+        . $elementString
+        . $hint
+        . $description
+        . $elementErrors
+        . $controlsClose
+        . $controlGroupClose;
         return $markup;
     }
 
@@ -163,10 +164,12 @@ class FormRowTwb extends AbstractHelper
      * @param bool $renderErrors
      * @return string|FormRowTwb
      */
-    public function __invoke(ElementInterface $element = null,
-                             $formType = null,
-                             array $displayOptions = array(),
-                             $renderErrors = true) {
+    public function __invoke(
+        ElementInterface $element = null,
+        $formType = null,
+        array $displayOptions = array(),
+        $renderErrors = true
+    ) {
         if (!$element) {
             return $this;
         }
@@ -185,7 +188,9 @@ class FormRowTwb extends AbstractHelper
                 $this->labelHelper = $this->view->plugin('form_label_twb');
             }
             if (!$this->labelHelper instanceof FormLabelTwb) {
-                throw new UnsupportedHelperTypeException('Label helper (FormLabelTwb) unavailable or unsupported type.');
+                throw new UnsupportedHelperTypeException(
+                    'Label helper (FormLabelTwb) unavailable or unsupported type.'
+                );
             }
         }
         return $this->labelHelper;
@@ -203,7 +208,9 @@ class FormRowTwb extends AbstractHelper
                 $this->elementHelper = $this->view->plugin('form_element_twb');
             }
             if (!$this->elementHelper instanceof FormElementTwb) {
-                throw new UnsupportedHelperTypeException('Element helper (FormElementTwb) unavailable or unsupported type.');
+                throw new UnsupportedHelperTypeException(
+                    'Element helper (FormElementTwb) unavailable or unsupported type.'
+                );
             }
         }
         return $this->elementHelper;
@@ -221,7 +228,9 @@ class FormRowTwb extends AbstractHelper
                 $this->elementErrorsHelper = $this->view->plugin('form_element_errors_twb');
             }
             if (!$this->elementErrorsHelper instanceof FormElementErrorsTwb) {
-                throw new UnsupportedHelperTypeException('Element errors helper (FormElementErrorsTwb) unavailable or unsupported type.');
+                throw new UnsupportedHelperTypeException(
+                    'Element errors helper (FormElementErrorsTwb) unavailable or unsupported type.'
+                );
             }
         }
         return $this->elementErrorsHelper;
@@ -239,7 +248,9 @@ class FormRowTwb extends AbstractHelper
                 $this->hintHelper = $this->view->plugin('form_hint_twb');
             }
             if (!$this->hintHelper instanceof FormHintTwb) {
-                throw new UnsupportedHelperTypeException('Hint helper (FormHintTwb) unavailable or unsupported type.');
+                throw new UnsupportedHelperTypeException(
+                    'Hint helper (FormHintTwb) unavailable or unsupported type.'
+                );
             }
         }
         return $this->hintHelper;
@@ -257,7 +268,9 @@ class FormRowTwb extends AbstractHelper
                 $this->descriptionHelper = $this->view->plugin('form_description_twb');
             }
             if (!$this->descriptionHelper instanceof FormDescriptionTwb) {
-                throw new UnsupportedHelperTypeException('Description helper (FormDescriptionTwb) unavailable or unsupported type.');
+                throw new UnsupportedHelperTypeException(
+                    'Description helper (FormDescriptionTwb) unavailable or unsupported type.'
+                );
             }
         }
         return $this->descriptionHelper;
@@ -275,7 +288,9 @@ class FormRowTwb extends AbstractHelper
                 $this->controlGroupHelper = $this->view->plugin('form_control_group_twb');
             }
             if (!$this->controlGroupHelper instanceof FormControlGroupTwb) {
-                throw new UnsupportedHelperTypeException('Control group helper (FormControlGroupTwb) unavailable or unsupported type.');
+                throw new UnsupportedHelperTypeException(
+                    'Control group helper (FormControlGroupTwb) unavailable or unsupported type.'
+                );
             }
         }
         return $this->controlGroupHelper;
@@ -293,7 +308,9 @@ class FormRowTwb extends AbstractHelper
                 $this->controlsHelper = $this->view->plugin('form_controls_twb');
             }
             if (!$this->controlsHelper instanceof FormControlsTwb) {
-                throw new UnsupportedHelperTypeException('Controls helper (FormControlsTwb) unavailable or unsupported type.');
+                throw new UnsupportedHelperTypeException(
+                    'Controls helper (FormControlsTwb) unavailable or unsupported type.'
+                );
             }
         }
         return $this->controlsHelper;

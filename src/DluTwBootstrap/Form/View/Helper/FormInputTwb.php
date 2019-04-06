@@ -29,6 +29,8 @@ class FormInputTwb extends BaseAbstractHelper
     protected $validTypes = array(
         'button'         => true,
         'checkbox'       => true,
+        'color'          => true,
+        'date'           => true,
         'file'           => true,
         'hidden'         => true,
         //'image'          => true,
@@ -38,8 +40,7 @@ class FormInputTwb extends BaseAbstractHelper
         'submit'         => true,
         'text'           => true,
         /*
-        'color'          => true,
-        'date'           => true,
+        
         'datetime'       => true,
         'datetime-local' => true,
         'email'          => true,
@@ -97,6 +98,16 @@ class FormInputTwb extends BaseAbstractHelper
         //Checkbox
         if ('checkbox' == $type) {
             $helper = $renderer->plugin('form_checkbox_twb');
+            return $helper($element, $formType, $displayOptions);
+        }
+        //Color
+        if ('color' == $type) {
+            $helper = $renderer->plugin('form_color_twb');
+            return $helper($element, $formType, $displayOptions);
+        }
+        //Date
+        if ('date' == $type) {
+            $helper = $renderer->plugin('form_date_twb');
             return $helper($element, $formType, $displayOptions);
         }
         //File

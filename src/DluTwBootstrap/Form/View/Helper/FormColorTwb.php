@@ -1,21 +1,18 @@
 <?php
 namespace DluTwBootstrap\Form\View\Helper;
 
+use Zend\Form\View\Helper\FormColor;
+
 use DluTwBootstrap\Form\FormUtil;
 use DluTwBootstrap\GenUtil;
 
 use Zend\Form\ElementInterface;
-use Zend\Form\View\Helper\FormText;
 
 /**
  * FormTextTwb
  * @package DluTwBootstrap
- * @copyright David Lukas (c) - http://www.zfdaily.com
- * @license http://www.zfdaily.com/code/license New BSD License
- * @link http://www.zfdaily.com
- * @link https://bitbucket.org/dlu/dlutwbootstrap
  */
-class FormTextTwb extends FormText
+class FormColorTwb extends FormColor
 {
     /**
      * @var FormUtil
@@ -69,8 +66,11 @@ class FormTextTwb extends FormText
      * @param  array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
-    {
+    public function render(
+        ElementInterface $element,
+        $formType = null,
+        array $displayOptions = array()
+    ) {
         $formType   = $this->formUtil->filterFormType($formType);
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
         $html   = parent::render($element);
@@ -80,9 +80,8 @@ class FormTextTwb extends FormText
         $prepAppClass       = '';
         //Prepend text
         if ($element->getOption('prependText')) {
-            $prepAppClass   = $this->genUtil->addWords('input-prepend', $prepAppClass);
-            $html           = '<span class="add-on">' . $escapeHelper($element->getOption('prependText')) . '</span>'
-                . $html;
+            $prepAppClass = $this->genUtil->addWords('input-prepend', $prepAppClass);
+            $html = '<span class="add-on">'.$escapeHelper($element->getOption('prependText')).'</span>'.$html;
         }
         //Prepend icon
         if ($element->getOption('prependIcon')) {
@@ -96,11 +95,11 @@ class FormTextTwb extends FormText
         //Append text
         if ($element->getOption('appendText')) {
             $prepAppClass = $this->genUtil->addWords('input-append', $prepAppClass);
-            $html .= '<span class="add-on">' . $escapeHelper($element->getOption('appendText')) . '</span>';
+            $html .= '<span class="add-on">'.$escapeHelper($element->getOption('appendText')).'</span>';
         }
         //Append icon
         if ($element->getOption('appendIcon')) {
-            $prepAppClass   = $this->genUtil->addWords('input-append', $prepAppClass);
+            $prepAppClass = $this->genUtil->addWords('input-append', $prepAppClass);
             $html .= sprintf(
                 '<span class="add-on"><i class="%s"></i></span>',
                 $escapeAttribHelper($element->getOption('appendIcon'))

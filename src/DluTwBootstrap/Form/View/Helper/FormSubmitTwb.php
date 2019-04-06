@@ -27,7 +27,8 @@ class FormSubmitTwb extends FormSubmit
      * Constructor
      * @param \DluTwBootstrap\GenUtil $genUtil
      */
-    public function __construct(GenUtil $genUtil) {
+    public function __construct(GenUtil $genUtil)
+    {
         $this->genUtil  = $genUtil;
     }
 
@@ -38,7 +39,8 @@ class FormSubmitTwb extends FormSubmit
      * @param array $displayOptions
      * @return void
      */
-    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions) {
+    protected function prepareElementBeforeRendering(ElementInterface $element, $formType, array $displayOptions)
+    {
         $class  = $element->getAttribute('class');
         $class  = $this->genUtil->addWords('btn', $class);
         if (array_key_exists('class', $displayOptions)) {
@@ -58,10 +60,8 @@ class FormSubmitTwb extends FormSubmit
      * @param  array $displayOptions
      * @return string
      */
-    public function render(ElementInterface $element,
-                           $formType = null,
-                           array $displayOptions = array()
-    ) {
+    public function render(ElementInterface $element, $formType = null, array $displayOptions = array())
+    {
         $this->prepareElementBeforeRendering($element, $formType, $displayOptions);
         $html   = parent::render($element);
         return $html;
@@ -75,8 +75,8 @@ class FormSubmitTwb extends FormSubmit
      * @param  array $displayOptions
      * @return string|FormPasswordTwb
      */
-    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array()
-    ) {
+    public function __invoke(ElementInterface $element = null, $formType = null, array $displayOptions = array())
+    {
         if (!$element) {
             return $this;
         }
